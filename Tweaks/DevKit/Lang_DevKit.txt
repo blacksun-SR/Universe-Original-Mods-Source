@@ -1,85 +1,69 @@
-Script ^{
+ÔªøScript ^{
     Mod_DevKit ~{
         3=DevKit
-        4=‘ÛÌÍˆËË ‰Îˇ ÚÂÒÚËÓ‚‡ÌËˇ
-        90=ƒÓÒÚ‡‚ÎÂÌÓ ‚ Ú˛Ï ËÎË Ì‡ ÒÍÎ‡‰
-        12=–‡Ò‡
-        27= ‡ÍÓÂ ËÏÂÌÌÓ?
-        137= ‡ÍÓÂ ÍÓÎË˜ÂÒÚ‚Ó?
-        32=ƒÂÌ¸„Ë ÔÂÂ‚Â‰ÂÌ˚
-        57= ‡ÍËÂ ËÏÂÌÌÓ?
-        71=ÃËÍÓÏÓ‰ÛÎË ‰ÓÒÚ‡‚ÎÂÌ˚ ‚ Ú˛Ï
-        42=¡‡Í Á‡Ô‡‚ÎÂÌ
-        52=«‚‡ÌËÂ ÔÓ‚˚¯ÂÌÓ
-        125=¡‡Á˚ ÒÓÁ‰‡Ì˚ ‚ ‰‡ÌÌÓÈ ÒËÒÚÂÏÂ
-        62=◊ƒ ÒÓÁ‰‡Ì‡
-        138= ‡ÍÓÂ ÍÓÎË˜ÂÒÚ‚Ó ÌÓ‰Ó‚ ÔÓÎÛ˜ËÚ¸ ÙËÁË˜ÂÒÍË Ë Ì‡ Í‡ÍÓÂ ÔÓÔÓÎÌËÚ¸ ÌÓ‰-Ò˜∏Ú?
-        126=¬‡¯ ÌÓ‰-Ò˜∏Ú ÔÓÔÓÎÌÂÌ, ‡ ÙËÁË˜ÂÒÍËÂ ÌÓ‰˚ ‰ÓÒÚ‡‚ÎÂÌ˚ ‚ Ú˛Ï
-        92=œÎ‡ÌÂÚ‡ ÒÓÁ‰‡Ì‡
-        76=œÓ„‡ÏÏ˚ Á‡„ÛÊÂÌ˚
-        79= ÓÔÛÒ ‡Ò¯ËÂÌ
-        93=Œ·ÓÛ‰Ó‚‡ÌËÂ ÓÚÂÏÓÌÚËÓ‚‡ÌÓ
-        104=¬˚ÔÓÎÌÂÌÓ
-        98= ‡ÍÓ„Ó ÚËÔ‡?
-        106= ‡Ú‡ ÓÚÍ˚Ú‡
-        107=Õ‡ ÒÍÓÎ¸ÍÓ?
-        116= ‡ÍÓ„Ó ÚÂı.ÛÓ‚Ìˇ?
-        129= ‡ÍÓÈ ‡Ò˚?
-        70=¿ÚÂÙ‡ÍÚ˚ ‰ÓÒÚ‡‚ÎÂÌ˚ ‚ Ú˛Ï
-        148=ÕËÍÛ‰‡ ˇ ÚÂÎÂÔÓÚËÓ‚‡Ú¸Òˇ ÌÂ ıÓ˜Û
-        146= Û‰‡?
-        147=√ÓÚÓ‚Ó.
-        9=œÓÎÛ˜ËÚ¸ ·‡Í
-        8=—Ô‡ÒË·Ó!
-        13=Ã‡ÎÓÍË
-        14=œÂÎÂÌ„Ë
-        130=À˛‰Ë
-        16=‘ÂˇÌÂ
-        17=√‡‡Î¸ˆ˚
-        19=œÓÎÛ˜ËÚ¸ ‰‚Ë„‡ÚÂÎ¸
-        21=œÓÎÛ˜ËÚ¸ ÒÍ‡ÌÂ
-        22=œÓÎÛ˜ËÚ¸ ‡‰‡
-        23=œÓÎÛ˜ËÚ¸ ‰ÓË‰
-        24=œÓÎÛ˜ËÚ¸ Á‡ı‚‡Ú
-        29=œÓÎÛ˜ËÚ¸ ÍÓÔÛÒ
-        30=œÓÎÛ˜ËÚ¸ √«œ
-        28=œÓÎÛ˜ËÚ¸ Ó·ÓÛ‰Ó‚‡ÌËÂ
-        33=œÓÎÛ˜ËÚ¸ ‰ÂÌ¸„Ë
-        34=¬‚ÂÒÚË ÌÛÊÌÛ˛ ÒÛÏÏÛ
-        37=œÓÎÛ˜ËÚ¸ ‡ÚÂÙ‡ÍÚ˚
-        38=“ÓÎ¸ÍÓ “‡ÌÍÎ˛Í‡ÚÓ‡
-        58=ŒË„ËÌ‡Î¸Ì˚Â
-        46=œÓÎÛ˜ËÚ¸ ÏËÍÓÏÓ‰ÛÎË
-        43=«‡Ô‡‚ËÚ¸ ·‡Í
-        45=œÓÎÛ˜ËÚ¸ ‚Ò∏ Ò‡ÁÛ
-        47=œÓÎÛ˜ËÚ¸ ÓÛÊËÂ
-        94=Ã‡·ÓÍËÚ (Evolution)
-        49=ŒË„ËÌ‡Î¸ÌÓÂ
-        54=œÓ‚˚ÒËÚ¸ Á‚‡ÌËÂ
-        112=œÓ‚˚ÒËÚ¸ ÍÓ‡ÎËˆËÓÌÌÓÂ
-        113=œÓ‚˚ÒËÚ¸ ÔË‡ÚÒÍÓÂ
-        61=—ÓÁ‰‡Ú¸ ·‡Á˚
-        63=—ÓÁ‰‡Ú¸ ◊ƒ
-        65=œÓÎÛ˜ËÚ¸ ÌÓ‰˚
-        127=¬‚ÂÒÚË ÌÛÊÌÓÂ ÍÓÎË˜ÂÒÚ‚Ó
-        74=—ÓÁ‰‡Ú¸ ÔÎ‡ÌÂÚÛ
-        75=«‡„ÛÁËÚ¸ ‡ÌÚË‰ÓÏËÌ‡ÚÓ ÔÓ„‡ÏÏ˚
-        80=”‚ÂÎË˜ËÚ¸ ‡ÁÏÂ ÍÓÔÛÒ‡
-        82=œÓ˜ËÌËÚ¸ Ó·ÓÛ‰Ó‚‡ÌËÂ
-        95= ÓÔÛÒ  ÎÂ˘ (Expansion)
-        96=‘ËÁ√‡Ì (Expansion)
-        88=›ÍÒÔÂËÏÂÌÚ‡Î¸ÌÓÂ ÓÛÊËÂ
-        105= ÓÌÒÓÎ¸
-        99= ÓÔÛÒ “ÂÌ¸ »ÏÔÂËË
-        100=¬ÓÂÌÌ˚È
-        101=œË‡ÚÒÍËÈ
-        103=“‡ÌÒÔÓÚÌ˚È
-        102=–ÂÈÌ‰ÊÂ
-        149=√ÓÎÓÔÓÂÍÚÓ, œÛÎ¸Ò‡, ¡ÎËÌÍÂ (ÏÓ‰ÛÎ¸ SubSpaceBase)
-        110=ŒÚÍ˚Ú¸ ‚Ò˛ Í‡ÚÛ
-        111=¬‚ÂÒÚË ÌÛÊÌ˚È ‡ÁÏÂ
-        114=—Ú‡Ú¸ ¡‡ÓÌÓÏ
-        115=—Ú‡Ú¸ ¿‰ÏË‡ÎÓÏ
+        4=–§—É–Ω–∫—Ü–∏–∏ –¥–ª—è —Ç–µ—Å—Ç–∏—Ä–æ–≤–∞–Ω–∏—è
+        12=–†–∞—Å–∞
+        27=–ö–∞–∫–æ–µ –∏–º–µ–Ω–Ω–æ?
+        137=–ö–∞–∫–æ–µ –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ?
+        57=–ö–∞–∫–∏–µ –∏–º–µ–Ω–Ω–æ?
+        138=–ö–∞–∫–æ–µ –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ –Ω–æ–¥–æ–≤ –ø–æ–ª—É—á–∏—Ç—å —Ñ–∏–∑–∏—á–µ—Å–∫–∏ –∏ –Ω–∞ –∫–∞–∫–æ–µ –ø–æ–ø–æ–ª–Ω–∏—Ç—å –Ω–æ–¥-—Å—á—ë—Ç?
+        98=–ö–∞–∫–æ–≥–æ —Ç–∏–ø–∞?
+        107=–ù–∞ —Å–∫–æ–ª—å–∫–æ?
+        116=–ö–∞–∫–æ–≥–æ —Ç–µ—Ö.—É—Ä–æ–≤–Ω—è?
+        129=–ö–∞–∫–æ–π —Ä–∞—Å—ã?
+        148=–ù–∏–∫—É–¥–∞ —è —Ç–µ–ª–µ–ø–æ—Ä—Ç–∏—Ä–æ–≤–∞—Ç—å—Å—è –Ω–µ —Ö–æ—á—É
+        146=–ö—É–¥–∞?
+        147=–ì–æ—Ç–æ–≤–æ.
+        154=–í—ã–±–µ—Ä–∏—Ç–µ –Ω—É–∂–Ω–æ–µ –¥–µ–π—Å—Ç–≤–∏–µ.
+        9=–ü–æ–ª—É—á–∏—Ç—å –±–∞–∫
+        13=–ú–∞–ª–æ–∫–∏
+        14=–ü–µ–ª–µ–Ω–≥–∏
+        130=–õ—é–¥–∏
+        16=–§–µ—è–Ω–µ
+        17=–ì–∞–∞–ª—å—Ü—ã
+        19=–ü–æ–ª—É—á–∏—Ç—å –¥–≤–∏–≥–∞—Ç–µ–ª—å
+        21=–ü–æ–ª—É—á–∏—Ç—å —Å–∫–∞–Ω–µ—Ä
+        22=–ü–æ–ª—É—á–∏—Ç—å —Ä–∞–¥–∞—Ä
+        23=–ü–æ–ª—É—á–∏—Ç—å –¥—Ä–æ–∏–¥
+        24=–ü–æ–ª—É—á–∏—Ç—å –∑–∞—Ö–≤–∞—Ç
+        29=–ü–æ–ª—É—á–∏—Ç—å –∫–æ—Ä–ø—É—Å
+        30=–ü–æ–ª—É—á–∏—Ç—å –ì–ó–ü
+        28=–ü–æ–ª—É—á–∏—Ç—å –æ–±–æ—Ä—É–¥–æ–≤–∞–Ω–∏–µ
+        33=–ü–æ–ª—É—á–∏—Ç—å –¥–µ–Ω—å–≥–∏
+        34=–í–≤–µ—Å—Ç–∏ –Ω—É–∂–Ω—É—é —Å—É–º–º—É
+        37=–ü–æ–ª—É—á–∏—Ç—å –∞—Ä—Ç–µ—Ñ–∞–∫—Ç—ã
+        38=–¢–æ–ª—å–∫–æ –¢—Ä–∞–Ω–∫–ª—é–∫–∞—Ç–æ—Ä–∞
+        58=–û—Ä–∏–≥–∏–Ω–∞–ª—å–Ω—ã–µ
+        46=–ü–æ–ª—É—á–∏—Ç—å –º–∏–∫—Ä–æ–º–æ–¥—É–ª–∏
+        43=–ó–∞–ø—Ä–∞–≤–∏—Ç—å –±–∞–∫
+        45=–ü–æ–ª—É—á–∏—Ç—å –≤—Å—ë —Å—Ä–∞–∑—É
+        47=–ü–æ–ª—É—á–∏—Ç—å –æ—Ä—É–∂–∏–µ
+        94=–ú–∞–±–æ–∫–∏—Ç (Evolution)
+        49=–û—Ä–∏–≥–∏–Ω–∞–ª—å–Ω–æ–µ
+        54=–ü–æ–≤—ã—Å–∏—Ç—å –∑–≤–∞–Ω–∏–µ
+        112=–ü–æ–≤—ã—Å–∏—Ç—å –∫–æ–∞–ª–∏—Ü–∏–æ–Ω–Ω–æ–µ
+        113=–ü–æ–≤—ã—Å–∏—Ç—å –ø–∏—Ä–∞—Ç—Å–∫–æ–µ
+        61=–°–æ–∑–¥–∞—Ç—å –±–∞–∑—ã
+        63=–°–æ–∑–¥–∞—Ç—å –ß–î
+        65=–ü–æ–ª—É—á–∏—Ç—å –Ω–æ–¥—ã
+        127=–í–≤–µ—Å—Ç–∏ –Ω—É–∂–Ω–æ–µ –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ
+        74=–°–æ–∑–¥–∞—Ç—å –ø–ª–∞–Ω–µ—Ç—É
+        75=–ó–∞–≥—Ä—É–∑–∏—Ç—å –∞–Ω—Ç–∏–¥–æ–º–∏–Ω–∞—Ç–æ—Ä –ø—Ä–æ–≥—Ä–∞–º–º—ã
+        80=–£–≤–µ–ª–∏—á–∏—Ç—å —Ä–∞–∑–º–µ—Ä –∫–æ—Ä–ø—É—Å–∞
+        82=–ü–æ—á–∏–Ω–∏—Ç—å –æ–±–æ—Ä—É–¥–æ–≤–∞–Ω–∏–µ
+        95=–ö–æ—Ä–ø—É—Å –ö–ª–µ—â (Expansion)
+        96=–§–∏–∑–ì–∞–Ω (Expansion)
+        105=–ö–æ–Ω—Å–æ–ª—å
+        99=–ö–æ—Ä–ø—É—Å –¢–µ–Ω—å –ò–º–ø–µ—Ä–∏–∏
+        100=–í–æ–µ–Ω–Ω—ã–π
+        101=–ü–∏—Ä–∞—Ç—Å–∫–∏–π
+        103=–¢—Ä–∞–Ω—Å–ø–æ—Ä—Ç–Ω—ã–π
+        102=–†–µ–π–Ω–¥–∂–µ—Ä
+        149=–ì–æ–ª–æ–ø—Ä–æ–µ–∫—Ç–æ—Ä, –ü—É–ª—å—Å–∞—Ä, –ë–ª–∏–Ω–∫–µ—Ä (–º–æ–¥—É–ª—å SubSpaceBase)
+        110=–û—Ç–∫—Ä—ã—Ç—å –≤—Å—é –∫–∞—Ä—Ç—É
+        111=–í–≤–µ—Å—Ç–∏ –Ω—É–∂–Ω—ã–π —Ä–∞–∑–º–µ—Ä
+        114=–°—Ç–∞—Ç—å –ë–∞—Ä–æ–Ω–æ–º
+        115=–°—Ç–∞—Ç—å –ê–¥–º–∏—Ä–∞–ª–æ–º
         117=A
         118=B
         119=C
@@ -88,16 +72,126 @@ Script ^{
         122=F
         123=G
         124=H
-        128=◊ËÚÂÌ˚È ‰‚Ë„‡ÚÂÎ¸
-        133=ƒÓÏËÌ‡ÚÓ˚
-        134=ÕÂËÁ‚ÂÒÚÌ˚Â
-        132=œË‡Ú˚
-        135=◊ËÚÂÌ˚È ‡‰‡
-        141=¡˚ÒÚÓÂ Ó·ÓÛ‰Ó‚‡ÌËˇ ‰Îˇ ÚÂÒÚËÌ„‡
-        44=¬˚ıÓ‰
-        152=»Á ÏÓ‰ÛÎˇ ExpArts
-        144=“ÂÎÂÔÓÚ‡ˆËˇ ‚ ‰Û„Û˛ ÒËÒÚÂÏÛ
-        150=”·ËÚ¸ ÔË‡ÚÒÍËÈ ÍÎ‡Ì
-        153=»Á ÏÓ‰ÛÎˇ ExpAcryn
+        128=–ß–∏—Ç–µ—Ä–Ω—ã–π –¥–≤–∏–≥–∞—Ç–µ–ª—å
+        133=–î–æ–º–∏–Ω–∞—Ç–æ—Ä—ã
+        134=–ù–µ–∏–∑–≤–µ—Å—Ç–Ω—ã–µ
+        132=–ü–∏—Ä–∞—Ç—ã
+        135=–ß–∏—Ç–µ—Ä–Ω—ã–π —Ä–∞–¥–∞—Ä
+        141=–ë—ã—Å—Ç—Ä–æ–µ –æ–±–æ—Ä—É–¥–æ–≤–∞–Ω–∏—è –¥–ª—è —Ç–µ—Å—Ç–∏–Ω–≥–∞
+        44=–í—ã—Ö–æ–¥
+        152=–ò–∑ –º–æ–¥—É–ª—è ExpArts
+        144=–¢–µ–ª–µ–ø–æ—Ä—Ç–∞—Ü–∏—è –≤ –¥—Ä—É–≥—É—é —Å–∏—Å—Ç–µ–º—É
+        150=–£–±–∏—Ç—å –ø–∏—Ä–∞—Ç—Å–∫–∏–π –∫–ª–∞–Ω
+        153=–ò–∑ –º–æ–¥—É–ª—è ExpAcryn
+        155=–¢–µ—Å—Ç–æ–≤—ã–π —Ç—Ä–∞–Ω–∫-–º–∏—à–µ–Ω—å
+        156=–°–æ–∑–¥–∞–Ω–∏–µ —à–æ—Ç–Ω–æ–≥–æ —Ç—Ä–∞–Ω–∫–∞ —Å –Ω—É–∂–Ω—ã–º —Ö–ø
+        157=–ò–∑–º–µ–Ω–∏—Ç—å –Ω–∞–≤—ã–∫ –º–∞–Ω—ë–≤—Ä–µ–Ω–Ω–æ—Å—Ç–∏
+        158=–ò–∑–º–µ–Ω–∏—Ç—å –∑–Ω–∞—á–µ–Ω–∏–µ –±—Ä–æ–Ω–∏
+        159=–ò–∑–º–µ–Ω–∏—Ç—å –∑–Ω–∞—á–µ–Ω–∏–µ –ì–ó–ü
+        160=–°–±—Ä–æ—Å–∏—Ç—å –∏–∑–º–µ–Ω—ë–Ω–Ω—ã–µ –∑–Ω–∞—á–µ–Ω–∏—è
+        161=–°–±—Ä–æ—Å–∏—Ç—å –ø–æ–∫–∞–∑–∞–Ω–∏—è —É—Ä–æ–Ω–∞
+        165=–í—ã–≤–µ—Å—Ç–∏ –ø–æ–∫–∞–∑–∞—Ç–µ–ª–∏ —É—Ä–æ–Ω–∞
+        166=–£–±—Ä–∞—Ç—å –ø–æ–∫–∞–∑–∞—Ç–µ–ª–∏ —É—Ä–æ–Ω–∞
+        164=–£–Ω–∏—á—Ç–æ–∂–∏—Ç—å —Ç—Ä–∞–Ω–∫–∞
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            DMeter_infos ^{
+                Description=–ò–Ω—Ñ–æ—à–∫–∞ –¥–ª—è –≤—ã–≤–æ–¥–∞ —É—Ä–æ–Ω–∞ –ø–æ —Ç—Ä–∞–Ω–∫—É-–º–∏—à–µ–Ω–∏
+                Icon=1
+                Name=--
+                OnActCodeTypes=t_OnStep,t_OnGettingWeaponHit,t_OnGettingMissileHit,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi,t_OnDeath
+                OnActStepTypes=0,11
+                OnActCode ^{
+                    00=int set;
+                    01=if(ScriptItemActionType(t_OnStep,0))
+                    01 ^{
+                        00=InterfaceText('StarMap','DM_1_gun','–£—Ä–æ–Ω 1 –ø—É—Ö–∏:');
+                        00=InterfaceText('StarMap','DM_2_gun','–£—Ä–æ–Ω 2 –ø—É—Ö–∏:');
+                        00=InterfaceText('StarMap','DM_3_gun','–£—Ä–æ–Ω 3 –ø—É—Ö–∏:');
+                        00=InterfaceText('StarMap','DM_4_gun','–£—Ä–æ–Ω 4 –ø—É—Ö–∏:');
+                        00=InterfaceText('StarMap','DM_5_gun','–£—Ä–æ–Ω 5 –ø—É—Ö–∏:');
+                        01=InterfaceText('StarMap','DM_1_gun_v',0);
+                        01=InterfaceText('StarMap','DM_2_gun_v',0);
+                        01=InterfaceText('StarMap','DM_3_gun_v',0);
+                        01=InterfaceText('StarMap','DM_4_gun_v',0);
+                        01=InterfaceText('StarMap','DM_5_gun_v',0);
+                        02=InterfaceText('StarMap','DM_ion_v',0);
+                        03=int damag=0;
+                    }
+                    02=else if(ScriptItemActionType(t_OnGettingWeaponHit))
+                    02 ^{
+                        00=if(ScriptItemActObject1()!=Player())exit;
+                        00=set=ItemIsInUse(ScriptItemActObject2(),Player());
+                        01=if(set>100)set=set-128;
+                        02=InterfaceText('StarMap','DM_'+set+'_gun',ShortName(ScriptItemActObject2())+':');
+                        03=cur_gun=ScriptItemActObject2();
+                    }
+                    03=else if(ScriptItemActionType(t_OnGettingMissileHit))
+                    03 ^{
+                        00=if(ScriptItemActObject1()!=Player())exit;
+                        01=dword weaponR=IdToItem(MissileWeaponID(ScriptItemActObject2()));
+                        03=set=ItemIsInUse(weaponR,Player());
+                        04=if(set>100)set=set-128;
+                        05=InterfaceText('StarMap','DM_'+set+'_gun',ShortName(weaponR+':'));
+                        06=cur_gun=weaponR;
+                    }
+                    04=else if(ScriptItemActionType(t_OnTakingDamageEn) || ScriptItemActionType(t_OnTakingDamageSp) || ScriptItemActionType(t_OnTakingDamageMi))
+                    04 ^{
+                        00=int infos=ShipFindCustomShipInfoByType(ScriptItemActShip(),'DMeter_infos');
+                        01=int add_damag=0;
+                        02=if((ScriptItemActionType(t_OnTakingDamageEn) || ScriptItemActionType(t_OnTakingDamageSp) || ScriptItemActionType(t_OnTakingDamageMi)) && set!=0)
+                        02 ^{
+                            00=if(last_gun==cur_gun)add_damag=InterfaceText('StarMap','DM_'+set+'_gun_v');
+                            02=InterfaceText('StarMap','DM_'+set+'_gun_v',ScriptItemActParam()+add_damag);
+                            03=damag=damag+ScriptItemActParam();
+                            04=if(ScriptItemActParam()>=HullHP(ScriptItemActShip()))ShipRepairEq(ScriptItemActShip());
+                        }
+                        04=else if(ScriptItemActionType(t_OnTakingDamageEn) && !set)
+                        04 ^{
+                            00=InterfaceText('StarMap','DM_ion_v',ScriptItemActParam());
+                            01=damag=damag+ScriptItemActParam();
+                            02=if(ScriptItemActParam()>=HullHP(ScriptItemActShip()))ShipRepairEq(ScriptItemActShip());
+                        }
+                        11=set=0;
+                        13=last_gun=cur_gun;
+                        14=ShipCustomShipInfoData(ScriptItemActShip(),infos,2,1);
+                    }
+                    09=else if(ScriptItemActionType(t_OnStep,11))
+                    09 ^{
+                        00=int infos2=ShipFindCustomShipInfoByType(ScriptItemActShip(),'DMeter_infos');
+                        01=if(ShipCustomShipInfoData(ScriptItemActShip(),infos2,2)!=0)
+                        01 ^{
+                            00=int turn=InterfaceText('StarMap','DM_turn');
+                            01=turn=turn+1;
+                            02=InterfaceText('StarMap','DM_turn',turn);
+                            03=int total_damag=damag+ShipCustomShipInfoData(ScriptItemActShip(),infos2,1);
+                            03=str text='DMG (+DMH)';
+                            04=InterfaceText('StarMap','DM_damag',DeleteTags(Format(text,'DMG',total_damag,'DMH',damag)));
+                            05=ShipCustomShipInfoData(ScriptItemActShip(),infos2,1,total_damag);
+                        }
+                    }
+                    10=else if(ScriptItemActionType(t_OnDeath))
+                    10 ^{
+                        00=InterfaceText('StarMap','DM_1_gun','–£—Ä–æ–Ω 1 –ø—É—Ö–∏:');
+                        01=InterfaceText('StarMap','DM_2_gun','–£—Ä–æ–Ω 2 –ø—É—Ö–∏:');
+                        02=InterfaceText('StarMap','DM_3_gun','–£—Ä–æ–Ω 3 –ø—É—Ö–∏:');
+                        03=InterfaceText('StarMap','DM_4_gun','–£—Ä–æ–Ω 4 –ø—É—Ö–∏:');
+                        04=InterfaceText('StarMap','DM_5_gun','–£—Ä–æ–Ω 5 –ø—É—Ö–∏:');
+                        05=InterfaceText('StarMap','DM_1_gun_v',0);
+                        06=InterfaceText('StarMap','DM_2_gun_v',0);
+                        07=InterfaceText('StarMap','DM_3_gun_v',0);
+                        08=InterfaceText('StarMap','DM_4_gun_v',0);
+                        09=InterfaceText('StarMap','DM_5_gun_v',0);
+                        10=InterfaceText('StarMap','DM_ion_v',0);
+                        11=InterfaceText('StarMap','DM_turn',0);
+                        12=InterfaceText('StarMap','DM_damag',0);
+                        13=InterfaceState('StarMap','InfoShipTranc',0);
+                    }
+                }
+            }
+        }
     }
 }

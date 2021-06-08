@@ -1,0 +1,4130 @@
+MicroModuls ^{
+    ExpBlackMarket_SmugglerPeleng ^{
+        Cost=130
+        CustomTag=ExpBlackMarket_SmugglerPeleng
+        Equipments=Hull
+        Fragility=105
+        KindGraph=SmugglerPeleng
+        LockedAcryn=3
+		NonSearchable=1
+		OriginalHullType=Transport,Pirate
+        Name=</color><Type> корпус контрабандиста
+        Owner=PirateClan
+        Priority=0
+        Size=110
+        Special=1
+        bonSlotArt=-2
+        bonSlotForsage=-1
+        bonSlotWeapon=-2
+    }
+}
+AssistantExclusions ^{
+	BM=NoSearch
+}
+BlackMarketShopList ~{
+	BlackMarketTurnDelays ^{
+		MinOpeningAfterStartEventDays=18
+		MaxOpeningAfterStartEventDays=27
+		MinClosingAfterBuyAccessDays=51
+		MaxClosingAfterBuyAccessDays=72
+		MinOpeningDays=31
+		MaxOpeningDays=52
+		MinClosingDays=93
+		MaxClosingDays=128
+		MinRepairingDays=45
+		MaxRepairingDays=59
+		MinRebuildingDays=381
+		MaxRebuildingDays=447
+	}
+	Version=20.04.2021
+	MinEquipmentsInStock=5
+	MaxEquipmentsInStock=9
+	MinWeaponsInStock=4
+	MaxWeaponsInStock=7
+	MinArtefactsInStock=2
+	MaxArtefactsInStock=5
+	MinModificationsInStock=3
+	MaxModificationsInStock=6
+	MinMicromodulsInStock=3
+	MaxMicromodulsInStock=6
+	MicroModuls ~{
+		ReadMe=Модификаторы стоимости (CostCoef) могут принимать дробные значения (дробную часть отделять точкой). Перед добавлением в магазин, стоимость микромодуля будет помножена на указанные коэффициенты в зависимости от уровня ММ.
+		MMLevelOneCostCoef=12.0
+		MMLevelTwoCostCoef=7.0
+		MMLevelThreeCostCoef=3.0
+	}
+	Hulls ~{
+		ReadMe=Параметр Race читается игрой почти как Owner, за исключением того, что в случае с корпусом можно указать в Race неизвестную расу None. Параметр HullType предусматривает следующие возможные значения (допустимо установить лишь одно значение без перечислений): Ranger, Warrior, Pirate, Transport, Liner, Diplomat, WarriorBig. Параметр HullSerieChance определяет шанс с которым на корпус будет наложена одна из серий, перечисленных в параметре HullSerie (если параметр HullSerieChance не указан, то шанс на наложение серии будет приравнян к 100%). Параметр HullSerie принимает имена разделов с сериями корпусов (доступно перечисление нескольких серий через запятую без пробелов). Если значение OwnerPirateClan (параметр опционален) больше нуля, то корпус получит пиратскую эмблему, даже будучи имея коалиционную расу (эмблема будет иметь цвет соответствующей расы). Параметры CustomFactionChance и CustomFaction (доступно перечисление нескольких фракций через запятую без пробелов) опциональны.
+		ReadMeMore=Параметры OneHullSellingChance, TwoHullsSellingChance и т.д. означают шансы, при которых в продаже ЧР появятся одновременно 1, 2, 3, 4 или 5 корпусов. Опциональный параметр SubRace обозначает серию доминаторов (применяется только к доминаторским корпусам) и имеет 3 значения Blazer, Keller, Terron или Any (допустимо добавлять значения без пробелов через запятую).
+		OneHullSellingChance=33
+		TwoHullsSellingChance=15
+		ThreeHullsSellingChance=10
+		FourHullsSellingChance=7
+		FiveHullsSellingChance=5
+        1 ~{
+            Name=Корпус изменника
+            BonusNum=ExpTraitors_RangerPirateHull
+            HullType=Ranger
+            HullSerie=ExpBlackMarket_BlackHeart,2,4,21,32,36,38
+            Race=PirateClan
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+            CustomFactionChance=0
+            CustomFaction=Klissan
+        }
+        2 ~{
+            Name=Малокский корпус контрабандиста
+            HullType=Transport
+            HullSerie=ExpBlackMarket_Schwerzer,ExpBlackMarket_Solo,6,14,17,130
+            BonusNum=ShuSmugglers_SmugglerMaloc
+            Race=Maloc
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+        }
+        3 ~{
+            Name=Пеленгский корпус контрабандиста
+            HullType=Transport
+            HullSerie=ExpBlackMarket_Schwerzer,ExpBlackMarket_Solo,6,14,17,130
+            BonusNum=ShuSmugglers_SmugglerPeleng
+            Race=Peleng
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+        }
+        4 ~{
+            Name=Человеческий корпус контрабандиста
+            HullType=Transport
+            HullSerie=ExpBlackMarket_Schwerzer,ExpBlackMarket_Solo,6,14,17,130
+            BonusNum=ShuSmugglers_SmugglerPeople
+            Race=People
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+        }
+        5 ~{
+            Name=Фэянский корпус контрабандиста
+            HullType=Transport
+            HullSerie=ExpBlackMarket_Schwerzer,ExpBlackMarket_Solo,6,14,17,130
+            BonusNum=ShuSmugglers_SmugglerFei
+            Race=Fei
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+        }
+        6 ~{
+            Name=Гаальский корпус контрабандиста
+            HullType=Transport
+            HullSerie=ExpBlackMarket_Schwerzer,ExpBlackMarket_Solo,6,14,17,130
+            BonusNum=ShuSmugglers_SmugglerGaal
+            Race=Gaal
+            OwnerPirateClan=1
+            ChangePriorityOn=0
+        }
+        7 ~{
+            Name=Корпус "Гкван"
+            HullType=Ranger
+            BonusNum=EvoGkvan_GkvanHull
+            Race=Maloc
+            OwnerPirateClan=0
+            ChangePriorityOn=0
+        }
+		//Для Убийц нет магазинной графики
+        8 ~{
+            Name=Корпус "Убийца" I
+            HullType=Ranger
+            BonusNum=ExpHulls_Killer1
+            Race=Peleng,People
+            OwnerPirateClan=1
+            ChangePriorityOn=-100
+			SpawnCondition=GetShipPirateRank(Player()) >= 3
+        }
+        9 ~{
+            Name=Корпус "Убийца" II
+            HullType=Ranger
+            BonusNum=ExpHulls_Killer2
+            Race=Peleng,People
+            OwnerPirateClan=1
+            ChangePriorityOn=-100
+			SpawnCondition=GetShipPirateRank(Player()) >= 4
+        }
+        10 ~{
+            Name=Корпус "Убийца" III
+            HullType=Ranger
+            BonusNum=ExpHulls_Killer3
+            Race=Peleng,People
+            OwnerPirateClan=1
+            ChangePriorityOn=-100
+			SpawnCondition=GetShipPirateRank(Player()) >= 5
+        }
+        11 ~{
+            Name=Корпус "Убийца" IV
+            HullType=Ranger
+            BonusNum=ExpHulls_Killer4
+            Race=Peleng,People
+            OwnerPirateClan=1
+            ChangePriorityOn=-100
+			SpawnCondition=GetShipPirateRank(Player()) >= 6
+        }
+        Count=7
+	}
+	Equipment ~{
+		ReadMe=Параметр ItemType строго обязателен и должен содержать в себе один тип оборудования без перечислений. Возможные названия типов для параметра ItemType можно найти в разделе SellingWithoutAcrynChance. Параметр Owner (возможно перечисление рас через запятую без пробелов, где значение Coalition трактуется как 5 основных игровых рас) опционален для заполнения и заменит собой этот же параметр из основного раздела акрина (возможно перечисление рас через запятую без пробелов), а при его там отсутствии взят по умолчанию (все расы, кроме доминаторов и неизвестной). Значение Any всегда толкуется в Owner как все расы, кроме неизвестной. Параметр AverageSize (означает средний вес, где N/2 - минимальный вес, а N*2 - максимальный) опционален и при его отсутствии вес будет рассчитан внутри скрипта на общих основаниях. Параметры CustomFactionChance и CustomFaction (возможно перечисление разных фракций через запятую без пробелов) опциональны и не обязательны к добавлению. Все остальные параметры (включая счётчики Count) строго обязательны к заполнению для любого акрина.
+		ReadMeMore=Получить неизвестную расу для любого предмета возможно лишь через шанс, указанный в параметре NoneRaceChance, а получить минимальный вес возможно как при рандомном броске, так и через шанс, указанный в параметре MinSizeChance. Модификаторы DomRaceCostCoef и NoneRaceCostCoef (могут принимать дробные значения) используются для увеличения стоимости предметов (прямо перед добавлением в магазин), имеющих доминаторскую и неизвестную расу соответственно. Опциональный параметр SubRace обозначает серию доминаторов (применяется только к доминаторскому оборудованию) и имеет 3 значения Blazer, Keller, Terron или Any (допустимо добавлять значения без пробелов через запятую). При установке в BonusNum значения None, данное оборудование будет всегда появляться в магазине без акрина.
+		ReadMeMoreAgain=Параметры внутри раздела SellingWithoutAcrynChance отвечают за шанс появления в магазине соответствующего типа оборудования без акрина вообще.
+        SellingWithoutAcrynChance ~{
+            Engine=7
+            FuelTank=7
+            Radar=7
+            Scaner=7
+            Droid=7
+            Hook=7
+            DefGenerator=7
+        }
+        DomRaceCostCoef=2.0
+        NoneRaceCostCoef=2.5
+        1 ~{
+            Name=Миоплазменный двигатель I
+            BonusNum=374
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        2 ~{
+            Name=Миоплазменный двигатель II
+            BonusNum=381
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        3 ~{
+            Name=Миоплазменный двигатель III
+            BonusNum=388
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        4 ~{
+            Name=Миоплазменный топливный бак I
+            BonusNum=373
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        5 ~{
+            Name=Миоплазменный топливный бак II
+            BonusNum=380
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        6 ~{
+            Name=Миоплазменный топливный бак III
+            BonusNum=387
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        7 ~{
+            Name=Миоплазменный радар I
+            BonusNum=375
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        8 ~{
+            Name=Миоплазменный радар II
+            BonusNum=382
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        9 ~{
+            Name=Миоплазменный радар III
+            BonusNum=389
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        10 ~{
+            Name=Миоплазменный сканер I
+            BonusNum=376
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        11 ~{
+            Name=Миоплазменный сканер II
+            BonusNum=383
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        12 ~{
+            Name=Миоплазменный сканер III
+            BonusNum=390
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        13 ~{
+            Name=Миоплазменный дроид I
+            BonusNum=377
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        14 ~{
+            Name=Миоплазменный дроид II
+            BonusNum=384
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        15 ~{
+            Name=Миоплазменный дроид III
+            BonusNum=391
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        16 ~{
+            Name=Миоплазменный захват I
+            BonusNum=378
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        17 ~{
+            Name=Миоплазменный захват II
+            BonusNum=385
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        18 ~{
+            Name=Миоплазменный захват III
+            BonusNum=392
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        19 ~{
+            Name=Миоплазменный генератор защиты I
+            BonusNum=379
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        20 ~{
+            Name=Миоплазменный генератор защиты II
+            BonusNum=386
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        21 ~{
+            Name=Миоплазменный генератор защиты III
+            BonusNum=393
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        22 ~{
+            Name=Пигамарный двигатель I
+            BonusNum=395
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        23 ~{
+            Name=Пигамарный двигатель II
+            BonusNum=402
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        24 ~{
+            Name=Пигамарный двигатель III
+            BonusNum=409
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        25 ~{
+            Name=Пигамарный топливный бак I
+            BonusNum=394
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        26 ~{
+            Name=Пигамарный топливный бак II
+            BonusNum=401
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        27 ~{
+            Name=Пигамарный топливный бак III
+            BonusNum=408
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        28 ~{
+            Name=Пигамарный радар I
+            BonusNum=396
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        29 ~{
+            Name=Пигамарный радар II
+            BonusNum=403
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        30 ~{
+            Name=Пигамарный радар III
+            BonusNum=410
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        31 ~{
+            Name=Пигамарный сканер I
+            BonusNum=397
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        32 ~{
+            Name=Пигамарный сканер II
+            BonusNum=404
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        33 ~{
+            Name=Пигамарный сканер III
+            BonusNum=411
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        34 ~{
+            Name=Пигамарный дроид I
+            BonusNum=398
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        35 ~{
+            Name=Пигамарный дроид II
+            BonusNum=405
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        36 ~{
+            Name=Пигамарный дроид III
+            BonusNum=412
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        37 ~{
+            Name=Пигамарный захват I
+            BonusNum=399
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        38 ~{
+            Name=Пигамарный захват II
+            BonusNum=406
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        39 ~{
+            Name=Пигамарный захват III
+            BonusNum=413
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        40 ~{
+            Name=Пигамарный генератор защиты I
+            BonusNum=400
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        41 ~{
+            Name=Пигамарный генератор защиты II
+            BonusNum=407
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        42 ~{
+            Name=Пигамарный генератор защиты III
+            BonusNum=414
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        43 ~{
+            Name=Нанобролитовый дроид I
+            BonusNum=439
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        44 ~{
+            Name=Нанобролитовый дроид II
+            BonusNum=442
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        45 ~{
+            Name=Нанобролитовый дроид III
+            BonusNum=445
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        46 ~{
+            Name=Нанобролитовый двигатель I
+            BonusNum=440
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        47 ~{
+            Name=Нанобролитовый двигатель II
+            BonusNum=443
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        48 ~{
+            Name=Нанобролитовый двигатель III
+            BonusNum=446
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        49 ~{
+            Name=Нанобролитовый генератор защиты I
+            BonusNum=441
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        50 ~{
+            Name=Нанобролитовый генератор защиты II
+            BonusNum=444
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        51 ~{
+            Name=Нанобролитовый генератор защиты III
+            BonusNum=447
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        52 ~{
+            Name=Трансцендентальный двигатель I
+            BonusNum=415
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        53 ~{
+            Name=Трансцендентальный двигатель II
+            BonusNum=416
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        54 ~{
+            Name=Трансцендентальный двигатель III
+            BonusNum=417
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        55 ~{
+            Name=Апгрейтинговый захват I
+            BonusNum=418
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        56 ~{
+            Name=Апгрейтинговый захват II
+            BonusNum=424
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        57 ~{
+            Name=Апгрейтинговый захват III
+            BonusNum=430
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        58 ~{
+            Name=Апгрейтинговый генератор защиты I
+            BonusNum=419
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        59 ~{
+            Name=Апгрейтинговый генератор защиты II
+            BonusNum=425
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        60 ~{
+            Name=Апгрейтинговый генератор защиты III
+            BonusNum=431
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        61 ~{
+            Name=Апгрейтинговый двигатель I
+            BonusNum=420
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        62 ~{
+            Name=Апгрейтинговый двигатель II
+            BonusNum=426
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        63 ~{
+            Name=Апгрейтинговый двигатель III
+            BonusNum=432
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        64 ~{
+            Name=Апгрейтинговый топливный бак I
+            BonusNum=421
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        65 ~{
+            Name=Апгрейтинговый топливный бак II
+            BonusNum=427
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        66 ~{
+            Name=Апгрейтинговый топливный бак III
+            BonusNum=433
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        67 ~{
+            Name=Апгрейтинговый радар I
+            BonusNum=422
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        68 ~{
+            Name=Апгрейтинговый радар II
+            BonusNum=428
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        69 ~{
+            Name=Апгрейтинговый радар III
+            BonusNum=434
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        70 ~{
+            Name=Апгрейтинговый сканер I
+            BonusNum=423
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        71 ~{
+            Name=Апгрейтинговый сканер II
+            BonusNum=429
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        72 ~{
+            Name=Апгрейтинговый сканер III
+            BonusNum=435
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        73 ~{
+            Name=Ультрасплавный сканер I
+            BonusNum=448
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        74 ~{
+            Name=Ультрасплавный сканер II
+            BonusNum=452
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        75 ~{
+            Name=Ультрасплавный сканер III
+            BonusNum=459
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        76 ~{
+            Name=Ультрасплавный радар I
+            BonusNum=449
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        77 ~{
+            Name=Ультрасплавный радар II
+            BonusNum=453
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        78 ~{
+            Name=Ультрасплавный радар III
+            BonusNum=456
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        79 ~{
+            Name=Ультрасплавный топливный бак I
+            BonusNum=456
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        80 ~{
+            Name=Ультрасплавный топливный бак II
+            BonusNum=454
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        81 ~{
+            Name=Ультрасплавный топливный бак III
+            BonusNum=457
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        82 ~{
+            Name=Ультрасплавный захват I
+            BonusNum=451
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        83 ~{
+            Name=Ультрасплавный захват II
+            BonusNum=455
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        84 ~{
+            Name=Ультрасплавный захват III
+            BonusNum=458
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        85 ~{
+            Name=Спаренный двигатель I
+            BonusNum=RevAcryn_TwinEngine1
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        86 ~{
+            Name=Спаренный двигатель II
+            BonusNum=RevAcryn_TwinEngine2
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        87 ~{
+            Name=Спаренный двигатель III
+            BonusNum=RevAcryn_TwinEngine3
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        88 ~{
+            Name=Спаренный топливный бак I
+            BonusNum=RevAcryn_TwinFuelTank1
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        89 ~{
+            Name=Спаренный топливный бак II
+            BonusNum=RevAcryn_TwinFuelTank2
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        90 ~{
+            Name=Спаренный топливный бак III
+            BonusNum=RevAcryn_TwinFuelTank3
+            ItemType=FuelTank
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        91 ~{
+            Name=Технолитический радар I
+            BonusNum=RevAcryn_TechnolitRadar1
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        92 ~{
+            Name=Технолитический радар II
+            BonusNum=RevAcryn_TechnolitRadar2
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        93 ~{
+            Name=Технолитический радар III
+            BonusNum=RevAcryn_TechnolitRadar3
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        94 ~{
+            Name=Технолитический сканер I
+            BonusNum=RevAcryn_TechnolitScaner1
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        95 ~{
+            Name=Технолитический сканер II
+            BonusNum=RevAcryn_TechnolitScaner2
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        96 ~{
+            Name=Технолитический сканер III
+            BonusNum=RevAcryn_TechnolitScaner3
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        97 ~{
+            Name=Технолитический захват I
+            BonusNum=RevAcryn_TechnolitHook1
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        98 ~{
+            Name=Технолитический захват II
+            BonusNum=RevAcryn_TechnolitHook2
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        99 ~{
+            Name=Технолитический захват III
+            BonusNum=RevAcryn_TechnolitHook3
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        100 ~{
+            Name=Технолитический генератор защиты I
+            BonusNum=RevAcryn_TechnolitDefGenerator1
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        101 ~{
+            Name=Технолитический генератор защиты II
+            BonusNum=RevAcryn_TechnolitDefGenerator2
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        102 ~{
+            Name=Технолитический генератор защиты III
+            BonusNum=RevAcryn_TechnolitDefGenerator3
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        103 ~{
+            Name=Оценочный сканер I
+            BonusNum=ShuMM_EvaluationScaner1
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        104 ~{
+            Name=Оценочный сканер II
+            BonusNum=ShuMM_EvaluationScaner2
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        105 ~{
+            Name=Оценочный сканер III
+            BonusNum=ShuMM_EvaluationScaner3
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        106 ~{
+            Name=Бронелитовый дроид I
+            BonusNum=ShuMM_ArmoriteDroid1
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        107 ~{
+            Name=Бронелитовый дроид II
+            BonusNum=ShuMM_ArmoriteDroid2
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        108 ~{
+            Name=Бронелитовый дроид III
+            BonusNum=ShuMM_ArmoriteDroid3
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        109 ~{
+            Name=Биполярный радар I
+            BonusNum=ShuMM_BipolarRadar1
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        110 ~{
+            Name=Биполярный радар II
+            BonusNum=ShuMM_BipolarRadar2
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        111 ~{
+            Name=Биполярный радар III
+            BonusNum=ShuMM_BipolarRadar3
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        112 ~{
+            Name=Кибернетический захват I
+            BonusNum=ShuMM_CyberneticHook1
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        113 ~{
+            Name=Кибернетический захват II
+            BonusNum=ShuMM_CyberneticHook2
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        114 ~{
+            Name=Кибернетический захват III
+            BonusNum=ShuMM_CyberneticHook3
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        115 ~{
+            Name=СканБот R1
+            BonusNum=ShuMM_ScanBot1
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        116 ~{
+            Name=СканБот R2
+            BonusNum=ShuMM_ScanBot2
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        117 ~{
+            Name=СканБот R3
+            BonusNum=ShuMM_ScanBot3
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        118 ~{
+            Name=Энергенный двигатель I
+            BonusNum=ShuMM_EnergenicEngine1
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        119 ~{
+            Name=Энергенный двигатель II
+            BonusNum=ShuMM_EnergenicEngine2
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        120 ~{
+            Name=Энергенный двигатель III
+            BonusNum=ShuMM_EnergenicEngine3
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }		
+        121 ~{
+            Name=Сотовый радар I
+            BonusNum=ShuMM_CellRadar1
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        122 ~{
+            Name=Сотовый радар II
+            BonusNum=ShuMM_CellRadar2
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        123 ~{
+            Name=Сотовый радар III
+            BonusNum=ShuMM_CellRadar3
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        124 ~{
+            Name=Дуплексный сканер I
+            BonusNum=ShuMM_DuplexScaner1
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        125 ~{
+            Name=Дуплексный сканер II
+            BonusNum=ShuMM_DuplexScaner2
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        126 ~{
+            Name=Дуплексный сканер III
+            BonusNum=ShuMM_DuplexScaner3
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        127 ~{
+            Name=Биогенетический дроид I
+            BonusNum=ShuMM_BiogeneticDroid1
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        128 ~{
+            Name=Биогенетический дроид II
+            BonusNum=ShuMM_BiogeneticDroid2
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        129 ~{
+            Name=Биогенетический дроид III
+            BonusNum=ShuMM_BiogeneticDroid3
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        130 ~{
+            Name=Электрогенный захват I
+            BonusNum=ShuMM_ElectrogenicHook1
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        131 ~{
+            Name=Электрогенный захват II
+            BonusNum=ShuMM_ElectrogenicHook2
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        132 ~{
+            Name=Электрогенный захват III
+            BonusNum=ShuMM_ElectrogenicHook3
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        133 ~{
+            Name=Фазовый двигатель I
+            BonusNum=ShuMM_PhaseEngine1
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        134 ~{
+            Name=Фазовый двигатель II
+            BonusNum=ShuMM_PhaseEngine2
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        135 ~{
+            Name=Фазовый двигатель III
+            BonusNum=ShuMM_PhaseEngine3
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        136 ~{
+            Name=Пневматический дроид I
+            BonusNum=ShuMM_PneumaticDroid1
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        137 ~{
+            Name=Пневматический дроид II
+            BonusNum=ShuMM_PneumaticDroid2
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        138 ~{
+            Name=Пневматический дроид III
+            BonusNum=ShuMM_PneumaticDroid3
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        139 ~{
+            Name=Стационный генератор защиты I
+            BonusNum=ShuMM_StationyDefGenerator1
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        140 ~{
+            Name=Стационный генератор защиты II
+            BonusNum=ShuMM_StationyDefGenerator2
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        141 ~{
+            Name=Стационный генератор защиты III
+            BonusNum=ShuMM_StationyDefGenerator3
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        142 ~{
+            Name=Микрогенарный двигатель I
+            BonusNum=ShuMM_MicrogenicEngine1
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        143 ~{
+            Name=Микрогенарный двигатель II
+            BonusNum=ShuMM_MicrogenicEngine2
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        144 ~{
+            Name=Микрогенарный двигатель III
+            BonusNum=ShuMM_MicrogenicEngine3
+            ItemType=Engine
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        145 ~{
+            Name=Микрогенарный радар I
+            BonusNum=ShuMM_MicrogenicRadar1
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        146 ~{
+            Name=Микрогенарный радар II
+            BonusNum=ShuMM_MicrogenicRadar2
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        147 ~{
+            Name=Микрогенарный радар III
+            BonusNum=ShuMM_MicrogenicRadar3
+            ItemType=Radar
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        148 ~{
+            Name=Микрогенарный сканер I
+            BonusNum=ShuMM_MicrogenicScaner1
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        149 ~{
+            Name=Микрогенарный сканер II
+            BonusNum=ShuMM_MicrogenicScaner2
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        150 ~{
+            Name=Микрогенарный сканер III
+            BonusNum=ShuMM_MicrogenicScaner3
+            ItemType=Scaner
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        151 ~{
+            Name=Микрогенарный дроид I
+            BonusNum=ShuMM_MicrogenicDroid1
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        152 ~{
+            Name=Микрогенарный дроид II
+            BonusNum=ShuMM_MicrogenicDroid2
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        153 ~{
+            Name=Микрогенарный дроид III
+            BonusNum=ShuMM_MicrogenicDroid3
+            ItemType=Droid
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        154 ~{
+            Name=Микрогенарный захват I
+            BonusNum=ShuMM_MicrogenicHook1
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        155 ~{
+            Name=Микрогенарный захват II
+            BonusNum=ShuMM_MicrogenicHook2
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        156 ~{
+            Name=Микрогенарный захват III
+            BonusNum=ShuMM_MicrogenicHook3
+            ItemType=Hook
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        157 ~{
+            Name=Микрогенарный генератор защиты I
+            BonusNum=ShuMM_MicrogenicDefGenerator1
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        158 ~{
+            Name=Микрогенарный генератор защиты II
+            BonusNum=ShuMM_MicrogenicDefGenerator2
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        159 ~{
+            Name=Микрогенарный генератор защиты III
+            BonusNum=ShuMM_MicrogenicDefGenerator3
+            ItemType=DefGenerator
+            NoneRaceChance=5
+            MinSizeChance=30
+            ChangePriorityOn=0
+        }
+        160 ~{
+            Name=Гвидест I
+            BonusNum=ShuKlissan_Gvidest1
+            ItemType=Engine
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        161 ~{
+            Name=Гвидест II
+            BonusNum=ShuKlissan_Gvidest2
+            ItemType=Engine
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        162 ~{
+            Name=Гвидест III
+            BonusNum=ShuKlissan_Gvidest3
+            ItemType=Engine
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        163 ~{
+            Name=Ондест I
+            BonusNum=ShuKlissan_Ondest1
+            ItemType=FuelTank
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        164 ~{
+            Name=Ондест II
+            BonusNum=ShuKlissan_Ondest2
+            ItemType=FuelTank
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        165 ~{
+            Name=Ондест III
+            BonusNum=ShuKlissan_Ondest3
+            ItemType=FuelTank
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        166 ~{
+            Name=Гландест I
+            BonusNum=ShuKlissan_Glandest1
+            ItemType=Radar
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        167 ~{
+            Name=Гландест II
+            BonusNum=ShuKlissan_Glandest2
+            ItemType=Radar
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        168 ~{
+            Name=Гландест III
+            BonusNum=ShuKlissan_Glandest3
+            ItemType=Radar
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        169 ~{
+            Name=Наксест I
+            BonusNum=ShuKlissan_Naksest1
+            ItemType=Scaner
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        170 ~{
+            Name=Наксест II
+            BonusNum=ShuKlissan_Naksest2
+            ItemType=Scaner
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        171 ~{
+            Name=Наксест III
+            BonusNum=ShuKlissan_Naksest3
+            ItemType=Scaner
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        172 ~{
+            Name=Ксифест I
+            BonusNum=ShuKlissan_Xifest1
+            ItemType=Droid
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        173 ~{
+            Name=Ксифест II
+            BonusNum=ShuKlissan_Xifest2
+            ItemType=Droid
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        174 ~{
+            Name=Ксифест III
+            BonusNum=ShuKlissan_Xifest3
+            ItemType=Droid
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        175 ~{
+            Name=Вахтест I
+            BonusNum=ShuKlissan_Vahtest1
+            ItemType=Hook
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        176 ~{
+            Name=Вахтест II
+            BonusNum=ShuKlissan_Vahtest2
+            ItemType=Hook
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        177 ~{
+            Name=Вахтест III
+            BonusNum=ShuKlissan_Vahtest3
+            ItemType=Hook
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        178 ~{
+            Name=Джевлест I
+            BonusNum=ShuKlissan_Jewlest1
+            ItemType=DefGenerator
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        179 ~{
+            Name=Джевлест II
+            BonusNum=ShuKlissan_Jewlest2
+            ItemType=DefGenerator
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        180 ~{
+            Name=Джевлест III
+            BonusNum=ShuKlissan_Jewlest3
+            ItemType=DefGenerator
+            NoneRaceChance=100
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+            ChangePriorityOn=0
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        181 ~{
+            Name=Торсионный реактор (без акрина)
+            BonusNum=None
+            ItemType=Engine
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        182 ~{
+            Name=Стекбарель (без акрина)
+            BonusNum=None
+            ItemType=FuelTank
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        183 ~{
+            Name=Сенсотрон (без акрина)
+            BonusNum=None
+            ItemType=Radar
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        184 ~{
+            Name=Тех-детектор (без акрина)
+            BonusNum=None
+            ItemType=Scaner
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        185 ~{
+            Name=Дианод (без акрина)
+            BonusNum=None
+            ItemType=Droid
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        186 ~{
+            Name=Ментощуп (без акрина)
+            BonusNum=None
+            ItemType=Hook
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        187 ~{
+            Name=Пикселит (без акрина)
+            BonusNum=None
+            ItemType=DefGenerator
+            Owner=Kling
+            SubRace=Any
+            MinSizeChance=30
+        }
+        Count=187
+	}
+	Weapon ~{
+		ReadMe=Параметр Owner (возможно перечисление рас через запятую без пробелов, где значение Coalition трактуется как 5 основных игровых рас) желателен для заполнения только для кастомных пушек (по умолчанию без него будут выбраны все расы, кроме доминаторов и неизвестной), а для оригинальных орудий Owner по умолчанию будет взят из основной игры (3 только доминаторских, 3 только пиратских, остальные для всех). Значение Any в Owner всегда толкуется как все расы, кроме неизвестной. Параметр AverageSize (означает средний вес, где N/2 - минимальный вес, а N*2 - максимальный) сугубо опционален и при его отсутствии вес будет взят из основных параметров пушки. Параметр Owner для модификаций опционален, по умолчанию он будет взят из раздела акрина данной модификации, а при его там отсутствии, наследован от Owner основной пушки. Если в список добавляется кастомное орудие, то в параметре Origin должно быть указано точное название скрипта того мода, в котором объявляется данное орудие. Параметры CustomFactionChance и CustomFaction (возможно перечисление разных фракций через запятую без разрывов) опциональны и не обязательны к добавлению. Все остальные параметры (включая счётчики Count) строго обязательны к заполнению для любой пушки.
+		ReadMeMore=Получить неизвестную расу для любого оружия возможно лишь через шанс, указанный в параметре NoneRaceChance, а получить минимальный вес возможно как при рандомном броске, так и через шанс, указанный в параметре MinSizeChance. Модификаторы DomRaceCostCoef и NoneRaceCostCoef (могут принимать дробные значения) используются для увеличения стоимости предметов (прямо перед добавлением в магазин), имеющих доминаторскую и неизвестную расу соответственно. Опциональный параметр SubRace обозначает серию доминаторов (применяется только к доминаторскому оружию/модификации) и имеет 3 значения Blazer, Keller, Terron или Any (допустимо добавлять значения без пробелов через запятую).
+		ReadMeMoreAgain=Отдельные опциональные параметры Owner, CustomFactionChance и CustomFaction могут быть установлены для модификаций орудия. При этом в момент создания орудия в скрипте, значения расы будут взяты из модификации в том случае, если создаётся орудие с модификацией и из основного раздела орудия в том случае, если создаётся немодифицированная пушка. Таким образом, вы сможете создать, например, модификации орудия, принадлежащие какой-то конкретной расе/расам, как оригинальной, так и кастомной/кастомным, несмотря на то, что основное немодифицированное орудие будет доступно для производства всем остальным.
+		OriginalWeaponsRaceSet ~{
+			t_Weapon1=191
+			t_Weapon2=191
+			t_Weapon3=191
+			t_Weapon4=191
+			t_Weapon5=191
+			t_Weapon6=191
+			t_Weapon7=191
+			t_Weapon8=191
+			t_Weapon9=191
+			t_Weapon10=191
+			t_Weapon11=191
+			t_Weapon12=191
+			t_Weapon13=32
+			t_Weapon14=32
+			t_Weapon15=32
+			t_Weapon16=128
+			t_Weapon17=128
+			t_Weapon18=128
+		}
+        DomRaceCostCoef=2.0
+        NoneRaceCostCoef=3.0
+        1 ~{
+            Name=Промышленный лазер
+            Origin=Original
+            WeaponType=t_Weapon1
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Дифрод"
+                    BonusNum=500
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Лифокар"
+                    BonusNum=501
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Адроптер"
+                    BonusNum=502
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        2 ~{
+            Name=Осколочное орудие
+            Origin=Original
+            WeaponType=t_Weapon2
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotSplinter
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumSplinter
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Стилермейн"
+                    BonusNum=503
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Джавитор"
+                    BonusNum=504
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Инвейтер"
+                    BonusNum=505
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        3 ~{
+            Name=Лезка
+            Origin=Original
+            WeaponType=t_Weapon3
+            GalaxyTechLevel=2
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Дифрод"
+                    BonusNum=506
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Лифокар"
+                    BonusNum=507
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Джавитор"
+                    BonusNum=508
+                    ChangePriorityOn=0
+                }
+                7 ~{
+                    Name="Армолок"
+                    BonusNum=509
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=7
+            }
+        }
+        4 ~{
+            Name=Ракетомёт
+            Origin=Original
+            WeaponType=t_Weapon4
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дифрод"
+                    BonusNum=510
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Лифокар"
+                    BonusNum=511
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Адроптер"
+                    BonusNum=512
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Инвейтер"
+                    BonusNum=513
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=4
+            }
+        }
+        5 ~{
+            Name=Ракетомёт с модификацией "Торпедо"
+            Origin=Mod_ShuMM
+            WeaponType=MissileLauncherTorpedo
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=0
+            Modifications ~{
+                1 ~{
+                    Name="Торпедо"
+                    BonusNum=ShuMM_Torpedo
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=1
+            }
+        }
+        6 ~{
+            Name=Третон
+            Origin=Original
+            WeaponType=t_Weapon5
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Армолок"
+                    BonusNum=514
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Адроптер"
+                    BonusNum=515
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Стилермейн"
+                    BonusNum=516
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        7 ~{
+            Name=Волновой фазер
+            Origin=Original
+            WeaponType=t_Weapon6
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Армолок"
+                    BonusNum=517
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Джавитор"
+                    BonusNum=518
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Стилермейн"
+                    BonusNum=519
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        8 ~{
+            Name=Потоковый бластер
+            Origin=Original
+            WeaponType=t_Weapon7
+            GalaxyTechLevel=5
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotSplinter
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumSplinter
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Дифрод"
+                    BonusNum=520
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Армолок"
+                    BonusNum=521
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Джавитор"
+                    BonusNum=522
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        9 ~{
+            Name=Электронный резак
+            Origin=Original
+            WeaponType=t_Weapon8
+            GalaxyTechLevel=5
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Армолок"
+                    BonusNum=523
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Джавитор"
+                    BonusNum=524
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Инвейтер"
+                    BonusNum=525
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        10 ~{
+            Name=Мультирезонатор
+            Origin=Original
+            WeaponType=t_Weapon9
+            GalaxyTechLevel=6
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotSplinter
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumSplinter
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Лифокар"
+                    BonusNum=526
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Армолок"
+                    BonusNum=527
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Джавитор"
+                    BonusNum=528
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        11 ~{
+            Name=Атомный визион
+            Origin=Original
+            WeaponType=t_Weapon10
+            GalaxyTechLevel=7
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Лифокар"
+                    BonusNum=529
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Джавитор"
+                    BonusNum=530
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=5
+            }
+        }
+        12 ~{
+            Name=Дезинтегратор
+            Origin=Original
+            WeaponType=t_Weapon11
+            GalaxyTechLevel=7
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Дифрод"
+                    BonusNum=531
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Армолок"
+                    BonusNum=532
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Адроптер"
+                    BonusNum=533
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        13 ~{
+            Name=Турбогравир
+            Origin=Original
+            WeaponType=t_Weapon12
+            GalaxyTechLevel=8
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Дифрод"
+                    BonusNum=534
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Лифокар"
+                    BonusNum=535
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Инвейтер"
+                    BonusNum=536
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        14 ~{
+            Name=Эсодафер
+            Origin=Original
+            WeaponType=t_Weapon16
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotSplinter
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Лифокар"
+                    BonusNum=537
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Джавитор"
+                    BonusNum=538
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Инвейтер"
+                    BonusNum=539
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=5
+            }
+        }
+        15 ~{
+            Name=Кафаситор
+            Origin=Original
+            WeaponType=t_Weapon17
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Лифокар"
+                    BonusNum=540
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Джавитор"
+                    BonusNum=541
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Стилермейн"
+                    BonusNum=542
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        16 ~{
+            Name=Лирекрон
+            Origin=Original
+            WeaponType=t_Weapon18
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Лифокар"
+                    BonusNum=543
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Адроптер"
+                    BonusNum=544
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Инвейтер"
+                    BonusNum=545
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_Extrimium
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=4
+            }
+        }
+        17 ~{
+            Name=Плазмоган
+            Origin=Mod_ExpPlasmaGun
+            WeaponType=PlasmaGun
+            GalaxyTechLevel=5
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дифрод"
+                    BonusNum=ExpPlasmaGun_Diphrode
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Лифокар"
+                    BonusNum=ExpPlasmaGun_Liphocarus
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Джавитор"
+                    BonusNum=ExpPlasmaGun_Javitor
+                    ChangePriorityOn=0
+                }
+                4 ~{
+                    Name="Армолок"
+                    BonusNum=ExpPlasmaGun_Armoloc
+                    ChangePriorityOn=0
+                }
+                5 ~{
+                    Name="Эвольвента"
+                    BonusNum=ExpPlasmaGun_Involute
+                    ChangePriorityOn=0
+                }
+                6 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=6
+            }
+        }
+        18 ~{
+            Name=МаБоКиТ-79
+            Origin=Mod_EvoMabokit
+            WeaponType=Mabokit
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        19 ~{
+            Name=Аннигилятор поля
+            Origin=Mod_ShuEmitter
+            WeaponType=gaal_vision
+            GalaxyTechLevel=8
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        20 ~{
+            Name=Разрывное орудие
+            Origin=Mod_ShuEmitter
+            WeaponType=frag_gun
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotSplinter
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumSplinter
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        21 ~{
+            Name=Гравитонный лучемет
+            Origin=Mod_ShuEmitter
+            WeaponType=grav_beam
+            GalaxyTechLevel=4
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        22 ~{
+            Name=Боевой лазер ТБ-47
+            Origin=Mod_ShuEmitter
+            WeaponType=maloc_laser
+            GalaxyTechLevel=3
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        23 ~{
+            Name=Боевой лазер ТБ-42
+            Origin=Mod_ShuEmitter
+            WeaponType=maloc_laser2
+            GalaxyTechLevel=3
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        24 ~{
+            Name=Фотонная пушка М4
+            Origin=Mod_ShuEmitter
+            WeaponType=photon_gun
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        25 ~{
+            Name=Фотонная пушка М3
+            Origin=Mod_ShuEmitter
+            WeaponType=photon_gun2
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        26 ~{
+            Name=Фотонная пушка М2
+            Origin=Mod_ShuEmitter
+            WeaponType=photon_gun3
+            GalaxyTechLevel=1
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        27 ~{
+            Name=Пульсган R21
+            Origin=Mod_ShuEmitter
+            WeaponType=pulse_gun
+            GalaxyTechLevel=7
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        28 ~{
+            Name=Пульсган R20
+            Origin=Mod_ShuEmitter
+            WeaponType=pulse_gun2
+            GalaxyTechLevel=7
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        29 ~{
+            Name=Ретрактор
+            Origin=Mod_ShuEmitter
+            WeaponType=slow_gun
+            GalaxyTechLevel=5
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        30 ~{
+            Name=Прожектор вихря
+            Origin=Mod_ShuEmitter
+            WeaponType=sphere_gun
+            GalaxyTechLevel=8
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=2
+            }
+        }
+        31 ~{
+            Name=Сплэшевый лазер
+            Origin=Mod_ShuEmitter
+            WeaponType=splash_faser
+            GalaxyTechLevel=3
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Дишот"
+                    BonusNum=ExpTC_DyshotEnergy
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronEnergy
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumEnergy
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        32 ~{
+            Name=Бластер Е-11
+            Origin=Mod_ShuEmitter
+            WeaponType=laser_gun
+            GalaxyTechLevel=6
+            NoneRaceChance=5
+            MinSizeChance=30
+            SellingWithoutModsChance=50
+            Modifications ~{
+                1 ~{
+                    Name="Тришот"
+                    BonusNum=ExpTC_TryshotLaserGun
+                    ChangePriorityOn=0
+                }
+                2 ~{
+                    Name="Магнетрон"
+                    BonusNum=ExpTC_MagnetronSplinter
+                    ChangePriorityOn=0
+                }
+                3 ~{
+                    Name="Экстремум"
+                    BonusNum=ShuMM_ExtremumSplinter
+                    ChangePriorityOn=0
+                }
+                RestrictionNote=Не более 15 модификаций!
+                Count=3
+            }
+        }
+        33 ~{
+            Name=Магнитный сепаратор
+            Origin=ShuDomiksPlus
+            WeaponType=Dom_burst
+            GalaxyTechLevel=1
+            Owner=Kling
+            SubRace=Any
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        34 ~{
+            Name=Спаренный турболазер
+            Origin=ShuDomiksPlus
+            WeaponType=Dom_dual_laser
+            GalaxyTechLevel=3
+            Owner=Kling
+            SubRace=Any
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        35 ~{
+            Name=Импульсный бластер
+            Origin=ShuDomiksPlus
+            WeaponType=Dom_laser
+            GalaxyTechLevel=2
+            Owner=Kling
+            SubRace=Any
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        36 ~{
+            Name=Энергопакетный разрядник
+            Origin=ShuDomiksPlus
+            WeaponType=Dom_light
+            GalaxyTechLevel=8
+            Owner=Kling
+            SubRace=Any
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        37 ~{
+            Name=Револьверный торпедомет
+            Origin=ShuDomiksPlus
+            WeaponType=Dom_rocket
+            GalaxyTechLevel=1
+            Owner=Kling
+            SubRace=Any
+            NoneRaceChance=5
+            MinSizeChance=30
+        }
+        38 ~{
+            Name=Сплиттер
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_splitter
+            GalaxyTechLevel=3
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        39 ~{
+            Name=Индэмит
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_emitter
+            GalaxyTechLevel=8
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        40 ~{
+            Name=Лезвие Наргуна
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_nargun
+            GalaxyTechLevel=8
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        41 ~{
+            Name=Иконокласт
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_cluster
+            GalaxyTechLevel=8
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        42 ~{
+            Name=Множитель антиматерии
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_antimatter
+            GalaxyTechLevel=8
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        43 ~{
+            Name=Нихилест
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_nihiler
+            GalaxyTechLevel=6
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        44 ~{
+            Name=Квинкган
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_moldikvink
+            GalaxyTechLevel=8
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        45 ~{
+            Name=Диморфический станнер
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_stunner
+            GalaxyTechLevel=6
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        46 ~{
+            Name=Аугербар
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_burster
+            GalaxyTechLevel=5
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        47 ~{
+            Name=Болт-матрица
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_protomissile
+            GalaxyTechLevel=7
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        48 ~{
+            Name=Ионный деформатор
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_laser
+            GalaxyTechLevel=3
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        49 ~{
+            Name=Гравиколлектор
+            Origin=Mod_ShuKlissan
+            WeaponType=klissan_capacer
+            GalaxyTechLevel=3
+            Owner=Kling
+            NoneRaceChance=5
+            MinSizeChance=30
+            CustomFactionChance=100
+            CustomFaction=Klissan
+			SpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        }
+        Count=49
+	}
+	Artefacts ~{
+		ReadMe=Параметр SpawnRateChance отвечает за частоту появления артефакта в магазине. Параметр NoneRaceChance отвечает за шанс получения артефактом неизвестной расы. Параметр Onwer (возможно перечисление рас через запятую без пробелов, где значение Coalition трактуется как 5 основных игровых рас) опционален и будет применён, если артефакт не получит неизвестную расу. По умолчанию параметр Owner равен всем коалиционным расам, в остальном работает также, как и в списках выше. Параметр Size обязателен (если вы точно уверены, что в моде с данным артефактом в разделе арта Size прописан, то здесь его можно не писать), но работает только для кастомных артефактов не являющихся юзлесными предметами. Вес кастомных артефактов не юзлесов будет определён по внутренней формуле, которая базируется на значении параметра Size. Аналогичная ситуация с параметром Cost для кастомных артефактов. Если он есть в основном разделе артефакта, то указывать его не обязательно. Параметр Cost напрямую влияет на расчёт конечной стоимости артефакта, при этом учтите, что дешёвым артефактом считается артефакт с Cost=1000, а дорогим с Cost=2500. Выставлять значение Cost сильно ниже или сильно выше указанных значений не рекомендуется. Всем прочим артефактам и предметам данные параметры указывать не нужно (кодом они не учтены не будут).
+		ReadMeMore=Параметры CustomFactionChance и CustomFaction опциональны и могут быть установлены для любых артефактов по желанию. Параметр ArtAdditionalCostCoef обозначает модификатор, на который будет помножена стоимость артефакта после его создания (может принимать дробные значения, дробную часть отделять точкой). Опциональный параметр SubRace обозначает серию доминаторов (применяется только к доминаторским артефактам) и имеет 3 значения Blazer, Keller, Terron или Any (допустимо добавлять значения без пробелов через запятую).
+		ArtAdditionalCostCoef=5.0
+		1 ~{
+			Name=Железные жупи
+			TypeStr=t_ArtefactHull
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		2 ~{
+			Name=Чёрная жижа
+			TypeStr=t_ArtefactFuel
+			ItemType=OriginalArt
+			SpawnRateChance=40
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		3 ~{
+			Name=Пси-ускоритель
+			TypeStr=t_ArtefactSpeed
+			ItemType=OriginalArt
+			SpawnRateChance=35
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		4 ~{
+			Name=Отморозки
+			TypeStr=t_ArtefactPower
+			ItemType=OriginalArt
+			SpawnRateChance=65
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		5 ~{
+			Name=Пролонгер
+			TypeStr=t_ArtefactRadar
+			ItemType=OriginalArt
+			SpawnRateChance=70
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		6 ~{
+			Name=Сканерный кэш
+			TypeStr=t_ArtefactScaner
+			ItemType=OriginalArt
+			SpawnRateChance=60
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		7 ~{
+			Name=Дроид младший
+			TypeStr=t_ArtefactDroid
+			ItemType=OriginalArt
+			SpawnRateChance=25
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		8 ~{
+			Name=Нанитоиды
+			TypeStr=t_ArtefactNano
+			ItemType=OriginalArt
+			SpawnRateChance=15
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		9 ~{
+			Name=Эриметр
+			TypeStr=t_ArtefactHook
+			ItemType=OriginalArt
+			SpawnRateChance=85
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		10 ~{
+			Name=Поляризатор
+			TypeStr=t_ArtefactDef
+			ItemType=OriginalArt
+			SpawnRateChance=40
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		11 ~{
+			Name=Вероятностный анализатор
+			TypeStr=t_ArtefactAnalyzer
+			ItemType=OriginalArt
+			SpawnRateChance=65
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		12 ~{
+			Name=Локализатор взрывной волны
+			TypeStr=t_ArtefactMiniExpl
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		13 ~{
+			Name=Антигравитатор
+			TypeStr=t_ArtefactAntigrav
+			ItemType=OriginalArt
+			SpawnRateChance=25
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		14 ~{
+			Name=Трансфакторный маяк
+			TypeStr=t_ArtefactTransmitter
+			ItemType=OriginalArt
+			SpawnRateChance=10
+			GalaxyTechLevel=7
+			NoneRaceChance=100
+		}
+		15 ~{
+			Name=Кварковая бомба
+			TypeStr=t_ArtefactBomb
+			ItemType=OriginalArt
+			SpawnRateChance=20
+			GalaxyTechLevel=5
+			NoneRaceChance=50
+			Owner=PirateClan
+		}
+		16 ~{
+			Name=Транклюкатор
+			TypeStr=t_ArtefactTranclucator
+			ItemType=OriginalArt
+			SpawnRateChance=7
+			GalaxyTechLevel=7
+			NoneRaceChance=100
+		}
+		17 ~{
+			Name=Пропорционар
+			TypeStr=t_ArtDefToEnergy
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		18 ~{
+			Name=Пятерик
+			TypeStr=t_ArtEnergyPulse
+			ItemType=OriginalArt
+			SpawnRateChance=65
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		19 ~{
+			Name=Проглот
+			TypeStr=t_ArtEnergyDef
+			ItemType=OriginalArt
+			SpawnRateChance=60
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		20 ~{
+			Name=Навинт
+			TypeStr=t_ArtSplinter
+			ItemType=OriginalArt
+			SpawnRateChance=55
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		21 ~{
+			Name=Вжик
+			TypeStr=t_ArtDecelerate
+			ItemType=OriginalArt
+			SpawnRateChance=75
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		22 ~{
+			Name=Ракетанг
+			TypeStr=t_ArtMissileDef
+			ItemType=OriginalArt
+			SpawnRateChance=35
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		23 ~{
+			Name=Обливионный коннектор
+			TypeStr=t_ArtForsage
+			ItemType=OriginalArt
+			SpawnRateChance=40
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		24 ~{
+			Name=Сопланатор
+			TypeStr=t_ArtWeaponToSpeed
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		25 ~{
+			Name=Гипергенератор
+			TypeStr=t_ArtGiperJump
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		26 ~{
+			Name=Субпортал
+			TypeStr=t_ArtBlackHole
+			ItemType=OriginalArt
+			SpawnRateChance=30
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		27 ~{
+			Name=Протон
+			TypeStr=t_ArtDefToArms1
+			ItemType=OriginalArt
+			SpawnRateChance=80
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		28 ~{
+			Name=Армс
+			TypeStr=t_ArtDefToArms2
+			ItemType=OriginalArt
+			SpawnRateChance=50
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		29 ~{
+			Name=Артефактор
+			TypeStr=t_ArtArtefactor
+			ItemType=OriginalArt
+			SpawnRateChance=25
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}	
+		30 ~{
+			Name=Биомир
+			TypeStr=t_ArtBio
+			ItemType=OriginalArt
+			SpawnRateChance=65
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		31 ~{
+			Name=а'Эгис
+			TypeStr=t_ArtPDTurret
+			ItemType=OriginalArt
+			SpawnRateChance=30
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		32 ~{
+			Name=Ралс
+			TypeStr=t_ArtFastRacks
+			ItemType=OriginalArt
+			SpawnRateChance=30
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		33 ~{
+			Name=Техдиструптор
+			TypeStr=RNDart_01
+			ItemType=CustomArt
+			SpawnRateChance=35
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		34 ~{
+			Name=Рефлектор
+			TypeStr=RNDart_02
+			ItemType=CustomArt
+			SpawnRateChance=40
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		35 ~{
+			Name=Хаскер_PROx64
+			TypeStr=RNDart_03
+			ItemType=CustomArt
+			SpawnRateChance=60
+			GalaxyTechLevel=4
+			NoneRaceChance=100
+		}
+		36 ~{
+			Name=Бустер
+			TypeStr=RNDart_04
+			ItemType=CustomArt
+			SpawnRateChance=15
+			GalaxyTechLevel=6
+			NoneRaceChance=100
+		}
+		37 ~{
+			Name=Нуль-генератор
+			TypeStr=Null-generator
+			ItemType=CustomArt
+			ReplaceOnSelling=UselessItems.RNDmoditem_2
+			SpawnRateChance=35
+			GalaxyTechLevel=5
+			NoneRaceChance=100
+		}
+		38 ~{
+			Name=Оглушающая бомба
+			TypeStr=Stun_bomb
+			ItemType=CustomArt
+			ReplaceOnSelling=UselessItems.RNDbomb_2
+			SpawnRateChance=30
+			GalaxyTechLevel=5
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		39 ~{
+			Name=ЭМП бомба
+			TypeStr=EMP_bomb
+			ItemType=CustomArt
+			ReplaceOnSelling=UselessItems.RNDbomb_3
+			SpawnRateChance=30
+			GalaxyTechLevel=5
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		40 ~{
+			Name=Тех-директор
+			TypeStr=TechDirector
+			ItemType=CustomArt
+			SpawnRateChance=25
+			GalaxyTechLevel=5
+			NoneRaceChance=0
+			Owner=Kling
+		}
+		Count=39
+	}
+	ModificationItems ~{
+		ReadMe=Параметр SpawnRateChance отвечает за частоту появления наборов в магазине. Параметр NoneRaceChance отвечает за шанс получения набором неизвестной расы. Параметр Onwer (возможно перечисление рас через запятую без пробелов, где значение Coalition трактуется как 5 основных игровых рас) опционален и будет применён, если набор не получит неизвестную расу. По умолчанию параметр Owner будет взят из основного раздела данного юзлеса, а в остальном работает точно также, как и в списках выше.
+		ReadMeMore=Параметры CustomFactionChance и CustomFaction опциональны и могут быть установлены для любых наборов по желанию. Опциональный параметр SubRace обозначает серию доминаторов (применяется только к доминаторским наборам) и имеет 3 значения Blazer, Keller, Terron или Any (допустимо добавлять значения без пробелов через запятую). Параметр TextReplacePath опционален и может быть использован для замены описания данного набора (при выставлении его на продажу в ЧР) на другой текст, расположенный по указанному в данном параметре пути. Пример: TextReplacePath=UselessItems.RNDmoditem_15.TextBlackMarket
+		1 ~{
+			Name=Декалератор
+			TypeStr=RNDmoditem_1
+			ItemType=UselessItem
+			SpawnRateChance=40
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+			CustomFactionChance=0
+			CustomFaction=Klissan
+		}
+		2 ~{
+			Name=Асидий
+			TypeStr=RNDmoditem_3
+			ItemType=UselessItem
+			SpawnRateChance=45
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		3 ~{
+			Name=Тиливые конденсаторы
+			TypeStr=RNDmoditem_4
+			ItemType=UselessItem
+			SpawnRateChance=50
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		4 ~{
+			Name=Подкрученные ограничители
+			TypeStr=RNDmoditem_5
+			ItemType=UselessItem
+			SpawnRateChance=50
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		5 ~{
+			Name=Дополнительная боеукладка
+			TypeStr=RNDmoditem_6
+			ItemType=UselessItem
+			SpawnRateChance=50
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		6 ~{
+			Name=Хакнутый инжектор
+			TypeStr=RNDmoditem_12
+			ItemType=UselessItem
+			SpawnRateChance=30
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		7 ~{
+			Name=Замена систем безопасности
+			TypeStr=RNDmoditem_11
+			ItemType=UselessItem
+			SpawnRateChance=35
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		8 ~{
+			Name=Меонные чипы
+			TypeStr=RNDmoditem_8
+			ItemType=UselessItem
+			SpawnRateChance=50
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		9 ~{
+			Name=Контурный усилитель
+			TypeStr=RNDmoditem_9
+			ItemType=UselessItem
+			SpawnRateChance=65
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		10 ~{
+			Name=Процессоры "Экстрим"
+			TypeStr=RNDmoditem_10
+			ItemType=UselessItem
+			SpawnRateChance=45
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		11 ~{
+			Name=Усиленные сервоприводы
+			TypeStr=RNDmoditem_13
+			ItemType=UselessItem
+			SpawnRateChance=65
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		12 ~{
+			Name=Уплотнитель поля
+			TypeStr=RNDmoditem_7
+			ItemType=UselessItem
+			SpawnRateChance=35
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		13 ~{
+			Name=Набор деталей из фрагилиума
+			TypeStr=RNDmoditem_14
+			ItemType=UselessItem
+			SpawnRateChance=25
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		14 ~{
+			Name=Отсек контрабандиста
+			TypeStr=RNDmoditem_15
+			ItemType=UselessItem
+			SpawnRateChance=5
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+			TextReplacePath=UselessItems.RNDmoditem_15.TextBlackMarket
+		}
+		15 ~{
+			Name=Детонатор с таймером
+			TypeStr=RNDtimer
+			ItemType=UselessItem
+			SpawnRateChance=30
+			GalaxyTechLevel=1
+			NoneRaceChance=0
+			Owner=PirateClan
+		}
+		Count=15
+	}
+}
+ActCodeBlocksList ^{
+	//Скриптовый акткод астероида, чтобы выставлять маркеры в скрипте непосредственно из акткода
+	SmugglersCompartmentQuestActCode ^{
+		//Код для защиты скриптового отсека контрабандиста от случайных попаданий ракет NPC
+		01=if(ScriptItemActionType(t_OnItemHit))
+		02 ^{
+			01=dword dealer = ScriptItemActObject1();
+			02=if(ObjectType(dealer) == 7)
+			03 ^{
+				01=ship = MissileOwner(dealer);
+				02=if(ship != Player()) ItemDestroy(CurItem(), 0);
+			}
+		}
+		03=else if(ScriptItemActionType(t_OnItemPickUp))
+		04 ^{
+			01=if(ScriptItemActShip() == Player())
+			02 ^{
+				//Очищаем акткод, после подбора контейнера игроком
+				01=ItemOnActCode(CurItem(), '');
+			}
+		}
+	}
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            TalkMsgBMHideInfo ^{
+                Description=Скрытая инфошка для своевременного вывода уведомления на панель (тёрнкод не справляется)
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep
+				OnActStepTypes=0
+                OnActCode ^{
+					01=if(ShipInNormalSpace(Player()))
+					02 ^{
+						01=dword cur_info = CurInfo();
+						02=if(CurTurn() == ShipCustomShipInfoTextData(0, cur_info, 1))exit;
+						03=dword warrior = IdToShip(ShipCustomShipInfoData(0, cur_info, 1));
+						04=dword smuggler = IdToShip(ShipCustomShipInfoData(0, cur_info, 2));
+						05=dword planet = IdToPlanet(ShipCustomShipInfoData(0, cur_info, 3));
+						06=CustomEther('TalkSpecial', 0, 'BM_StartTalks', Format(CT("Script.Mod_ExpBlackMarket_1.SmugglerChaseTalk"), "<0>", Name(warrior), "<1>", Name(smuggler), "<2>", Name(smuggler), "<3>", Rnd(GalaxyMoney(1,1)/4,GalaxyMoney(4,1)/2), "<4>", Name(planet)), warrior, smuggler);
+						07=Sound('Sound.NewMsg');
+						08=ExpBlackMarketGlobal = 0;
+						09=ShipDeleteCustomShipInfo(Player(), 'TalkMsgBMHideInfo');
+					}
+                }
+            }
+            SmugglingCountInfo ^{
+                Description=Скрытая инфошка, считает количество контрабандных сделок (деньги за покупку/продажу контрабанды), совершённых игроком.
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnShipBuysGoods,t_OnShipSellsGoods
+                OnActCode ^{
+					01=dword cur_ship = ScriptItemActShip();
+					//Если игрок совершил контрабандную сделку
+					02=if(ScriptItemActParam())
+					03 ^{
+						01=dword cur_info = CurInfo();
+						02=dword obj1 = ScriptItemActObject1();
+						03=int deal_summ = ItemCost(obj1);
+						04=if(ScriptItemActionType(t_OnShipBuysGoods))
+						05 ^{
+							//Запоминаем сумму совершённой сделки при покупке контрабанды
+							01=ShipCustomShipInfoData(0, cur_info, 1, ShipCustomShipInfoData(0, cur_info, 1) + deal_summ);
+						}
+						06=else
+						07 ^{
+							01=dword obj2 = ScriptItemActObject2();
+							//Запоминаем сумму совершённой сделки при продаже контрабанды
+							02=ShipCustomShipInfoData(0, cur_info, 2, ShipCustomShipInfoData(0, cur_info, 2) + deal_summ);
+							03=int size2 = ItemSize(obj2);
+							04=int profit = 0;
+							//Если из проданной партии игроком было приобретено (а не найдено) вообще хоть что-нибудь
+							05=if(size2)
+							06 ^{
+								01=int size1 = ItemSize(obj1);
+								02=int diff_summ = ItemCost(obj2);
+								//Если вся проданная партия была приобретена самим игроком, то просто считаем прибыль/убыль
+								03=if(size1 == size2)profit = deal_summ - diff_summ;
+								//Иначе сперва определяем, какая часть проданной партии была реально приобретена игроком
+								04=else
+								05 ^{
+									01=deal_summ = (deal_summ / size1) * size2;
+									02=profit = deal_summ - diff_summ;
+								}
+							}
+							//Если игрок получил "валидную" торговую прибыль с этой продажи
+							07=if(profit > 0)
+							08 ^{
+								01=int penalty = ShipStatistic(cur_ship, 9);
+								//Если на игроке не висит "торговое пенальти"
+								02=if(!penalty) ShipCustomShipInfoData(0, cur_info, 3, ShipCustomShipInfoData(0, cur_info, 3) + profit);
+								//Если таки висит
+								03=else
+								04 ^{
+									01=if(profit > penalty)
+									02 ^{
+										01=profit = profit - penalty;
+										02=ShipCustomShipInfoData(0, cur_info, 3, ShipCustomShipInfoData(0, cur_info, 3) + profit);
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+            BlackMarketJumpControlInfo ^{
+                Description=Скрытая инфошка, помогающая своевременно выводить уведомления при уходе/выходе ЧР из гипера.
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnDeath
+				OnActStepTypes=11
+                OnActCode ^{
+					01=if(ScriptItemActionType(t_OnStep))
+					02 ^{
+						01=dword cur_info=CurInfo();
+						02=dword cur_ship=ScriptItemActShip();
+						//Если ЧР находится в системе (проверяем его уход в гипер)
+						03=if(!ShipCustomShipInfoData(0,cur_info,1))
+						04 ^{
+							01=if(ShipInHyperSpace(cur_ship))
+							02 ^{
+								01=str msg_type=ShipCustomShipInfoTextData(0,cur_info,1);
+								02=if(msg_type!='')
+								03 ^{
+									01=if(msg_type=='BMClosedByTimeOut')CustomEther('NewsSpecial',0,'BMClosedByTimeOut',Format(CT('Script.Mod_ExpBlackMarket_2.BMClosedByTimeOut'),'<0>',ShipCustomShipInfoTextData(0,cur_info,2)));
+									02=else if(msg_type=='BMClosedByStarBattle')CustomEther('NewsSpecial',0,'BMClosedByStarBattle',Format(CT('Script.Mod_ExpBlackMarket_2.BMClosedByStarBattle'),'<0>',ShipCustomShipInfoTextData(0,cur_info,2)));
+									03=ShipCustomShipInfoTextData(0,cur_info,1,'');
+								}
+								//Переносим ЧР на Меркурий после того, как он завершил свою анимацию телепорта
+								04=TransferShip(cur_ship,StarPlanets(GalaxyStar(2),0));
+								05=ShipCustomShipInfoData(0,cur_info,1,1);
+							}
+						}
+						//Если ЧР покинул планету
+						05=else
+						06 ^{
+							01=if(!GetShipPlanet(cur_ship))
+							02 ^{
+								01=msg_type=ShipCustomShipInfoTextData(0,cur_info,1);
+								02=if(msg_type!='')
+								03 ^{
+									01=if(msg_type=='BMOpened')CustomEther('NewsSpecial',7,'BMOpened',Format(CT('Script.Mod_ExpBlackMarket_2.BMOpened'),'<0>',ShipCustomShipInfoTextData(0,cur_info,2),'<1>',ShipName(cur_ship),'<2>',ShipCustomShipInfoTextData(0,cur_info,3)));
+									02=ShipCustomShipInfoTextData(0,cur_info,1,'');
+								}
+								04=ShipCustomShipInfoData(0,cur_info,1,0);
+							}
+						}
+					}
+					03=else
+					04 ^{
+						01=EtherDelete('BMOpened');
+					}
+                }
+            }
+            BlackMarket_EquipmentShopBuysInfo ^{
+                Description=Скрытая инфошка, корректирует цены и прочие параметры оборудования/артефактов после их покупки на ЧР.
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnEnteringForm,t_OnReEnteringForm,t_OnLeavingForm
+				OnActStepTypes=0
+                OnActCode ^{
+					01=if(ScriptItemActionType(t_OnStep,0))
+					02 ^{
+						01=if(ShipOrder(Player())==5)
+						02 ^{
+							01=ShipDeleteCustomShipInfo(Player(),'BlackMarket_EquipmentShopBuysInfo');
+							02=InterfaceState('RuinsTalk','PM_EndTurn',-1);
+							03=InterfaceState('RuinsTalk','RT_EndTurn_Block',-1);
+							04=InterfaceState('RuinsTalk','PanelTalk',-1);
+							05=InterfaceState('RuinsTalk','PR_Gov',-1);
+							06=InterfaceState('RuinsTalk','PR_BMGovBlock',-1);
+							07=InterfaceState('RuinsTalk','PR_Shop',-1);
+							08=InterfaceState('RuinsTalk','PR_BMShopBlock',-1);
+							09=InterfaceState('RuinsTalk','AstAddRuins',-1);
+							//Включаем панель склада и убираем картинку-заглушку
+							10=InterfaceState('Ship','SC_Storage_Panel',-1);
+							11=InterfaceState('Ship','StorageLockImage',-1);
+							12=InterfaceState('Ship','StorageLabel',-1);
+							13=InterfaceState('Ship','ShipToStorage',-1);
+							14=InterfaceState('Ship','StorageToShip',-1);
+						}
+					}
+					03=else if(ScriptItemActionType(t_OnEnteringForm) || ScriptItemActionType(t_OnReEnteringForm))
+					04 ^{
+						//Подстановка "заглушки" вместо кнопки пропуска хода
+						01=if(CurrentForm()=='Ship')
+						02 ^{
+							01=InterfaceState('Ship','PM_EndTurn',0);
+							02=InterfaceState('Ship','RT_EndTurn_Block',1);
+							//Перебираем галасобытия, ищем свежекупленные предметы
+							03=for(int i = GalaxyEvents() - 1; i >= 0; i = i - 1)
+							04 ^{
+								01=if(i <= ShipCustomShipInfoData(0, CurInfo(), 2)) break;
+								02=if(GalaxyEventDate(i) < CurTurn()) break;
+								03=if(GalaxyEventType(i) == 'PlayerBuysEquipment')
+								04 ^{
+									01=if(GalaxyEventData(i, 5) == ShipCustomShipInfoData(0, CurInfo(), 1))
+									02 ^{
+										01=dword item;
+										02=int type = GalaxyEventData(i, 0);
+										03=float flt = 0;
+										04=if(type >= t_FuelTanks && type <= t_DefGenerator)
+										05 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=if(ItemOwner(item)==6)
+											03 ^{
+												01=flt=CT('BlackMarketShopList.Equipment.NoneRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+											04=else if(ItemOwner(item)==5)
+											05 ^{
+												01=flt=CT('BlackMarketShopList.Equipment.DomRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+										}
+										06=else if(type>=t_Weapon1 && type<=t_CustomWeapon)
+										07 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=if(ItemOwner(item)==6)
+											03 ^{
+												01=flt=CT('BlackMarketShopList.Weapon.NoneRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+											04=else if(ItemOwner(item)==5)
+											05 ^{
+												01=flt=CT('BlackMarketShopList.Weapon.DomRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+										}
+										08=else if(type>=t_Artefact && type<=t_ArtFastRacks)
+										09 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=flt=CT('BlackMarketShopList.Artefacts.ArtAdditionalCostCoef');
+											03=if(flt<=0)flt=1.0;
+											04=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											05=if(type==t_Artefact || type==t_Artefact2)
+											06 ^{
+												01=if(findsubstr(CustomArtTextData(item,3),'ReplaceTo: ')==0)
+												02 ^{
+													01=str path=substr(CustomArtTextData(item,3),11);
+													02=if(BlockExist(path))
+													03 ^{
+														01=dword new_item=CreateQuestItem(substr(path,13),ItemOwner(item));
+														02=ItemCost(new_item,ItemCost(item));
+														03=ItemSize(new_item,ItemSize(item));
+														04=path=EqCustomFaction(item);
+														05=if(path!='')EqCustomFaction(new_item,path);
+														06=FreeItem(GetArtFromShip(Player(),FindItemInShip(Player(),item)));
+														07=AddItemToShip(Player(),new_item);
+													}
+												}
+											}
+										}
+										10=else if(type==t_MicroModule)
+										11 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=int level=BonusPriority(EqModule(item));
+											03=if(level<=30)flt=CT('BlackMarketShopList.MicroModuls.MMLevelOneCostCoef');
+											04=else if(level<=69)flt=CT('BlackMarketShopList.MicroModuls.MMLevelTwoCostCoef');
+											05=else flt=CT('BlackMarketShopList.MicroModuls.MMLevelThreeCostCoef');
+											06=if(flt<=0)flt=1.0;
+											07=ItemCost(item,round(1.0*ItemCost(item)/flt));
+										}
+										12=if(!ShopItems(GetShipRuins(Player())))
+										13 ^{
+											01=InterfaceState('RuinsTalk', 'PR_Shop', 0);
+											02=InterfaceState('RuinsTalk', 'PR_BMShopBlock', 1);
+										}
+									}
+								}
+							}
+							05=ShipCustomShipInfoData(0,CurInfo(),2,GalaxyEvents()-1);
+						}
+						03=else if(CurrentForm()=='EquipmentShop')
+						04 ^{
+							01=InterfaceState('EquipmentShop','PM_EndTurn',0);
+							02=InterfaceState('EquipmentShop','RT_EndTurn_Block',1);
+						}
+						05=else if(CurrentForm()=='GoodsShop')
+						06 ^{
+							01=InterfaceState('GoodsShop','PM_EndTurn',0);
+							02=InterfaceState('GoodsShop','RT_EndTurn_Block',1);
+						}
+						07=else if(CurrentForm()=='Info')
+						08 ^{
+							01=InterfaceState('Info','PM_EndTurn',0);
+							02=InterfaceState('Info','RT_EndTurn_Block',1);
+						}
+						09=else if(CurrentForm()=='Rating')
+						10 ^{
+							01=InterfaceState('Rating','PM_EndTurn',0);
+							02=InterfaceState('Rating','RT_EndTurn_Block',1);
+						}
+						11=else if(CurrentForm()=='Galaxy')
+						12 ^{
+							01=InterfaceState('Galaxy','PM_EndTurn',0);
+							02=InterfaceState('Galaxy','RT_EndTurn_Block',1);
+						}
+						13=else if(CurrentForm()=='Hangar')
+						14 ^{
+							01=InterfaceState('Hangar','PM_EndTurn',0);
+							02=InterfaceState('Hangar','RT_EndTurn_Block',1);
+						}
+						15=else if(CurrentForm()=='RuinsTalk')
+						16 ^{
+							01=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							02=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+							03=if(PlayerBridge())InterfaceState('RuinsTalk','PanelTalk',-1);
+						}
+					}
+					05=else if(ScriptItemActionType(t_OnLeavingForm))
+					06 ^{
+						01=if(CurrentForm()=='EquipmentShop')
+						02 ^{
+							01=InterfaceState('EquipmentShop','PM_EndTurn',-1);
+							02=InterfaceState('EquipmentShop','RT_EndTurn_Block',0);
+							03=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							04=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+							//Перебираем галасобытия, ищем свежекупленные предметы
+							05=for(i = GalaxyEvents() - 1; i >= 0; i = i - 1)
+							06 ^{
+								01=if(i <= ShipCustomShipInfoData(0, CurInfo(), 2)) break;
+								02=if(GalaxyEventDate(i) < CurTurn()) break;
+								03=if(GalaxyEventType(i) == 'PlayerBuysEquipment')
+								04 ^{
+									01=if(GalaxyEventData(i, 5) == ShipCustomShipInfoData(0, CurInfo(), 1))
+									02 ^{
+										01=type=GalaxyEventData(i,0);
+										02=flt=0;
+										03=if(type>=t_FuelTanks && type<=t_DefGenerator)
+										04 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=if(ItemOwner(item)==6)
+											03 ^{
+												01=flt=CT('BlackMarketShopList.Equipment.NoneRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+											04=else if(ItemOwner(item)==5)
+											05 ^{
+												01=flt=CT('BlackMarketShopList.Equipment.DomRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+										}
+										05=else if(type>=t_Weapon1 && type<=t_CustomWeapon)
+										06 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=if(ItemOwner(item)==6)
+											03 ^{
+												01=flt=CT('BlackMarketShopList.Weapon.NoneRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+											04=else if(ItemOwner(item)==5)
+											05 ^{
+												01=flt=CT('BlackMarketShopList.Weapon.DomRaceCostCoef');
+												02=if(flt<=0)flt=1.0;
+												03=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											}
+										}
+										07=else if(type>=t_Artefact && type<=t_ArtFastRacks)
+										08 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=flt=CT('BlackMarketShopList.Artefacts.ArtAdditionalCostCoef');
+											03=if(flt<=0)flt=1.0;
+											04=ItemCost(item,round(1.0*ItemCost(item)/flt));
+											05=if(type==t_Artefact || type==t_Artefact2)
+											06 ^{
+												01=if(findsubstr(CustomArtTextData(item,3),'ReplaceTo: ')==0)
+												02 ^{
+													01=path=substr(CustomArtTextData(item,3),11);
+													02=if(BlockExist(path))
+													03 ^{
+														01=new_item=CreateQuestItem(substr(path,13),ItemOwner(item));
+														02=ItemCost(new_item,ItemCost(item));
+														03=ItemSize(new_item,ItemSize(item));
+														04=path=EqCustomFaction(item);
+														05=if(path!='')EqCustomFaction(new_item,path);
+														06=FreeItem(GetArtFromShip(Player(),FindItemInShip(Player(),item)));
+														07=AddItemToShip(Player(),new_item);
+													}
+												}
+											}
+										}
+										09=else if(type==t_MicroModule)
+										10 ^{
+											01=item=IdToItem(GalaxyEventData(i,3));
+											02=level=BonusPriority(EqModule(item));
+											03=if(level<=30)flt=CT('BlackMarketShopList.MicroModuls.MMLevelOneCostCoef');
+											04=else if(level<=69)flt=CT('BlackMarketShopList.MicroModuls.MMLevelTwoCostCoef');
+											05=else flt=CT('BlackMarketShopList.MicroModuls.MMLevelThreeCostCoef');
+											06=if(flt<=0)flt=1.0;
+											07=ItemCost(item,round(1.0*ItemCost(item)/flt));
+										}
+										11=if(!ShopItems(GetShipRuins(Player())))
+										12 ^{
+											01=InterfaceState('RuinsTalk','PR_Shop',0);
+											02=InterfaceState('RuinsTalk','PR_BMShopBlock',1);
+										}
+									}
+								}
+							}
+							07=ShipCustomShipInfoData(0,CurInfo(),2,GalaxyEvents()-1);
+						}
+						//Смена "заглушки" кнопки пропуска хода
+						03=else if(CurrentForm()=='Ship')
+						04 ^{
+							25=InterfaceState('Ship','PM_EndTurn',-1);
+							26=InterfaceState('Ship','RT_EndTurn_Block',0);
+							27=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							28=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+						}
+						05=else if(CurrentForm()=='GoodsShop')
+						06 ^{
+							01=InterfaceState('GoodsShop','PM_EndTurn',-1);
+							02=InterfaceState('GoodsShop','RT_EndTurn_Block',0);
+							03=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							04=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+						}
+						07=else if(CurrentForm()=='Info')
+						08 ^{
+							01=InterfaceState('Info','PM_EndTurn',-1);
+							02=InterfaceState('Info','RT_EndTurn_Block',0);
+							03=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							04=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+						}
+						09=else if(CurrentForm()=='Rating')
+						10 ^{
+							01=InterfaceState('Rating','PM_EndTurn',-1);
+							02=InterfaceState('Rating','RT_EndTurn_Block',0);
+							03=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							04=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+						}
+						11=else if(CurrentForm()=='Galaxy')
+						12 ^{
+							01=InterfaceState('Galaxy','PM_EndTurn',-1);
+							02=InterfaceState('Galaxy','RT_EndTurn_Block',0);
+							03=InterfaceState('RuinsTalk','PM_EndTurn',0);
+							04=InterfaceState('RuinsTalk','RT_EndTurn_Block',1);
+						}
+						13=else if(CurrentForm()=='Hangar')
+						14 ^{
+							01=InterfaceState('Hangar','PM_EndTurn',-1);
+							02=InterfaceState('Hangar','RT_EndTurn_Block',0);
+						}
+					}
+                }
+            }
+        }
+    }
+}
+HullType ^{
+    ExpBlackMarket_BlackHeart ^{
+        Artefact=4
+        Cost=250
+        Def=1
+        Droid=1
+        Forsage=1
+        Hook=1
+        Name=Чёрное сердце
+        Probability=10
+        Race=Any
+        Radar=1
+        Scaner=1
+        ShipType=Pirate
+        Size=100
+        Text=Редкая серия корпусов, выпущенная по особому заказу Совета Верховных Лякушей, как прямой ответ на сверхуспешную рейнджерскую серию "Идеал".
+        Weapon=4
+        Year=30
+    }
+    ExpBlackMarket_Schwerzer ^{
+        Artefact=2
+        Cost=150
+        Def=1
+        Droid=-1
+        Forsage=1
+        Hook=-1
+        Name=Шверцер
+        Probability=10
+        Race=None
+        Radar=1
+        Scaner=-1
+        ShipType=None
+        Size=125
+        Text=Сбалансированная серия для любителей промышлять на чужих слабостях. По заверениям производителя, содержит в себе всё, что только может понадобиться настоящему контрабандисту.
+        Weapon=2
+        Year=0
+    }
+    ExpBlackMarket_Solo ^{
+        Artefact=4
+        Cost=350
+        Def=1
+        Droid=1
+        Forsage=1
+        Hook=1
+        Name=Соло
+        Probability=10
+        Race=None
+        Radar=1
+        Scaner=1
+        ShipType=None
+        Size=150
+        Text=Особая и крайне редкая серия контрабандистских корпусов, по слухам, собираемая лишь по индивидуальному заказу самых уважаемых представителей этой рисковой профессии.
+        Weapon=4
+        Year=0
+    }
+}
+BlackMarketNames ~{
+	1=Чеканная монета
+	2=Кореллианец
+	3=Даркнет
+	4=Биткредит
+	5=Запретный плод
+	6=Вторая почка
+	Count=6
+}
+Script ^{
+    Mod_ExpBlackMarket_1 ^{
+		47=<0>
+		SmugglerChaseTalk=<color=255,240,100><0></color>--><color=255,240,100><1></color>
+		SmugglerChaseTalk=- <color=255,240,100><2></color>, выключите двигатель и приготовьтесь к досмотру.
+		SmugglerChaseTalk=- Это ошибка, меня подставили, я честный торговец! В чём меня обвиняют?
+		SmugglerChaseTalk=- Поступила информация, что у вас на борту находится крупная партия контрабандных товаров. Повторяю, остановите корабль и ожидайте группу досмотра!
+		SmugglerChaseTalk=- У меня идея. Я перевожу тебе эти <color=255,240,100><3></color> cr., после чего ты разворачиваешься и летишь направо, а я продолжаю свой законопослушный путь налево. По рукам?
+		SmugglerChaseTalk=- Об этом предложении я сообщил домой, на планету <4>. Руководство не считает размеры выплаты удовлетворительными. Всем кораблям преследования, приказываю открыть огонь!
+        ScanCompartment=#0#
+		ScanCompartment=<clr><clrEnd>
+		ScanCompartment=Так-так, а вот, судя по всему, и его бесценная контрабанда. Начать сканирование! Сейчас посмотрим, из-за чего эти стервятники нынче готовы отдать свою никчёмную жизнь...<br>Хмм, <clr>6<clrEnd> ящиков фарюков, <clr>4<clrEnd> ящика "Махпеллы Зиро", <clr>1<clrEnd> ящик малокского аниме, все части запрещённого фэянского сериала <clr>"IT'S A TRAP!"<clrEnd>. И вот ради такой-то мелочной ерунды стоило умирать?
+		ScanCompartment=Патрульным кораблям, новый приказ - возвращаемся на планету #1#.
+		SignalFromCompartment=Вы поймали слабый сигнал из дрейфующего в космосе <clr>отсека контрабандиста<clrEnd>. Возможно, внутри него всё же имеется что-то ценное?
+        SmugglerAsksForHelp=Здарова, рейнджер! Эй-эй, только за бластер хвататься не надо, да?! Позволь я сперва объяснюсь...
+		SmugglerAsksForHelp=Прямо перед тем, как чёртовы вояки в щепки разнесли мой баркас, я успел заблаговременно укрыться в том самом сбрасываемом <clr>отсеке для контрабанды<clrEnd>, который ты столь любезно решил поднять к себе на борт. Отсек оборудован простенькой системой жизнеобеспечения и, так сказать, "двойным дном", благодаря которому вояки и не сумели обнаружить меня внутри.
+		SmugglerAsksForHelp=Я бы по достоинству отблагодарил тебя за своё спасение, только вот почти все мои пожитки сейчас разбросаны по космосу вместе с обломками корабля. Однако, если ты согласишься выполнить одну мою небольшую просьбу, я с радостью поделюсь с тобой своими сбережениями, коих, уж поверь, за свою долгую карьеру у меня скопилось немало.
+		SmugglerAsksForHelp=Итак, дело в том, что в самое ближайшее время мне необходимо добраться во-оон до той <clr>точки<clrEnd> в этой системе. И, пожалуйста, не спрашивай меня почему - все детали ты узнаешь уже на месте.
+		PlayerDoubtAboutIt=Да уж, не тебя я ожидал отыскать в этом контрабандном отсеке... А вот кстати, ответь-ка мне на вопрос, почему я вообще должен тебе помогать? Щас как сдам властям за вознаграждение, да и дело с концом!
+		SmugglerExplains=Что ж, я бы мог сейчас начать напирать на то, что за свою шкуру готов выложить намного больше, чем эти коалиционные скупердяи, и что мои влиятельные друзья вряд ли оценят твой крысячий поступок, однако что-то мне подсказывает, что ты и сам с официалами не в ладах, а значит, сделаешь правильный выбор и без дополнительной мотивации.<br>Крайнее решение, естественно, остаётся за тобой, но взывая к солидарности вольного торговца, прошу - просто помоги добраться до указанного места на карте.
+		PlayerAgreeToHelp=Ты только себя со мной так нахально не ровняй! Доберёмся, так и быть, до твоего места, а потом разойдёмся, как в вакууме корабль и сброшенный за борт мусор
+		PlayerSaysWellSee=Хмм, пожалуй, я ещё пока подумаю, что с тобой делать, а ты тем временем посиди-ка в своём чудо-отсеке, но уже под внешним замком
+        SmugglerLeaveOnPlanet=Пока вы занимались своими важными делами на планете #0#, пеленг #1# незаметно покинул корабль, не забыв прихватить по пути и свой <clr>контрабандный отсек<clrEnd>.
+		SmugglerLeaveOnStation=Пока вы занимались своими важными делами на борту станции #0#, пеленг #1# незаметно покинул корабль, не забыв прихватить по пути и свой <clr>контрабандный отсек<clrEnd>.
+        SmugglerStabbedPlayer=В определённый момент, напрочь позабыв о своём госте, вы решили прикорнуть в вашем любимом капитанском кресле. Пеленг #0#, решив воспользоваться подвернувшимся шансом, тайно прокрался на мостик и без малейшего зазрения совести перерезал вам горло.<br>Самого контрабандиста, столь удачно захватившего ваш корабль, впоследствии ждала крайне увлекательная и полная приключений жизнь, однако вы всего этого уже не увидите, ведь #1# <color=255,240,100>года</color> #2# #3# жизнь великого рейнджера закончилась навсегда.
+		InSystem=</color>в системе
+		OnTheWayToSystem=</color>на пути к системе
+        SmugglerSaysAlmostThere=О, гляжу, ты всё-таки решил внять голосу алчного разума?<br>Судя по карте, мы почти прибыли. Побудь другом ещё разок, уступи место в пилотском кресле, дабы я мог аккуратненько совершить посадку.
+		PlayerAsksWhat=Что?! Куда ты садиться-то собрался, чучело? Видать, тебя при взрыве крепко об стену головой жмахнуло, раз несешь подобную околесицу
+		SmugglerExplainsAgain=А вот это уже, "друг", вопрос, на который я в данный момент отвечать решительно не намерен... **звук заряжаемого бластера** ...из кресла - живо!!!
+		PlayerGivesControl=Ну ладно, "друг". Но если хоть на миллиметр оцарапаешь мне обшивку, то потом тебе уже ни один бластер не поможет, имей в виду!
+		PlayerIsTryingToShot=Спокойно, спокойно. Только давай без резких движений... [Резко выхватить свой бластер и застрелить пеленга]
+		SmugglerShotsPlayer=Вы резко дернули руку к кобуре, но пеленг оказался готов к такому раскладу событий. Аккуратная дымящаяся дыра промеж ваших глаз навсегда оборвала жизнь великого рейнджера.<br>Что ж, видимо, только в старых вестернах хороший парень всегда успевает выстрелить первым.
+        FirstDialogOnBM=Ну, <Player>, вот мы и на месте. Что, никогда не слышал о чёрных рынках? Здесь каждый контрабандист всегда найдёт своему трюму и продавца и покупателя.<br>И, кстати, ты это... Извини за тот инцидент с бластером. Просто время появления станции поджимало, вот и пришлось мне импровизировать. По поводу денег, к слову, тоже извини, ничего перечислять тебе я ещё с самого начала не планировал, но об этом позже.<br>А пока мы здесь, рекомендую осмотреть местный ассортимент, вдруг чего полезное приглянётся.
+        PlayerAnswerOnBM=Да на свалке я видал ваш ассортимент! Безалкогольное пиво и извращенские сериальчики не по моей части!
+        LastDialogOnBM=Это ты, друг, не горячись с выводами. Хлам в незащищённых от сканирования отсеках был для отвода глаз, а настоящие "ягодки" воякам бы пришлось искать со всем пристрастием. Однако что-то заболтался я тут с тобой, а у меня тут ещё дел по продаже товара невпроворот.<br>Вот, возьми лучше этот <clr>значок<clrEnd>. На таких чёрных рынках он работает в качестве пропуска. Корешам своим я маякну, чтоб твоё имя в базу постоянных клиентов вписали. Так сказать, в качестве благодарности за услугу и спасение. Да и судя по всем твоим прошлым делишкам, слово "контрабанда" для тебя не совсем пустой звук.<br>Ну всё, я утёк. Бывай, #0#!<br><br><color=45,105,45>Вы получили: Символ доверия</color>
+		IfMaloc=</color>красномордый
+		IfPeleng=</color>земноводное
+		IfPeople=</color>обезьяна
+		IfFei=</color>головастик
+		IfGaal=</color>длинноглазый
+		TakeALookAtTheGoods=Взглянуть на ассортимент
+    }
+    Mod_ExpBlackMarket_2 ^{
+		1=<0>
+		OfferToBuyBMAccess=Слышали, ты любишь промышлять контрабандой? Есть персональное предложение, которое может тебя заинтересовать.
+		TellMeHowToBuyBMAccess=А что это у вас за такое "контрабандное" предложение?
+		BMAccessExplain=Существует одно занятное место, где такие любители подпольных сделок как ты могут приобрести себе немало полезных вещиц. Однако место это в буквальном смысле "не стоит на месте", а потому найти его крайне непросто, да и пускают туда далеко не всех.<br>Но лично тебе, <Player>, я согласен подогнать в это место бессрочный пропуск. Скажем, за #0# cr. Интересует?
+		BMAccessAgreed=Дорого берёшь за сиболусовта в мешке, приятель, но так ведь и я вроде не из бедноты. Вот #0# cr. - гони мой пропуск.
+		BMAccessHereItIs=Вот. Когда прилетишь в то место, нацепи на себя этот <clr>значок<clrEnd>. В галанет-базу я твою физиономию вписал, а большего тебе знать ни к чему.<br>Через пару месяцев получишь <clr>сообщение<clrEnd> с указанием системы. Настоятельно рекомендую слетать.<br><br><color=45,105,45>Вы получили: Символ доверия</color>
+		BMAccessThanks=Ловлю на слове. И не приведи тебя пенчекряк толкать мне всякую липу!
+		BMAccessNoWay=Что?! Да за такие бабки лучше иди-ка ты сам ты в это место, понял!?
+		BMAccessAsYourWish=Ну как знаешь. Хотя я бы на твоём "месте" здесь такими словами не разбрасывался.<br>Впрочем, я не из обидчивых, так что предложение пока остаётся в силе. Сообщи, если-таки надумаешь прикупить себе этот пропуск.
+		GovBlock=Кругом снуют подозрительные личности, с нескрываемой злобой поглядывая на ваш рейнджерский значок. Вы решили, что ни к чему сейчас будет привлекать к себе лишнее внимание.
+		ShopBlock=Сорян, братух, но ты и так уже скупил здесь всё, что мы болтами к полу не прикрутили. Залетай в другой раз, авось к тому времени обновим ассортиментик.
+		BMOpened=Все заинтересованные контрабандисты приглашаются в систему <0>, куда недавно "закинул якорь" <color=255,240,100>чёрный рынок</color> <1>. Станция будет находиться в системе до <2> <color=255,240,100>года</color>, не упустите свой шанс!
+		BMClosedByTimeOut=Контрабандисты свернули <color=255,240,100>чёрный рынок</color> в системе <0>. О новом месте базирования станции вам будет сообщено позднее.
+		BMClosedByStarBattle=Начавшиеся в системе <0> военные действия спугнули контрабандистов, и те свернули <color=255,240,100>чёрный рынок</color> раньше намеченного срока. Уведомление о новом месте базирования станции будет отправлено вскоре после её выхода из гиперпространства.
+		BMDestroyed=Развёрнутый в системе #0# мобильный <color=255,240,100>чёрный рынок</color> #1# был уничтожен. Контрабандистам понадобиться некоторое время, чтобы оборудовать под свои нужды новую станцию. Об открытии нового чёрного рынка вам будет сообщено позднее.
+		BMDestroyedInHyper=Мобильный <color=255,240,100>чёрный рынок</color> #0# был уничтожен при невыясненных обстоятельствах. Контрабандистам понадобиться некоторое время, чтобы оборудовать под свои нужды новую станцию. Об открытии нового чёрного рынка вам будет сообщено позднее.
+		BMDestroyedByPlayer=Ваше предательское поведение возмутило всё контрабандистское сообщество! О дальнейшем ведении с вами дел не может идти и речи. Вы были исключены из списка доверенных лиц, а всякий доступ к <color=255,240,100>чёрному рынку</color> вам отныне закрыт навсегда.
+    }
+}
+UselessItems ^{
+    ExpBlackMarket_SmugglersCompartment ^{
+        Cost=Huge
+        Name=Отсек контрабандиста
+        Owner=Peleng
+        Size=45
+        Text=Наглухо задраенный внешний отсек для скрытной перевозки всевозможного незаконного груза.
+    }
+}
+Reward ^{
+    48 ^{
+        Name=Символ доверия
+        Race=None
+        Status=None
+        Text=Является своеобразной <clr>меткой контрабандиста<clrEnd>. Носителей этого значка будут рады видеть в любом коллективе, занимающимся незаконным приобретением и сбытом зачастую ещё более незаконных предметов и веществ.
+        Type=ForAccomplishment
+    }
+}
+ShipType ^{
+    Peleng ^{
+        Smuggler=Чхаша
+    }
+    TypeName ^{
+        BM=Чёрный рынок
+        BMSmall=ЧР
+		Smuggler=Контрабандист
+    }
+}

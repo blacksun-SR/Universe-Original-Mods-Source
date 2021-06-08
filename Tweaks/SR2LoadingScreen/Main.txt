@@ -1,0 +1,205 @@
+Data ^{
+    Script ^{
+        Mod_SR2LoadingScreen=1,Script.Mod_SR2LoadingScreen
+    }
+}
+ML ^{
+    Jump ^{
+        Border=0,0,1024,768
+        Panel ^{
+            MoveWorld=False
+            Panel ^{
+                GAI ^{
+                    FrameLoad=0
+                    Image=Bm.FormLoad2.LoadAnim
+                    Name=LoadAnim
+                    Pos=262,504,8
+                    Size=543,241
+                }
+                Image ^{
+                    Active=True
+                    KindX=Center
+                    KindY=Center
+                    Name=BGImage
+                    Pos=0,-229,10
+                    Size=1024,910
+                }
+                Image ^{
+                    Active=True
+                    Image=GI,Bm.FormLoad2.ShipPanel
+                    KindX=Center
+                    KindY=Center
+                    Name=ShipPanelImage
+                    Pos=0,0,9
+                    Size=1024,768
+                }
+                Image ^{
+                    Active=True
+                    Image=GI,Bm.FormLoad2.LoadAnimText
+                    Name=LoadAnimText
+                    Pos=262,504,7
+                    Size=543,241
+                }
+                Label ^{
+					Active=False
+                    AlignX=Center
+                    AlignY=Center
+                    Font=Font.2Ranger
+                    Name=PLProgress
+                    Pos=497,644,6
+                    Size=75,17
+                    TextColor=255,255,255
+                    TextShadow=1
+                    TextShadowColor=0,0,0
+					OnMouseEnterCode ^{
+						01=unknown PortionInDiapason = ImportedFunction('UtilityFunctions', 'PortionInDiapason');
+						02=int from = ShipCustomShipInfoData(Player(), 'LoadingBarProgressionInfos', 1);
+						03=int to = PortionInDiapason(UICheckElement('Jump', 'PLProgress', 'Text'), 0, 95, 0, 16);
+						//03=int to = PortionInDiapason(UICheckElement('Jump', 'LoadAnim', 'CurFrame'), 0, 35, 0, 16);
+						04=for(int i = from; i <= to; i = i + 1) InterfaceState('Jump', 'SR2ProgressBar' + i, 1);
+						05=ShipCustomShipInfoData(Player(), 'LoadingBarProgressionInfos', 1, to + 1);
+					}
+                }
+				SR2ProgressBar ^{
+					Image ^{
+						Active=True
+						PosAutoCorrection=True
+						PosAutoCorrectionXCoef=0.5
+						PosAutoCorrectionYCoef=0.5
+						Image=GI,Bm.FormLoad2.MainBG
+						Name=MainBG
+						Pos=0,0,7
+						Size=1024,768
+					}
+					Panel ^{
+						PosAutoCorrection=True
+						PosAutoCorrectionXCoef=0.5
+						PosAutoCorrectionYCoef=0.5
+						Name=SR2ProgressBarPanel
+						Pos=352,492,6
+						Size=321,37
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarLeft
+							Name=SR2ProgressBar0
+							Pos=0,0
+							Size=31,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar1
+							Pos=20,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar2
+							Pos=38,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar3
+							Pos=56,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar4
+							Pos=74,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar5
+							Pos=92,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar6
+							Pos=110,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar7
+							Pos=128,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar8
+							Pos=146,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar9
+							Pos=164,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar10
+							Pos=182,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar11
+							Pos=200,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar12
+							Pos=218,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar13
+							Pos=236,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar14
+							Pos=254,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarCenter
+							Name=SR2ProgressBar15
+							Pos=272,0
+							Size=29,37
+						}
+						Image ^{
+							Active=False
+							Image=GI,Bm.FormLoad2.2BarRight
+							Name=SR2ProgressBar16
+							Pos=290,0
+							Size=31,37
+						}
+					}
+				}
+			}
+		}
+	}
+}

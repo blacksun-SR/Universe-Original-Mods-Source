@@ -1,0 +1,82 @@
+Asteroid ^{
+    Name=Астероид -<Number>-
+    Text=Содержание полезных руд достигает <Count> ед. Скорость астероида <Speed>.
+    kAsteroidMaxDamagePercent=40
+    kAsteroidMaxDamagePercentDef=30
+    kAsteroidMinDamagePercent=20
+    kAsteroidMinDamagePercentDef=10
+}
+MicroModuls ^{
+    ShuAsteroids_AstrohullDefGenerator1 ^{
+        CustomTag=ShuAsteroids_AstrohullDefGenerator
+        Equipments=DefGenerator
+        KindGraph=Aster
+        Name=Астрокорпусный генератор защиты I
+		AcrynSerie=Астрокорпусный генератор защиты I-III
+		AcrynLevel=1
+		SerieLevel1=ShuAsteroids_AstrohullDefGenerator1
+		SerieLevel2=ShuAsteroids_AstrohullDefGenerator2
+		SerieLevel3=ShuAsteroids_AstrohullDefGenerator3
+		LevelsCount=3
+        Priority=10
+        Ruins=Any
+        Special=1
+        Text=<color=248,252,248>Данный генератор был разработан с целью защиты кораблей, часто совершающих рейды сквозь крупные скопления <color=255,239,99>астероидов</color>. Встроенный в него астрокорбулятор создаёт антикинетическое поле, снижающее силу удара в момент столкновения корабля с другим космическим телом. В качестве побочного эффекта устройством генерируются частицы, заметно облегчающие корабль, что может оказаться крайне полезным для пилотов, ценящих своё время.</color>
+        Text=<clr><clrEnd>
+		Text=Урон от попадания астероида: <clr>-40%<clrEnd>
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        Fragility=100
+        Cost=150
+        Size=104
+		bonResistAsteroid=40
+        bonMass=-6
+    }
+    ShuAsteroids_AstrohullDefGenerator2 ^{
+        CustomTag=ShuAsteroids_AstrohullDefGenerator
+        Equipments=DefGenerator
+        KindGraph=Aster
+        Name=Астрокорпусный генератор защиты II
+		AcrynSerie=Астрокорпусный генератор защиты I-III
+		AcrynLevel=2
+		SerieLevel1=ShuAsteroids_AstrohullDefGenerator1
+		SerieLevel2=ShuAsteroids_AstrohullDefGenerator2
+		SerieLevel3=ShuAsteroids_AstrohullDefGenerator3
+		LevelsCount=3
+        Priority=30
+        Ruins=Any
+        Special=1
+        Text=<color=248,252,248>Данный генератор был разработан с целью защиты кораблей, часто совершающих рейды сквозь крупные скопления <color=255,239,99>астероидов</color>. Встроенный в него астрокорбулятор создаёт антикинетическое поле, снижающее силу удара в момент столкновения корабля с другим космическим телом. В качестве побочного эффекта устройством генерируются частицы, заметно облегчающие корабль, что может оказаться крайне полезным для пилотов, ценящих своё время.</color>
+        Text=<clr><clrEnd>
+		Text=Урон от попадания астероида: <clr>-60%<clrEnd>
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        Fragility=100
+        Cost=200
+        Size=102
+		bonResistAsteroid=60
+        bonMass=-8
+    }
+    ShuAsteroids_AstrohullDefGenerator3 ^{
+        CustomTag=ShuAsteroids_AstrohullDefGenerator
+        Equipments=DefGenerator
+        KindGraph=Aster
+        Name=Астрокорпусный генератор защиты III
+		AcrynSerie=Астрокорпусный генератор защиты I-III
+		AcrynLevel=3
+		SerieLevel1=ShuAsteroids_AstrohullDefGenerator1
+		SerieLevel2=ShuAsteroids_AstrohullDefGenerator2
+		SerieLevel3=ShuAsteroids_AstrohullDefGenerator3
+		LevelsCount=3
+        Priority=50
+        Ruins=Any
+        Special=1
+        Text=<color=248,252,248>Данный генератор был разработан с целью защиты кораблей, часто совершающих рейды сквозь крупные скопления <color=255,239,99>астероидов</color>. Встроенный в него астрокорбулятор создаёт антикинетическое поле, снижающее силу удара в момент столкновения корабля с другим космическим телом. В качестве побочного эффекта устройством генерируются частицы, заметно облегчающие корабль, что может оказаться крайне полезным для пилотов, ценящих своё время.</color>
+        Text=<clr><clrEnd>
+		Text=Урон от попадания астероида: <clr>-80%<clrEnd>
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        Fragility=100
+        Cost=250
+        Size=100
+		bonResistAsteroid=80
+        bonMass=-10
+    }
+}

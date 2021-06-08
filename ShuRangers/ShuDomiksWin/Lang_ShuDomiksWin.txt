@@ -1,0 +1,3 @@
+ShuDomiks ^{
+    ShuDomiksWin=1
+}

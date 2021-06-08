@@ -1,0 +1,411 @@
+MicroModuls ~{
+    ShuRebellion_RebelMaloc1 ^{
+        Cost=90
+        CustomTag=RM1
+		Equipments=Hull
+        KindGraph=RebelMaloc
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotDroid=-1
+        bonSlotHook=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelMaloc2 ^{
+        Cost=90
+        CustomTag=RM2
+		Equipments=Hull
+        KindGraph=RebelMaloc
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-2
+        bonSlotDroid=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelMaloc3 ^{
+        Cost=90
+        CustomTag=RM3
+		Equipments=Hull
+        KindGraph=RebelMaloc
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotForsage=-1
+        bonSlotHook=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeleng1 ^{
+        Cost=90
+        CustomTag=RPE1
+		Equipments=Hull
+        KindGraph=RebelPeleng
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotDroid=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeleng2 ^{
+        Cost=90
+        CustomTag=RPE2
+		Equipments=Hull
+        KindGraph=RebelPeleng
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-4
+        bonSlotDroid=-1
+        bonSlotScaner=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeleng3 ^{
+        Cost=90
+        CustomTag=RPE3
+		Equipments=Hull
+        KindGraph=RebelPeleng
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotDef=-1
+        bonSlotHook=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeople1 ^{
+        Cost=90
+        CustomTag=RPP1
+		Equipments=Hull
+        KindGraph=RebelPeople
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotHook=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeople2 ^{
+        Cost=90
+        CustomTag=RPP2
+		Equipments=Hull
+        KindGraph=RebelPeople
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelPeople3 ^{
+        Cost=90
+        CustomTag=RPP3
+		Equipments=Hull
+        KindGraph=RebelPeople
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-4
+        bonSlotDef=-1
+        bonSlotHook=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelFei1 ^{
+        Cost=90
+        CustomTag=RF1
+		Equipments=Hull
+        KindGraph=RebelFei
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-4
+        bonSlotHook=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelFei2 ^{
+        Cost=90
+        CustomTag=RF2
+		Equipments=Hull
+        KindGraph=RebelFei
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelFei3 ^{
+        Cost=90
+        CustomTag=RF3
+		Equipments=Hull
+        KindGraph=RebelFei
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotDef=-1
+        bonSlotWeapon=-1
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelGaal1 ^{
+        Cost=90
+        CustomTag=RG1
+		Equipments=Hull
+        KindGraph=RebelGaal
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-3
+        bonSlotWeapon=-2
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelGaal2 ^{
+        Cost=90
+        CustomTag=RG2
+		Equipments=Hull
+        KindGraph=RebelGaal
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-2
+        bonSlotHook=-1
+        bonSlotWeapon=-2
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_RebelGaal3 ^{
+        Cost=90
+        CustomTag=RG3
+		Equipments=Hull
+        KindGraph=RebelGaal
+        LockedAcryn=3
+		NonSearchable=2
+		ImitatedHullType=Warrior,Pirate
+        Name=</color><Type> корпус повстанца
+        Special=1
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+        bonWEnergy=4
+        bonWMissile=4
+        bonWSplinter=4
+    }
+    ShuRebellion_Flagship ^{
+        CustomTag=flagship
+		Equipments=Hull
+        HullGraphSize=200
+        Name=</color><Type> корпус
+        Special=1
+        LockedAcryn=3
+        NonSearchable=2
+		ImitatedHullType=Flagman
+    }
+}
+Reward ^{
+    13 ^{
+        Name=Орден достоинства
+        Race=Any
+        Status=Any
+        Text=Награда, учрежденная Галактическим Советом. Вручается рейнджерам и прочим пилотам за боевые заслуги.
+        Type=ForLiberationSystem
+    }
+    49 ^{
+        Name=Орден Клана
+        Race=
+        Status=
+        Text=Награда пиратского клана. Присуждается за выдающиеся заслуги перед пиратским братством.
+        Type=
+    }
+}
+Script ^{
+    Mod_ShuRebellion ~{
+        67=Срочные новости из звездной системы <0>! <br>К сожалению, попытка высадки военных с планеты <1> в убежище оппозиционеров обернулась неудачей. Повстанцы заманили солдат в ловушку и перебили. Теперь вся территория у звезды <2> контроллируется анархистами.
+        68=Сегодня в системе <0> флот планеты <1> одержал сокрушительную победу над революционерами с планеты <2>. Десант в тяжелом наземном сражении разбил оппозиционеров. Этот день войдет в историю!
+        69=Экстренная новость! <br>У звезды <0> оппозиционеры разбили военных в космической баталии, но высадившийся на планете <1> десант мятежников был разгромлен бравыми защитниками. Ура!
+        70=Коалиция в опасности! <br>В этот день отряд анархистов вломился в правительство планеты <0> и расстрелял большую часть государственного аппарата. Повстанцы официально передали звездную систему <1> пиратскому синдикату. Вечная память погибшим героям.
+        60=Новости из системы <0>! <br>Власти планеты <1> организовали специальную операцию по штурму планеты <2>. Многие детали держатся в строжайшем секрете, но, по заявлению местных военных, решающую роль должна сыграть наземная битва.
+        61=В звездной системе <0> продолжаются беспорядки. Количество погибших во время бойни непрерывно растет. Специалисты утверждают, что это неплохой шанс заработать для всех торговцев техникой и вооружением.
+        62=Комитет Галактической Безопасности сообщает о вооруженном конфликте в системе <0>. Повстанцы с планеты <1> устроили акцию протеста, направленную против нынешних властей. КГБ призывает помочь защите системы от демонстрантов партиями техники и оружия.
+        63=Мятежники с планеты <0> вновь заявили о себе, организовав вооруженную демонстрацию. Лидеры оппозиции требуют всеобщего подчинения пиратскому клану, власть которого, по их мнению, способствует соблюдению всех гражданских свобод.
+        64=В системе <0> произошло очередное столкновение военных и оппозиционеров. Советуем вам избегать данный участок космоса.
+        65=У звезды <0> столкнулись силы военных и анархистов. Правительство планеты <1> просит игнорировать временные беспорядки.
+        66=Коалиция в опасности! <br>В системе <0> население планеты <1> взбунтовалось и свергло местное правительство. Мятежники конфискуют военные корабли и готовятся к захвату соседних планет. Власти планеты <2> уже заявили о намерении подавить восстание в кратчайшие сроки.
+        12=Приветствую тебя, брат <Player>! Рад твоему визиту. Сожалеем, но в связи с беспорядками на планете местные достопримечательности сейчас закрыты.<br>Впрочем, уверяю тебя, в скором времени мы подарим народу свободу, которую он заслуживает.<br>Какова цель твоего прилета?
+        13=Приветствую вас, рейнджер <Player>! К несчастью, сейчас наша экономика полностью переведена на военный лад, а потому магазин оборудования, торговый и информационный центры не должны открыться раньше, чем кончатся эти беспорядки. Приносим извинения за неудобства.<br>Что вы хотели?
+        14=6=Похвальный порыв, брат! Деньги и правда пригодятся нам, чтобы убедить население планеты <0> в том, что мы несем свободу от оков тиранической власти Коалиции.<br>Мы поставили себе план в <1> cr. Чем большую часть этого плана мы соберем - тем лучше. На данный момент у нас есть <2> cr, осталось <3> cr.<br>Сколько же готов пожертвовать ты?
+        15=Нет так нет. Попросить охрану провести тебя до ангара?
+        16=Благодарим за пожертвование, брат. Все деньги пойдут на оглашение правды сомневающемуся народу.<br>Попросить охрану провести тебя до корабля?
+        17=Огромное спасибо за такой дар, <Player>! Благодаря тебе мы, наконец, собрали полную сумму. В честь этого события мы отдаем тебе <0> <1>.<br>Попросить охрану провести тебя до корабля?
+        18=Планетарный торговый центр сейчас закрыт, но, тем не менее, мы позарез нуждаемся в оружии, а в процессе свержения местной власти мы как раз получили множество предметов роскоши, в связи с чем нами было решено менять роскошь на вооружение. <br>Курс - <clr>одна тонна роскоши к двум тоннам оружия.<clrEnd> Под этот бартер у нас имеется <0> тонн роскоши.<br>Ну как, заинтересован?
+        19=Отлично, <Player>. Ты обменял <0> тонн оружия на <1> тонн роскоши. На складе осталось <2> тонн предметов роскоши.<br>Приятного тебе дня, брат.
+        20=Хоть все сейчас и закрыто, нам совсем не помешало бы вооружение. Тем не менее, наш бюджет не позволяет тратить на закупку большие деньги, поэтому за каждую тонну оружия мы платим всего лишь <0> cr. - чтобы хоть как-то компенсировать убытки. Расценивайте это не как торговую сделку, а как пожертвование ради мира в Галактике.<br>У нас в планах набрать <1> тонн вооружения для крупной битвы. На данный момент произведено и получено от независимых спонсоров в общей сложности <2> тонн.<br>У вас есть оружие для передачи нам?
+        21=Очень жаль, что вы передумали. Залетайте, если вдруг наполнитесь желанием помочь нам.
+        22=Огромное спасибо вам, рейнджер. Теперь до выполнения плана осталось <0> тонн оружия. Всего хорошего.
+        23=Рейнджер, вы внесли решаюший вклад в пополнение наших оружейных складов, и именно благодаря вам <clr>весь план выполнен!<clrEnd> За то, что откликнулись на зов сердца и помогли, позвольте вручить вам <0> <1>! Спасибо!
+        24=Доброго дня вам, <Player>! Вижу, вы прилетели за наградой. Позвольте вручить вам <clr>Орден достоинства<clrEnd> за проявленную доблесть, дабы мотивировать вас на дальнейшее совершение подвигов!<br>Разумеется, один орден не сможет в полной мере вознаградить вас за оказанную помощь. Сейчас сверимся со статистикой...<br>Так, во время мятежа вами было уничтожено <0> кораблей повстанцев. Сейчас мы все еще восстанавливаемся после битв, но, тем не менее, можем предложить вам одну из двух наград на выбор: денежное вознаграждение в размере <1> cr. или <2> со следующими характеристиками:<br><3><br><br>Ну как, что выбираете?
+        25=Микромодуль доставлен на ваш корабль. Всего хорошего!
+        26=Деньги уже переведены на ваш счет, рейнджер. Всего хорошего!
+        27=Ба, это ты, <Player>! Ну заходи, заходи... По какому вопросу заявился?<br>А, так тебе награду забрать надо, за помощь оппозиции. Да, есть такое дело, мы у тебя <0> убитых насчитали. Перво-наперво, позволь вручить тебе <clr>Орден Клана<clrEnd>, сейчас еще гляну, что у нас на складах осталось...<br>...<br>Итак, помимо ордена мы можем отдать тебе <1> в отличном состоянии или же <2> размером <3>, оставшийся после битвы. Выбор за тобой.<br>
+        28=Отличный выбор, брат! Найдешь свой новенький корпус на складе.
+        29=Отличный выбор, брат! <0> уже погружен на твой корабль.
+        30=Я сейчас занят, <Player>, но поверь мне: как только я разберусь со своей текущей целью, ты встретишься с Рачеханом лично!
+        31=Лети отсюда на все четыре стороны, хрякоплюх поганый, а не то движки поотшибаю!
+        32=<Player>, некогда говорить, навожу оружие на цель. Отбой.
+        33=Привет, брат <Player>! Сегодня вершится великое дело - мы свергаем власть тиранов, сидящих на мешках с деньгами! Присоединяйся к нам, брат, уничтожим эту систему общими силами!
+        34=Даже и не пытайся молить меня о пощаде! Ты принял неверную сторону и сейчас умрешь за это мучительной смертью, правительственная шавка!
+        35=Вы являетесь преступником на планете <0>. Немедленно покиньте систему и не смейте препятствовать выполнению моего задания, иначе будете незамедлительно ликвидированы.
+        36=Ваш корабль на плохом счету у нас, <Player>, но сейчас я занят выполнением первостепенного приказа планеты <0>, так что очистите эфир и не мешайте мне.
+        37=<Player>, я занят выполнением приказа планеты <0>. Освободите эфир.
+        38=Прошу прощения, <Player>, но в данный момент я выполняю ответственное задание, обратитесь позже.
+        39=Салют, <Player>! Прошу меня простить, но сейчас я занят борьбой с повстанцами - обратись попозже, когда я закончу выполнение задания.
+        40=Тебе хватает наглости выходить на связь, гнусный пират? Бортовой компьютер, все орудия на цель!
+        41=Да как у тебя хватает смелости выходить на связь, <Player>? Сейчас я очищу мир от тебя, наглого подонка, позорящего честь пиратов, и развею твой прах по системе!
+        42=Я хочу пожертвовать немного денег
+        43=Я поторговать прилетел
+        44=Сейчас введу сумму...
+        71=Какую сумму пожертвуете оппозиции?
+        45=Да, пожалуйста
+        46=Нет, спасибо
+        47=Я передумал
+        48=Мне пора, проведите меня до ангара
+        49=Я готов обменяться
+        72=Сколько тонн оружия вы готовы обменять на роскошь?
+        50=Меня это не интересует
+        51=Спасибо!
+        52=Вы что-то покупаете? Или продаете?
+        53=Я готов поделиться оружием
+        73=Сколько оружия вы готовы продать?
+        54=До свидания
+        55=Рад был помочь
+        56=Нет, извините
+        57=Я выбираю <0> cr.
+        58=Я выбираю <0>
+        59=Беру <0>
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            Gatrix ^{
+                Icon=1
+                Name=
+            }
+        }
+    }
+}
+ShipType ^{
+    Fei ^{
+        Rebel=Оланиа
+    }
+    Gaal ^{
+        Rebel=Боолан
+    }
+    Maloc ^{
+        Rebel=Бадуба
+    }
+    Peleng ^{
+        Rebel=Шракан
+    }
+    People ^{
+        Rebel=Кобра
+    }
+    TypeName ^{
+        Rebel=Повстанец
+    }
+}
+UselessItems ^{
+    Gatrix ^{
+        Cost=Huge
+        Description=
+        Name=Гатрикс-макрос
+        OnUseCode ^{
+            01=dword s=0;
+            02=if(MessageBoxYesNo('Запустить гатрикс-макрос? Вирусом будет заражена ближайшая верфь'))
+            03 ^{
+                01=for(int i=0;i<StarShips(ShipStar(Player()));i=i+1)
+                02 ^{
+                    01=s=StarShips(ShipStar(Player()),i);
+                    02=if(ShipType(s)=='DomRuins')break;
+                }
+                03=if(ShipType(s)!='DomRuins')
+                04 ^{
+                    01=MessageBox('В системе не обнаружено верфи');
+                    02=exit;
+                }
+                05=if(ShipInNormalSpace(Player())<1 || Dist(Player(),s)>500)
+                06 ^{
+                    01=MessageBox('Верфь находится слишком далеко');
+                    02=exit;
+                }
+                07=if(FindItemInShip(Player(),CurItem())>-1)FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                08=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+                09=ShipAddCustomShipInfo(s,'Gatrix','NoShow');
+                10=MessageBox('Вирус успешно запущен');
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Личная разработка капитана-ренегата, экспериментальный вирус, являющийся попыткой глобальной модернизации разработанной Коалицией "Гатрикс матрицы". Способен полностью перезаписывать систему идентификации доминаторов с операционной системой, не успевшей пройти полную синхронизацию с сервером. Прямая загрузка возможна только в бортовые системы доминаторской верфи, так как те лишены дополнительных ретрансляционных систем, способных распознать вирус до его активации.
+    }
+}

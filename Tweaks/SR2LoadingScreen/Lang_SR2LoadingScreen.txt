@@ -1,0 +1,31 @@
+ShipInfo ^{
+	AddInfo ^{
+		CustomInfos ^{
+			LoadingBarProgressionInfos ^{
+				Description=
+				Icon=0
+				Name=
+				OnActCodeTypes=t_OnStep
+				OnActCode ^{
+					01=dword cur_info = CurInfo();
+					02=str form = CurrentForm();
+					02=if(form == 'Jump' || form == 'Load')
+					03 ^{
+						01=unknown PortionInDiapason = ImportedFunction('UtilityFunctions', 'PortionInDiapason');
+						02=int from = ShipCustomShipInfoData(0, cur_info, 1);
+						03=int to = PortionInDiapason(UICheckElement('Jump', 'PLProgress', 'Text'), 0, 95, 0, 16);
+						//03=int to = PortionInDiapason(UICheckElement('Jump', 'LoadAnim', 'CurFrame'), 0, 35, 0, 16);
+						04=for(int i = from; i <= to; i = i + 1) InterfaceState('Jump', 'SR2ProgressBar' + i, 1);
+						05=ShipCustomShipInfoData(0, cur_info, 1, to + 1);
+					}
+					//Выключаем заполненный прогресс-бар после выхода игрока из гиперпространства
+					04=else if(ShipCustomShipInfoData(0, cur_info, 1))
+					05 ^{
+						01=for(i = 0; i <= 16; i = i + 1) InterfaceState('Jump', 'SR2ProgressBar' + i, 0);
+						02=ShipCustomShipInfoData(0, cur_info, 1, 0);
+					}
+				}
+			}
+		}
+	}
+}

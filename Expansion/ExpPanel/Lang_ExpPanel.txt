@@ -1,0 +1,165 @@
+FormShip ^{
+    OnSpaceCurrentSet=Текущая комплектация
+    OnSpaceSet1=Первая комплектация
+    OnSpaceSet2=Вторая комплектация
+    OnSpaceSet3=Третья комплектация
+    OnSpaceSet4=Четвёртая комплектация
+    OnSpaceSet5=Пятая комплектация
+    OnSpaceSet6=Шестая комплектация
+    OnSpaceSet7=Седьмая комплектация
+    OnSpaceSet8=Восьмая комплектация
+    OnSpaceSet9=Девятая комплектация
+}
+FormRewards ^{
+	MoreRewards=Увеличить число отображаемых возле портрета пилота наград.
+	LessRewards=Уменьшить число отображаемых возле портрета пилота наград.
+}
+Help ^{
+	EndTurnBrakeOn=Автоостановка хода <color=255,240,100>включена</color>
+	EndTurnBrakeOff=Автоостановка хода <color=255,240,100>выключена</color>
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            ExpPanel_infos ^{
+                Description=Обновляет значения на панели ремонта и отключает звания невоенным NPC при сканировании
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnEnteringForm,t_OnLeavingForm,t_OnScan
+				OnActStepTypes=0,11
+                OnActCode ^{
+                    01=int i;
+                    02=dword temp_dword;
+                    03=int dur = 0;
+                    04=int dur_count = 0;
+                    05=if(ScriptItemActionType(t_OnStep))
+                    06 ^{
+						//Если игроком был включён принудительный пропуск ходов (включается в Main)
+						01=if(!ScriptItemActParam())
+						02 ^{
+							01=if(GTurnBrakeOff)
+							02 ^{
+								//Если игрок не находится на планете, станции, в гипере или в ЧД
+								//(т.к. после взлёта ему по любому придется отдать какой-то приказ), то принудительно пропускаем ход
+								01=if(ShipInNormalSpace(Player())) FilmFlags(3, 1);
+							}
+						}
+						03=else
+						04 ^{
+							01=for(i = 0; i < ShipItems(Player()); i = i + 1)
+							02 ^{
+								01=temp_dword = ShipItems(Player(), i);
+								02=if(!ItemIsInUse(temp_dword) || ItemType(temp_dword) == t_Hull) continue;
+								03=dur = dur + ItemDurability(temp_dword);
+								04=dur_count = dur_count + 1;
+							}
+							03=for(i = 1; i < 5; i = i + 1)
+							04 ^{
+								01=temp_dword = ShipEqInSlot(Player(), t_Artefact, i);
+								02=if(temp_dword)
+								03 ^{
+									01=dur = dur + ItemDurability(temp_dword);
+									02=dur_count = dur_count + 1;
+								}
+							}
+							05=if(dur_count >= 0)
+							06 ^{
+								01=dur = dur + (100 - HullDamage(Player()));
+								02=dur_count = dur_count + 1;
+							}
+							07=dur = 43 - 43 * (dur / dur_count) / 100;
+							08=InterfacePos('StarMap', 'fix_info_butt_a', -dur, 0, 0);
+							09=if(InterfaceState('StarMap', 'fix_info_window') == 1) InterfaceState('StarMap', 'fix_info_window', 0);
+							10=InterfaceSize('StarMap', 'HPbar_s', 0, 141 - 141 * HullDamage(Player()) / 100);
+							11=InterfacePos('StarMap', 'HPbar_s', 0, 141 * HullDamage(Player()) / 100, 0);
+						}
+                    }
+                    07=else if(ScriptItemActionType(t_OnEnteringForm))
+                    08 ^{
+                        01=if(CurrentForm() == 'Ship')
+                        02 ^{
+                            01=if(InterfaceState('StarMap', 'fix_info_window') == 1) InterfaceState('StarMap', 'fix_info_window', 0);
+							02=InterfaceState('Ship', 'HideShipRankPanel', 1);
+                        }
+                        03=if(CurrentForm() == 'StarMap')
+                        04 ^{
+                            01=InterfaceSize('StarMap', 'HPbar_s', 0, 141 - 141 * HullDamage(Player()) / 100);
+                            02=InterfacePos('StarMap', 'HPbar_s', 0, 141 * HullDamage(Player()) / 100, 0);
+                        }
+                    }
+                    09=else if(ScriptItemActionType(t_OnLeavingForm))
+                    10 ^{
+                        01=if(CurrentForm() == 'Ship')
+                        02 ^{
+                            01=for(i = 1; i < 10; i = i + 1)
+                            02 ^{
+                                01=if(PlayerEqSet(i) == 0) InterfaceState('StarMap', 'set_button_' + i + '_c', 0);
+                                02=else if(PlayerEqSet(i) == 1) InterfaceState('StarMap', 'set_button_' + i + '_c', 1);
+                                03=else if(PlayerEqSet(i) == 2)
+                                04 ^{
+                                    01=InterfaceState('StarMap', 'set_button_' + i + '_c', 0);
+                                    02=if(i > 1 && i < 9)
+                                    03 ^{
+                                        01=InterfaceState('StarMap', 'set_button_a', 1);
+                                        02=InterfacePos('StarMap', 'set_button_a', PlayerEqSet() * 20, 0, 0);
+                                        03=InterfaceState('StarMap', 'set_button_a_first', 0);
+                                        04=InterfaceState('StarMap', 'set_button_a_last', 0);
+                                    }
+                                    04=else if(i == 1)
+                                    05 ^{
+                                        01=InterfaceState('StarMap', 'set_button_a', 0);
+                                        02=InterfaceState('StarMap', 'set_button_a_first', 1);
+                                        03=InterfaceState('StarMap', 'set_button_a_last', 0);
+                                    }
+                                    06=else if(i == 9)
+                                    07 ^{
+                                        01=InterfaceState('StarMap', 'set_button_a', 0);
+                                        02=InterfaceState('StarMap', 'set_button_a_first', 0);
+                                        03=InterfaceState('StarMap', 'set_button_a_last', 1);
+                                    }
+                                }
+                            }
+                            03=for(i = 0; i < ShipItems(Player()); i = i + 1)
+                            04 ^{
+                                01=temp_dword = ShipItems(Player(), i);
+                                02=if(!ItemIsInUse(temp_dword) || ItemType(temp_dword) == t_Hull) continue;
+                                02=dur = dur + ItemDurability(temp_dword);
+								03=dur_count = dur_count + 1;
+                            }
+                            05=for(i = 1; i < 5; i = i + 1)
+                            06 ^{
+                                01=temp_dword = ShipEqInSlot(Player(), t_Artefact, i);
+                                02=if(temp_dword)
+                                03 ^{
+                                    01=dur = dur + ItemDurability(temp_dword);
+                                    02=dur_count = dur_count + 1;
+                                }
+                            }
+                            07=if(dur_count >= 0)
+                            08 ^{
+                                01=dur_count = dur_count + 1;
+                                02=dur = dur + (100 - HullDamage(Player()));
+                            }
+                            09=dur = 43 - 43 * (dur / dur_count) / 100;
+                            10=InterfacePos('StarMap', 'fix_info_butt_a', -dur, 0, 0);
+							11=InterfaceState('Ship', 'HideShipRankPanel', 0);
+                        }
+                        03=if(CurrentForm() == 'StarMap' && InterfaceState('StarMap', 'fix_info_window') == 1) InterfaceState('StarMap', 'fix_info_window', 0);
+                    }
+                    11=else if(ScriptItemActionType(t_OnScan))
+                    12 ^{
+                        01=temp_dword = ScriptItemActObject1();
+						02=int typeN = ShipTypeN(temp_dword);
+                        03=if(typeN == t_Warrior || typeN == t_Ranger || typeN == t_Pirate)
+						04 ^{
+							01=str type = ShipType(temp_dword);
+							02=if(type != 'Merc' && type != 'PlayerMerc' && type != 'Freelancer' && type != 'RedLeader' && type != 'AtlantLeader' && type != 'FeiLeader' && ShipCustomFaction(temp_dword) == '') InterfaceState('Scaner', 'RankWndCustom', 1);
+							03=else InterfaceState('Scaner', 'RankWndCustom', 0);
+						}
+                        05=else InterfaceState('Scaner', 'RankWndCustom', 0);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,1073 @@
+Script ^{
+    Mod_EvoRepairBox ^{
+        37=Купить наборы для ремонта
+        31=Наши ремонтники изобрели портативные наборы для самостоятельного ремонта. Рейнджер <Player> не желаете на них взглянуть?
+        36=Мы предлагаем вам наборы для ремонта оборудования прямо в открытом космосе. Но не думайте, что они заменят вам наших квалифицированных работников станции. Стали бы мы создавать то, что будет отнимать у нас нашу же работу!<br>Данные наборы сделаны исключительно для изменения положений на фронтах в пользу коалиции разумных рас.<br>И при продаже данных наборов вам, определённую роль сыграет ваш статус в борьбе с доминаторами и пиратами.<br>--------------------------------------------------------<br>Набор для ремонта "Юный техник" для Вас доступен в количестве: <0> ед. по цене: <1> cr.<br><br>Набор для ремонта "Умелый техник" для Вас доступен в количестве: <2> ед. по цене: <3> cr.<br><br>Набор для ремонта "Искусный техник" для Вас доступен в количестве: <4> ед. по цене: <5> cr.<br><br>Набор "Прочность забиратор" для Вас доступен в количестве: <6> ед. по цене: <7> cr.<br>--------------------------------------------------------<br>Данные наборы для ремонта показывают лучший результат в руках рейнджера знакомого с техникой. А в набор "Прочность забиратор" интегрирован алгоритм ремонта даже доминаторского оборудования путём изъятия нужных деталей из предмета донора.<br>Раз в год в качестве подарка рейнджерам мы возобновляем выдачу наборов даже при превышении лимитов!
+        33=Удачного ремонта! И не забывайте о сервисных центрах сети наших баз.
+        34=Недостаточно средств для совершения покупки.
+        27=Купить набор для ремонта Юный техник
+        21=Мне не нужны никакие наборы!
+        4=Спасибо
+        28=Купить набор для ремонта Умелый техник
+        29=Купить набор для ремонта Искусный техник
+        30=Купить набор Прочность забиратор
+        25=Ну и ладно, за такие деньги сам залатаю дыры!
+    }
+}
+UselessItems ~{
+    TechJunior ^{
+        Cost=Small
+        Name=Набор для ремонта "Юный техник"
+        OnActCode ^{
+            01=if (ScriptItemActionType()==t_OnAnotherItem)
+            02 ^{
+                01=if (ItemType(ScriptItemActObject1())>=t_FuelTanks && ItemType(ScriptItemActObject1())<=t_CustomWeapon)
+                02 ^{
+                    01=if (ItemType(ScriptItemActObject1())==t_Weapon13 || ItemType(ScriptItemActObject1())==t_Weapon14 || ItemType(ScriptItemActObject1())==t_Weapon15)
+                    02 ^{
+                        01=MessageBox('В наборе нет запасных частей для ремонта нестандартного оборудования');
+                        02=exit;
+                    }
+                    03=if (ItemDurability(ScriptItemActObject1())<95)
+                    04 ^{
+                        01=if (MessageBoxYesNo('Будете ремонтировать оборудование?'))
+                        02 ^{
+                            01=dword count;
+                            02=dword equipment;
+                            03=dword ship;
+                            04=dword target=0;
+                            05=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                            06 ^{
+                                01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                                02=if (ScriptItemActShip()==ship) continue;
+                                03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                                04 ^{
+                                    01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                                    02 ^{
+                                        01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                                        02 ^{
+                                            01=target=1;
+                                            02=break;
+                                        }
+                                    }
+                                }
+                                05=if (target==1) break;
+                            }
+                            07=dword repair=4+min(4*ShipSkill(Player(),2),22)/2-ShipSkill(Player(),2)*target;
+                            08=if (ItemDurability(ScriptItemActObject1())+repair>100) ItemDurability(ScriptItemActObject1(),100);
+                            09=else ItemDurability(ScriptItemActObject1(),ItemDurability(ScriptItemActObject1())+repair);
+                            10=ScriptItemActParam(1);
+                        }
+                        03=else exit;
+                    }
+                    05=else
+                    06 ^{
+                        01=MessageBox('Оборудование исправно и не нуждается в ремонте');
+                        02=exit;
+                    }
+                }
+                03=else exit;
+            }
+            03=if (ScriptItemActionType()==t_OnEnteringForm || ScriptItemActionType()==t_OnPlayerSkillIncrease)
+            04 ^{
+                01=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                02 ^{
+                    01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                    02=if (ScriptItemActShip()==ship) continue;
+                    03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                    04 ^{
+                        01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                        02 ^{
+                            01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                            02 ^{
+                                01=target=1;
+                                02=break;
+                            }
+                        }
+                    }
+                    05=if (target==1) break;
+                }
+                03=repair=4+min(4*ShipSkill(Player(),2),22)/2-ShipSkill(Player(),2)*target;
+                04=UselessItemData(CurItem(),1,repair);
+            }
+        }
+        Owner=None
+        Size=10
+        Text=Минимальный набор простых запчастей, позволяющий любому с мало-мальски инженерным мышлением подлатать износившееся оборудование, чтобы дотянуть до ближайшего сервисного центра.
+        Text=Ремонт: <Data1>%
+    }
+    TechMaster ^{
+        Cost=Huge
+        Name=Набор для ремонта "Искусный техник"
+        OnActCode ^{
+            01=if (ScriptItemActionType()==t_OnAnotherItem)
+            02 ^{
+                01=if (ItemType(ScriptItemActObject1())>=t_FuelTanks && ItemType(ScriptItemActObject1())<=t_CustomWeapon)
+                02 ^{
+                    01=if (ItemType(ScriptItemActObject1())==t_Weapon13 || ItemType(ScriptItemActObject1())==t_Weapon14 || ItemType(ScriptItemActObject1())==t_Weapon15)
+                    02 ^{
+                        01=MessageBox('В наборе нет запасных частей для ремонта нестандартного оборудования');
+                        02=exit;
+                    }
+                    03=if (ItemDurability(ScriptItemActObject1())<95)
+                    04 ^{
+                        01=if (MessageBoxYesNo('Будете ремонтировать оборудование?'))
+                        02 ^{
+                            01=dword count;
+                            02=dword equipment;
+                            03=dword ship;
+                            04=dword target=0;
+                            05=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                            06 ^{
+                                01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                                02=if (ScriptItemActShip()==ship) continue;
+                                03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                                04 ^{
+                                    01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                                    02 ^{
+                                        01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                                        02 ^{
+                                            01=target=1;
+                                            02=break;
+                                        }
+                                    }
+                                }
+                                05=if (target==1) break;
+                            }
+                            07=dword repair=14+6*ShipSkill(Player(),2)-(9+ShipSkill(Player(),2))*target;
+                            08=if (ItemDurability(ScriptItemActObject1())+repair>100) ItemDurability(ScriptItemActObject1(),100);
+                            09=else ItemDurability(ScriptItemActObject1(),ItemDurability(ScriptItemActObject1())+repair);
+                            10=ScriptItemActParam(1);
+                        }
+                        03=else exit;
+                    }
+                    05=else
+                    06 ^{
+                        01=MessageBox('Оборудование исправно и не нуждается в ремонте');
+                        02=exit;
+                    }
+                }
+                03=else exit;
+            }
+            03=if (ScriptItemActionType()==t_OnEnteringForm || ScriptItemActionType()==t_OnPlayerSkillIncrease)
+            04 ^{
+                01=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                02 ^{
+                    01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                    02=if (ScriptItemActShip()==ship) continue;
+                    03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                    04 ^{
+                        01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                        02 ^{
+                            01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                            02 ^{
+                                01=target=1;
+                                02=break;
+                            }
+                        }
+                    }
+                    05=if (target==1) break;
+                }
+                03=repair=14+6*ShipSkill(Player(),2)-(9+ShipSkill(Player(),2))*target;
+                04=UselessItemData(CurItem(),1,repair);
+            }
+        }
+        Owner=None
+        Size=20
+        Text=Набор элементов оборудования, позволяющий заменить практически любые сломавшиеся или износившиеся детали. Весьма полезная штука для счастливых владельцев прямых рук, желающих починить оборудование самостоятельно, не прибегая к услугам сервисов.
+        Text=Ремонт: <Data1>%
+    }
+    TechSkillful ^{
+        Cost=Average
+        Name=Набор для ремонта "Умелый техник"
+        OnActCode ^{
+            01=if (ScriptItemActionType()==t_OnAnotherItem)
+            02 ^{
+                01=if (ItemType(ScriptItemActObject1())>=t_FuelTanks && ItemType(ScriptItemActObject1())<=t_CustomWeapon)
+                02 ^{
+                    01=if (ItemType(ScriptItemActObject1())==t_Weapon13 || ItemType(ScriptItemActObject1())==t_Weapon14 || ItemType(ScriptItemActObject1())==t_Weapon15)
+                    02 ^{
+                        01=MessageBox('В наборе нет запасных частей для ремонта нестандартного оборудования');
+                        02=exit;
+                    }
+                    03=if (ItemDurability(ScriptItemActObject1())<95)
+                    04 ^{
+                        01=if (MessageBoxYesNo('Будете ремонтировать оборудование?'))
+                        02 ^{
+                            01=dword count;
+                            02=dword equipment;
+                            03=dword ship;
+                            04=dword target=0;
+                            05=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                            06 ^{
+                                01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                                02=if (ScriptItemActShip()==ship) continue;
+                                03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                                04 ^{
+                                    01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                                    02 ^{
+                                        01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                                        02 ^{
+                                            01=target=1;
+                                            02=break;
+                                        }
+                                    }
+                                }
+                                05=if (target==1) break;
+                            }
+                            07=dword repair=7+3*ShipSkill(Player(),2)-(3+ShipSkill(Player(),2))*target;
+                            08=if (ItemDurability(ScriptItemActObject1())+repair>100) ItemDurability(ScriptItemActObject1(),100);
+                            09=else ItemDurability(ScriptItemActObject1(),ItemDurability(ScriptItemActObject1())+repair);
+                            10=ScriptItemActParam(1);
+                        }
+                        03=else exit;
+                    }
+                    05=else
+                    06 ^{
+                        01=MessageBox('Оборудование исправно и не нуждается в ремонте');
+                        02=exit;
+                    }
+                }
+                03=else exit;
+            }
+            03=if (ScriptItemActionType()==t_OnEnteringForm || ScriptItemActionType()==t_OnPlayerSkillIncrease)
+            04 ^{
+                01=for (count=0; count<StarShips(ShipStar(ScriptItemActShip())); count=count+1)
+                02 ^{
+                    01=ship=StarShips(ShipStar(ScriptItemActShip()),count);
+                    02=if (ScriptItemActShip()==ship) continue;
+                    03=for (equipment=1; equipment<ShipItems(ship); equipment=equipment+1)
+                    04 ^{
+                        01=if (ItemIsInUse(ShipItems(ship,equipment)) && ItemType(ShipItems(ship,equipment))>=t_Weapon1 && ItemType(ShipItems(ship,equipment))<=t_Weapon18)
+                        02 ^{
+                            01=if (WeaponTarget(ShipItems(ship,equipment))==ScriptItemActShip())
+                            02 ^{
+                                01=target=1;
+                                02=break;
+                            }
+                        }
+                    }
+                    05=if (target==1) break;
+                }
+                03=repair=7+3*ShipSkill(Player(),2)-(3+ShipSkill(Player(),2))*target;
+                04=UselessItemData(CurItem(),1,repair);
+            }
+        }
+        Owner=None
+        Size=15
+        Text=Набор деталей, рассчитанный на заядлого любителя поковыряться во внутренностях корабельного оборудования. Владелец, хорошо разбирающийся в принципах работы того или иного устройства, сможет с помощью набора привести оборудование в порядок, но качество сборки будет заметно уступать сервисному.
+        Text=Ремонт: <Data1>%
+    }
+    TechZabirator ^{
+        Cost=Huge
+        Name=Набор "Прочность забиратор"
+        OnActCode ^{
+            01=if (ScriptItemActionType()==t_OnAnotherItem)
+            02 ^{
+                01=if (!ItemIsInUse(ScriptItemActObject1()) && ItemType(ScriptItemActObject1())>t_Hull && ItemType(ScriptItemActObject1())<=t_Weapon18)
+                02 ^{
+                    01=if (ItemDurability(ScriptItemActObject1())>5)
+                    02 ^{
+                        01=dword count;
+                        02=dword item;
+                        03=dword use=0;
+                        04=dword techlvl;
+                        05=dword owner1;
+                        06=dword owner2;
+                        07=str text;
+                        08=int duritem1;
+                        09=int NeedNods;
+                        10=int duritem2;
+                        11=text='Broken';
+                        12=unknown diff=newarray(8);
+                        13=diff[0]=0.7;
+                        14=diff[1]=0.9;
+                        15=diff[2]=1.0;
+                        16=diff[3]=1.1;
+                        17=diff[4]=1.3;
+                        18=diff[5]=1.0;
+                        19=diff[6]=1.0;
+                        20=diff[7]=1.0;
+                        21=for (count=1; count<ShipItems(ScriptItemActShip()); count=count+1)
+                        22 ^{
+                            01=item=ShipItems(ScriptItemActShip(),count);
+                            02=if (ItemType(item)==ItemType(ScriptItemActObject1()) && ItemIsInUse(item))
+                            03 ^{
+                                01=use=1;
+                                02=owner1=ItemOwner(item);
+                                03=duritem1=ItemDurability(item);
+                                04=break;
+                            }
+                        }
+                        23=if (use)
+                        24 ^{
+                            01=if (ItemDurability(item)<95)
+                            02 ^{
+                                01=if (MessageBoxYesNo('Будете ремонтировать оборудование?'))
+                                02 ^{
+                                    01=if (EqSpecial(ScriptItemActObject1())>0) exit;
+                                    02=if (ItemOwner(item)==5)
+                                    03 ^{
+                                        01=str strdialog='Для ремонта данного оборудования нужны ';
+                                        02=NeedNods=round(round(ItemCost(item)/20)+(ItemCost(item)/7/100*(100-duritem1+10)),10)/400;
+                                        03=strdialog=strdialog+NeedNods;
+                                        04=strdialog=strdialog+' нодов. Произвести ремонт?';
+                                        05=if (MessageBoxYesNo(strdialog))
+                                        06 ^{
+                                            01=if (GetNodesFromShip(Player())<NeedNods)
+                                            02 ^{
+                                                01=MessageBox('Нехватает нодов для ремонта!');
+                                            }
+                                            04=else
+                                            05 ^{
+                                                01=if (ItemType(ScriptItemActObject1())==t_CargoHook) text=text+'CargoHook_'+ItemLevel(ScriptItemActObject1());
+                                                02=if (ItemType(ScriptItemActObject1())==t_DefGenerator) text=text+'DefGenerator_'+ItemLevel(ScriptItemActObject1());
+                                                03=if (ItemType(ScriptItemActObject1())==t_Engine) text=text+'Engine_'+ItemLevel(ScriptItemActObject1());
+                                                04=if (ItemType(ScriptItemActObject1())==t_FuelTanks) text=text+'FuelTanks_'+ItemLevel(ScriptItemActObject1());
+                                                05=if (ItemType(ScriptItemActObject1())==t_Radar) text=text+'Radar_'+ItemLevel(ScriptItemActObject1());
+                                                06=if (ItemType(ScriptItemActObject1())==t_RepairRobot) text=text+'RepairRobot_'+ItemLevel(ScriptItemActObject1());
+                                                07=if (ItemType(ScriptItemActObject1())==t_Scaner) text=text+'Scaner_'+ItemLevel(ScriptItemActObject1());
+                                                08=if (ItemType(ScriptItemActObject1())==t_Weapon1) text=text+'Weapon_01';
+                                                09=if (ItemType(ScriptItemActObject1())==t_Weapon2) text=text+'Weapon_02';
+                                                10=if (ItemType(ScriptItemActObject1())==t_Weapon3) text=text+'Weapon_03';
+                                                11=if (ItemType(ScriptItemActObject1())==t_Weapon4) text=text+'Weapon_04';
+                                                12=if (ItemType(ScriptItemActObject1())==t_Weapon5) text=text+'Weapon_05';
+                                                13=if (ItemType(ScriptItemActObject1())==t_Weapon6) text=text+'Weapon_06';
+                                                14=if (ItemType(ScriptItemActObject1())==t_Weapon7) text=text+'Weapon_07';
+                                                15=if (ItemType(ScriptItemActObject1())==t_Weapon8) text=text+'Weapon_08';
+                                                16=if (ItemType(ScriptItemActObject1())==t_Weapon9) text=text+'Weapon_09';
+                                                17=if (ItemType(ScriptItemActObject1())==t_Weapon10) text=text+'Weapon_10';
+                                                18=if (ItemType(ScriptItemActObject1())==t_Weapon11) text=text+'Weapon_11';
+                                                19=if (ItemType(ScriptItemActObject1())==t_Weapon12) text=text+'Weapon_12';
+                                                20=if (ItemType(ScriptItemActObject1())==t_Weapon13) text=text+'Weapon_13';
+                                                21=if (ItemType(ScriptItemActObject1())==t_Weapon14) text=text+'Weapon_14';
+                                                22=if (ItemType(ScriptItemActObject1())==t_Weapon15) text=text+'Weapon_15';
+                                                23=if (ItemType(ScriptItemActObject1())==t_Weapon16) text=text+'Weapon_16';
+                                                24=if (ItemType(ScriptItemActObject1())==t_Weapon17) text=text+'Weapon_17';
+                                                25=if (ItemType(ScriptItemActObject1())==t_Weapon18) text=text+'Weapon_18';
+                                                26=owner2=ItemOwner(ScriptItemActObject1());
+                                                27=duritem2=ItemDurability(ScriptItemActObject1());
+                                                28=GetItemFromShip(Player(),FindItemInShip(Player(),ScriptItemActObject1()));
+                                                29=ScriptItemActParam(1);
+                                                30=AddItemToShip(Player(),CreateQuestItem(text,owner2));
+                                                31=ItemDurability(item,ItemDurability(item)+(diff[owner2]/diff[owner1]*duritem2));
+                                                32=GetNodesFromShip(Player(),NeedNods);
+                                            }
+                                        }
+                                        07=else exit;
+                                    }
+                                    04=else
+                                    05 ^{
+                                        01=if (ItemType(ScriptItemActObject1())==t_CargoHook) text=text+'CargoHook_'+ItemLevel(ScriptItemActObject1());
+                                        02=if (ItemType(ScriptItemActObject1())==t_DefGenerator) text=text+'DefGenerator_'+ItemLevel(ScriptItemActObject1());
+                                        03=if (ItemType(ScriptItemActObject1())==t_Engine) text=text+'Engine_'+ItemLevel(ScriptItemActObject1());
+                                        04=if (ItemType(ScriptItemActObject1())==t_FuelTanks) text=text+'FuelTanks_'+ItemLevel(ScriptItemActObject1());
+                                        05=if (ItemType(ScriptItemActObject1())==t_Radar) text=text+'Radar_'+ItemLevel(ScriptItemActObject1());
+                                        06=if (ItemType(ScriptItemActObject1())==t_RepairRobot) text=text+'RepairRobot_'+ItemLevel(ScriptItemActObject1());
+                                        07=if (ItemType(ScriptItemActObject1())==t_Scaner) text=text+'Scaner_'+ItemLevel(ScriptItemActObject1());
+                                        08=if (ItemType(ScriptItemActObject1())==t_Weapon1) text=text+'Weapon_01';
+                                        09=if (ItemType(ScriptItemActObject1())==t_Weapon2) text=text+'Weapon_02';
+                                        10=if (ItemType(ScriptItemActObject1())==t_Weapon3) text=text+'Weapon_03';
+                                        11=if (ItemType(ScriptItemActObject1())==t_Weapon4) text=text+'Weapon_04';
+                                        12=if (ItemType(ScriptItemActObject1())==t_Weapon5) text=text+'Weapon_05';
+                                        13=if (ItemType(ScriptItemActObject1())==t_Weapon6) text=text+'Weapon_06';
+                                        14=if (ItemType(ScriptItemActObject1())==t_Weapon7) text=text+'Weapon_07';
+                                        15=if (ItemType(ScriptItemActObject1())==t_Weapon8) text=text+'Weapon_08';
+                                        16=if (ItemType(ScriptItemActObject1())==t_Weapon9) text=text+'Weapon_09';
+                                        17=if (ItemType(ScriptItemActObject1())==t_Weapon10) text=text+'Weapon_10';
+                                        18=if (ItemType(ScriptItemActObject1())==t_Weapon11) text=text+'Weapon_11';
+                                        19=if (ItemType(ScriptItemActObject1())==t_Weapon12) text=text+'Weapon_12';
+                                        20=if (ItemType(ScriptItemActObject1())==t_Weapon13) text=text+'Weapon_13';
+                                        21=if (ItemType(ScriptItemActObject1())==t_Weapon14) text=text+'Weapon_14';
+                                        22=if (ItemType(ScriptItemActObject1())==t_Weapon15) text=text+'Weapon_15';
+                                        23=if (ItemType(ScriptItemActObject1())==t_Weapon16) text=text+'Weapon_16';
+                                        24=if (ItemType(ScriptItemActObject1())==t_Weapon17) text=text+'Weapon_17';
+                                        25=if (ItemType(ScriptItemActObject1())==t_Weapon18) text=text+'Weapon_18';
+                                        26=owner2=ItemOwner(ScriptItemActObject1());
+                                        27=duritem2=ItemDurability(ScriptItemActObject1());
+                                        28=GetItemFromShip(Player(),FindItemInShip(Player(),ScriptItemActObject1()));
+                                        29=ScriptItemActParam(1);
+                                        30=AddItemToShip(Player(),CreateQuestItem(text,owner2));
+                                        31=ItemDurability(item,ItemDurability(item)+(diff[owner2]/diff[owner1]*duritem2));
+                                    }
+                                }
+                                03=else exit;
+                            }
+                            03=else
+                            04 ^{
+                                01=MessageBox('Донор не нуждается в запчастях');
+                                02=exit;
+                            }
+                        }
+                        25=else
+                        26 ^{
+                            01=MessageBox('Не найден подключенный аналог оборудования');
+                            02=exit;
+                        }
+                    }
+                    03=else
+                    04 ^{
+                        01=MessageBox('Оборудование не годится для разбора на запчасти, у него нет неповрежденных блоков');
+                        02=exit;
+                    }
+                }
+                03=if (ItemIsInUse(ScriptItemActObject1()))
+                04 ^{
+                    01=MessageBox('Оборудование под напряжением, разбор устройства невозможен');
+                    02=exit;
+                }
+            }
+        }
+        Owner=None
+        Size=20
+        Text=Может изъять ремонтопригодные детали из одного оборудования для починки одного единственного. Оборудование послужившее рецепиентом деталей становится абсолютно нефункциональным.
+    }
+    BrokenCargoHookKling ^{
+        Cost=Small
+        Name=Испорченный Ментощуп
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_1 ^{
+        Cost=Small
+        Name=Испорченный Активаторный захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_2 ^{
+        Cost=Small
+        Name=Испорченный Телекинетический захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_3 ^{
+        Cost=Small
+        Name=Испорченный Плазмонитевый захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_4 ^{
+        Cost=Small
+        Name=Испорченный Эктогенный захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_5 ^{
+        Cost=Small
+        Name=Испорченный Пьезотронный захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_6 ^{
+        Cost=Small
+        Name=Испорченный Эриметроидный захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_7 ^{
+        Cost=Small
+        Name=Испорченный Оптоволновой захват
+        Owner=None
+        Size=20
+        Text=Больше не способен захватывать ни одного предмета.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenCargoHook_8 ^{
+        Cost=Small
+        Name=Испорченный Микротональный захват
+        Owner=None
+        Size=20
+        Text=Больше не способен создавать направленный ментокинезный поток и производить захват предметов.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGeneratorKling ^{
+        Cost=Small
+        Name=Испорченный Пикселит
+        Owner=None
+        Size=20
+        Text=Больше не способен нейтрализовывать негативное внешнее воздействие.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_1 ^{
+        Cost=Small
+        Name=Испорченный Коротковолновый генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_2 ^{
+        Cost=Small
+        Name=Испорченный Поляризующий генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_3 ^{
+        Cost=Small
+        Name=Испорченный Мезонный генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_4 ^{
+        Cost=Small
+        Name=Испорченный Сетчатый генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_5 ^{
+        Cost=Small
+        Name=Испорченный Полигональный генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_6 ^{
+        Cost=Small
+        Name=Испорченный Зональный генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_7 ^{
+        Cost=Small
+        Name=Испорченный Микроуровневый генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenDefGenerator_8 ^{
+        Cost=Small
+        Name=Испорченный Ультраплазменный генератор защиты
+        Owner=None
+        Size=20
+        Text=Больше не способен блокировать часть наносимого кораблю ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngineKling ^{
+        Cost=Small
+        Name=Испорченный Торсионный реактор
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_1 ^{
+        Cost=Small
+        Name=Испорченный Нырковый двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_2 ^{
+        Cost=Small
+        Name=Испорченный Сингулярный двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_3 ^{
+        Cost=Small
+        Name=Испорченный Жабродюзный двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_4 ^{
+        Cost=Small
+        Name=Испорченный Потоковый двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_5 ^{
+        Cost=Small
+        Name=Испорченный Сплэшевый двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_6 ^{
+        Cost=Small
+        Name=Испорченный Гравитонный двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_7 ^{
+        Cost=Small
+        Name=Испорченный Стансерный двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenEngine_8 ^{
+        Cost=Small
+        Name=Испорченный Темпоральный двигатель
+        Owner=None
+        Size=20
+        Text=Больше не способен развивать скорость и совершать гиперпрыжок.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanksKling ^{
+        Cost=Small
+        Name=Испорченная Стекбаррель
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_1 ^{
+        Cost=Small
+        Name=Испорченный Гипержидкостный топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_2 ^{
+        Cost=Small
+        Name=Испорченный Конденсатный топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_3 ^{
+        Cost=Small
+        Name=Испорченный Редукционный топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_4 ^{
+        Cost=Small
+        Name=Испорченный Протопузырчатый топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_5 ^{
+        Cost=Small
+        Name=Испорченный Позиционный топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_6 ^{
+        Cost=Small
+        Name=Испорченный Эндокластерный топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_7 ^{
+        Cost=Small
+        Name=Испорченный Гироскопический топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenFuelTanks_8 ^{
+        Cost=Small
+        Name=Испорченный Текриновый топливный бак
+        Owner=None
+        Size=20
+        Text=Больше не способен вмещать топливо.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadarKling ^{
+        Cost=Small
+        Name=Испорченный Сенсотрон
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_1 ^{
+        Cost=Small
+        Name=Испорченный Волновой радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_2 ^{
+        Cost=Small
+        Name=Испорченный Субтрансферный радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_3 ^{
+        Cost=Small
+        Name=Испорченный Октонный радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_4 ^{
+        Cost=Small
+        Name=Испорченный Пучковый радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_5 ^{
+        Cost=Small
+        Name=Испорченный Катаурный радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_6 ^{
+        Cost=Small
+        Name=Испорченный Нейропоточный радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_7 ^{
+        Cost=Small
+        Name=Испорченный Этановый радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRadar_8 ^{
+        Cost=Small
+        Name=Испорченный Нуль-контактный радар
+        Owner=None
+        Size=15
+        Text=Больше не способен получать информацию об объектах.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobotKling ^{
+        Cost=Small
+        Name=Испорченный Дианод
+        Owner=None
+        Size=20
+        Text=Больше не способен заполнять поврежденные места быстрозатвердевающим веществом, восстанавливая поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_1 ^{
+        Cost=Small
+        Name=Испорченный Биотический дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_2 ^{
+        Cost=Small
+        Name=Испорченный Суспензорный дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_3 ^{
+        Cost=Small
+        Name=Испорченный Трекинговый дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_4 ^{
+        Cost=Small
+        Name=Испорченный Стволовой дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_5 ^{
+        Cost=Small
+        Name=Испорченный Болидный дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_6 ^{
+        Cost=Small
+        Name=Испорченный Тензорный дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_7 ^{
+        Cost=Small
+        Name=Испорченный Штифтовый дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenRepairRobot_8 ^{
+        Cost=Small
+        Name=Испорченный Дуплексный дроид
+        Owner=None
+        Size=20
+        Text=Больше не способен восстанавливать поврежденную обшивку.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScanerKling ^{
+        Cost=Small
+        Name=Испорченный Тех-детектор
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать технологические объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_1 ^{
+        Cost=Small
+        Name=Испорченный Трассионный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_2 ^{
+        Cost=Small
+        Name=Испорченный Вортексный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_3 ^{
+        Cost=Small
+        Name=Испорченный Нейрощупный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_4 ^{
+        Cost=Small
+        Name=Испорченный Молекулярный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_5 ^{
+        Cost=Small
+        Name=Испорченный Коллоидный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_6 ^{
+        Cost=Small
+        Name=Испорченный Текторный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_7 ^{
+        Cost=Small
+        Name=Испорченный Деатомарный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenScaner_8 ^{
+        Cost=Small
+        Name=Испорченный Кванторный сканер
+        Owner=None
+        Size=15
+        Text=Больше не способен сканировать объекты.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_01 ^{
+        Cost=Small
+        Name=Испорченный Промышленный лазер
+        Owner=None
+        Size=15
+        Text=Больше не способен поражать цель мощным световым лучом, нанося урон.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_02 ^{
+        Cost=Small
+        Name=Испорченное Осколочное орудие
+        Owner=None
+        Size=20
+        Text=Больше не способен поражать цель серией небольших взрывов, нанося урон.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_03 ^{
+        Cost=Small
+        Name=Испорченная Лезка
+        Owner=None
+        Size=25
+        Text=Больше не способна направленным выбросом энергии из всех стволов наносить урон.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_04 ^{
+        Cost=Small
+        Name=Испорченный Ракетомет
+        Owner=None
+        Size=10
+        Text=Больше не способен поражать цель самонаводящимися ракетами.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_05 ^{
+        Cost=Small
+        Name=Испорченный Третон
+        Owner=None
+        Size=15
+        Text=Больше не способен замедлять движение цели и наносить повреждения, восполняя за счет этого структуру корпуса.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_06 ^{
+        Cost=Small
+        Name=Испорченный Волновой фазер
+        Owner=None
+        Size=20
+        Text=Больше не способен использовать волновой модулятор, нанося тяжелые повреждения.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_07 ^{
+        Cost=Small
+        Name=Испорченный Потоковый бластер
+        Owner=None
+        Size=30
+        Text=Больше не способен выпускать тысячи небольших разрывных снарядов прошивающих цель и наносящих ущерб.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_08 ^{
+        Cost=Small
+        Name=Испорченный Электронный резак
+        Owner=None
+        Size=15
+        Text=Больше не способен воздействовать электромагнитным импульсом на электронную начинку оборудования и наносить повреждения.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_09 ^{
+        Cost=Small
+        Name=Испорченный Мультирезонатор
+        Owner=None
+        Size=35
+        Text=Больше не способен поражать цель виброснарядом, вызывающим эффект резонанса корпуса для нанесения ущерба.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_10 ^{
+        Cost=Small
+        Name=Испорченный Атомный визион
+        Owner=None
+        Size=40
+        Text=Больше не способен взрывать антивещество, образующее энергетическое поле наносящее ущерб цели и окружающим ее объектам.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_11 ^{
+        Cost=Small
+        Name=Испорченный Дезинтегратор
+        Owner=None
+        Size=45
+        Text=Больше не способен разрушать молекулярные связи материи, нанося ущерб цели.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_12 ^{
+        Cost=Small
+        Name=Испорченный Турбогравир
+        Owner=None
+        Size=30
+        Text=Больше не способен создавать гравирные энергетические всплески наносящие повреждения.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_13 ^{
+        Cost=Small
+        Name=Испорченный ИМХО-9000
+        Owner=None
+        Size=40
+        Text=Больше не способен использовать излучатель из пяти фактурных трубок для поражения цели.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_14 ^{
+        Cost=Small
+        Name=Испорченный Вертикс
+        Owner=None
+        Size=55
+        Text=Больше не способен искажать пространство вокруг корабля для нанесения ущерба всем объектам в зоне действия.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_15 ^{
+        Cost=Small
+        Name=Испорченный Торпедный аппарат
+        Owner=None
+        Size=30
+        Text=Больше не способен использовать торпеды, оснащенные гравитационным дестабилизатором материи.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_16 ^{
+        Cost=Small
+        Name=Испорченный Эсодафер
+        Owner=None
+        Size=30
+        Text=Больше не способен выстреливать сгусток наномашин, наносящих цели повреждения и ослабляющих её броню.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_17 ^{
+        Cost=Small
+        Name=Испорченный Кафаситор
+        Owner=None
+        Size=25
+        Text=Больше не способен разрушать броню высоковольтными разрядами и ионизировать корпус цели.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+    BrokenWeapon_18 ^{
+        Cost=Small
+        Name=Испорченный Лирекрон
+        Owner=None
+        Size=15
+        Text=Больше не способен поражает цель ракетами с электромагнитной боеголовкой.
+        Text=<color=254,0,0>(ремонту не подлежит)<color>
+    }
+}

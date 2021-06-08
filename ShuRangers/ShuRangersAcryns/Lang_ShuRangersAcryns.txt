@@ -1,0 +1,118 @@
+ShuRangersAcryns ^{
+	RangerHullsArrayVersion=28.12.2020
+	RangersWithAcrynsPercent=45
+}
+MicroModuls ^{
+    353 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader,Pirate
+    }
+    354 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader,Pirate
+    }
+    355 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader,Pirate
+    }
+    356 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader,Pirate
+    }
+    357 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Trader
+    }
+    358 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Trader
+    }
+    359 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Trader
+    }
+    360 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Trader
+    }
+    361 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    362 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    363 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    364 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    365 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    366 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    367 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    368 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    369 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    370 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    371 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    372 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior,Pirate
+    }
+    472 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    473 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    474 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    475 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Trader
+    }
+    476 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior
+    }
+    477 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior
+    }
+    478 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior
+    }
+    479 ^{
+		ForNPCTypes=Ranger,RangerExplorer
+		ForCharacterTypes=Warrior
+    }
+}

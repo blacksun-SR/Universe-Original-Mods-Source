@@ -1,0 +1,8 @@
+Bm ^{
+    FormLoad2 ^{
+		MainBG=Mods\Tweaks\SR2LoadingScreen\DATA\FormLoad2\MainBG.gi
+	}
+}
+Script ^{
+    Mod_SR2LoadingScreen=Mods\Tweaks\SR2LoadingScreen\DATA\Script\Mod_SR2LoadingScreen.scr
+}

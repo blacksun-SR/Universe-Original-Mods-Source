@@ -1,0 +1,46 @@
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            SM_Info_infos ^{
+                Description=Returns PanelRuins back on its place when infocentre was closed in space
+                Icon=0
+                Name=--
+                OnActCode ^{
+					01=if(ScriptItemActionType()==t_OnEnteringForm)
+					02 ^{
+						01=if(CurrentForm()=='Info' && ShipInNormalSpace(Player()))
+						02 ^{
+							01=InterfaceSize('Info','BGBuf',GetGameOptions('ResolutionX'),GetGameOptions('ResolutionY'));
+							02=InterfaceState('Info','PM_Ship_Replace',1);
+							03=InterfaceState('Info','PM_Quest_Replace',1);
+							04=InterfaceState('Info','PM_Gal_Replace',1);
+							05=InterfaceState('Info','PM_Ship',0);
+							06=InterfaceState('Info','PM_Quest',0);
+							07=InterfaceState('Info','PM_Gal',0);
+						}
+					}
+					03=if(ScriptItemActionType()==t_OnLeavingForm)
+					04 ^{
+						01=if(GetShipRuins(Player())==0)
+						02 ^{
+							01=if(CurrentForm()=='Info' && ShipInNormalSpace(Player()))
+							02 ^{
+								01=FormChange('StarMap');
+								02=InterfacePos('Info','PanelRuins',0,0,0);
+								03=InterfaceState('Info','PM_Ship_Replace',0);
+								04=InterfaceState('Info','PM_Quest_Replace',0);
+								05=InterfaceState('Info','PM_Gal_Replace',0);
+								06=InterfaceState('Info','PM_Ship',1);
+								07=InterfaceState('Info','PM_Quest',1);
+								08=InterfaceState('Info','PM_Gal',1);
+							}
+						}
+                    }
+                }
+            }
+        }
+    }
+}
+Help ^{
+	ButInfoSpace=Information Center
+}

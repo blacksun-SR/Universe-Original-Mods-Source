@@ -1,0 +1,167 @@
+ShipInfo ^{
+	AddInfo ^{
+		CustomInfos ~{
+			auto_upgr_ruins ^{
+				Description=Скрытая инфошка для автоулучшения баз, вешается турнкодом в скрипте
+				Icon=0
+				Name=
+				OnActCodeTypes=t_OnStep
+				OnActStepTypes=11
+				OnActCode ^{
+					01=dword cur_ship = ScriptItemActShip();
+					02=int cur_info = CurInfo();
+					//Таймер до автоматической перезарядки ракетных орудий
+					03=int RepairAndReloadTime = ShipCustomShipInfoData(cur_ship, cur_info, 2);
+					//Таймер до автообновления
+					04=int AutoUpdateTime = ShipCustomShipInfoData(cur_ship, cur_info, 3);
+					05=if(RepairAndReloadTime <= CurTurn())
+					06 ^{
+						01=dword cur_item;
+						02=ShipCustomShipInfoData(cur_ship, cur_info, 2, CurTurn() + Rnd(25, 35));
+						//Перезаряжаем ракетные орудия
+						03=for(int j = 1; j <= ShipCntWeapon(cur_ship); j = j + 1)
+						04 ^{
+							01=dword cur_gun = ShipEqInSlot(ScriptItemActShip(), t_Weapon1, j);
+							02=if(MissilesToRearm(cur_gun)) MissilesToRearm(cur_gun, MissilesToRearm(cur_gun));
+						}
+						//Проверяем, умеет ли база чинить нестандартное оборудование
+						05=int perm = 0;
+						06=str str_type = ShipType(cur_ship);
+						07=if(str_type == 'SB' || str_type == 'PB' || str_type == 'TC' || str_type == 'SSB') perm = 1;
+						//Чиним оборудование и артефакты базы
+						08=for(j = 0; j < ShipItems(cur_ship); j = j + 1)
+						09 ^{
+							01=cur_item = ShipItems(cur_ship, j);
+							02=if(!ItemIsInUse(cur_item)) continue;
+							03=int item_type = ItemType(cur_item);
+							04=if(item_type < t_FuelTanks || item_type > t_CustomWeapon) continue;
+							05=if(ItemDurability(cur_item) < 100)
+							06 ^{
+								//Чиним всю оборудку, кроме нестандартных орудий, которые чиним, только если станция умеет это делать
+								01=if(item_type <= t_DefGenerator) ItemDurability(cur_item, 100);
+								02=else
+								03 ^{
+									01=if(item_type >= t_Weapon13 && item_type <= t_Weapon15)
+									02 ^{
+										01=if(perm) ItemDurability(cur_item, 100);
+									}
+									03=else if(item_type == t_CustomWeapon)
+									04 ^{
+										01=if(GetCustomWeaponData(CustomWeaponType(cur_item), 'Availability') == 'NotSoldAndNodeRepair')
+										02 ^{
+											01=if(perm) ItemDurability(cur_item, 100);
+										}
+										03=else ItemDurability(cur_item, 100);
+									}
+									05=else ItemDurability(cur_item, 100);
+								}
+							}
+						}
+						//Чиним экипированные арты, но только если база умеет их чинить
+						10=if(perm)
+						11 ^{
+							01=for(j = 0; j < ShipArts(cur_ship); j = j + 1)
+							02 ^{
+								01=cur_item = ShipArts(cur_ship, j);
+								02=if(!ItemIsInUse(cur_item)) continue;
+								03=if(ItemDurability(cur_item) < 100) ItemDurability(cur_item, 100);
+							}
+						}
+					}
+					07=if(RuinsAllowModernization(cur_ship)) exit;
+					08=if(AutoUpdateTime <= CurTurn())
+					09 ^{
+						01=dword cur_star = ShipStar(cur_ship);
+						//Если станция находится в прямой видимости игрока, то откладываем её обновление на один день
+						02=if(ShipStar(Player()) == cur_star)
+						03 ^{
+							01=if(ShipInNormalSpace(Player()))
+							02 ^{
+								01=ShipCustomShipInfoData(cur_ship, cur_info, 3, 1);
+								02=exit;
+							}
+						}
+						04=ShipCustomShipInfoData(cur_ship, cur_info, 3, CurTurn() + Rnd(160, 250));
+						05=for(j = 0; j < ShipItems(cur_ship); j = j + 1)
+						06 ^{
+							01=cur_item = ShipItems(cur_ship, j);
+							02=if(!ItemIsInUse(cur_item)) continue;
+							03=item_type = ItemType(cur_item);
+							04=if(item_type < t_Hull || item_type > t_CustomWeapon) continue;
+							05=if(ItemLevel(cur_item) < GalaxyTechLevel()) ItemLevel(cur_item, GalaxyTechLevel() - 2);
+							06=if(!ItemImprovement(cur_item)) ItemImprovement(cur_item, 2, 0);
+							07=if(ItemSize(cur_item) <= 80 && item_type <= t_DefGenerator && item_type != t_Hull) ItemSize(cur_item, Rnd(80, 120));
+							08=if(ItemSize(cur_item) <= 100 && item_type >= t_Weapon1) ItemSize(cur_item, Rnd(100, 150));
+						}
+						07=if(!ShipEqInSlot(cur_ship,t_RepairRobot))
+						08 ^{
+							01=cur_item = CreateEquipment(t_RepairRobot, Rnd(80, 100), GalaxyTechLevel() - 2, ShipOwner(cur_ship));
+							02=ItemImprovement(cur_item, 2, 0);
+							03=AddItemToShip(cur_ship, cur_item);
+							04=ItemIsInUse(cur_item, cur_ship, 1);
+						}
+						09=if(!ShipEqInSlot(cur_ship,t_CargoHook))
+						10 ^{
+							01=cur_item = CreateEquipment(t_CargoHook, Rnd(80, 100), GalaxyTechLevel() - 2, ShipOwner(cur_ship));
+							02=ItemImprovement(cur_item, 2, 0);
+							03=AddItemToShip(cur_ship, cur_item);
+							04=ItemIsInUse(cur_item, cur_ship, 1);
+						}
+						11=if(!ShipEqInSlot(cur_ship,t_DefGenerator))
+						12 ^{
+							01=cur_item = CreateEquipment(t_DefGenerator, Rnd(80, 100), GalaxyTechLevel() - 2, ShipOwner(cur_ship));
+							02=ItemImprovement(cur_item, 2, 0);
+							03=AddItemToShip(cur_ship, cur_item);
+							04=ItemIsInUse(cur_item, cur_ship, 1);
+						}
+						//Если орудий на станции менее пяти, заполняем пустые места подходящими по ГТУ орудиями
+						13=if(ShipCntWeapon(cur_ship) < 5)
+						14 ^{
+							01=for(j = 1; j <= 5 - ShipCntWeapon(cur_ship); j = j + 1)
+							02 ^{
+								01=if(GalaxyTechLevel() < 5) cur_item = CreateEquipment(t_Weapon3,Rnd(80, 100),GalaxyTechLevel(),ShipOwner(cur_ship));
+								02=else if(GalaxyTechLevel() < 7) cur_item = CreateEquipment(t_Weapon7,Rnd(100, 150),GalaxyTechLevel()-2,ShipOwner(cur_ship));
+								03=else cur_item = CreateEquipment(t_Weapon11,Rnd(150, 250),GalaxyTechLevel()-2,ShipOwner(cur_ship));
+								04=ItemImprovement(cur_item, 2, 0);
+								05=AddItemToShip(cur_ship, cur_item);
+							}
+						}
+						//Повышаем основные скиллы станции до максимума, начиная с точности
+						15=int skillup = 0;
+						//Точность
+						16=if(ShipSkill(cur_ship, 0) < 6 && !skillup)
+						17 ^{
+							01=ShipSkill(cur_ship, 0, ShipSkill(cur_ship, 0) + 1);
+							02=skillup = 1;
+						}
+						//Манёвренность
+						18=else if(ShipSkill(cur_ship, 1) < 6 && !skillup)
+						19 ^{
+							01=ShipSkill(cur_ship, 1, ShipSkill(cur_ship, 1) + 1);
+							02=skillup = 1;
+						}
+						//Техника
+						20=else if(ShipSkill(cur_ship, 2) < 6 && !skillup)
+						21 ^{
+							01=ShipSkill(cur_ship, 2, ShipSkill(cur_ship, 2) + 1);
+							02=skillup = 1;
+						}
+						//Если в текущей системе не идёт бой, то восстанавливаем HP станции до максимума
+						22=int fullHP = ItemSize(ShipItems(cur_ship, 0));
+						23=if(!StarBattle(cur_star)) HullHP(cur_ship, fullHP);
+						//Заставляем станцию разобрать свои вещи, а все лишние из трюма удаляем
+						24=ArrangeItems(cur_ship);
+						25=for(j = ShipItems(cur_ship) - 1; j > 0; j = j - 1)
+						26 ^{
+							01=if(!ItemIsInUse(ShipItems(cur_ship, j))) FreeItem(GetItemFromShip(cur_ship, j));
+						}
+						27=for(j = ShipArts(cur_ship) - 1; j > 0; j = j - 1)
+						28 ^{
+							01=if(!ItemIsInUse(ShipArts(cur_ship, j))) FreeItem(GetArtFromShip(cur_ship, j));
+						}
+					}
+				}
+			}
+		}
+	}
+}

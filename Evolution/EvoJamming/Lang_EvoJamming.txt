@@ -1,0 +1,33 @@
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ~{
+            RadarJamming ^{
+                Description=NoShow
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnEnteringForm,t_OnReEnteringForm,t_OnLeavingForm
+                OnActCode ^{
+					01=dword cur_ship = ScriptItemActShip();
+					02=if(ShipInNormalSpace(cur_ship))
+					03 ^{
+						01=if(!ShipRadarRange(cur_ship))
+						02 ^{
+							01=InterfaceState('StarMap', 'RadarJamming', 1);
+							02=InterfaceState('Talk', 'RadarJamming', 1);
+						}
+						03=else if(ShipStatusEffect(cur_ship, 2))
+						04 ^{
+							01=InterfaceState('StarMap', 'RadarJamming', 1);
+							02=InterfaceState('Talk', 'RadarJamming', 1);
+						}
+						05=else
+						06 ^{
+							01=InterfaceState('StarMap', 'RadarJamming', 0);
+							02=InterfaceState('Talk', 'RadarJamming', 0);
+						}
+					}
+                }
+            }
+        }
+    }
+}

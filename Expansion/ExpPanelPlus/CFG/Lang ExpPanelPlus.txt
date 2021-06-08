@@ -1,0 +1,133 @@
+FormShip ^{
+    UseTransmitters=Активация трансфакторных маяков
+}
+Main ^{
+    Mod_ExpPanelPlus ^{
+        OnPressQuestionMany=Вы собираетесь активировать<br><0> трансфакторных <1> в системе <2>. Суммарная сила заряда составит <3> ед. Желаете продолжить?
+        OnPressQuestionOne=Вы собираетесь активировать трансфакторный маяк в системе <0>. Энергия заряда составляет <1> ед. Желаете продолжить?
+        OnUseTrans=Сообщение о наличии неизученного материала в системе <0> отправлено. Исследователи прибудут через <color=0,50,200>10</color> дней.
+        Quant2-4=</color>маяка
+        Quant5+=</color>маяков
+        QuestionHowMany=Сколько маяков вы хотите активировать?
+        RUN=.. Бегите, глупцы.
+        TooMuch=.. Да поможет вам бог.
+    }
+}
+Artefacts ^{
+    ArtTransmitter ^{
+        OnUseCode ^{
+            0=OnUseCodeTransmitter();
+			01=if(ShipInNormalSpace(Player()) && CurrentForm() == 'Ship')
+			02 ^{
+				01=if(FormCurShip() == Player())
+				02 ^{
+					01=ArrayClear(ReadyTrans);
+					02=dword TCount = 0;
+					03=for(int j = 0; j < ShipArts(Player()); j = j + 1)
+					04 ^{
+						01=if(ItemType(ShipArts(Player(), j)) == t_ArtefactTransmitter)
+						02 ^{
+							01=if(ItemCharge(ShipArts(Player(), j)) >= 100)
+							02 ^{
+								01=ArrayAdd(ReadyTrans, ShipArts(Player(), j));
+								02=InterfaceState('Ship', 'UseTransmitters', 1);
+								03=InterfaceState('Ship', 'UseTransmittersButtonHitBox', 1);
+								04=TCount = TCount + 1;
+							}
+						}
+					}
+					//Удаляем кнопку и хитбокс
+					05=if(!TCount)
+					06 ^{
+						01=InterfaceState('Ship', 'UseTransmitters', 0);
+						02=InterfaceState('Ship', 'UseTransmittersButtonHitBox', 0);
+					}
+				}
+			}
+        }
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ~{
+            UT_HideInfo ^{
+                Description=
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnEnteringForm,t_OnLeavingForm,t_OnDropItem,t_OnDropItemFixed
+                OnActCode ^{
+					//Проверяем трюм на наличие маяков при заходе на форму корабля в открытом космосе
+                    01=if(ScriptItemActionType(t_OnEnteringForm))
+                    02 ^{
+						01=if(ShipInNormalSpace(Player()) && CurrentForm() == 'Ship')
+						02 ^{
+							01=if(FormCurShip() == Player())
+							02 ^{
+								01=ArrayClear(ReadyTrans);
+								02=for(int i = 0; i < ShipArts(Player()); i = i + 1)
+								03 ^{
+									01=if(ItemType(ShipArts(Player(), i)) == t_ArtefactTransmitter)
+									02 ^{
+										01=if(ItemCharge(ShipArts(Player(), i)) >= 100)
+										02 ^{
+											01=ArrayAdd(ReadyTrans, ShipArts(Player(), i));
+											//Подстановка кнопки и хитбокса (второе, чтобы кнопка не прокликивалась "насквозь")
+											02=InterfaceState('Ship', 'UseTransmitters', 1);
+											03=InterfaceState('Ship', 'UseTransmittersButtonHitBox', 1);
+										}
+									}
+								}
+							}
+						}
+                    }
+					//На всякий случай отключаем кнопку при уходе с формы корабля
+					03=else if(ScriptItemActionType(t_OnLeavingForm))
+					04 ^{
+						01=if(ShipInNormalSpace(Player()) && CurrentForm() == 'Ship')
+						02 ^{
+							01=if(FormCurShip() == Player())
+							02 ^{
+								01=InterfaceState('Ship', 'UseTransmitters', -1);
+								02=InterfaceState('Ship', 'UseTransmittersButtonHitBox', -1);
+							}
+						}
+					}
+					//Перепроверяем трюм, если маяк был выброшен в космос
+                    05=else
+                    06 ^{
+						01=if(ShipInNormalSpace(Player()) && CurrentForm() == 'Ship')
+						02 ^{
+							01=if(FormCurShip() == Player())
+							02 ^{
+								01=if(ItemType(ScriptItemActObject1()) == t_ArtefactTransmitter)
+								02 ^{
+									01=ArrayClear(ReadyTrans);
+									02=dword TCount = 0;
+									03=for(int j = 0; j < ShipArts(Player()); j = j + 1)
+									04 ^{
+										01=if(ItemType(ShipArts(Player(), j)) == t_ArtefactTransmitter)
+										02 ^{
+											01=if(ItemCharge(ShipArts(Player(), j)) >= 100)
+											02 ^{
+												01=ArrayAdd(ReadyTrans, ShipArts(Player(), j));
+												02=InterfaceState('Ship', 'UseTransmitters', 1);
+												03=InterfaceState('Ship', 'UseTransmittersButtonHitBox', 1);
+												04=TCount = TCount + 1;
+											}
+										}
+									}
+									//Удаляем кнопку и хитбокс
+									05=if(!TCount)
+									06 ^{
+										01=InterfaceState('Ship', 'UseTransmitters', 0);
+										02=InterfaceState('Ship', 'UseTransmittersButtonHitBox', 0);
+									}
+								}
+							}
+						}
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,228 @@
+ShuDomiks ^{
+    ShuDomiksPlus=1
+}
+Items ^{
+    Weapon ^{
+        Missile ^{
+            Dom_minigun ^{
+                Name=???
+                Text=Error: String not found
+            }
+            Dom_rocket ^{
+                Name=Мини-торпеда
+                Text=Уменьшенная версия торпеды
+            }
+        }
+        Name ^{
+            Dom_burst=Магнитный сепаратор
+            Dom_dual_laser=Спаренный турболазер
+            Dom_laser=Импульсный бластер
+            Dom_light=Энергопакетный разрядник
+            Dom_minigun=Миниган
+            Dom_rocket=Револьверный торпедомет
+        }
+		CustomWeapon ^{
+			StatsVersion ^{
+				ShuDomiksPlus=28.07.2020
+			}
+			ShuDomiksPlus ~{
+				1=Dom_laser
+				2=Dom_dual_laser
+				3=Dom_burst
+				4=Dom_rocket
+				5=Dom_light
+				6=Dom_minigun
+				Count=6
+			}
+			Dom_laser ~{
+				BaseGun=Industrial_Laser
+				MinDamage=20
+				MaxDamage=35
+				DamageSet=Energy,Magnetic
+				ShotType=Normal
+				Speed=60
+				AverageRadius=260
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=1
+				ArcadeType=Industrial_Laser
+				MiningFactor=1
+				kCost=15
+				AverageSize=30
+				TechLevel=2
+				InventTechLevel=Missile_Launcher
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.0
+				ShotEffectPalette=5
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			Dom_dual_laser ~{
+				BaseGun=Industrial_Laser
+				MinDamage=12
+				MaxDamage=34
+				DamageSet=Energy
+				ShotType=Normal
+				Speed=60
+				AverageRadius=320
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=2
+				ArcadeType=Flow_Blaster
+				MiningFactor=1
+				kCost=26
+				AverageSize=40
+				TechLevel=3
+				InventTechLevel=Treton
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.0
+				ShotEffectPalette=6
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			Dom_burst ~{
+				BaseGun=Industrial_Laser
+				MinDamage=14
+				MaxDamage=70
+				DamageSet=Splinter,Destruct,Acid
+				ShotType=Normal
+				Speed=60
+				AverageRadius=220
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=1
+				ArcadeType=Atomic_Vision
+				MiningFactor=1
+				kCost=32
+				AverageSize=40
+				TechLevel=1
+				InventTechLevel=Wave_Phaser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.2
+				ShotEffectPalette=6
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			Dom_rocket ~{
+				BaseGun=Industrial_Laser
+				MinDamage=20
+				MaxDamage=20
+				DamageSet=Missile,Magnetic
+				ShotType=Missile2
+				Speed=40
+				AverageRadius=1000
+				SecondaryDamageRadius=0
+				MissileRadius=1000
+				MissileMinSpeed=700
+				MissileMaxSpeed=1200
+				MissileChanceToBeHit=6
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=2
+				ArcadeType=Missile_Launcher
+				MiningFactor=2
+				kCost=21
+				AverageSize=50
+				TechLevel=1
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSoldAndNodeRepair
+				ShotEffectPath=Weapon.4
+				ShotEffectPalette=1
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+			Dom_light ~{
+				BaseGun=Industrial_Laser
+				MinDamage=3
+				MaxDamage=45
+				DamageSet=Energy,Decelerate,Destruct,Shock,Magnetic,DecelerateA,DecelerateAEx,Undefendable,DropCargo,ReduceEngine,BlockWeapon,BlockDroid
+				ShotType=Normal
+				Speed=99
+				AverageRadius=310
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=1
+				ArcadeType=Caphasitor
+				MiningFactor=2
+				kCost=65
+				AverageSize=120
+				TechLevel=8
+				StoreAvailability=NotSoldAndNodeRepair
+				ShotEffectPath=Weapon.16
+				ShotEffectPalette=10
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			Dom_minigun ~{
+				BaseGun=Flow_Blaster
+				MinDamage=5
+				MaxDamage=6
+				DamageSet=Splinter,Decelerate,Undefendable,BonusToDamaged
+				ShotType=Normal
+				Speed=40
+				AverageRadius=265
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.50,1.70
+				ShotsPerTurn=15
+				ArcadeType=Wave_Phaser
+				MiningFactor=2
+				kCost=70
+				AverageSize=60
+				TechLevel=8
+				InventTechLevel=Flow_Blaster
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.8
+				ShotEffectPalette=40
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+		}
+		OriginalWeaponType ~{
+			Industrial_Laser=1
+			Fragmentation_Cannon=2
+			Flux=3
+			Missile_Launcher=4
+			Treton=5
+			Wave_Phaser=6
+			Flow_Blaster=7
+			Electronic_Cutter=8
+			Multiresonator=9
+			Atomic_Vision=10
+			Disintegrator=11
+			Turbogravitron=12
+			IMHO-9000=13
+			Vertix=14
+			Torpedo_Tube=15
+			Esodapher=16
+			Caphasitor=17
+			Lirecron=18
+		}
+        Text ^{
+            Dom_burst=При создании этого оружия использована доведенная доминаторами до совершенства технология разделения материалов за счет различий их магнитных свойств. Во время выстрела генерируется луч, обладающий сверхмощным магнитным полем, разделяющим частицы корабельной обшивки и внутреннего оборудования. Хотя технологии, применяющиеся в данном образце, довольно примитивны по нынешним меркам, доминаторам удалось выдвинуть их на принципиально новый уровень эффективности.<br> Наносит <MinDamage>-<MaxDamage><Bonus> ед. урона на дистанции до <Radius>.
+            Dom_dual_laser=Турболазер фактически является доминаторским тяжелым лазерным орудием, но в отличие от своих легких коалиционных аналогов использует для поражения цели не лазерный луч, а высокомощный сверхплотный пучок энергии. Турболазерные орудия оснащены емкими конденсаторами, позволяющими хранить и мгновенно отдавать гораздо больший объём энергии, чем накопители в обычных лазерных орудиях, что побуждает использовать несколько стволов. К сожалению, повторить такую технологию при современном уровне коалиционной промышленности просто невозможно.<br>Производит два выстрела по <MinDamage>-<MaxDamage><Bonus> ед. урона на дистанции до <Radius>.
+            Dom_laser=Импульсный бластер является доминаторским развитием энергетического оружия, которое  в отличие от своих коалиционных прародителей использует не только волновую природу света, но и свойства его частиц, а также некоторые малоизученные области квантовой физики. В результате воздействия луча такого орудия на корпус возникает импульс, нарушающий работу вычислительного оборудования, что может приводить к временному выходу из строя некоторых корабельных систем. Коалиции еще только предстоит освоить используемые в данном оружии технологии. <br>Наносит <MinDamage>-<MaxDamage><Bonus> ед. урона на дистанции до <Radius>.
+            Dom_light=Разрядник является одним из сильнейших видов доминаторского вооружения, созданным для поражения одиночных целей. Орудие выстреливает сверхмощным энергетическим разрядом, игнорируя защиту противника и дестабилизируя важнейшие системы его корабля, такие как двигатель, дроид, генератор защитного поля и орудия, а также ионизируя обшивку корпуса. Принцип работы агрегата практически неизвестен, за исключением того, что в качестве основного источника энергии он использует энергопакеты, что в случае собственноручного использования может быть заменено периодическим пополнением нодами. <br>Наносит <MinDamage>-<MaxDamage><Bonus> ед. неотражаемого урона на расстоянии не более <Radius>.
+            Dom_minigun=Доминаторская реинкарнация древней линейки кинетического вооружения, заброшенной по причине несопоставимости затрат на боеприпасы с оказываемым ими эффектом. Стандартный механизм, оснащенный портативным преобразователем нодов, поражает цель среднекалиберными зарядами, сковывая маневры противника. Часть снарядов разрывается при попадании, оставляя на корпусе противника скопление нанитов, ослабляющих и с шансом 33% обходящих броню и наносящих дополнительный урон поврежденным целям. Технология преобразователя остается неизученной, и использование орудия на недоминаторских кораблях лимитировано остаточным запасом буфера нодов. <br> Производит пятнадцать выстрелов по <color=255,240,100>4</color>-<color=255,240,100>5</color> ед. ущерба на дистанции, не превышающей <Radius>. <br><color=255,240,100>На недоминаторских кораблях работает в режиме перегрузки.</color>
+            Dom_rocket=Принцип оружия с вращающимся блоком стволов уже далеко не нов, однако лишь доминаторам удалось добиться компактности и высокой надежности данной схемы в ракетном оружии за счет весьма нестандартных сплавов и компоновки, а так же благодаря использованию уникальных малогабаритных сверхмощных торпед. Револьверная система подачи в сочетании с автоматизированной системой производства боеприпасов обеспечивает данному виду оружия высокую эффективность на поле боя, однако такое стало возможно только благодаря устройству доминаторских кораблей. Возможно, когда-нибудь Коалиции удастся повторить подобную конструкцию. <br>Поражает цель четырьмя мини-торпедами, нанося <CntAttacks>x(<MinDamage>-<MaxDamage>)<Bonus> ед. урона.<br> Боекомлект: <Count>/<MaxCount> шт.
+        }
+    }
+}

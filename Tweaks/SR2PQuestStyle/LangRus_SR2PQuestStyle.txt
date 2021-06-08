@@ -1,0 +1,11 @@
+FormPQuest ^{
+    HelpAnimTextOff=Анимация текста выключена
+    HelpAnimTextOn=Анимация текста включена
+    HelpExit=Выход (<color=255,245,80>R</color> - перезапустить квест)
+    HelpExitAlt=Выход
+    HelpStyle1=Серый фон
+    HelpStyle2=Тёмный фон
+    HelpStyle3=Светлый фон
+    HelpStyle4=Жёлтый фон
+    HelpStyle5=Зелёный фон
+}

@@ -1,0 +1,461 @@
+FormInfo ^{
+	DoubleQuote="
+}
+Items ^{
+    Hull ^{
+        Text=Стойкость корпуса: <Size> (<MaxSize>) единиц, обшивка блокирует до <HitProtect> единиц ущерба.
+		Text=<clr><clrEnd>
+		Text=Восприимчивость к урону:<br>Э:<FragilityE>%  О:<FragilityS>%  Р:<FragilityM>%
+	}
+}
+MicroModuls ^{
+	ExpHulls_Killer1 ^{
+		Equipments=Hull
+		KindGraph=1
+		Name=Корпус "Убийца" I
+		Priority=10
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык точности: <bonSkill1>
+		Text=Сила энергетического оружия: <bonWEnergy> ед.
+		Text=Сила осколочного оружия: <bonWSplinter> ед.
+		Text=Сила ракетного оружия: <bonWMissile> ед.
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Fragility=100
+		Cost=200
+		Size=100
+		bonSkill1=1
+		bonWEnergy=7
+		bonWSplinter=10
+		bonWMissile=10
+		bonSpeed=50
+		bonSlotArt=-2
+		bonSlotForsage=-1
+		bonSlotScaner=-1
+		bonSkill2=-1
+		bonSkill4=-1
+		bonSkill5=-1
+	}
+	ExpHulls_Killer2 ^{
+		Equipments=Hull
+		KindGraph=1
+		Name=Корпус "Убийца" II
+		Priority=30
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык точности: <bonSkill1>
+		Text=Сила энергетического оружия: <bonWEnergy> ед.
+		Text=Сила осколочного оружия: <bonWSplinter> ед.
+		Text=Сила ракетного оружия: <bonWMissile> ед.
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Fragility=100
+		Cost=300
+		Size=100
+		bonSkill1=1
+		bonWEnergy=8
+		bonWSplinter=11
+		bonWMissile=11
+		bonSpeed=75
+		bonSlotArt=-2
+		bonSlotForsage=-1
+		bonSlotScaner=-1
+		bonSkill2=-1
+		bonSkill4=-1
+		bonSkill5=-1
+	}
+	ExpHulls_Killer3 ^{
+		Equipments=Hull
+		KindGraph=1
+		Name=Корпус "Убийца" III
+		Priority=50
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык точности: <bonSkill1>
+		Text=Сила энергетического оружия: <bonWEnergy> ед.
+		Text=Сила осколочного оружия: <bonWSplinter> ед.
+		Text=Сила ракетного оружия: <bonWMissile> ед.
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Fragility=100
+		Cost=400
+		Size=100
+		bonSkill1=1
+		bonWEnergy=9
+		bonWSplinter=12
+		bonWMissile=12
+		bonSpeed=100
+		bonSlotArt=-2
+		bonSlotForsage=-1
+		bonSlotScaner=-1
+		bonSkill2=-1
+		bonSkill4=-1
+		bonSkill5=-1
+	}
+	ExpHulls_Killer4 ^{
+		Equipments=Hull
+		KindGraph=1
+		Name=Корпус "Убийца" IV
+		Priority=70
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык точности: <bonSkill1>
+		Text=Сила энергетического оружия: <bonWEnergy> ед.
+		Text=Сила осколочного оружия: <bonWSplinter> ед.
+		Text=Сила ракетного оружия: <bonWMissile> ед.
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Fragility=100
+		Cost=500
+		Size=100
+		bonSkill1=1
+		bonWEnergy=6
+		bonWSplinter=8
+		bonWMissile=8
+		bonSpeed=75
+		bonSkill2=-1
+		bonSkill4=-1
+		bonSkill5=-1
+	}
+	ExpHulls_Killer5 ^{
+		Equipments=Hull
+		KindGraph=1
+		Name=Корпус "Палач"
+		Priority=100
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык точности: <bonSkill1>
+		Text=Сила энергетического оружия: <bonWEnergy> ед.
+		Text=Сила осколочного оружия: <bonWSplinter> ед.
+		Text=Сила ракетного оружия: <bonWMissile> ед.
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Fragility=100
+		Cost=600
+		Size=100
+		bonSkill1=1
+		bonWEnergy=12
+		bonWSplinter=16
+		bonWMissile=16
+		bonSpeed=150
+		bonSkill2=-1
+		bonSkill4=-1
+		bonSkill5=-1
+	}
+	ExpHulls_Rock1 ^{
+		Equipments=Hull
+		KindGraph=2
+		Name=Корпус "Скала" I
+		Priority=10
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык техники: <bonSkill3>
+		Text=Броня корпуса: <bonHull> ед.
+		Text=Эффективность дроида: <bonDroid> ед.
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Fragility=105
+		Cost=200
+		Size=100
+		bonSkill2=1
+		bonSkill3=1
+		bonHull=1
+		bonDroid=15
+		bonSkill4=-2
+		bonSkill5=-1
+		bonSpeed=-70
+		bonSlotForsage=-1
+		bonSlotWeapon=-1
+	}
+	ExpHulls_Rock2 ^{
+		Equipments=Hull
+		KindGraph=2
+		Name=Корпус "Скала" II
+		Priority=30
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык техники: <bonSkill3>
+		Text=Броня корпуса: <bonHull> ед.
+		Text=Эффективность дроида: <bonDroid> ед.
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Мощность сканера: <bonScan> ед.
+		Fragility=100
+		Cost=300
+		Size=100
+		bonSkill2=1
+		bonSkill3=1
+		bonHull=3
+		bonDroid=20
+		bonSkill4=-2
+		bonSkill5=-2
+		bonSpeed=-90
+		bonScan=-4
+		bonSlotForsage=-1
+		bonSlotWeapon=-1
+	}
+	ExpHulls_Rock3 ^{
+		Equipments=Hull
+		KindGraph=2
+		Name=Корпус "Скала" III
+		Priority=50
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык техники: <bonSkill3>
+		Text=Броня корпуса: <bonHull> ед.
+		Text=Эффективность дроида: <bonDroid> ед.
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Мощность сканера: <bonScan> ед.
+		Fragility=95
+		Cost=400
+		Size=100
+		bonSkill2=1
+		bonSkill3=1
+		bonHull=4
+		bonDroid=25
+		bonSkill4=-1
+		bonSkill5=-2
+		bonSpeed=-110
+		bonRadar=-600
+		bonScan=-4
+		bonSlotForsage=-1
+		bonSlotWeapon=-1
+	}
+	ExpHulls_Rock4 ^{
+		Equipments=Hull
+		KindGraph=2
+		Name=Корпус "Скала" IV
+		Priority=70
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык техники: <bonSkill3>
+		Text=Броня корпуса: <bonHull> ед.
+		Text=Эффективность дроида: <bonDroid> ед.
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Мощность сканера: <bonScan> ед.
+		Fragility=92
+		Cost=500
+		Size=100
+		bonSkill2=1
+		bonSkill3=1
+		bonHull=3
+		bonDroid=15
+		bonSkill4=-1
+		bonSkill5=-2
+		bonSpeed=-80
+		bonRadar=-600
+		bonScan=-4
+	}
+	ExpHulls_Rock5 ^{
+		Equipments=Hull
+		KindGraph=2
+		Name=Корпус "Бастион"
+		Priority=100
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Навык манёвренности: <bonSkill2>
+		Text=Навык техники: <bonSkill3>
+		Text=Броня корпуса: <bonHull> ед.
+		Text=Эффективность дроида: <bonDroid> ед.
+		Text=Навык торговли: <bonSkill4>
+		Text=Навык обаяния: <bonSkill5>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Мощность сканера: <bonScan> ед.
+		Fragility=90
+		Cost=600
+		Size=100
+		bonSkill2=2
+		bonSkill3=1
+		bonHull=5
+		bonDroid=30
+		bonSkill4=-1
+		bonSkill5=-1
+		bonSpeed=-100
+		bonRadar=-600
+		bonScan=-5
+	}
+	ExpHulls_Bolide1 ^{
+		Equipments=Hull
+		KindGraph=3
+		Name=Корпус "Болид" I
+		Priority=10
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность прыжка: <bonJump> пк.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Броня корпуса: <bonHull> ед.
+		Fragility=105
+		Cost=200
+		Size=100
+		bonHull=-2
+		bonSpeed=300
+		bonJump=3
+		bonRadar=150
+		bonSlotArt=-2
+		bonSlotDef=-1
+		bonSlotWeapon=-2
+	}
+	ExpHulls_Bolide2 ^{
+		Equipments=Hull
+		KindGraph=3
+		Name=Корпус "Болид" II
+		Priority=30
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность прыжка: <bonJump> пк.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Броня корпуса: <bonHull> ед.
+		Fragility=105
+		Cost=300
+		Size=100
+		bonHull=-3
+		bonSpeed=350
+		bonJump=3
+		bonRadar=250
+		bonSlotArt=-2
+		bonSlotDef=-1
+		bonSlotWeapon=-2
+	}
+	ExpHulls_Bolide3 ^{
+		Equipments=Hull
+		KindGraph=3
+		Name=Корпус "Болид" III
+		Priority=50
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность прыжка: <bonJump> пк.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Броня корпуса: <bonHull> ед.
+		Fragility=105
+		Cost=400
+		Size=100
+		bonHull=-5
+		bonSpeed=400
+		bonJump=4
+		bonRadar=300
+		bonSlotArt=-2
+		bonSlotDef=-1
+		bonSlotWeapon=-2
+	}
+	ExpHulls_Bolide4 ^{
+		Equipments=Hull
+		KindGraph=3
+		Name=Корпус "Болид" IV
+		Priority=70
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность прыжка: <bonJump> пк.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Броня корпуса: <bonHull> ед.
+		Fragility=105
+		Cost=500
+		Size=100
+		bonHull=-5
+		bonSpeed=300
+		bonJump=4
+		bonRadar=250
+	}
+	ExpHulls_Bolide5 ^{
+		Equipments=Hull
+		KindGraph=3
+		Name=Корпус "Метеор"
+		Priority=100
+		Special=1
+		LockedAcryn=3
+		NonSearchable=1
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Text=Дальность прыжка: <bonJump> пк.
+		Text=Дальность радара: <bonRadar> млн. км.
+		Text=Броня корпуса: <bonHull> ед.
+		Fragility=105
+		Cost=600
+		Size=100
+		bonHull=-6
+		bonSpeed=600
+		bonJump=7
+		bonRadar=550
+	}
+}
+HullType ^{
+    98 ^{
+		//В HD зачем-то поменяли дату с 3302 на 3299, хотя серия появляется как бы не с самого начала игры
+		Name=Гугол
+        Text=Быстрый рейнджерский корпус. Согласно опросам, был признан лучшим корпусом 3302 года.
+    }
+}
+Script ^{
+	Mod_ExpHulls ^{
+		87=Заказать постройку корпуса <0>
+		47=Кстати, недавно нами был сделан ряд интересных открытий, благодаря которым были разработаны чертежи уникального экспериментального корпуса <0>. Не желаете проспонсировать постройку прототипа? Разумеется, как главный спонсор, первым испытывать его в деле будете именно вы.
+		88=А ещё мы тут недавно обнесли один секретный подвальчик, а в том подвальчике обнаружили один очень интересный чертёжик. Так что теперь можем предложить тебе забашлять нам за сборку по этому чертёжику серьёзного пиратского корпуса <0>.
+		89=Рейнджер, <Player>! Согласно послужному списку, ты являешься образцовым офицером, а потому тебе предоставляется особый доступ к секретной технологии - опытному военному корпусу <0>. Но учти - технология секретная, а потому недешёвая... Только вот чего стоят эти жалкие кредиты, когда на кону судьба всей Галактики?
+		110=<br> <br>В зависимости от твоего пилотажного стиля, ты можешь выбрать один из трёх корпусов разного размера, а мы, исходя из текущей боевой обстановки, успеем изготовить следующие варианты:<br><br>1. Размер <0> ед. (<1> cr.)<br>2. Размер <2> ед. (<3> cr.)<br>3. Размер <4> ед. (<5> cr.)<br><6><br>Ну что, <Player>, какой из них тебе больше по нраву?
+		120=С учётом твоего звания мы можем предложить тебе корпус <0>:<br><1><br>
+		112=<br> <br>В зависимости от ваших нужд, вы можете выбрать один из трёх вариантов различных по размеру. На данный момент мы способны изготовить следующие корпуса:<br><br>1. Размер <0> ед. (<1> cr. и <2> нд.)<br>2. Размер <3> ед. (<4> cr. и <5> нд.)<br>3. Размер <6> ед. (<7> cr. и <8> нд.)<br><9><br>Какой предпочитаете?
+		121=На текущем уровне развития технологий в Галактике мы можем изготовить для вас корпус <0>:<br><1><br>
+		114=<br> <br>По желанию можешь выбрать один из трёх вариантов разного размера. Конкретно сейчас мы сможем забацать для тебя вот такие жестянки:<br><br>1. Размер <0> ед. (<1> cr.)<br>2. Размер <2> ед. (<3> cr.)<br>3. Размер <4> ед. (<5> cr.)<br><6><br>Ну так что, братан, какой выбираешь?
+		122=Твоя репутация среди братвы позволяет тебе заказать корпус <0>:<br><1><br>
+		94=Не интересует
+		58=<0>
+		95=Хороший выбор, <PlayerFull>!<br>Скоро механики закончат работу и доставят корпус на склад, откуда ты и сможешь его забрать.<br>Надеюсь, этот грозный корабль ещё наведёт шороху среди врагов Коалиции!
+		96=Хорошее решение, <Player>!<br>Скоро всё будет готово в лучшем виде. Как соберёшься - топай на склад, там и найдёшь свою новую птичку.<br>Ты только задай там жару этим воякам-дуболомам, а? Братва прям в натуре от души постаралась.
+		97=Никакой, благодарю
+		98=Весьма разумный выбор, <PlayerFull>.<br>Скоро ваш заказ будет готов и доставлен на склад, откуда вы сможете его забрать в любое удобное время.<br>Пусть этот высокотехнологичный корпус достойно послужит делу прогресса!
+		99=Как, разве вы не хотите послужить благородному делу науки? Очень жаль, <Player> - очень, очень жаль.
+		100=Что!? Да как ты смеешь отказываться от столь щедрого предложения, когда у нас каждый боевой корабль на счету?! Видно, командование в тебе всё-таки ошиблось, <Player>...
+		79=Пожалуй, я пока полетаю на своей лоханке
+		101=Ну так вот и лети на ней отседова! Только помни, <Player>, если в перестрелке с первым же транспортом эта твоя лоханка вдруг развалится - это всё был твой осознанный выбор.
+		102=Служу Галактике!
+		71=Первый вариант за <0> cr.
+		72=Второй вариант за <0> cr.
+		73=Третий вариант за <0> cr.
+		24=Само собой!
+		103=Не сомневайтесь!
+		116=Первый вариант за <0> cr. и <1> нд.
+		117=Второй вариант за <0> cr. и <1> нд.
+		118=Третий вариант за <0> cr. и <1> нд.
+		84=Далее
+	}
+}

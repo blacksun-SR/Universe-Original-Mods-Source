@@ -1,0 +1,5 @@
+Quest ^{
+	QuestMoneyBase=1200,3000,6300,1800,1400
+	QuestMoneyPerc=7,13,30,9,7
+	QuestPoints=300, 600, 1500, 300, 400
+}

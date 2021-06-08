@@ -1,0 +1,2297 @@
+FormInfo ^{
+    StarInfo ^{
+        ControlledByKlissan=Контролируется клисанами
+    }
+}
+FormGameSet2 ^{
+    Common ^{
+        HelpGroupKlissanEasy=---
+        HelpGroupKlissanExpert=---
+        HelpGroupKlissanHard=---
+        HelpGroupKlissanNormal=---
+        LevelGroupKlissan=Клисаны
+        NameGroup1Easy=Салаги
+        NameGroup1Normal=Шкиперы
+        NameGroup1Hard=Лякуши
+        NameGroup1Expert=Корсары
+        NameGroupKlissanEasy=Недоросли
+        NameGroupKlissanNormal=Взрослые
+        NameGroupKlissanHard=Переростки
+        NameGroupKlissanExpert=Альфы
+    }
+}
+GalaxyNews ^{
+    Global ^{
+        KlissanTakeSystemFromNormals1=Внимание всем!<br>В секторе Sector клисанами была захвачена система Star. Информации о пострадавших не поступало.
+        KlissanTakeSystemFromNormals2=Силы Межзвездной Коалиции в опасности!<br>В секторе Sector, несмотря на ожесточенное сопротивление клисанам, была потеряна система Star. Вечная слава павшим героям. Производится дополнительный набор рейнджеров.
+        KlissanTakeSystemFromNormals3=Плохие новости:<br>Клисаны одержали победу в секторе Sector. На этот раз была захвачена система Star.
+        KlissanTakeSystemFromPirates1=Враги Коалиции продолжают терзать мирных жителей Галактики, ведя между собой бесконечную и разрушительную войну - на этот раз система Star, принадлежавшая пиратскому синдикату, подверглась вторжению клисан и оказалась полностью захвачена. Установить число потерь среди мирного населения невозможно.
+        KlissanTakeSystemFromPirates2=После короткой схватки клисаны захватили звездную систему Star, находящуюся под контролем пиратов. О потерях среди мирного населения сведений не поступало.
+        KlissanTakeSystemFromPirates3=Звездная система Star продолжает переходить из рук в руки. До последнего времени она находилась под контролем пиратов, однако, те не смогли защитить ее после внезапного нападения клисан. Можно только порадоваться, что враги Коалиции воюют друг против друга, но, хотелось бы, чтобы при этом не страдали мирные жители.
+        NormalsTakeSystemFromKlissan1=Отличные новости! Только что в системе Star силами Галактического Совета была полностью истреблена клисанская блокада. Сохраняется риск контратаки, но в данный момент система признана безопасной для полётов. Всем участвовавшим в сражении просьба посетить планету Planet для получения награды.
+        NormalsTakeSystemFromKlissan2=Успешно ликвидирован последний клисанский корабль, удерживавший оборону в системе Star. Всем пилотам, принимавшим участие в бою просьба посетить планету Planet для прохождения почётной церемонии награждения.
+        NormalsTakeSystemFromKlissan3=Слава Галактическому Совету!<br>Под его руководством была освобождена система Star из сектора Sector. Всех освободителей, уничтоживших хотя бы один вражеский корабль, приглашают на церемонию награждения, проходящую на планете Planet.
+        PiratesTakeSystemFromKlissan1=Пираты проявили необычную для себя активность, освободив от клисан систему Star, стратегам Коалиции остаётся только догадываться, ради чего бандиты пошли на такой риск и чем это может для всех обернуться. Судя по донесениям разведки, пираты обосновали временный штаб на поверхности планеты Planet.
+        PiratesTakeSystemFromKlissan2=Пиратский синдикат занял территорию системы Star, ранее находившуюся под контролем клисан. Сохраняйте бдительность, и старайтесь избегать орбиты планеты Planet, где негодяи уже начали размещение огневых позиций орбитальной обороны.
+    }
+    Group ^{
+        WarriorLiberator ^{
+            CreateKlissan=Все свободные рейнджеры приглашаются к участию в военной операции по освобождению системы <StarEnemy> от клисан. Место сбора - сектор <SectorNormal>, система <StarNormal>. Оттуда <Date> военные и присоединившиеся к ним рейнджеры нанесут решающий удар.
+        }
+    }
+}
+Items ^{
+    CustomCountables ^{
+        kProtoplasm ^{
+            Name=Протоплазма
+            Text=Биологическая субстанция. Продукт разложения клисанов.
+            Text=Кол-во: <N> шт.
+        }
+    }
+    Weapon ^{
+        Missile ^{
+            klissan_protomissile ^{
+                Name=Сгусток
+                Text=Самоноводящийся сгусток энергии клисанской болт-матрицы.
+            }
+        }
+        Name ^{
+            klissan_antimatter=Множитель антиматерии
+            klissan_burster=Аугербар
+            klissan_capacer=Гравиколлектор
+            klissan_cluster=Иконокласт
+            klissan_emitter=Индэмит
+            klissan_hellwave=Волновой ассинтезатор
+            klissan_laser=Ионный деформатор
+            klissan_moldikvink=Квинкган
+            klissan_nargun=Лезвие Наргуна
+            klissan_nihiler=Нихилест
+            klissan_protomissile=Болт-матрица
+            klissan_splitter=Сплиттер
+            klissan_stunner=Диморфический станнер
+        }
+		CustomWeapon ~{
+			StatsVersion ^{
+				ShuKlissan=30.07.2020
+			}
+			ShuKlissan ~{
+				1=klissan_splitter
+				2=klissan_emitter
+				3=klissan_nargun
+				4=klissan_cluster
+				5=klissan_hellwave
+				6=klissan_antimatter
+				7=klissan_nihiler
+				8=klissan_moldikvink
+				9=klissan_stunner
+				10=klissan_burster
+				11=klissan_protomissile
+				12=klissan_laser
+				13=klissan_capacer
+				Count=13
+			}
+			klissan_splitter ~{
+				BaseGun=Electronic_Cutter
+				MinDamage=23
+				MaxDamage=25
+				DamageSet=Splinter
+				ShotType=Normal
+				Speed=47
+				AverageRadius=250
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.50,1.60,1.70
+				ShotsPerTurn=1
+				ArcadeType=Esodapher
+				MiningFactor=5
+				kCost=15.5
+				AverageSize=30
+				TechLevel=3
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.15
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_emitter ~{
+				BaseGun=Fragmentation_Cannon
+				MinDamage=22
+				MaxDamage=38
+				DamageSet=Energy
+				ShotType=Exploder
+				Speed=86
+				AverageRadius=344
+				SecondaryDamageRadius=250
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.20,1.40,1.60,1.80,2.00,2.20,2.40
+				ShotsPerTurn=1
+				ArcadeType=Wave_Phaser
+				MiningFactor=3
+				kCost=53
+				AverageSize=110
+				TechLevel=8
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.5
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_nargun ~{
+				BaseGun=Flow_Blaster
+				MinDamage=30
+				MaxDamage=35
+				DamageSet=Energy,Undefendable,MoreDrop
+				ShotType=Normal
+				Speed=115
+				AverageRadius=342
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.50,1.70
+				ShotsPerTurn=1
+				ArcadeType=Turbogravitron
+				MiningFactor=2
+				kCost=61
+				AverageSize=160
+				TechLevel=9
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.11
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_cluster ~{
+				BaseGun=Missile_Launcher
+				MinDamage=3
+				MaxDamage=13
+				DamageSet=Energy,Decelerate,Destruct,Drain,Acid,Magnetic,DecelerateAEx,ReduceEngine,BlockWeapon,BlockDroid
+				ShotType=Normal
+				Speed=39
+				AverageRadius=420
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.15,1.30,1.45,1.60,1.75,1.90,2.05
+				ShotsPerTurn=1
+				ArcadeType=IMHO-9000
+				MiningFactor=1
+				kCost=38
+				AverageSize=140
+				TechLevel=8
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.13
+				ShotEffectPalette=5
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=
+			}
+			klissan_hellwave ~{
+				BaseGun=Vertix
+				MinDamage=25
+				MaxDamage=42
+				DamageSet=Energy,Decelerate,Magnetic
+				ShotType=AreaDamage
+				Speed=46
+				AverageRadius=327
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.25,1.40,1.80,2.20,2.60,3.00
+				ShotsPerTurn=1
+				ArcadeType=Vertix
+				MiningFactor=3
+				kCost=76
+				AverageSize=260
+				TechLevel=9
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.13
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.13
+				MissileExplosionEffectPath=
+			}
+			klissan_antimatter ~{
+				BaseGun=Industrial_Laser
+				MinDamage=26
+				MaxDamage=32
+				DamageSet=Energy,BonusToDamaged
+				ShotType=Splash
+				Speed=57
+				AverageRadius=290
+				SecondaryDamageRadius=125
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=1
+				ArcadeType=Atomic_Vision
+				MiningFactor=2
+				kCost=42
+				AverageSize=80
+				TechLevel=6
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.9
+				ShotEffectPalette=10
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_nihiler ~{
+				BaseGun=Vertix
+				MinDamage=15
+				MaxDamage=35
+				DamageSet=Energy,Acid,DropCargo
+				ShotType=Normal
+				Speed=52
+				AverageRadius=400
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.25,1.40,1.80,2.20,2.60,3.00
+				ShotsPerTurn=1
+				ArcadeType=Flux
+				MiningFactor=2
+				kCost=35
+				AverageSize=60
+				TechLevel=6
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.8
+				ShotEffectPalette=6
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_moldikvink ~{
+				BaseGun=Wave_Phaser
+				MinDamage=7
+				MaxDamage=8
+				DamageSet=Splinter,Decelerate,Undefendable,BonusToDamaged
+				ShotType=Normal
+				Speed=74
+				AverageRadius=270
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.50,1.80
+				ShotsPerTurn=5
+				ArcadeType=Fragmentation_Cannon
+				MiningFactor=4
+				kCost=45
+				AverageSize=60
+				TechLevel=9
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.8
+				ShotEffectPalette=7
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_stunner ~{
+				BaseGun=Missile_Launcher
+				MinDamage=2
+				MaxDamage=14
+				DamageSet=Energy,Decelerate,Magnetic
+				ShotType=Chain2
+				Speed=79
+				AverageRadius=345
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.15,1.30,1.45,1.60,1.75,1.90,2.05
+				ShotsPerTurn=3
+				ArcadeType=Electronic_Cutter
+				MiningFactor=3
+				kCost=33
+				AverageSize=40
+				TechLevel=6
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.7
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_burster ~{
+				BaseGun=Industrial_Laser
+				MinDamage=15
+				MaxDamage=45
+				DamageSet=Splinter,DropCargo
+				ShotType=Normal
+				Speed=99
+				AverageRadius=325
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.60,1.90,2.30
+				ShotsPerTurn=1
+				ArcadeType=Flow_Blaster
+				MiningFactor=3
+				kCost=24
+				AverageSize=60
+				TechLevel=5
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.6
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_protomissile ~{
+				BaseGun=Vertix
+				MinDamage=5
+				MaxDamage=40
+				DamageSet=Missile,Decelerate,ReduceEngine
+				ShotType=Torpedo
+				Speed=19
+				AverageRadius=650
+				SecondaryDamageRadius=65
+				MissileRadius=850
+				MissileMinSpeed=100
+				MissileMaxSpeed=1500
+				MissileChanceToBeHit=70
+				mWeaponDamage=1.00,1.10,1.25,1.40,1.80,2.20,2.60,3.00
+				ShotsPerTurn=1
+				ArcadeType=Missile_Launcher
+				MiningFactor=6
+				kCost=45
+				AverageSize=36
+				TechLevel=7
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.3
+				ShotEffectPalette=9
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+			klissan_laser ~{
+				BaseGun=Vertix
+				MinDamage=20
+				MaxDamage=30
+				DamageSet=Energy,ScanBonus
+				ShotType=Normal
+				Speed=81
+				AverageRadius=375
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.25,1.40,1.80,2.20,2.60,3.00
+				ShotsPerTurn=1
+				ArcadeType=Disintegrator
+				MiningFactor=1
+				kCost=30
+				AverageSize=20
+				TechLevel=3
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.10
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			klissan_capacer ~{
+				BaseGun=Vertix
+				MinDamage=4
+				MaxDamage=16
+				DamageSet=Missile,Shock,ReduceEngine
+				ShotType=Normal
+				Speed=69
+				AverageRadius=330
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.25,1.40,1.80,2.20,2.60,3.00
+				ShotsPerTurn=2
+				ArcadeType=Caphasitor
+				MiningFactor=2
+				kCost=25
+				AverageSize=26
+				TechLevel=3
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=NotSold
+				ShotEffectPath=Weapon.16
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+		}
+		OriginalWeaponType ~{
+			Industrial_Laser=1
+			Fragmentation_Cannon=2
+			Flux=3
+			Missile_Launcher=4
+			Treton=5
+			Wave_Phaser=6
+			Flow_Blaster=7
+			Electronic_Cutter=8
+			Multiresonator=9
+			Atomic_Vision=10
+			Disintegrator=11
+			Turbogravitron=12
+			IMHO-9000=13
+			Vertix=14
+			Torpedo_Tube=15
+			Esodapher=16
+			Caphasitor=17
+			Lirecron=18
+		}
+        Text ^{
+            klissan_antimatter=Генерирует сгусток антиматерии, наносящий от <MinDamage> до <MaxDamage> урона по области в радиусе <Radius> единиц. К детонации особенно восприимчивы уже поврежденные цели.
+            klissan_burster=Разгоняет сжатые спиралевидные сгустки антиматерии, способные буквально пробурить любую материальную поверхность. Сгустки наносят от <MinDamage> до <MaxDamage> ед. урона и пробивает трюм цели, сохраняя стабильность в радиусе <Radius> единиц.
+            klissan_capacer=Поражает цель высокоэнергетическими снарядами, создающими обратную гравитационную тягу в области непосредственной детонации, но воспринимаемыми корпусом как ракетные. Наносит <CntAttacks>x(<MinDamage>-<MaxDamage>) ед. ущерба в радиусе <Radius> единиц.
+            klissan_cluster=Неизученное орудие, способное генерировать точку входа микросингулярности прямо в обшивке цели. Затрагивает от <MinDamage> до <MaxDamage> ед. прочности корпуса в радиусе <Radius> единиц. Спонтанное возникновение аномалии в ключевых системах корабельного оборудования приводит к колоссальному побочному урону, приводя к наложению множества отрицательных эффектов. К тому же, орудие используется для бурения астероидов, так как не повреждает ценные минералы.
+            klissan_emitter=Заряжает цель нестабильным энергетическим потоком, пока накопившийся заряд не приводит к неизбежной детонации, наносящей <MinDamage>-<MaxDamage> ед. урона в радиусе <Radius> единиц. При уничтожении заряженного объекта остаточный заряд распространяется на ближайшие корабли.
+            klissan_hellwave=Генерирует энергетическую волну, деформирующую молекулярные структуры на расстоянии, не превышающем <Radius>, и наносящую урон в <MinDamage>-<MaxDamage> единиц. Темпоральная аномалия замедляет цель и наносит электромагнитный ущерб.
+            klissan_laser=Выпускает поток заряженных частиц, наносящих <MinDamage>-<MaxDamage> ед. урона в радиусе <Radius>. Заряд усиливается при пробитии защиты сканером.
+            klissan_moldikvink=Поражает цель очередью из пяти протоплазменных сгустков, разогреваемых до состояния ионизированного газа, каждый из которых наносит <color=255,240,100>8</color>-<color=255,240,100>10</color> урона. Продолжительное ведение огня сковывает маневры противника, а попадание в уже поврежденный участок корпуса значительно увеличивает общий урон. Сгустки способны достичь расстояния в <Radius> ед., прежде чем охладиться.
+            klissan_nargun=Не поддающийся детальному анализу гибрид технологии турбогравира и Глаз Махпеллы. Сохранение энергетического потенциала сужено, за счет чего выстрел наносит <MinDamage>-<MaxDamage><Bonus> единиц неотражаемого урона, но его дальность не способна превысить <Radius>.
+            klissan_nihiler=Наносит <MinDamage>-<MaxDamage> ед. урона в радиусе <Radius>, поражая цель преобразованными сгустками протоплазмы, разъедающими любую броню. Их воздействию особенно подвержен трюм корабля.
+            klissan_protomissile=Поражает цель самонаводящимися сгустком энергии, по сигнатуре излучения схожими с не до конца изученными волнами Абсолютной Матрицы, но воздействующими исключительно на двигатель корабля. Снаряд наносит <MinDamage>-<MaxDamage><Bonus> ед. урона в радиусе <Radius> единиц.<br> Заряд: <Count>/<MaxCount> ед.
+            klissan_splitter=Распрыскивает биологически активные споры, игнорирующие защиту и броню, нанося от <MinDamage> до <MaxDamage> ед. ущерба в радиусе <Radius> единиц.
+            klissan_stunner=Поражает небольшую область спорами, распыляющими миллиарды агрессивных микроорганизмов, замедляющих цель и наносящих колоссальный урон оборудованию и повреждающих обшивку корпуса, нанося <CntAttacks>x(<MinDamage>-<MaxDamage>) единиц ущерба на дистанции до <Radius>. В случае наличия двух целей в зоне поражения урон распределяется между ними, если цель одна - ей наносится дополнительный урон.
+        }
+    }
+}
+MicroModuls ~{
+    ShuKlissan_MutenokHull ^{
+        Cost=200
+        CustomTag=Mutenok
+        Equipments=Hull
+        FragilityEnergy=120
+        FragilityMissile=45
+        FragilitySplinter=105
+        HullGraphSize=75
+        KindGraph=Klissan5
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Мутенок"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonSpeed=200
+    }
+    ShuKlissan_RogitHull ^{
+        Cost=300
+        CustomTag=Rogit
+        Equipments=Hull
+        FragilityEnergy=110
+        FragilityMissile=57
+        FragilitySplinter=85
+        HullGraphSize=83
+        KindGraph=Klissan4
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Рогит"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonMass=50
+        bonSpeed=100
+        bonWEnergy=4
+        bonWSplinter=6
+    }
+    ShuKlissan_KatauriHull ^{
+        Cost=400
+        CustomTag=Katauri
+        Equipments=Hull
+        FragilityEnergy=75
+        FragilityMissile=70
+        FragilitySplinter=130
+        HullGraphSize=115
+        KindGraph=Klissan3
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Катаури"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonMass=70
+        bonWMissile=5
+        bonWRadius=25
+    }
+    ShuKlissan_NondusHull ^{
+        Cost=550
+        CustomTag=Nondus
+        Equipments=Hull
+        FragilityEnergy=140
+        FragilityMissile=80
+        FragilitySplinter=75
+        HullGraphSize=140
+        KindGraph=Klissan2
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Нондус"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonDef=3
+        bonMass=80
+        bonWEnergy=6
+        bonWSplinter=10
+    }
+    ShuKlissan_EgemonHull ^{
+        Cost=800
+        CustomTag=Egemon
+        Equipments=Hull
+        FragilityEnergy=85
+        FragilityMissile=80
+        FragilitySplinter=150
+        HullGraphSize=168
+        KindGraph=Klissan1
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Эгемон"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonDroid=5
+        bonHull=1
+        bonMass=100
+        bonSpeed=-50
+        bonWRadius=15
+    }
+    ShuKlissan_GigasHull ^{
+        Cost=800
+        CustomTag=Gigas
+        Equipments=Hull
+        FragilityEnergy=85
+        FragilityMissile=80
+        FragilitySplinter=150
+        HullGraphSize=168
+        KindGraph=Klissan6
+        LockedAcryn=3
+        Name=</color><Type> корпус клисана <color=15,252,15>"Гигас"</color>
+        NonSearchable=1
+        Priority=10
+        Special=1
+        bonDroid=5
+        bonHull=1
+        bonMass=100
+        bonSpeed=-50
+        bonWRadius=15
+    }
+    ShuKlissan_Gvidest1 ^{
+        Cost=150
+        CustomTag=k_engine_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гвидест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Скорость двигателя: <bonSpeed> ед.
+        TextReplace=<color=248,252,248>Позволяет преодолевать расстояние до <Speed> млн. км. в день и совершать гиперпрыжок на <Parsec> парсек.</color>
+        bonSpeed=20
+    }
+    ShuKlissan_Gvidest2 ^{
+        Cost=190
+        CustomTag=k_engine_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гвидест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Скорость двигателя: <bonSpeed> ед.
+        TextReplace=<color=248,252,248>Позволяет преодолевать расстояние до <Speed> млн. км. в день и совершать гиперпрыжок на <Parsec> парсек.</color>
+        bonSpeed=30
+    }
+    ShuKlissan_Gvidest3 ^{
+        Cost=230
+        CustomTag=k_engine_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гвидест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Скорость двигателя: <bonSpeed> ед.
+        TextReplace=<color=248,252,248>Позволяет преодолевать расстояние до <Speed> млн. км. в день и совершать гиперпрыжок на <Parsec> парсек.</color>
+        bonSpeed=45
+    }
+    ShuKlissan_Ondest1 ^{
+        Cost=150
+        CustomTag=k_fueltanks_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ондест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность прыжка: <bonJump> пк.
+        TextReplace=<color=248,252,248>Хранит до <Capacity> единиц топлива. Наполнен на <Fuel> единиц.</color>
+        bonJump=2
+    }
+    ShuKlissan_Ondest2 ^{
+        Cost=190
+        CustomTag=k_fueltanks_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ондест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность прыжка: <bonJump> пк.
+        TextReplace=<color=248,252,248>Хранит до <Capacity> единиц топлива. Наполнен на <Fuel> единиц.</color>
+        bonJump=3
+    }
+    ShuKlissan_Ondest3 ^{
+        Cost=230
+        CustomTag=k_fueltanks_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ондест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность прыжка: <bonJump> пк.
+        TextReplace=<color=248,252,248>Хранит до <Capacity> единиц топлива. Наполнен на <Fuel> единиц.</color>
+        bonJump=4
+    }
+    ShuKlissan_Xifest1 ^{
+        Cost=150
+        CustomTag=k_repairrobot_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ксифест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Эффективность дроида: <bonDroid> ед.
+        TextReplace=<color=248,252,248>Заменяет поврежденные участки корпуса, восстанавливая <RecoverHitPoints> единиц обшивки.</color>
+        bonDroid=5
+    }
+    ShuKlissan_Xifest2 ^{
+        Cost=190
+        CustomTag=k_repairrobot_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ксифест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Эффективность дроида: <bonDroid> ед.
+        TextReplace=<color=248,252,248>Заменяет поврежденные участки корпуса, восстанавливая <RecoverHitPoints> единиц обшивки.</color>
+        bonDroid=7
+    }
+    ShuKlissan_Xifest3 ^{
+        Cost=230
+        CustomTag=k_repairrobot_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Ксифест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Эффективность дроида: <bonDroid> ед.
+        TextReplace=<color=248,252,248>Заменяет поврежденные участки корпуса, восстанавливая <RecoverHitPoints> единиц обшивки.</color>
+        bonDroid=10
+    }
+    ShuKlissan_Vahtest1 ^{
+        Cost=150
+        CustomTag=k_cargohook_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Вахтест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Мощность захвата: <bonHook> ед.
+        TextReplace=<color=248,252,248>Притягивает объекты размером до <PickUpSize> единиц на расстоянии до <Radius>.</color>
+        bonHook=15
+    }
+    ShuKlissan_Vahtest2 ^{
+        Cost=190
+        CustomTag=k_cargohook_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Вахтест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Мощность захвата: <bonHook> ед.
+        TextReplace=<color=248,252,248>Притягивает объекты размером до <PickUpSize> единиц на расстоянии до <Radius>.</color>
+        bonHook=20
+    }
+    ShuKlissan_Vahtest3 ^{
+        Cost=230
+        CustomTag=k_cargohook_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Вахтест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Мощность захвата: <bonHook> ед.
+        TextReplace=<color=248,252,248>Притягивает объекты размером до <PickUpSize> единиц на расстоянии до <Radius>.</color>
+        bonHook=30
+    }
+    ShuKlissan_Jewlest1 ^{
+        Cost=150
+        CustomTag=k_defgenerator_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Джевлест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        TextReplace=<color=248,252,248>Рассеивает до <Percent>% наносимого ущерба и генерирует снижающее массу корабля поле.</color>
+        bonMass=-5
+    }
+    ShuKlissan_Jewlest2 ^{
+        Cost=190
+        CustomTag=k_defgenerator_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Джевлест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        TextReplace=<color=248,252,248>Рассеивает до <Percent>% наносимого ущерба и генерирует снижающее массу корабля поле.</color>
+        bonMass=-7
+    }
+    ShuKlissan_Jewlest3 ^{
+        Cost=230
+        CustomTag=k_defgenerator_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Джевлест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        TextReplace=<color=248,252,248>Рассеивает до <Percent>% наносимого ущерба и генерирует снижающее массу корабля поле.</color>
+        bonMass=-10
+    }
+    ShuKlissan_Glandest1 ^{
+        Cost=150
+        CustomTag=k_radar_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гландест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        TextReplace=<color=248,252,248>Находит и анализирует объекты на расстоянии до <Radius>, а также обеспечивает лучшее наведение орудий на цель.</color>
+        bonWRadius=10
+    }
+    ShuKlissan_Glandest2 ^{
+        Cost=190
+        CustomTag=k_radar_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гландест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        TextReplace=<color=248,252,248>Находит и анализирует объекты на расстоянии до <Radius>, а также обеспечивает лучшее наведение орудий на цель.</color>
+        bonWRadius=15
+    }
+    ShuKlissan_Glandest3 ^{
+        Cost=230
+        CustomTag=k_radar_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Гландест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        TextReplace=<color=248,252,248>Находит и анализирует объекты на расстоянии до <Radius>, а также обеспечивает лучшее наведение орудий на цель.</color>
+        bonWRadius=20
+    }
+    ShuKlissan_Naksest1 ^{
+        Cost=150
+        CustomTag=k_scaner_1
+        Fragility=110
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Наксест I</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Сила лебедя: <bonWEnergy> ед.
+        TextReplace=<color=248,252,248>Производит сканирование объектов с защитным полем менее <Percent>%, выявляя уязвимые места корпуса.</color>
+        bonWEnergy=2
+        bonWMissile=2
+        bonWSplinter=2
+    }
+    ShuKlissan_Naksest2 ^{
+        Cost=190
+        CustomTag=k_scaner_2
+        Fragility=90
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Наксест II</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Сила лебедя: <bonWEnergy> ед.
+        TextReplace=<color=248,252,248>Производит сканирование объектов с защитным полем менее <Percent>%, выявляя уязвимые места корпуса.</color>
+        bonWEnergy=3
+        bonWMissile=3
+        bonWSplinter=3
+    }
+    ShuKlissan_Naksest3 ^{
+        Cost=230
+        CustomTag=k_scaner_3
+        Fragility=70
+        KindGraph=Klissan
+        LockedAcryn=3
+        Name=</color><color=15,252,15>Наксест III</color>
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=Сила лебедя: <bonWEnergy> ед.
+        TextReplace=<color=248,252,248>Производит сканирование объектов с защитным полем менее <Percent>%, выявляя уязвимые места корпуса.</color>
+        bonWEnergy=5
+        bonWMissile=5
+        bonWSplinter=5
+    }
+    ShuKlissan_Potentia ^{
+        Equipments=FuelTank,Engine,Radar,Scaner,Droid,Hook,DefGenerator,Hull
+        KindGraph=Spore
+        Name=Потентиа
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=25
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Раскрывает особый потенциал <clr>клисанского<clrEnd> оборудования, увеличивая его положительные эффекты в <clr>2<clrEnd> раза.
+		Text=<clr><clrEnd>
+		Text=Акриновые бонусы: <clr>+100%<clrEnd>
+		Text=Надёжность: <clr>-25%<clrEnd>
+		Text=Стоимость: <clr>+50%<clrEnd>
+		Text=Размер: <clr>+50%<clrEnd>
+		Fragility=133
+		Cost=150
+		Size=150
+        bonExtraAkrinEff=100
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Shuclopia ^{
+        Equipments=WEnergy,WSplinter,WMissile,FuelTank,Engine,Radar,Scaner,Droid,Hook,DefGenerator,Hull
+        KindGraph=Spore
+        Name=Шуклопия
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=35
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Раскрывает особый потенциал любого <clr>клисанского<clrEnd> оборудования, увеличивая эффективность.
+		Text=<clr><clrEnd>
+		Fragility=100
+		Cost=100
+		Size=100
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Броня корпуса: <bonHull> ед.
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Объём бака: <bonFuel> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Эффективность дроида: <bonDroid> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Генератор поля: <bonDef> ед.
+        bonWEnergy=15
+        bonWSplinter=20
+        bonWMissile=20
+        bonHull=5
+        bonSpeed=50
+        bonFuel=15
+        bonRadar=600
+        bonScan=5
+        bonDroid=20
+        bonHook=50
+        bonDef=6
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Bubble ^{
+        Equipments=Engine
+        KindGraph=Spore
+        Name=Баббл
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Инициирует рост миниатюрной версии <clr>клисанского<clrEnd> генератора гиперпузыря, значительно увеличивая максимальную дальность прыжка и общую прочность. Масса нового модуля, впрочем, негативно сказывается на производительности двигателя в обычном пространстве.
+		Text=<clr><clrEnd>
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Надёжность: <clr>+30%<clrEnd>
+		Text=Скорость двигателя: <bonSpeed> ед.
+		Fragility=76
+		Cost=100
+		Size=100
+        bonJump=30
+        bonSpeed=-150
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Chasia ^{
+        Equipments=Engine
+        KindGraph=Spore
+        Name=Чазия
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Обогащает протоплазму, поставляемую <clr>клисанскому<clrEnd> двигателю, что оказывает существенный стимулирующий эффект.
+		Text=<clr><clrEnd>
+		Text=Скорость двигателя: <bonSpeed> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+		bonSpeed=200
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Velhmust ^{
+        Equipments=FuelTank,Radar,Scaner
+        KindGraph=Spore
+        Name=Велхмуст
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Преобразовывает излишки органических элементов базового <clr>клисанского<clrEnd> оборудования, увеличивая общую производительность, но сокращая продолжительность его работы.
+		Text=<clr><clrEnd>
+        Text=Объём бака: <bonFuel> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Надёжность: <clr>-25%<clrEnd>
+        Fragility=133
+		Cost=100
+		Size=100
+        bonFuel=30
+        bonRadar=1500
+        bonScan=15
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Nivelia ^{
+        Equipments=FuelTank,Radar,Scaner,Droid,Hook,DefGenerator
+        KindGraph=Spore
+        Name=Нивелия
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Врастает в энергетическую систему <clr>клисанского<clrEnd> оборудования и распыляет слой охладительных биореагентов, защищающих оборудование от перегрева, тем самым стабилизируя его работу и увеличивая прочность. Однако, из-за наличия дополнительного неустойчивого слоя, ремонт оборудования усложняется, повышая его общую стоимость. Из-за массивного энергообмена несовместимо с вооружением и двигателем корабля.
+		Text=<clr><clrEnd>
+		Text=Объём бака: <bonFuel> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Генератор поля: <bonDef> ед.
+        Text=Надёжность: <clr>+20%<clrEnd>
+		Text=Стоимость: <clr>+30%<clrEnd>
+        Fragility=83
+		Cost=130
+		Size=100
+        bonDef=10
+        bonFuel=10
+        bonHook=150
+        bonRadar=1000
+        bonScan=12
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Plasmalemma ^{
+        Equipments=WEnergy
+        KindGraph=Spore
+        Name=Плазмалемма
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Преобразовывает часть неээфективно использованного питания <clr>клисанского<clrEnd> энергетического вооружения, максимально усиливая его показатели.
+		Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+        bonWEnergy=37
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Fungusia ^{
+        Equipments=WSplinter
+        KindGraph=Spore
+        Name=Фунгусия
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Применяется на <clr>клисанском<clrEnd> осколочном вооружении, распыляя останки протоколоний, транспортируемых ведением огня и детонирующих при столкновении с целью.
+		Text=<clr><clrEnd>
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+        bonWSplinter=40
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Askia ^{
+        Equipments=WMissile
+        KindGraph=Spore
+        Name=Аския
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. При размещении на <clr>клисанском<clrEnd> ракетном вооружении продуцирует споровые мешки, помещаемые на каждый выстреливаемый боеприпас. При детонации, мешки выпускают наружу активные биоэлементы, увеличивающие урон и ослабляющие броню. В то же время, дополнительная масса, переносимая боеприпасами, может сказаться на их способности к манёвру.
+		Text=<clr><clrEnd>
+		Text=Дополнительный эффект: <clr>ослабление брони<clrEnd>
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Скорость ракет: <bonMissileSpeed> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+        WeaponMods=Acid
+        bonWMissile=35
+        bonMissileSpeed=-300
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Regenerative ^{
+        Equipments=Droid
+        KindGraph=Spore
+        Name=Регенеритив
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Применяется на дроидах <clr>клисанского<clrEnd> производства, создавая условия для роста протоплазменных мембран, значительно увеличивающих производительность ремонтных систем.
+		Text=<clr><clrEnd>
+        Text=Эффективность дроида: <bonDroid> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+        bonDroid=30
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Combishell ^{
+        Equipments=Hull
+        KindGraph=Spore
+        Name=Комбишелл
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. При помещении на панцирь <clr>клисана<clrEnd>, покрывает его слоем быстрозатвердевающей регенерирующей протоплазмы.
+		Text=<clr><clrEnd>
+        Text=Броня корпуса: <bonHull> ед.
+        Fragility=100
+		Cost=100
+		Size=100
+        bonHull=8
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_Recapacit ^{
+        Equipments=Hull
+        KindGraph=Spore
+        Name=Рекапасит
+		NamePrefix=Споровая колония
+		Color=93,182,93
+        Owner=Klissan,NonKling
+        Priority=55
+        RacialRestriction=1
+		BMSpawnCondition=CurTurn() > GShuKlissanFirstStart + 93
+        Text=Клисанская споровая колония. Наращивает на панцире <clr>клисана<clrEnd> протоплазменные стенки, создавая дополнительное пространство. Защита таких модулей достаточно невелика, что сказывается на общей устойчивости к повреждениям.
+		Text=<clr><clrEnd>
+        Text=Размер корпуса: <clr>+40%<clrEnd>
+        Text=Восприимчивость к урону: <clr>+20%<clrEnd>
+        Fragility=120
+		Cost=100
+		Size=140
+        //Special=1
+		//UniqueMM=2
+        //LockedAcryn=2
+        //NonSearchable=1
+    }
+    ShuKlissan_MachpellaHellWave ^{
+        Cost=500
+        CustomTag=MachpellaGun
+        Fragility=200
+        LockedAcryn=3
+        Name="Адская волна"
+        NonSearchable=1
+        Owner=Kling
+        Priority=0
+        ShotVisual=44
+        Special=1
+        Text=<color=248,252,248>Уникальный волновой ассинтезатор <clr>Махпеллы<clrEnd>, прозванный среди борцов с клисанами не иначе как </color><color=0,191,255>"Адская волна"</color><color=248,252,248>, ввергает в ужас любого, кому удается засвидетельствовать его применение. Используя старую клисанскую технологию полной аннигиляции, данное оружие наносит чудовищный урон, прожигая броню корпуса дестабилизируя все корабельные системы. Нагрузки, создаваемые волновым ассинтезатором, не позволяют ему функционировать долго вне клисанских кораблей. </color> <br> <br>
+        Text=Навык обаяния: <bonSkill5> ед.
+        Text=Навык лидерства: <bonSkill6> ед.
+        Text=<clr>Повреждает оборудование цели<clrEnd>
+        Text=<clr>Уменьшает броню цели<clrEnd>
+        Text=<clr>Замедляет цель при попадании<clrEnd>
+        Text=(необходимо превышение мощности сканера над защитой цели)
+        WeaponMods=NoDelta,Destruct,Decelerate,Acid
+        bonSkill5=1
+        bonSkill6=1
+    }
+    ShuKlissan_KT1 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT2 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT3 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT4 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT5 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT6 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT7 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+    ShuKlissan_KT8 ^{
+        CustomTag=empty_mm
+        KindGraph=Empty
+        LockedAcryn=3
+        Name=<"><">
+        NonSearchable=1
+        NotRemovable=1
+        Priority=0
+        Special=1
+    }
+}
+Planet ^{
+    Klissan ^{
+        Info ^{
+            TextAboutPlanet=Проживающая раса <Race>
+            TextAboutPlanet=Находится под контролем клисанов
+            TextAboutPlanet=Посадку совершить невозможно
+        }
+    }
+}
+Script ^{
+    Mod_ShuKlissan ^{
+		SporesGiveList ^{
+			1=ShuKlissan_Potentia
+			2=ShuKlissan_Shuclopia
+			3=ShuKlissan_Bubble
+			4=ShuKlissan_Chasia
+			5=ShuKlissan_Velhmust
+			6=ShuKlissan_Nivelia
+			7=ShuKlissan_Askia
+			8=ShuKlissan_Fungusia
+			9=ShuKlissan_Plasmalemma
+			10=ShuKlissan_Regenerative
+			11=ShuKlissan_Combishell
+			12=ShuKlissan_Recapacit
+			Count=12
+		}
+		KlissanRemainsCount=16
+		248= Гигас
+		329=Немедленно посетить ближайшую пиратскую базу.
+		330=Поработить Галактику
+		294=Годы ушли на изучение причин возвращения клисан, и, что не менее важно - природы их современных полумеханических метаморфоз. Лишь для того, чтобы понять, что за всем в очередной раз стояли пираты. Обученные горьким опытом Рачехана, что привёл к Клисанской Войне, корсары зашли куда дальше своего предшественника, использовав труды далани-отступника Алакая, ударившегося в бега из-за своих научных трудов по применению нанитов, способных перехватывать контроль над клисанской формой жизни.
+		301=Годы ушли на изучение причин возвращения клисан, и, что не менее важно - природы их современных полумеханических метаморфоз. Лишь для того, чтобы понять, что за всем в очередной раз стояли пираты. Обученные горьким опытом Рачехана, что привёл к Клисанской Войне, корсары зашли куда дальше своего предшественника, использовав труды далани-отступника Алакая, ударившегося в бега из-за своих научных трудов по применению нанитов, способных перехватывать контроль над клисанской формой жизни.<br>    В результате успешной операции, проведённой под кураторством лично Галактического Совета, объект Хандлер, откуда проводились манипуляции над поражённой нанитами Махпеллой, был уничтожен вместе с ней самой. В последний момент команда Хандлера сама включила систему самоуничтожения станции, не в силах нести навязанный им груз - в результате от исследований Алакая не осталось ничего, кроме разбросанной атомарной пыли. Ничто не могло пережить одновременной детонации десяти кварковых бомб, заложенных как предохранитель на случай непредвиденных обстоятельств.<br>    Вы же с достоинством ушли на покой, наслаждаясь мирной жизнью и с гордостью наблюдая за репортажами в Галанете, как ваши коллеги расправлялись с одним доминаторским мозговым центром за другим. Жаль, что продлился этот покой недолго - вскоре после того, как объединившиеся силы Коалиции устроили Второй Гралгар, загнав туда остатки доминаторов - на планете, где располагался ваш особняк, обнаружили огромные залежи дизодана, что придало всей системе внезапное значительное стратегическое значение. Доминаторская контратака отчаяния не заставила себя ждать, и вскоре вы обнаружили себя посреди захваченных территорий. Не в силах смотреть, как тостеры выжигают стоявшие на месторождениях мегаполисы, в вас вновь пробудился рейнджер, и вы присоединились к местному сопротивлению, вскоре героически погибнув, защищая группу гражданских от доминаторских боевых роботов, решивших установить очередной завод на местоположении вашего укрытия. С тех пор, имя <0> навсегда останется в веках, вырезанное на Мемориале Героев планеты, пусть и ненадолго, но ставшей вашим новым домом.
+		295=Сказать, что вы внесли весомый вклад в завершение войны в пользу Коалиции - не сказать ничего. Собственноручно повлияв на все ключевые события, что привели к полному и безапелляционному краху как доминаторов, так и пиратов, вы практически мгновенно стали всеобщим любимцем, как только большая часть уже не нуждавшихся в сохранении секретности документов попала в публичную прессу. Следующие несколько лет ваше лицо постоянно мелькало на экранах и в газетах, о вашей карьере рейнджера даже написали пару книг. Помимо этого, вас постоянно приглашали то в шоумены, то в политики. Впрочем, вам сразу показалось, что это одна и та же профессия, только называется почему-то по-разному. Поэтому вы вежливо, но твердо отклоняли все предложения подобного рода. <br> <br>    Когда мир в обитаемом рукаве галактики окончательно окреп, и ему перестало что-либо угрожать, рейнджерский корпус с почестями распустили, устроив по этому поводу пышную церемонию, с награждением всех участников боевых действий. Вас пригласили в качестве ведущего торжества, и вы были очень рады видеть старых товарищей, с которыми зачастую сражались плечом к плечу. <br> <br>    Большая часть бывших рейнджеров вернулась к мирной жизни, а некоторым, особенно горячим парням, вы предложили снова работать вместе и основали элитное охранное агентство. Уже через пару лет о вашей фирме и качестве предоставляемых услуг знала вся галактика, после чего вас буквально завалили заказами. Никакие пираты и экстремисты не могли сравниться в мастерстве с вашими сотрудниками, бывшими бойцами Коалиции. Быстро обеспечив себе безбедное существование, вы, тем не менее, до глубокой старости работали во главе фирмы, и ушли на покой весьма уважаемой персоной.
+		296=После ликвидации клисанской и доминаторских угроз одновременно вы получили свою долю славы. Однако, появление вашего лица на всех экранах галактики привело к тому, что через несколько дней на ваш корабль напала хорошо организованная группа пиратских ликвидаторов, и вы чудом остались живы. Понимая, что пираты никогда не оставят в покое того, кто раскрыл их коварные планы и обезглавил организацию, вы приняли решение просто исчезнуть. Спецслужбы Коалиции инсценировали столкновение вашего корабля с крупным астероидом, а затем устроили герою Коалиции пышные похороны, прямую трансляцию которых вы смотрели по стереовизору.<br> <br>    Новые документы и новое имя, а также крупный счет в банке предоставили вам свободу выбора дальнейшей судьбы. Теперь можно было до окончания времен отдыхать на лучших межзвездных курортах. Или, как вариант, принять предложение командующего разведслужбой Коалиции и стать наставником нового поколения спецагентов. А еще можно было взяться за написание мемуаров в стиле фантастического романа или научиться играть на древнем человеческом инструменте - аккордеоне...<br> <br>    Но однажды, случайно оказавшись рядом со зданием особого центра военной подготовки, вы увидели плакат: "Галактике нужны Космические рейнджеры!", который и помог вам принять окончательное решение...
+		302=Годы ушли на изучение причин возвращения клисан, и, что не менее важно - природы их современных полумеханических метаморфоз. Лишь для того, чтобы понять, что за всем в очередной раз стояли пираты. Обученные горьким опытом Рачехана, что привёл к Клисанской Войне, корсары зашли куда дальше своего предшественника, использовав труды далани-отступника Алакая, ударившегося в бега из-за своих научных трудов по применению нанитов, способных перехватывать контроль над клисанской формой жизни.<br>    В результате вашей стремительной атаки на неподготовленного к мгновенному ответу Алакая, объект Хандлер, откуда проводились манипуляции над поражённой нанитами Махпеллой, был уничтожен вместе с ней самой. В последний момент команда Хандлера сама включила систему самоуничтожения станции, не в силах нести навязанный им груз - в результате от исследований Алакая не осталось ничего, кроме разбросанной атомарной пыли. Ничто не могло пережить одновременной детонации десяти кварковых бомб, заложенных как предохранитель на случай непредвиденных обстоятельств.<br>    Вы же с достоинством ушли на покой, наслаждаясь мирной жизнью и с гордостью наблюдая за репортажами в Галанете, как ваши коллеги расправлялись с одним доминаторским мозговым центром за другим. Жаль, что продлился этот покой недолго - вскоре после того, как объединившиеся силы Коалиции устроили Второй Гралгар, загнав туда остатки доминаторов - на планете, где располагался ваш особняк, обнаружили огромные залежи дизодана, что придало всей системе внезапное стратегическое значение. Доминаторская контратака отчаяния не заставила себя ждать, и вскоре вы обнаружили себя посреди захваченных территорий. Не в силах смотреть, как тостеры выжигают стоявшие на месторождениях мегаполисы, в вас вновь пробудился рейнджер, и вы присоединились к местному сопротивлению, вскоре героически погибнув, защищая группу гражданских от доминаторских боевых роботов, решивших установить очередной завод на местоположении вашего укрытия. С тех пор, имя <0> навсегда останется в веках, вырезанное на Мемориале Героев планеты, пусть и ненадолго, но ставшей вашим новым домом.
+		250=Вы поставили свой верный корабль на вечную стоянку и взялись за организацию собственного торгового предприятия. Пусть вы и не разгадали все тайны клисан, решив просто стереть столь непредсказуемую угрозу с игровой доски - пожалуй, это было лучшим решением для всей Галактики. То и дело в разных системах вспыхивали стычки с доминаторскими недобитками, в большинстве своём обосновывавшихся на не поддающихся поверхностной разведке скрытых планетарных базах, но все они быстро подавлялись окрепшей военной и политической мощью Коалиции, единой, как никогда прежде. А про безумца Алакая все впоследствии просто забыли, как о страшном сне, который никогда не должен был повториться. Ваши рейнджерские познания оказались весьма уместны для успешной организации амбициозных проектов, которые вы реализовывали, сначала в рамках одной системы, а потом и всего звездного сектора, и вскоре под вашим контролем оказалась целая торговая империя, по востребованности обогнавшая даже известнейшую Почту Карагона. <br> <br>    Спустя четырнадцать лет, с того момента, когда вы сменили кабину пилота на заваленный бумагами офисный стол, вам уже не приходилось сталкиваться ни с чем, что напоминало бы войну, если не считать отдельно взятых редких пиратских нападений. Лишь изредка вы возвращались к своему кораблю, давно утратившему былую технологическую актуальность, ностальгируя о тех временах. Уже в далёком будущем, передавая владение своей новой корпорацией в руки молодого преемника, вы понимали - ваша жизнь, наконец, стала полноценной. Порой вас беспокоило только одно - даже спустя пятьдесят лет, то и дело на различных необитаемых планетах разведчики Коалиции натыкались на миниатюрные доминаторские базы, похоже, совсем лишившихся осознания принадлежности к определённой серии. Они отнюдь не обгоняли Коалицию по технологическим параметрам, но, что удивительно, практически и не отставали, не имея при этом никакой видимой коллективной связи. Но вы знали - после всех тех лет, это уже не могло ни на что повлиять, не правда ли?
+		251=Но история не спешила заканчиваться на этом. В будущем, многие историки будут спорить о том, что именно стало первопричиной всех дальнейших событий, и последствия чьих решений всё же были тому виной. Изгнанный <clr>Алакай<clrEnd>, отправившийся в соседний рукав Галактики, обосновался в заброшенных колониях Эльтан - гаальских поселений, разорённых клисанами ещё до войны. Так, используя древнее, но рабочее оборудование, <clr>Алакай<clrEnd> восстановил свою лабораторию и, как ни в чём ни бывало, продолжил эксперименты, за двадцать лет захватив и подчинив себе ещё троих Махпелл. Годы одиночества медленно, но уверенно разъедали разум феянина изнутри, и, тридцать лет спустя официальной даты его позорного провала в Тортугаце - одержимый жаждой мести, тот вернулся назад. Четыре Махпеллы, с воистину неисчислимым флотом клисан позади - военные Коалиции, не так давно расправившихся со всеми её врагами и ещё не полностью восстановившие свою боевую мощь, просто не могли ничего противопоставить. Клисане в считанные годы уничтожили всё то, чем называло себя объединение Пяти Рас, оставив хаос, анархию, и выжженные дотла миры. В конце концов, войска специального назначения вычислили и ликвидировали безумного учёного, активировав протокол самоликвидации у всех подконтрольных клисанских флотилий, и война закончилась так же внезапно, как и началась. Но огонь, распространявшийся по Галактике, уже было не остановить - борьба за ресурсы, власть, и просто за выживание погребёт бывшие объединённые миры в пучину бесконечных междоусобиц, и Коалиция уже никогда не сумеет полностью восстановиться.
+		253=Устройство перенаправило клисанский гиперпространственный поток в вашу систему. Враг среагировал на саботаж и выслал дополнительные подкрепления. Следующее перенаправление сможет произойти через <0> дней.
+		327=Адская волна
+		255=Махпелла
+		256=Хандлер
+		331=<Player>! <br> Мы знаем, кому вы симпатизируете и к чему стремитесь, но нашим разведчикам недавно удалось найти очередное косвенное подтверждение связи клисанского вторжения с пиратами: некоторые технологии, используемые в клисанском оборудовании, имеют ряд концептуальных сходств с разработками, попавшими в руки к Клану. Сейчас еще рано что-то утверждать наверняка, но мы настоятельно рекомендуем вам приложить максимальные усилия в предварительном изучении угрозы, с которой собираетесь столкнуться. Если наши предположения хотя бы частично верны, сталкиваться с двойной угрозой неподготовленными - самоубийство. Возможно, наши исследовательские команды сети научных баз сумеют помочь вам в этом нелёгком вопросе.
+		347=В системе <0> обнаружены неопознанные враждебные корабли. Всем судам, идущим транзитом через эту систему, рекомендуется изменить курс.
+		348=Неизвестный корабль
+		349=Кхарн
+		281=Координаты системы <0> отправлены КВСМК. <br>Ответ: "Говорит капитан военной базы <clr>Реконкиста<clrEnd>. Ликвидируйте максимально возможное число боевых единиц противника. Держитесь до прибытия подкрепления."
+		282=Генератор автоматически отправил координаты системы <0> по секретному каналу связи КВСМК. Мысленно проклянув устройство, вы продолжили пилотирование, как вдруг получили сообщение по тому же каналу. <br>Ответ: "На связи капитан засекреченной военной базы <clr>Реконкиста<clrEnd>. Мы в вас не сомневались. Ликвидируйте максимально возможное число боевых единиц противника. Держитесь до прибытия подкрепления."
+		280=Реконкиста
+		299=Секретный объект Хандлер и Махпелла подлежат немедленному уничтожению.
+		300=Махпелла успешно ликвидирована. Вы можете покинуть секретный сектор.
+		288=Дайте детальную информацию о ситуации на фронтах
+		287=Расскажите мне о ходе военных действий
+		286=Управление клисанами
+		284=Сдать протоплазму: <0> шт. за <1> нд.
+		285=Как я могу помочь Коалиции в борьбе с клисанами?
+		283=Исследование клисан
+		324=Внимание, граждане Галактики! Под каким бы флагом вы ни летали, под чьим бы началом ни служили, прошу, выслушайте нас, персонал станции <clr>Хандлер<clrEnd>, все это время порождавшей орды клисан! <br> С нас хватит! Мы устали, устали от этих безумных экспериментов, от последствий, создаваемых одержимой собственными амбициями верховной власти! Все это - сплошное безумие, и было им с самого начала. <br> Наш лидер, <clr>Алакай<clrEnd>, стремился к своей детской мечте. Мораль у него была такой же... детской. Мы не задумывались, для всех нас это было просто игрой... очередной тайной, которую мы стремились любой ценой разгадать. Только вот, в действительности, ради чего?.. <br> Мы чувствовали, что все так и обернётся, но были слишком слабы, чтобы противостоять. Все несогласные тут же уничтожались. Но больше мы не боимся. Мы искупим свою вину перед миллионами пострадавших, и перед теми, кого пытались подчинить. <br> Внимайте, наше время подходит к концу! Мы уничтожили безумца, но он успел активировать систему самоуничтожения станции. Нам не сбежать - при конструировании секретного объекта спасательные капсулы предусмотрены не были. Поэтому мы унесем последнее упоминание о возможности контроля над клисанами с собой в могилу. Это оружие, которое не должно существовать, и мы покончим с ним здесь, и сейчас. <br> Прощайте.
+		289=Внимание всем пилотам! <br>В системе <0> обнаружены враждебно настроенные корабли клисан!  Патрульные корабли уже вступили в бой. Всем грузовым судам, идущим транзитом через эту систему, настоятельно рекомендуется изменить маршрут.
+		290=Внимание всем пилотам! <br>В системе <0> обнаружены враждебно настроенные корабли клисан! Патрульные корабли уже вступили в бой. Всем грузовым судам, идущим транзитом через эту систему, настоятельно рекомендуется изменить маршрут.
+		95=У нас есть новости для вас, <Player>. На этот раз ваши заслуги даже упомянули не мелким шрифтом в конце отчёта, но полноценным упоминанием в логистических списках. <br>Новый <clr>прорыв<clrEnd> в исследовании клисан позволил нам сделать неоценимый вклад в теорию борьбы с клисанской угрозой - мы, наконец, подтвердили классовые особенности клисан и создали пошаговую симуляцию боя в открытом космосе, воссоздав её из цепочки фрагментов реальных событий. Таким образом, мы не только поняли основы клисанских боевых тактик, но и определили уязвимости каждого из корпусов.<br> <br>Интересно, что кристаллическая оболочка многих типов клисанских кораблей модифицирована таким образом, чтобы <clr>отражать урон того или иного специализированного типа оружия<clrEnd>, что, в сумме, создает крайне устойчивую формацию из кораблей, способных прикрывать друг друга. Вероятно, что это и есть основная причина того, что наши военные, привыкшие решать все прямо и быстро, далеко не всегда успевают отступить с поля боя. Также стоит отметить, что благодаря очень скромным габаритам и впечатляющим рефлексам, <clr>клисаны обладают способностью к уклонению<clrEnd>. <br>Мы составили детальный список того, что нам удалось открыть, используйте полученную информацию с умом, рейнджер. <br><br>- Мутенок: восприимчивость 120%-80%-20% (Э-О-Р), шанс уклонения - 40%<br>- Рогит: восприимчивость 115%-70%-27%, шанс уклонения - 30%, особая способность - увеличение урона по мере получения повреждений<br>- Катаури: восприимчивость 60%-130%-35%, шанс уклонения - 22%, особая способность - шанс нанесения критических повреждений<br>- Нондус: восприимчивость 130%-60%-42%, шанс уклонения - 14%, особая способность - взрыв при серьезном повреждении корпуса<br>- Эгемон: восприимчивость 70%-120%-50%, шанс уклонения - 10%, особая способность - многочисленные орудийные турели, способные к контратаке<br><br>Исходя из данной информации, наш отдел рекомендует использовать одновременно как минимум две конфигурации орудий: энергетического и осколочного. Но даже такую скромную роскошь позволить себе может не каждый, при этом не забивая всё свободное место в трюме, так что действуйте по обстоятельствам, и не забывайте о своих обязанностях, <Player>, победить - наш общий долг!
+		94=Сегодня особенный день, рейнджер! Наш исследовательский отдел сумел пройти ключевой этап в изучении клисан, и мы с радостью сообщаем, что на научной станции <0> был достигнут новый <clr>прорыв<clrEnd>. <br>Новостью дня, бесспорно, является отчет по изучению функционала оборудования клисан - мы собрали достаточно образцов, чтобы сформировать четкое понимание того, на что их оборудование было, по крайней мере изначально рассчитано. Вот список всего, что нам удалось узнать: <br>- Гвидест (двигатель) обладает усиленной мощностью, и, вследствие, развивает высокую скорость<br>- Ондест (топливный бак) эффективно подает гипертопливо, обеспечивая высокую дальность прыжка<br>- Ксифест (дроид) по своей скорости существенно опережает прочие модели, быстрее латая пробоины<br>- Вахтест (захват) в связи с мощностью потока превосходит другие захваты по скорости притягивания<br>- Джевлест (ГЗП) генерирует дополнительное микрополе, снижающее массу корабля<br>- Гландест (радар) помогает наведению оружия на цель, увеличивая максимальную дальность поражения<br>- Наксест (сканер) выискивает слабые места в обшивке противника, усиливая наносимые повреждения<br><br>Важно, что клисанское оборудование, как и оружие, не состоит целиком из органических частей. Мы не смогли подтвердить некоторые догадки в прошлый раз, и держали эту информацию в секрете, но рейнджер, наш новый враг, судя по всему, использует самую настоящую технику. Пока мы не можем сказать наверняка, является ли это следствием естественной эволюции, или же результатом стороннего вмешательства. Основываясь на том, что предыдущая Махпелла просуществовала далеко не одно столетие и не спешила видоизменяться даже при встрече с коалиционными технологиями, мы можем предположить все что угодно, вплоть до <clr>влияния доминаторов или пиратов<clrEnd>. Возможно, это <clr>стоило бы проверить изнутри<clrEnd>, выйдя на связь с представитлями обеих сторон, но это исключительно на ваше усмотрение - не исключено, что внедрение окажется даже более опасным и трудоемким, нежели прямое исследование.<br><br>Продолжайте работу, рейнджер, перед нами поставлена серьезная загадка, с очень серьезными потенциальными последствиями в том случае, если мы не успеем её разгадать.
+		61=Отличные новости, рейнджер! Благодаря усилиям нашего отдела и стабильному притоку исследовательского материала, мы сумели сделать первый значительный <clr>прорыв<clrEnd> в исследовании возвратившейся клисанской угрозы. <br><br>Прежде всего, в точности подтверждены все наши догадки о том, что виток клисанской эволюции, с которым мы имеем дело сегодня - в корне отличается от того, что встретились Коалиции на заре прошлого тысячелетия. <br>Мы не до конца понимаем принцип работы нового формата группирования клисан, но, судя по всему - эта Махпелла, для облегчения управления собственными органами, не использует прямую связь, но прибегает к так называемым <clr>нейролинкам<clrEnd> - промежуточным узлам, выполняющим своеобразную административную роль. Не обманывайтесь сравнительно малым количеством атакующих, <Player> - нейролинки позволяют Махпелле содержать в разы больший потенциальный флот, чем его стандартная вариация, и оперировать им на самых отдаленных участках Галактики без малейшего координационного сбоя. Сталкиваясь с врагом, мы настоятельно рекомендуем атаковать эти узлы в первую очередь, иначе эффективность контратаки может оказаться поставленной под сомнение. <br><br>Основываясь на анализе базового функционала исследованного клисанского материала, а так же сравнения повреждений на корпусах наших кораблей, мы смогли выяснить некоторые принципы работы новой линейки вражеских орудий, вот список того, что наши ученые сумели подтвердить:<br>- число известных на данный момент клисанских орудий колеблется между десятью и пятнадцатью видами;<br>- некоторые клисанские корабли владеют бронебойным вооружением, обходящим защитное поле и защиту корпуса;<br>- большая часть клисанского оружия имеет дополнительные функции, такие как повреждение оборудования, электромагнитное излучение, замедление, часто в различных комбинациях;<br>- у клисан существует только один вид ракетного оружия - болт-матрица, использующийся катаури.
+		105=Так их, <Player>! Никто не сражается так, как сражается клановая братва! И ты сегодня подтвердил эту аксиому на практике! Тебе, конечно, и часть добычи полагается, так что проходи, не задерживайся.<br>От имени всей нашей системы <0> мы вручаем вам знак, отвечающий вашей доблести: <1>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><2>
+		104=И чего, спрашивается, эта зелень забыла здесь три века спустя? Вот ты, <Player>, не знаешь? Может, спросить их о чём? Хех, да, осталось бы кого после тебя спрашивать. Что я точно могу сказать, так это то, что бой был что надо!<br>От имени всей нашей системы <0> мы вручаем вам знак, отвечающий вашей доблести: <1>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><2>
+		103=308=Клисане, доминаторы, Коалиция... все они на одно лицо, перед нашей-то мощью! Пора начать предложить им становиться в очередь. <Player>, личная тебе благодарность за соучастие.<br>От имени всей нашей системы <0> мы вручаем вам знак, отвечающий вашей доблести: <1>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><2>
+		102=А эти клисане действительно агрессивны, не правда ли, <Player>? Но они своё уже получили с лихвой, и в этом определённо не обошлось без твоих заслуг, дружище. Да здравствует Братство!<br>От имени всей нашей системы <0> мы вручаем вам знак, отвечающий вашей доблести: <1>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><2>
+		291=Получено опыта: <0> ед.
+		110=<Player>, у нас нет слов. Это не первый раз, когда планеты системы <0> подвергаются нападению врага, и мы уже отчаялись ждать реального подкрепления, и тут - вы! Прошу, примите вашу награду.<br>От имени всей нашей системы <1> мы вручаем вам знак, отвечающий вашей доблести: <2>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><3>
+		109=Отлично сработано, <Player>, <0> больше не находится под гнётом клисанской заразы. Вам полагается достойная награда, и мы надеемся, что она не окажется последней.<br>От имени всей нашей системы <1> мы вручаем вам знак, отвечающий вашей доблести: <2>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><3>
+		108=Блестяще, <Player>! Ни один клисанский захватчик более не угрожает безопасности жителей системы <0>! Мы подготовили целую церемонию, приуроченную к вашему награждению, прошу, пройдёмте за мной.<br>От имени всей нашей системы <1> мы вручаем вам знак, отвечающий вашей доблести: <2>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><3>
+		107=<Player>, какой бой, какая победа! Ваш бой определённо войдёт в историю планеты <0> и системы <1> в принципе. Мы благодарим вас за проявленную отвагу.<br>От имени всей нашей системы <2> мы вручаем вам знак, отвечающий вашей доблести: <3>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><4>
+		106=Рады приветствовать вас на нашей земле, <Player>, ведь не без вашего вклада планета <0> оказалась вырвана из цепких клисанских... что бы у них там ни было. Вы действительно заслужили награду.<br>От имени всей нашей системы <1> мы вручаем вам знак, отвечающий вашей доблести: <2>! Надеемся, что этот жест подтолкнет вас на новые подвиги.<br><br><3>
+		292=Получено опыта:
+		135=Благодарим за сдачу материала массой <0> тонн! На ваш счет уже перечислено <1> cr. в качестве благодарности. <br>По прогнозам специалистов, до следующего прорыва требуется накопить <2> тонн материала.
+		134=Рады сообщить вам, что первая фаза исследований в данном направлении подходит к концу. К сожалению, побочными ветками занимается скудное число сотрудников, и до сих пор еще не весь материал изучен. <br><br>Ориентировочная дата окончания работы - <0>. Возвращайтесь на научную базу к тому времени: вам определенно стоит поучаствовать в полевых испытаниях.
+		293=<PlayerFull>, вам надлежит срочно прибыть в ближайший центр рейнджеров. Форма одежды - штатская, парадная.
+		252=<PlayerFull>, вам надлежит срочно прибыть на ближайшую работоспособную  пиратскую станцию.
+		159=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>В данный момент ситуация на фронтах ужасна. Силы противника захватили уже почти весь наш рукав галактики. Оставшиеся в живых рейнджеры планируют начать операцию по освобождению системы <3>. На таких как ты, <Player>, и остались все наши надежды.
+		158=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>В данный момент ситуация на фронтах ужасна. Силы противника захватывают систему за системой. <br>Сейчас мы собираемся отбить систему <3>. Если ты, <Player>, хочешь принять участие в этой операции, то поспеши, так как уже несколько рейнджеров вызвались участвовать в освобождении.
+		157=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>На текущий момент нам принадлежит всего лишь небольшая доля освоенных систем. Это плачевный факт, равно как и то, что мы безнадежно проигрываем.<br>Стратегически важной точкой для нас является система <3> (сектор <4>). Ты должен полететь туда, <Player>, и принять участие в боевых действиях.
+		156=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>В последнее время инициатива переходит от одной стороны к другой. Враги никак не желают сдавать своих позиций, но развязка близка. Одна из сторон рано или поздно одержит верх, и мы надеемся, что победа останется за Коалицией.<br>Ты, <Player>, можешь оказать нам посильную помощь, если освободишь систему <3> в секторе <4>.
+		155=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>Дела обстоят хорошо. Рейнджеры вкупе с вооруженными силами медленно вытесняют силы противника с захваченных территорий. Наши технологии на данный момент успешно могут поспорить с вражескими, и наше оружие эффективно поражает их корабли. Так что верь, <Player>, в нашу победу! Сейчас мы как раз планируем освобождение системы <3> в секторе <4>.
+		154=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>На текущий момент мы контролируем около девяти десятых обжитых миров. Враги не представляют особой угрозы, и мы планируем уже в следующем году полностью освободить все захваченные ими системы. Пора, <Player>, перейти к финальному наступлению!
+		153=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br><br>Мы полностью контролируем наш рукав галактики и практически уже празднуем победу. Все враги, по нашим сведениям, повержены, рейнджер <Player>.
+		166=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>В данный момент ситуация на фронтах ужасна. Силы противника захватили уже почти весь наш рукав галактики. Оставшиеся в живых рейнджеры планируют начать операцию по освобождению системы <4>. На таких как ты, <Player>, и остались все наши надежды.
+		165=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>В данный момент ситуация на фронтах ужасна. Силы противника захватывают систему за системой. <br>Сейчас мы собираемся отбить систему <4>. Если ты, <Player>, хочешь принять участие в этой операции, то поспеши, так как уже несколько рейнджеров вызвались участвовать в освобождении.
+		164=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>На текущий момент нам принадлежит всего лишь небольшая доля освоенных систем. Это плачевный факт, равно как и то, что мы безнадежно проигрываем.<br>Стратегически важной точкой для нас является система <4> (сектор <5>). Ты должен полететь туда, <Player>, и принять участие в боевых действиях.
+		163=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>В последнее время инициатива переходит от одной стороны к другой. Враги никак не желают сдавать своих позиций, но развязка близка. Одна из сторон рано или поздно одержит верх, и мы надеемся, что победа останется за Коалицией.<br>Ты, <Player>, можешь оказать нам посильную помощь, если освободишь систему <4> в секторе <5>.
+		162=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>Дела обстоят хорошо. Рейнджеры вкупе с вооруженными силами медленно вытесняют силы противника с захваченных территорий. Наши технологии на данный момент успешно могут поспорить с вражескими, и наше оружие эффективно поражает их корабли. Так что верь, <Player>, в нашу победу! Сейчас мы как раз планируем освобождение системы <4> в секторе <5>.
+		161=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>На текущий момент мы контролируем около девяти десятых обжитых миров. Враги не представляют особой угрозы, и мы планируем уже в следующем году полностью освободить все захваченные ими системы. Пора, <Player>, перейти к финальному наступлению!
+		160=Информацию о боевых действиях разглашать не принято. Но для рейнджеров мы делаем исключения. <br>Текущий расклад сил в Галактике:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%<br><br>Мы полностью контролируем наш рукав галактики и практически уже празднуем победу. Все враги, по нашим сведениям, повержены, рейнджер <Player>.
+		60=В филиалах Отдела вы можете сдать клисанское оборудование и ошметки, причем за последние мы платим <clr>вдвойне<clrEnd>. Сдачей ошметков вы способствуете совершению <clr>открытий<clrEnd> - получению нами каких-либо теоретических познаний и, в конце концов, полному изучению клисан. Также вы можете заинтересоваться побочными исследованиями, нацеленными на изучение вспомогательных антиклисанских средств.<br>На данный момент нами совершено <0> открытий. По прогнозам специалистов, до следующего прорыва требуется накопить <1> тонн материала.
+		326=<0>
+		62=Благодарим за сдачу материала массой <0> тонн! На ваш счет уже перечислено <1> cr. в качестве благодарности.<br>По прогнозам специалистов, до следующего прорыва требуется накопить <2> тонн материала.
+		63=Рады сообщить вам, что старания нашего отдела по изучению клисан не прошли даром и мы достигли некоторых успехов. Прежде всего, наши ученые смогли разобраться в нюансах и функционале современного строения клисан. Нами было сделано множественно уникальных открытий, но кое в чем мы достигли исключительного успеха. <br><br>Вы ведь наверняка бывали в черных дырах и понимаете, как работает портальная функция нейролинков? В гиперпространственном сгустке внутри червоточины всегда есть выход, ведущий в определенную точку пространства. В отличие от клисан, мы научились лишь предсказывать, куда будет вести этот выход - они же полностью контролируют процесс создания и стабилизации червоточины и способны отправлять свои корабли куда пожелают. Для этого в их телах есть специальные органы, своеобразные нервные центры, создающие подпространственную волну, корректирующую направление червоточины. <br><br>После множества попыток <clr>мы смогли создать портальное устройство<clrEnd>, используя части этих органов, и если наши расчеты верны, с его помощью вы сможете стабилизировать обратный поток клисанской червоточины раньше нейролинка и выйти из нее в систему, являющуюся плацдармом вторжения. Скорее всего, именно там вы и наткнетесь на их материнский корабль - <clr>Махпеллу<clrEnd>.
+		64=Тем не менее, во времена прошлой войны нам удавалось подключать биологическое оборудование клисан к ситемам наших кораблей. Несмотря на общее чужеродное строение тела клисан, отдельные их органы устроены достаточно просто и могут быть исследованы и адаптированы для применения на наших кораблях. Впрочем, мы не можем быть уверены, функционируют ли эти органы на наших звездолетах в полную силу, или же у клисан они работают еще и как-то иначе, но по крайней мере мы можем добиться рабочего симбиоза.<br>Собственно, ваша задача остается прежней - стараться сбить как можно больше врагов и привезти нам как можно больше ошмётков для изучения. Нам пригодится абсолютно всё, что вы сможете добыть: какие-то части клисан нам уже знакомы и вы можете попробовать поставить их на свой звездолет, но неизученные фрагменты представляют для нас особую ценность.
+		65=К сожалению, сложившаяся ситуация с появлением в наших мирах клисанских кораблей пока что совершенно туманна, равно как и неизвестны детальные обстоятельства всего инцидента. Несмотря на то, что два века назад, во времена Второй клисанской войны рейнджеры при помощи передовой научной разработки - Ментального Коммуникатора - смогли наладить контакт с мозговым центром клисан и разрешить конфликт мирным путем, сейчас их корабли снова вторглись в наше космическое пространство. Они без предупреждения атакуют другие звездолеты без явной на то причины. Стоит также отметить, что бортовые компьютеры отмечают клисанские корабли как пиратские из-за отсутствия их в базах данных.  <br>К сожалению, обнаружить ответственную за атаки Махпеллу нам не удалось, но наши аналитические отделы сейчас вплотную заняты решением данного вопроса.
+		66=Однако, как выяснилось в ходе нескольких столкновений с захватчиками, их строение существенно изменилось - клисанами активно используется полумеханическое оборудование, а старые органы либо отмерли, либо кардинально преобразовались, сменив основную функцию. До конца неизвестно, следствие ли это двухсотлетней эволюции или стороннего вмешательства.<br>Одной из главных особенностей "новых" клисан является то, что они создают в космосе крупные гнезда - нейролинки - для инкубации новых кораблей и регенерации старых. Данные конструкции представляют большую опасность как для обитателей системы, так и для пилотов, в связи с чем поощряется их ликвидация.
+		67=Сейчас наилучшим способом помочь Коалиции в этой борьбе видится сдача клисанских ошметков на научные базы для дальнейшего изучения. Только познав врага, мы сможем одержать победу в этой войне.
+		68=За прошедшие две сотни лет с момента последней войны развитие клисан не стояло на месте - может, внешне их корабли и фактически идентичны тем данным, что хранятся в наших архивах, однако нам уже довелось убедиться на собственной шкуре, что эта волна клисан значительно отличается от ветви, встреченной Коалицией три века тому назад. Их устройство более совершенно, а технологии во многом превосходят все то, с чем нам вообще доводилось сталкиваться раньше. Что важнее всего - структура этой расы имеет кристаллическую, а не белковую основу, что рушит практически все наши представления о них как об органических существах. Даже самые простейшие процессы, протекающие в их телах, для нас абсолютно чужды и непонятны, и мы можем лишь попытаться описать их, подбирая аналогичные или схожие термины из нашего языка. Принцип работы клисанского оборудования вообще остается для нас тайной из тайн.
+		69=Но это еще не все. В ходе исследований мы обнаружили ещё один скромный нюанс.<br><br>Как вы, наверное, знаете, протоплазма клисан представляет собой скопление кристаллических структур, выполняющих роль "корабельных клеток". И у абсолютно всех экземпляров мы выделили одну закономерную схожесть - <clr>протоплазма оказалась инфицирована множеством нанитов биомеханического происхождения.<clrEnd> Мы предполагаем, что это может быть неким вирусом, запущенным цивилизацией, с которой могли столкнуться клисанские разведчики. Вполне вероятно, что <clr>это и является истинной причиной их ранее необъяснимой агрессии.<clrEnd> <br><br>Кроме того, мы предполагаем, что процесс обратим - биомеханизмы не повреждают кристаллы клисан, и лишь паразитируют на них, подчиняя клисанские корабли. Рейнджер, если наши догадки подтвердятся, и заразу можно будет искоренить, внимите голосу разума и <clr>постарайтесь найти способ мирного разрешения конфликта.<clrEnd>
+		70=Рассчитываем на вас, <Player>, и удачи!
+		71=Господин верховный барон, убедительно прошу вас в самые кратчайшие сроки прибыть на объект <clr>Хандлер<clrEnd>. Есть вопрос, требующий вашего вмешательства. Все подробности на месте.
+		72=Ну что вы, пиратские законы славятся тем, что их можно изменить как угодно, и когда угодно. Они не стали вынуждать меня отказаться от старого звания и наоборот, поощряли его куда достойнее, чем Галактический Совет. Когда я разработал механизм заманивания одной из <clr>Махпелл<clrEnd> в ловушку, мне грозило немедленное пожизненное заключение, а малокское правительство вообще выступало за расстрел без суда и следствия. Куда, думаете, было податься учёному в такой безвыходной ситуации? Естественно, я связался с пиратским кланом, и, ознакомившись с технической документацией моего скромного проекта, коллектив ханов тотчас же загорелся энтузиазмом. Что может быть лучше потенциально неограниченного в размерах клисанского флота, подчинённого специально разработанными нанитами и готового обеспечить своему хозяину неоспоримое доминирование в космосе? Эта информация быстро дошла до барона <clr>Чушкача<clrEnd>, и тот просто не мог упустить такую возможность.
+		73=Приветствую вас на борту секретного объекта <clr>Хандлер<clrEnd>, <0>. Первым делом вы наверняка захотите выхватить бластер, но поверьте, вы ничего не потеряете, если позволите мне объясниться. Как вы уже, наверное, догадались - к появлению клисан в нашей Галактике действительно причастен пиратский клан. Точнее, лично я - далани <clr>Алакай<clrEnd>, главный директор и идейный вдохновитель данного проекта. И, как видите, мы действительно добились немалых успехов - запустив легенду о некоем устройстве, основанном на принципе работы Z-трансмиттера, мы успешно пустили пыль в глаза целому Рукаву, вынудив Коалицию долгое время гнаться за ложной тенью. Не без помощи клисанского вмешательства моему новому начальству удалось продержаться столь долгое время. Но, к сожалению, от собственной некомпетентности их это так и не спасло.
+		74=Приветствую вас на борту секретного объекта <clr>Хандлер<clrEnd>, барон. Как вы уже, наверное, догадались - к появлению клисан в нашей Галактике действительно причастен пиратский клан. Точнее, лично я - далани <clr>Алакай<clrEnd>, главный директор и идейный вдохновитель данного проекта. И, как видите, мы действительно добились немалых успехов - запустив легенду о некоем устройстве, основанном на принципе работы Z-трансмиттера, мы успешно пустили пыль в глаза целому Рукаву, вынудив коалиционных ищеек гнаться за ложной тенью. Сложно отрицать эффективность проекта в нашем деле - сейчас в Галактике преимущество остаётся только за одной стороной - ни один из врагов Клана так и не сумел противостоять нам, ни безжалостные машины, ни прогнившая Коалиция, примерившая на себя личину благодетеля - никто. Всё это было бы невозможно в столь кратчайшие сроки без… стороннего вмешательства. Но сегодня - Клан, бесспорно, царит в этом Рукаве.
+		75=Приветствую вас на борту секретного объекта <clr>Хандлер<clrEnd>, барон. Как вы уже, наверное, догадались - к появлению клисан в нашей Галактике действительно причастен пиратский клан. Точнее, лично я - далани <clr>Алакай<clrEnd>, главный директор и идейный вдохновитель данного проекта. И, как видите, мы действительно добились немалых успехов - запустив легенду о некоем устройстве, основанном на принципе работы Z-трансмиттера, мы успешно пустили пыль в глаза целому Рукаву, вынудив коалиционных ищеек гнаться за ложной тенью. Благодаря клисанскому вмешательству Клан всё ещё сохраняет неоспоримое преимущество в этой войне - даже если нас прижмут к стенке, легавым никогда не вычислить координаты <clr>Тортугаца<clrEnd>, и мы всегда сумеем подготовить сокрушительный ответный удар.
+		76=Ну что вы, пиратские законы не ограничивают наши давние заслуги, даже, наоборот - поощряют куда достойнее, чем эти ваши скупердяи из Галактического Совета. Когда я разработал механизм заманивания одной из <clr>Махпелл<clrEnd> в ловушку, мне грозило немедленное пожизненное заключение, а малокское правительство вообще выступало за расстрел без суда и следствия. Куда, думаете, было податься учёному в такой безвыходной ситуации? Естественно, я связался с пиратским кланом, и, ознакомившись с технической документацией моего скромного проекта, коллектив ханов тотчас же загорелся энтузиазмом. Что может быть лучше потенциально неограниченного в размерах клисанского флота, подчинённого специально разработанными нанитами и готового обеспечить своему хозяину неоспоримое доминирование в космосе? Эта информация быстро дошла до барона <clr>Чушкача<clrEnd>, и тот просто не мог упустить такую возможность.
+		77=Да, конечно, барон. Я лишь надеюсь, что мы сможем достичь взаимопонимания. В Галактике всё ещё сохраняется зловонное присутствие врагов Синдиката, и поддержка клисан сможет обеспечить нам козырь, который гарантированно положит конец угрозе благополучию и процветанию Клана сегодня. Враги, так до конца и не определившие, откуда клисане вообще взялись - даже не поймут, что это было.
+		78=Да, конечно, барон. Я лишь надеюсь, что мы сможем достичь взаимопонимания. Нельзя не признать заслуг проекта, ведь мы всё-таки теперь герои и освободители угнетённого народа, разве не так? И, поверьте - это только начало. Если я сумею реализовать вторую стадию проекта, Клан сможет реализовать давнюю мечту ни на что не способной Коалиции и расширить свои владения за пределы родного Рукава
+		79=Вы слишком плохого обо мне мнения, барон. Как истинный представитель научного контингента Пиратского Клана, я не гонюсь ни за чем, кроме науки. Случайные жертвы? Побочный урон? Признайте, вас они тоже редко когда интересовали на пути к власти. Так что, смею предположить, что мы с вами в этом вопросе имеем определённую солидарность.
+		80=Вы слишком плохого обо мне мнения, барон. Как истинный представитель научного контингента Пиратского Клана - я не гонюсь ни за чем, кроме науки. Случайные жертвы? Побочный урон? Признайте, вас они тоже редко когда интересовали на пути к власти. Так что, смею предположить, что мы с вами в этом вопросе имеем определённую солидарность.
+		81=Благодарю вас за неоценимую моральную поддержку, барон. Я предвидел ваше решение и заранее приготовил передатчик, которым вы сможете маркировать систему для следующей атаки - вам достаточно отправить сигнал, и в целевой системе вскоре откроется червоточина. Использовать устройство вы сможете с мостика корабля. К сожалению, некоторые технические ограничения не позволят запускать больше одного нейролинка за раз, но поверьте - с мощью и эволюционным потенциалом клисанской армады, вам этого хватит с головой.
+		82=Я признаю, что в этот раз поставил на тёмную лошадку, <0>, и я готов искупить свои грехи перед Коалицией. Мой проект далеко ушёл с момента своего старта, и, вопреки опасениям ополчившегося на меня Совета - оказался более, чем успешен. Даже, каким-то образом, выйдя из-под контроля - <clr>Махпелла<clrEnd> долго не проживёт, так как система самоуничтожения, встроенная в наниты, в течении трёх месяцев не получив контрольного сигнала с моей стороны сработает автоматически.
+		83=Что бы вы обо мне ни думали, я не гонюсь ни за славой, ни за властью, ни даже за материальным вознаграждением. Меня интересует только наука, и только результат. Думаю, прорываясь к верхушке Клана, вы давно осознали, что порой приходится жертвовать малым во имя великого. В Галактике больше не осталось врагов Коалиции, но даже в лабораторных условиях я ещё могу многого достичь. Уверяю вас, <0>, горизонты, открывающиеся перед нами сегодня, ещё не раз помогут в технологическом развитии Коалиции - я молчу о понимании природы клисан в частности.
+		84=Что бы вы обо мне ни думали, я не гонюсь ни за славой, ни за властью, ни даже за материальным вознаграждением. Меня интересует только наука, и только результат. Думаю, прорываясь к верхушке Клана, вы давно осознали, что порой приходится жертвовать малым во имя великого. В Галактике до сих пор сохраняется присутствие доминаторов, и, если вы позволите мне продолжить мои исследования - я готов немедленно перенаправить все имеющиеся мощности проекта на помощь Коалиции в борьбе с бесконечно реплицирующимися тостерами. Прошу, позвольте мне использовать свой последний шанс.
+		85=Даже не знаю, как вас отблагодарить, рейнджер. Вот увидите, я ещё докажу, что моя работа заслуживает жизни. Специально для такого случая, я приготовил передатчик, которым вы сможете маркировать систему для следующей атаки - вам достаточно отправить сигнал, и в целевой системе вскоре откроется червоточина. Использовать устройство вы сможете с мостика корабля. К сожалению, некоторые технические ограничения не позволят запускать больше одного нейролинка за раз, но поверьте - с мощью и эволюционным потенциалом клисанской армады, вам этого хватит с головой.
+		86=Рейнджер <Player>, убедительно прошу вас в самые кратчайшие сроки прибыть на объект <clr>Хандлер<clrEnd>. К вам, как к новому Верховному Барону, у меня есть один разговор.
+		87=Приветствуем вас, <Player>, на борту центра рейнджеров <0>. И у нас для вас порция отличных новостей - план удался! Именно сегодняшняя дата будет значится официальным днем победы над возвращением клисанской угрозы, а ваше имя, рейнджер, останется в истории навеки. После того, как вы, убедив Алакая, что ему ничего не угрожает, грамотно применили плоды его неэтичных экспериментов в борьбе с последними врагами Коалиции, наши военные разработали и реализовали план с захватом ученого, который был только что блистательно реализован.
+		54=
+		350=Вы посылаете запрос состояния клисанского флота на <clr>Хандлер<clrEnd>. Спустя полминуты в бортовом компьютере появляется следующий отчет:<br><br>ЗАРЯД СУБПОРТАЛЬНОГО ГЕНЕРАТОРА: <0> / <clr>100<clrEnd><br>СОСТОЯНИЕ: <1><br>ФАЗА АТАКИ: <2><br>МЕСТОНАХОЖДЕНИЕ: <3><br>ЦЕЛЕВАЯ СИСТЕМА: <4><br>МЕСТОНАХОЖДЕНИЕ МАХПЕЛЛЫ: <5><br>
+		89=Укажите систему для атаки.
+		90=Запрос ретранслирован на <clr>Хандлер<clrEnd>. Ответ положительный. Флот клисан отправлен в указанную систему.
+		91=Рейнджер <Player>, вражеская научная станция <clr>Хандлер<clrEnd> уходит у нас из-под носа! Немедленно взорвите объект, кого возможно - возьмите в плен.
+		92=Так держать, <Player>! Уничтожением секретного объекта вы положили конец жизням множества гнусных предателей, натравивших для нас клисан ради собственных интересов. Безусловно, этот день войдет в историю!<br>Следующая цель - <clr>Махпелла<clrEnd>. Добьем врага до конца!
+		93=Благодарим за проявленный героизм, рейнджер! Сегодня, благодаря гениальности наших ученых и вашей доблести, мы закончили Третью клисанскую войну и одержали убедительную победу над пиратскими интервентами. Выжившие корсары обезглавлены и деморализованы, и теперь окончательная зачистка всех систем от их присутствия - всего лишь вопрос времени. Все граждане Коалиции сегодня салютуют вам! Отправляйтесь в ближайший центр рейнджеров за заслуженной наградой.
+		96=Именно так, <0>, именно так. Только прежде чем сдаться, этот предатель каким-то образом заблокировал управление нанитам и активировал систему самоуничтожения станции. Теперь Махпелла вышла из-под контроля и заняла позицию в <clr>Нифигаце<clrEnd>, уничтожая всё, что попадается в зону действия орудий. И пока мы тут говорим, по всей Галактике происходит широкомасштабное наступление врага. В этой войне нам ещё не доводилось иметь дело с таким количеством клисан одновременно - похоже, что в бой вступила вся оставшаяся флотилия. Будто чертовы нулевые со страниц исторических книг повалили.
+		97=Рейнджер, в сложившейся ситуации мы не можем выделить даже один истребитель. Клисане целятся по населению! Они выжигают планеты, понимаете это, или нет?! Все наши команды специального назначения заняты возведением обороны!
+		98=Отличная работа, <Player>, мы забираем протоплазму и увеличиваем ваш личный нод-счет. Величина счета <0> нодов.<br>Кроме того, вы выросли в нашем рейтинге. Продолжайте и впредь пополнять наши запасы нодов и протоплазмы.
+		99=Отставить преследование вражеской станции! Объект совершил гиперпрыжок по неизвестным координатам, спецслужбы займутся им позже.<br>Следующая цель - <clr>Махпелла<clrEnd>. Зачистим систему от захватчиков!
+		111=Это было не самым лёгким из испытаний, но вы успешно справились с задачей, рейнджер! Клисанское логово полностью уничтожено, а Пиратский Клан, замешанный в жуткой истории с попыткой приручения Махпеллы, обезврежен и обезглавлен. Мы уже выяснили, кто был основной причиной всего этого беспредела - <clr>Далани Алакай<clrEnd>, который рассматривался в рамках задачи "найти и уничтожить" перед спецподразделениями Коалиции. Явно потерявший рассудок учёный ещё очень давно пытался продвинуть свою идею контроля над клисанами, за что и был арестован. Спецслужбы искали его долгие годы, и вот выяснилось, что именно отступники под предводительством своего нового Барона укрыли безумца. Вы прекрасно понимаете, почему мы не могли допустить существования данной технологии. Это необходимо было сделать, <Player>, и мы благодарны вам за ликвидацию последствий, допущенных, пожалуй, наиболее зловещим из наших упущений. Ваше имя, как и всех, кто участвовал в штурме секретной пиратской базы, навсегда войдёт в историю Коалиции.
+		112=<Player>, хоть мы и срубили три заячьих головы одновременно, уничтожив пиратский клан, покончив с клисанской угрозой и одновременно выведя коррупцию адмирала Дурдыма на чистую воду, поймав его во время попытки предупредить высшее руководства Клана о готовящемся штурме, курировавшемся непосредственно Галактическим Советом - доминаторская угроза всё ещё никуда не делась.<br>Вы, как заслуженный воин, заслуживаете пенсии. Отставка подарит вам долгую мирную жизнь, и Галактический Совет лично предлагает вам, как и всем участникам штурма, по собственному особняку в наиболее элитных курортных регионах. Вам более не придётся ни о чём заботиться, и ваше право принять этот подарок прямо сейчас.
+		113=<Player>, в ходе этой операции мы срубили три заячьих головы одновременно, уничтожив пиратский клан, покончив с клисанской угрозой и одновременно выведя коррупцию адмирала <clr>Дурдыма<clrEnd> на чистую воду, поймав его во время попытки предупредить предупредить высшее руководства Клана о готовящемся штурме, курировавшемся непосредственно Галактическим Советом.<br>И, после столь успешного сбора урожая, мы наконец можем выдохнуть спокойно, с уверенностью заявив, что <clr>Галактика освобождена<clrEnd>. Все основные угрозы ликвидированы, а с остатками всех трёх сторон конфликта наши бравые вояки расправятся за считанные месяцы. Настал наш час, настал час Единства Пяти Рас!<br>Вы, как заслуженный воин, заслуживаете пенсии. Отставка подарит вам долгую мирную жизнь, и Галактический Совет лично предлагает вам, как и всем участникам штурма, по собственному особняку в наиболее элитных курортных регионах. Ваше право решать, что делать с вашей жизнью, но вы просто обязаны принять этот подарок без лишних отлагательств, сразу после приготовленного по случаю Победы концерта.
+		114=Отлично сработано, <Player>, от Махпеллы не осталось и следа! Вся клисанская армада сдетонировала аккурат сутки спустя ликвидации материнского корабля, и с этого момента угроза, созданная учёным-ренегатом - лишь очередная страница в книгах истории. И большая часть заслуги в этом - бессомненно ваша, рейнджер.
+		115=Что сделано, то сделано, <Player>, былого не воротить. Эта история не будет забыта, и мы наложим серьёзное табу на проведение любых исследований подобного рода, чтобы трагические события второй клисанской войны впредь никогда не повторились. Пусть мы использовали инструменты врагов против них же самих - боеспособные остатки Клана, словно сорняки, остаются в открытом космосе. Лишённые руководства, но не боевой мощи, они разбились на мелкие банды и продолжают разорять захваченные миры. Уж теперь-то мы не потеряем контроль так легко, как это допустили наши предшественники, поверьте. Но мы не стремимся навязать вам никаких новых трудностей, рейнджер - ваша отставка целиком и полностью заслужена. Галактический Совет даже готов выделить вам собственный элитный особняк на одном из лучших курортов контролируемой части обитаемого космоса. Впрочем, вы получите его при любом своём решении. Дело осталось за малым - поставить несколько десятков подписей, и вы вправе забыть обо всех этих трудовых буднях.<br>
+		116=Что сделано, то сделано, <Player>, былого не воротить. Эта история не будет забыта, и мы наложим серьёзное табу на проведение любых исследований подобного рода, чтобы трагические события второй клисанской войны впредь никогда не повторились. И теперь, когда сорняки Пиратского Клана были вырваны с корнем, а доминаторы истреблены - наступит мирное время, которое, надеюсь, продлится настолько долго, насколько это позволит сама Вселенная. Уж теперь-то мы не потеряем контроль так легко, как это допустили наши предшественники, поверьте. А пока давайте отложим все эти пагубно влияющие на здоровье мысли о трудовых буднях, и перейдём к специально подготовленному на случай победы банкету. <Player>, вас уже заждались.
+		117=Ну вот и всё, рейнджер, наши парни так разошлись, что теперь и от остатков пиратских головорезов, собственно, ничего и не осталось. Были рапорты об одиноких кораблях, скрывающихся от властей, но думается мне, что продлится это ровно до тех пор, пока у них не останется денег на топливо. Операция выполнена успешно. Успешнее некуда. А вот скупердяи из верховного командования опять себе все заслуги присвоили... ну, ваше имя хотя бы продолжает появляться на титульных страницах всех их пропагандистских бахвальств. Что ж, главное, что это лишь поддержит укрепление воцарившегося мира. Да и награду вы свою точно получите - искоренить все последние сорняки, угрожавшие единству Пяти Рас, это вам не загадки на незаселённых планетах разгадывать.
+		118=<Player>, великолепная работа. Поздравления, думаю, здесь излишни - все мы знаем, что твои заслуги перед Кланом банально неоценимы. Вся галактика, братишка, вся галактика - теперь наша! Наконец-то, ни прогнившей Коалиции, ни бездумных машин, ничего. Уцелела лишь справедливость нашего славного братства. И всё благодаря инструменту, сохранность которого ты обеспечил. Клисане - страшная штука, но оставаясь на поводке, они обеспечат неприступность нашей власти в этом рукаве.<br>Теперь, когда врагов не осталось, а политики верно служат Клану, дрожа перед потенциальной возможностью опустошения их миров клисанской армадой - ты, <Player>, достин пожать все заслуженные лавры. Оставаясь королём королей, тебе не придётся вообще ничего делать, кроме как наслаждаться своей новой жизнью. Галактика обеспечит тебя всем, чего ты только пожелаешь. На весь сектор в твою честь уже готовится вечеринка, так что самое время хорошенько оторваться после всех бесконечностей честных трудовых будней на пользу общему делу, хе-хе.
+		119=Это было не самым лёгким из испытаний, но вы успешно справились с задачей, рейнджер! Клисанское логово полностью уничтожено, а Пиратский Клан, замешанный в жуткой истории с попыткой приручения Махпеллы, обезврежен и обезглавлен. Благодаря вам мы выяснили, кто был основной причиной всего этого беспредела - <clr>Далани Алакай<clrEnd>, который рассматривался в рамках задачи "найти и уничтожить" перед спецподразделениями Коалиции. Явно потерявший рассудок учёный ещё очень давно пытался продвинуть свою идею контроля над клисанами, за что и был арестован. Спецслужбы искали его долгие годы, и вот выяснилось, что именно отступники под предводительством своего нового Барона укрыли безумца. Вы прекрасно понимаете, почему мы не могли допустить существования данной технологии. Это необходимо было сделать, <Player>, и мы благодарны вам за ликвидацию последствий, допущенных, пожалуй, наиболее зловещим из наших упущений. Ваше имя, как и всех наших бойцов, кто в ключевой момент не последовал воле продажного <clr>Дурдыма<clrEnd>, встав на вашу сторону, навсегда войдёт в историю Коалиции.
+		120=<Player>, в ходе этой операции мы срубили три заячьих головы одновременно, уничтожив пиратский клан, покончив с клисанской угрозой и одновременно выведя коррупцию адмирала <clr>Дурдыма<clrEnd> на чистую воду, поймав его во время попытки предупредить предупредить высшее руководства Клана о готовящемся штурме, курировавшемся непосредственно Галактическим Советом.<br>И, после столь успешного сбора урожая, мы наконец можем выдохнуть спокойно, с уверенностью заявив, что <clr>Галактика освобождена<clrEnd>. Все основные угрозы ликвидированы, а с остатками всех трёх сторон конфликта наши бравые вояки расправятся за считанные месяцы. Настал наш час, настал час Единства Пяти Рас!<br>Вы, как заслуженный воин, заслуживаете пенсии. Отставка подарит вам долгую мирную жизнь, и за ваши неоценимые заслуги Галактический Совет лично предлагает вам особняк в лучшем курортном регионе всея Галактики. Ваше право решать, что делать с вашей жизнью, но вы просто обязаны принять этот подарок без лишних отлагательств, сразу после приготовленного по случаю Победы концерта.
+		121=<Player>, хоть мы и срубили три заячьих головы одновременно, уничтожив пиратский клан, покончив с клисанской угрозой и одновременно выведя коррупцию адмирала <clr>Дурдыма<clrEnd> на чистую воду - доминаторская угроза всё ещё никуда не делась.<br>Вы, как заслуженный воин, заслуживаете пенсии. Отставка подарит вам долгую мирную жизнь, и Галактический Совет лично предлагает вам, как и всем виднейшим участникам войны, по собственному особняку в наиболее элитных курортных регионах. Вам более не придётся ни о чём заботиться, и ваше право принять этот подарок прямо сейчас.
+		122=Поздравляем тебя, <Player>, от лица всего пиратского клана, с достойным исполнением всех обязанностей, возложенных на плечи Верховного Барона! Теперь, когда угроза со стороны роботов сведена к минимуму, мы можем заняться реформами, нацеленными на усиление пиратской власти и сплочению всех находящихся под нашим контролем планет. В связи с этим мы предлагаем тебе, <Player>, как одному из наиболее ярких героев прошедшей войны, сменить кабину пилота на трибуну политика! Обдумай серьезно это предложение, ведь оно открывает перед тобой новые горизонты!
+		123=Поздравляем тебя, <Player>, от лица всего пиратского клана, с достойным началом исполнения обязанностей, возложенных на плечи Верховного Барона! Твоя безапелляционная чистка в неоднозначной кадровой среде, созданной почившим Чушкачом, просто впечатляет. Теперь, когда ты заслуженно вступил на свою новую должность, мы можем заняться реформами, нацеленными на усиление пиратской власти и сплочению всех находящихся под нашим контролем планет. В связи с этим мы предлагаем тебе, <Player>, как одному из наиболее ярких героев прошедшей войны, сменить кабину пилота на трибуну политика! Обдумай серьезно это предложение, ведь оно открывает перед тобой новые горизонты!
+		124=Отличная работа, <Player>, Клан обезглавлен, а Алакай больше не представляет угрозы. Мы охотились за ним долгие годы, но по иронии судьбы с персоной нон-грата было суждено разобраться именно пирату. Ну, не надо на меня так смотреть, вы хорошо вжились в роль, особенно когда штурмовали логово продажного Дурдыма, прямо настоящий головорез... ладно-ладно, вернёмся к нашим пенчекрякам. Но, знаете, я тут подумал... стоило ли ему давать возможность просто уйти? Я понимаю ваши чувства, <Player>, но плохое у меня предчувствие по этому поводу. Конечно, моё начальство прямо противоположного мнения, и вас уже ждут на банкете, где вы получите свою награду лично от Галактического Совета - внушительных объёмов сумму и особняк на одном из лучших курортов Галактики. Да-да, вы не ослышались, Совет наконец по-достоинству оценил рейнджерское рвение! Хотя в новостях Тортугац всё ещё был освобождён только благодаря их заслугам... ну, вам не в первой, переживёте. Все мы знаем этих скруджей.<br>Прошу за мной, <Player>.
+		126=Именно так, <Player>, именно так. Только прежде чем сдаться, этот предатель каким-то образом заблокировал управление нанитам и активировал систему самоуничтожения станции. Теперь Махпелла вышла из-под контроля и заняла статичную позицию, уничтожая всё, что попадается в зону действия орудий. И пока мы тут говорим, по всей Галактике происходит широкомасштабное наступление врага. В этой войне нам ещё не доводилось иметь дело с таким количеством клисан одновременно - похоже, что в бой вступила вся оставшаяся флотилия. Будто чертовы нулевые со страниц исторических книг повалили.
+		127=Вы посылаете запрос состояния клисанского флота на <clr>Хандлер<clrEnd>. Спустя полминуты в бортовом компьютере появляется следующий отчет:<br><br>ЗАРЯД Z-ТРАНСМИТТЕРА: <0> / 100<br>СОСТОЯНИЕ: <clr>Ошибка 503<clrEnd><br>ФАЗА АТАКИ: <clr>Ошибка 503<clrEnd><br>МЕСТОНАХОЖДЕНИЕ: <clr>Ошибка 503<clrEnd><br>ЦЕЛЕВАЯ СИСТЕМА: <clr>Ошибка 503<clrEnd><br>МЕСТОНАХОЖДЕНИЕ МАХПЕЛЛЫ: <clr>Ошибка 404<clrEnd><br><br><clr>СИСТЕМА УПРАВЛЕНИЯ НЕИСПРАВНА, ПРОВЕДЕНИЕ АВТОМАТИЧЕСКОЙ ДИАГНОСТИКИ НЕ ПРЕДСТАВЛЯЕТСЯ ВОЗМОЖНЫМ<clrEnd>
+		128=Эхэх, <Player>, не так давно мы еще сражались плечом к плечу против Коалиции и доминаторов, а сейчас все это уже часть истории. Тысяча клисан! Даже обидно, что ни одного врага уже не осталось, дула корабельных пушек паутиной зарастают. Молодежь треплет мирные корабли, а нам как-то уже стыдно такой ерундой заниматься. Особенно тебе, ты же пиратский барон, как-никак...<br>Так что я полностью понимаю и поддерживаю твое решение.
+		129=Укажите систему, которую необходимо очистить от клисан.
+		130=Запрос ретранслирован на <clr>Хандлер<clrEnd>. Ответ положительный. Все клисаны в системе будут уничтожены.
+		131=Какое из дополнительных исследований вас интересует?
+		136=В этот день, <Player>, нам окончательно удалось возродить утраченную технологию <clr>Ментального Коммуникатора!<clrEnd> С гордостью сообщаем, что устройство, изначально планировавшееся только как средство связи, позволяет еще и <clr>сканировать клисан!<clrEnd> <br><br>Первый образец Коммуникатора уже подключен к вашему бортовому компьютеру. Помните, рейнджер, что с его помощью Галактика уже была спасена однажды, и используйте же эту вещь с умом.
+		137=Сегодня, <Player>, мы смогли восстановить и доработать <clr>Z-трансмиттер!<clrEnd> Спустя множество неудачных попыток, наши эксперты наконец откалибровали агрегат таким образом, чтобы на его сигнал слеталась полноценная волна клисан.<br><br>Устройство уже погружено в ваш трюм. Мы надеемся, вы сможете правильно оценить его силу и направите разрушительную силу клисан против наших общих врагов - доминаторов и пиратов.
+		139=[Передача сигнала кораблю <0>... ошибка 137<br>Повторение попытки... ошибка 137<br>Повторение попытки... ОК<br>Передача сигнала кораблю <clr>Махпелла<clrEnd>... ошибка 508<br>Повторение попытки... ошибка 508<br>Повторение попытки... ошибка 508<br>Повторение попытки... ошибка 508<br>Вероятная причина ошибки - <clr>сигнал заблокирован с другого конца<clrEnd>]
+		140=[Передача сигнала кораблю <clr>Махпелла<clrEnd>... ошибка 508<br>Повторение попытки... ошибка 508<br>Повторение попытки... ошибка 508<br>Повторение попытки... ошибка 508<br>Вероятная причина ошибки - <clr>сигнал заблокирован с другого конца<clrEnd>]<br>
+		141=Так держать, <Player>! Уничтожением клисанского мозгового центра вы официально положили конец вторжению клисан в наш рукав Галактики. Безусловно, этот день войдет в историю!<br>Следующая цель - <clr>Хандлер<clrEnd>. Добьем врага до конца!
+		142=Благодарим за проявленный героизм, рейнджер! Сегодня, благодаря гениальности наших ученых и вашей доблести, мы закончили Третью клисанскую войну и одержали убедительную победу над пиратскими интервентами. Выжившие корсары обезглавлены и деморализованы, и теперь окончательная зачистка всех систем от их присутствия - всего лишь вопрос времени. Все граждане Коалиции сегодня салютуют вам! <br><br>Но еще не время праздновать! Наши агенты сообщают, что станция <clr>Хандлер<clrEnd> скрывается в системе <clr>Нифигац<clrEnd>. Мы обеспечим вам полный ремонт, совершайте посадку на станцию и выдвигайтесь немедленно.
+		143=Рейнджер <0>, да-да, именно так вас надо называть, а не какой-то там барон, хотя, как нам только что стало известно, пираты недавно присвоили вам этот титул официально. Но это уже не имеет значения. <br>Я поздравляю вас с победой! Одним ударом вы расправились с лидером пиратов, бароном Чушкачем, продажным адмиралом Дурдымом и безумным ученым Алакаем. Это просто невероятно! Если бы я не знал, что вы рейнджер, то подумал, что это какая-то нелепая случайность. Но нет, вы просто подтвердили свой высочайший класс. Это же надо, втереться в доверие ко всему пиратскому сообществу, убедить всю Коалицию в том, что вы окончательно свернули на путь разбоя, а потом явить свое истинное лицо именно в тот момент, когда ваши действия могут спасти всю галактику. <br>Что-то я увлекся с вашим восхвалением, простите, у вас вон уже и уши горят. <1>, сегодня я не предлагаю никаких подарков за ваши действия, потому что если я даже подарю вам миллиард кредитов - этого все равно будет мало, чтобы адекватно оценить ваши действия. Да и откуда у меня миллиард, сами подумайте. Поэтому я делаю вам уникальное предложение. Вы можете оставить свою рейнджерскую службу и уйти на покой. Мы обеспечим вас новыми документами, достойной пенсией и домиком, где-нибудь в тихом живописном месте, а с наведением порядка в Галактике справимся сами. Теперь, когда пираты психологически надломлены и находятся в растерянности, они уже не смеют захватывать системы Коалиции. Мы определенно взяли над ними верх, и теперь осталось только выловить и добить тех злостных бандитских индивидуумов, которые еще живы. Притворяться пиратом нужды больше нет. Забудьте про нападения на мирные корабли и захват звездных систем в пользу пиратов. Больше вам не придется брать на душу эти грехи. Вы свое дело сделали и сделали его хорошо.
+		144=Да, в этом больше нет необходимости и даже более того - это совершенно исключено. Мы прекрасно понимаем, каким психологическим испытанием были для вас сражения со своими собратьями - рейнджерами и мирными кораблями, которых вам приходилось уничтожать, чтобы не разрушить свое прикрытие. Если вы хотите - мы даже можем назначить вам курс у малокских специалистов. Говорят, что они творят чудеса. После их мануальной терапии вы даже и не вспомните о пережитых ранее потрясениях.<br>Вдохновленные вашими подвигами, новички так и ломятся на призывные участки, так что пушечного мяса, чтобы справиться с доминаторами у нас точно хватит. Или же вы можете вернуться на фронт и там доказать, что вы и в деле уничтожения машин лучше всех. Решайте, <0>.
+		145=Прекрасно, <0>! Вы сделали выбор, достойный настоящего рейнджера! Действительно, как можно остаться в стороне, если есть возможность хоть на день приблизить победу над бездушными машинами? А потом уже и про пенсию с домиком можно будет подумать.
+		146=Прекрасно, <0>! Вы сделали выбор, достойный настоящего рейнджера! Действительно, как можно остаться в стороне, если есть возможность хоть на день приблизить победу над бездушными машинами? А генералы подождут.
+		147=Рейнджер <0>, это вы, наконец-то! Мы уже заждались вас! Позвольте мне от лица всей сети Центров рейнджеров поздравить вас с полной победой над пиратским кланом! Вы прекрасно справились с возложенной на вас задачей!<br>К сожалению, пока вы отважно сражались с бесчисленными волнами пиратов, адмирал Дурдым успел уничтожить барона Чушкаша и тем самым положил конец этому гнусному пиратскому клану, а на проведенной вскоре после этого пресс-конференции, с журналистами которые "случайно" оказались поблизости, адмирал заявил, что это всё благодаря его "гениальному" руководству и "несравненной" храбрости, а ваше имя и заслуги в бою даже не упомянул. Какая низость! Возможно, если бы вы не были так увлечены боем с превосходящими силами пиратов и поспешили бы на станцию, все было бы иначе и именно ваше имя было бы внесено в учебники истории. Но, что было - того не вернешь, как гласит людская поговорка. Но, не переживайте, мы то знаем кто настоящий герой этой операции! Ваше искусство боя, <1>, поразило многих уважаемых генералов, они жаждут сейчас же прочесть ваш рапорт о стратегии ведения боя с противником, чье численное преимущество сложно даже вообразить. Потери пиратов исчислялись сотнями! Если вы пожелаете отойти от рейнджерской деятельности и осесть где-нибудь вдали от всей этой суеты, они готовы помочь вам материально и обеспечить безбедное будущее, в обмен на ваши советы и знания по тактике боя. Впрочем, если вы пожелаете продолжить свою деятельность, мы не в праве вас останавливать, однако у вас не будет времени раздавать советы. Что скажете?
+		148=Прими мои поздравления, <0>! Отныне ты - настоящий пиратский барон. Носи этот почетный титул с честью пирата новой формации! <br>Сегодня великий день. Как жаль, что он омрачен скорбным событием, весть о котором добралась сюда лишь час назад. В бою погиб барон Чушкач, наш лидер и идейный вдохновитель. Если бы не он - мы бы до сих пор шатались по космосу разрозненными кучками и радовались тем крохам, которые позволяла нам урвать Коалиция. Именно он сплотил нас всех, помирил между собой враждующие кланы и указал нам цель, которой мы почти достигли. Более того, он навел мосты сотрудничества между пиратами и официальными властями многих звездных систем галактики. Если раньше мы крали и убегали, спасаясь от заслуженного возмездия властей, то теперь планетарные правители сами делятся с нами долей от своих прибылей, за услуги, которые мы им предоставляем. Это новая ступень эволюции пиратского сообщества, не меньше, попомни мои слова.<br>Барон Чушкач погиб, но ты, <1>, жив. И ты доказал, что можешь стать его достойным преемником и продолжить его великое дело. Твои действия в сегодняшнем бою подтвердили это и жалкие выкрики завистников, которые пытаются очернить твое великое имя, не могут повлиять на наше решение. Пускай они разносят по темным углам сплетни, будто это ты убил Чушкача - мы знаем, что это черная ложь, а потому предлагаем тебе, барон, стать нашим новым лидером. <br>Имей в виду, что такое предложение делается лишь раз в жизни. <br>Или же ты можешь совершить самую большую ошибку в своей жизни и вернуться к своим жалким обязанностям по уничтожению доминаторов. Выбирай.
+		149=Мда... Вот такого мы от тебя, <0>, не ожидали. Парни уже праздновать приготовились, а ты взял и отказался. Ну и лети тогда к своим ржавым жестянкам, раз они тебе больше по нраву. Глаза бы мои тебя не видели...
+		150=<0>, позволь пожать тебе руку. Отныне ты - настоящий пиратский барон. Носи этот почетный титул с честью! Ты не только помог нам отбить атаку военных сил Коалиции, но и расправился с бароном Чушкачем. Безусловно, он был нашим лидером, но тот путь, по которому он вел нас, с каждой минутой приближал нас к пропасти. Ложные успехи на ниве сотрудничества с правителями планет Коалиции вскружили ему голову, и он стал превращать нас всех из пиратов в бизнесменов. Он думал, что это новая ступень развития пиратского сообщества, но на самом деле мы, пираты, вольные птицы, должны делать то, что нам нравится, а не то, что навязывают нам контракты с продажными правителями! Мы должны грабить, убивать, веселиться до упаду и не соблюдать никаких законов! Вот наш истинный путь и сегодня ты напомнил нам о том, какие мы на самом деле!<br>Именно поэтому, барон <1>, мы хотим предложить тебе стать нашим новым лидером! Соглашайся! Йо-хо-хо и бутылка втыкиллы, и все такое! Голос крови! Я имею в виду, после того, что мы тебе предложили, ты действительно готов вернуться к своим опасным и скучным сражениям с доминаторами?
+		167=Наши спецы проанализировали принадлежность систем и наанализировали следующее:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%<br>Клисаны - <3>%
+		168=Наши спецы проанализировали принадлежность систем и наанализировали следующее:<br><br>Коалиция - <0>%<br>Доминаторы - <1>%<br>Пираты - <2>%
+		173=Отлично!
+		174=Далее
+		175=Сделаю все, что смогу!
+		176=Ясно
+		177=Хорошо, я беру ваше устройство. Я обещаю найти Махпеллу и выяснить, что кроется за всем этим
+		178=В ангар
+		179=Конец связи
+		180=Постой, далани? Значит, до этого ты был на службе у Коалиции?
+		181=Дружище, возможно, ты ещё не в курсе, но <clr>Чушкача<clrEnd> больше нет. Теперь здесь правила устанавливаю я.
+		182=Сложно сказать, под конец войны враги всё же начали догадываться, откуда могли взяться клисане и как их правильно готовить. Но, постой, далани? Значит, до этого ты был на службе у Коалиции?
+		183=Дружище, возможно, ты ещё не в курсе, но <clr>Чушкач<clrEnd> больше не у власти. Теперь здесь правила устанавливаю я.
+		184=А какова в этом твоя заинтересованность, <clr>Алакай<clrEnd>? Ты бы не стал обеспечивать такую услугу Клану без личного интереса, даже с учётом того, что те спасли тебя от виселицы. Зная фэянских учёных, они не станут посвящать всю свою жизнь глупой мести. Учитывая то, что ты явно не брезгуешь некоторым числом, хм-м, случайных жертв, имеющих место быть при каждой опустошительной клисанской атаке.
+		185=Хорошо, <clr>Алакай<clrEnd>, мне нравится твой подход. Как новый Верховный Барон, я позволю тебе продолжить твои эксперименты. Но тебе придётся лимитировать себя - врагов у нас больше не осталось, поэтому оставайся здесь, и стреляй по тарелочкам. Если тебя устраивают данные условия, то мы определённо подружимся. Но, на всякий случай, имей ввиду, что если я прикажу что-то атаковать - ты должен будешь тут же подорваться, и обеспечить мне достойное подкрепление.
+		186=Хорошо, <clr>Алакай<clrEnd>, мне нравится твой подход. Как новый Верховный Барон, я позволю тебе продолжить твои эксперименты. Но с этого момента ты будешь атаковать только те системы, которые прикажу я лично. Сам понимаешь, субординация в этом сборище маньяков и прочих оболтусов превыше всего.
+		187=Ты, кажется, всё ещё не понял. Здесь, в Клане, теперь воцарится новый порядок. Я, <0>, не желаю видеть следов глупых и поспешных решений прошлого барона, которые привели его к скоропостижной гибели. Извини, но я видел, на что способны эти твои питомцы. Твой проект слишком опасен, <clr>Алакай<clrEnd>. Ты не думал, что произойдёт, если клисане выработают иммунитет к нанитам? Да с теми апгрейдами, что вы им тут понасовали, они весь Клан положат. Прости, но тебе придётся свернуть своё занятие. Наши элитные команды немедленно займутся демонтажем станции и зачисткой клисанских остатков.
+		188=Бывай, <clr>Алакай<clrEnd>, и помни - если тебе в голову придёт даже мыслишка о том, чтобы повернуть этих твоих питомцев против Клана, ответная реакция не заставит себя долго ждать.
+		315=Поработить Галактику.
+		189=Далани? Значит, до этого ты был на службе у Коалиции?
+		190=Действительно, <clr>Чушкач<clrEnd> провалился даже с таким козырем в рукаве. На свободу он теперь нескоро выползет, если выползет вообще.
+		191=Доминаторская угроза действительно всё ещё никуда окончательно не исчезла, и мало кто хотел бы, чтобы на эту войну ушло ещё больше бессмысленных смертей. Я позволю тебе сохранить свою лабораторию до момента полной ликвидации доминаторов, <clr>Алакай<clrEnd>, но имей ввиду, что как только с машинами будет покончено - тебе придётся свернуть проект.
+		192=Ты слишком наивен, <clr>Алакай<clrEnd>. Ты действительно думал, что после всего содеянного, я позволю тебе остаться на насиженном месте? Знаешь, сколько невинных душ положили твои эксперименты, подонок? Ты не считался ни с кем, ни с военными, ни с гражданскими, мочил даже своих, кто попадался под руку. Так, спрашивается, какого чёрта я должен позволить тебе выйти сухим из воды? Даже согласившись на твои условия, нет никакой гарантии, что ты не захочешь уйти красиво, стерев жизнь с нескольких столичных планет Рукава. Нет, дружище, ты заплатишь за всё, здесь, и сейчас.
+		193=Может и так, может и нет. Но, знаешь, <clr>Алакай<clrEnd>, если я тебя прикончу, то окажусь ничем не лучше тебя самого. Забирай своих питомцев и проваливай с нашего рукава к чёртовой матери. Мне плевать, что с тобой произойдёт, но с этого момента ты - изгой, которому нет места в восстановленном единстве пяти рас. У тебя есть две недели, чтобы убраться отсюда, иначе с тобой уже заговорят иначе.
+		316=Срочно прибыть в ближайший Центр рейнджеров.
+		194=Бывай, <clr>Алакай<clrEnd>, и помни - я слежу за тобой. Вздумаешь пойти на какой-нибудь искромётный фокус, и твою базу разнесут куда быстрее, чем ты успеешь открыть очередной портал.
+		195=Ладно, ладно, черт возьми. Я займусь этим. Куда я денусь. И лучше бы вам на этот раз приготовить награду поинтереснее пачки второуровневых микромодулей, господа.
+		196=Начать атаку
+		197=Закончить
+		198=Так точно!
+		199=Рад был помочь
+		200=На моем корабле нет материала для сдачи
+		201=Вам действительно это удалось? Алакай схвачен?
+		202=Дайте угадаю, и вы хотите, чтобы я сейчас пошел и сделал за вас всю грязную работу?
+		206=Удачи.
+		207=Всего хорошего.
+		208=Я всего-лишь делал свою работу
+		209=Вы дожно быть шутите. Пройти через всё это только ради того, чтобы бежать с поля боя? Ну уж нет, я не смогу спать спокойно, зная, что тостеры продолжают вырезать наших пачками. Можете просиживать свои задницы в тылу сколько угодно, но я немедленно возвращаюсь на фронт!
+		317=Годы ушли на изучение причин возвращения клисан, и, что не менее важно - природы их современных полумеханических метаморфоз. Лишь для того, чтобы понять, что за всем в очередной раз стояли пираты. Обученные горьким опытом Рачехана, что привёл к Клисанской Войне, корсары зашли куда дальше своего предшественника, использовав труды далани-отступника Алакая, ударившегося в бега из-за своих научных трудов по применению нанитов, способных перехватывать контроль над клисанской формой жизни.<br>В результате успешной операции, проведённой под кураторством лично Галактического Совета, объект Хандлер, откуда проводились манипуляции над поражённой нанитами Махпеллой, был уничтожен вместе с ней самой. В последний момент команда Хандлера сама включила систему самоуничтожения станции, не в силах нести навязанный им груз - в результате от исследований Алакая не осталось ничего, кроме разбросанной атомарной пыли. Ничто не могло пережить одновременной детонации десяти кварковых бомб, заложенных как предохранитель на случай непредвиденных обстоятельств. Но всё самое интересное только начинается - ведь вас ждёт доминаторская угроза, которой уже самое время кому-нибудь положить конец, раз и навсегда! Вперёд и вверх!
+		210=Благодарствую, не имею права отказаться. Показывайте, что вы там для меня припасли.
+		211=Жаль было её убивать, на самом деле. Махпелла была подчинена чужой воле... кто знает, о чём она думала на самом деле? Кто знает, как на это могут отреагировать её сородичи? Была бы возможность изучить эти проклятые наниты...
+		212=Надеюсь, вы правы... что ж, не будем терять времени зря.
+		213=Уйти в отставку! Ха! Да я с рейдов одиноких пиратов на флагманы, утыканные зенитками по самые дюзы смеялся больше чем с этого вашего странноватого юмора. Не для того я прожёг все эти годы, чтобы просто взять и сбежать с поля боя. И не в моих правилах оставлять дело завершённым наполовину. Я не успокоюсь, пока космические просторы бороздит ещё хотя бы один клановый недоносок. Всем тыловым крысам, счастливо оставаться!
+		318=Искоренить пиратскую угрозу.
+		214=Вы правы, я уже достаточно навоевался. Все эти бесконечные сражения не проходят бесследно. Мне не дано знать, что ожидает всех нас на горизонте, но я уже успел сыграть свою роль во всём этом спектакле. Несите свои бланки.
+		215=Это было слишком просто. Без толкового командования большинство пиратов превратились в простых маньяков за панелями с большими красными кнопками - словом, дети. Сильные, вооружённые до зубов, но тупые, прямолинейные и чертовски наивные. Не считаю последнюю работу чем-то сверхъестественным, но всё же принимаю ваши поздравления. Теперь наша цель - сохранить этот добытый галлонами крови мир для будущих поколений, не так ли?
+		216=А то! Недоноски получили по заслугам. Все, до единого. Немного жаль расставаться с войной, но, думаю, мы ещё найдём себе конкурентов. А сейчас веди, дружище, проведём время на должном качественном уровне! Никто не устоит перед мощью Пиратского Братства!
+		325=Получив власть, которая и не снилась почившему Чушкачу, Пиратский Клан вскоре установил полный и безапеляционный контроль над каждым населённым уголком Галактики, действуя при этом, естественно, под вашим чутким и мудрым руководством. Дальнейшая эволюция клисан превзошла все возможные ожидания, и вскоре органическая армада налегке перегнала тот уровень, которого удавалось достичь только боевой машине Блазера. Ничто в Галактике просто не было способно противостоять такой силе, и все фигуры с игровой доски, кроме вашей собственной, оказались буквально сметены.<br>    Проект Алакая процветал под вашим крылом, как и сам учёный, ставший второй личностью в Клане как таковом - больше ничто не препятствовало ему развернуться на полную, экспериментируя на гуманоидах, а порой и целых колониях, послуживших ему своеобразным полигоном.<br>    Ваш успех было не остановить - ещё спустя несколько лет искоренения повстанческих движений а наведении порядков внутри недавно захваченной Галактики, вы наконец достигли своей главной цели, установив тотальный контроль со своей персоной во главе. Но, к сожалению, ваш успех сыграл против вас - такая концентрация власти в руках одной должности сразу сделала его главной целью для бесчисленных конкурентов, и в один прекрасный день Алакай, подкупленный бывшим Дзухаллагом, а ныне одним из наиболее известных пиратский синдикатов - отправил новую армаду клисан, которая обратила ваш роскошный боевой корабль в атомарную пыль менее, чем за несколько часов. Так закончилась история великого рейнджера, возглавившего новый мировой порядок - быстро, бесславно и без возможности ответить, а ваше место вскоре занял сам Алакай, играя роль публичной марионетки в руках стоявших за кулисами организаторов всего безумия.<br>    Вам уже не суждено было этого увидеть, но тоталитарное общество, сформированное вашими завоевательскими достижениями, вскоре превратилось в одну большую корову, беспрерывно и беспощадно доимую верховным руководством. Ну а ваше имя - оно было просто забыто.
+		217=Я всего лишь делал свою работу
+		218=Я не могу безмятежно отдыхать на курортах, пока братья-рейнджеры погибают. Я возвращаюсь на фронт.
+		319=Годы ушли на изучение причин возвращения клисан, и, что не менее важно - природы их современных полумеханических метаморфоз. Лишь для того, чтобы понять, что за всем в очередной раз стояли пираты. Обученные горьким опытом Рачехана, что привёл к Клисанской Войне, корсары зашли куда дальше своего предшественника, использовав труды далани-отступника Алакая, ударившегося в бега из-за своих научных трудов по применению нанитов, способных перехватывать контроль над клисанской формой жизни.<br>В результате вашей стремительной атаки на неподготовленного к мгновенному ответу Алакая, объект Хандлер, откуда проводились манипуляции над поражённой нанитами Махпеллой, был уничтожен вместе с ней самой. В последний момент команда Хандлера сама включила систему самоуничтожения станции, не в силах нести навязанный им груз - в результате от исследований Алакая не осталось ничего, кроме разбросанной атомарной пыли. Ничто не могло пережить одновременной детонации десяти кварковых бомб, заложенных как предохранитель на случай непредвиденных обстоятельств.
+		219=Знаете, вы правы. Я устал от всех этих космических сражений. Я оставляю это дело своим космическим коллегам. Следуя примеру наших вояк, они обязательно расправятся с доминаторами.
+		220=Согласен, надоело бороздить космические просторы, хочу уйти на покой!
+		320=После долгих раздумий вы согласились возглавить пиратское сообщество. Для этого, правда, пришлось покинуть ряды космических рейнджеров, и отказаться ото всех льгот и привилегий, полагающихся каждому ветерану, отважно защищавшему интересы Коалиции.<br> <br>    Взамен вы получили возможность вернуть времена былого пиратского романтизма, которую успешно реализовали. Благодаря вам вновь обрело былую ценность слово чести благородного пирата!<br> <br>    Несмотря на свою неоднозначную репутацию, вы прожили долгую и счастливую жизнь, пользуясь огромным уважением не только в кругу коллег по братству, но и среди тех, кто с ними боролся. И легенды о вашей отваге и справедливости передавались из поколения в поколение не только с помощью новейших технических устройств, но и как в старые добрые времена: от человека - к малоку, а от малока с помощью пеленга - всем остальным, естественно, за отдельную плату. Разве что это не касалось доминаторов, которые вообще обычно не принимали никакой платы, да и сами платить не торопились. Это, впрочем, не спасло их от поражения - воспользовавшись военными Коалиции, как живым щитом, ваши люди сумели проникнуть в тыл доминаторов и ликвидировать все оставшиеся мозговые центры, раз и навсегда доказав, что и по силе, и по духу - пиратская романтика превзошла их всех.
+		221=Ни за что, нашему единству всё ещё угрожает слишком много внешних врагов, друг мой. Кто я по-твоему, Верховный Барон, или какая-то тыловая крыса? То-то же. Бывайте, я возвращаюсь на фронт. Не успеете и очередной склад втыкиллы опустошить, как я им всем дюзы-то начищу, помяни моё слово.
+		321=Вы приняли решение уничтожить Алакая, сочтя его слишком опасным. Остальные пираты поддержали ваше решение, тем самым лишь укрепив авторитет нового Верховного Барона - ведь Пиратский Клан лучше всего говорит на языке силы, которую вы сумели продемонстрировать абсолютно беспрецедентно.
+		222=Звучит интригующе! Что ж, показывайте, что вы там для меня приготовили
+		223=Куда уж точнее
+		322=Вы поставили свой верный корабль на вечную стоянку и взялись за организаторскую работу на благо пиратского клана. Пусть вы и не стали пиратским бароном, но ваши рейнджерские познания оказались весьма уместны для успешной организации амбициозных проектов, которые вы реализовывали, сначала в рамках одной пиратской планеты, а потом и всего звездного сектора. <br> <br>    Спустя четырнадцать лет, с того момента, когда вы сменили кабину пилота на заваленный бумагами офисный стол, вас выдвинули на должность планетарного правителя, и вы победили на выборах в первом же туре, набрав подавляющее большинство голосов. Проработав на этом посту до самой пенсии, вы уступили свое кресло молодому претенденту, а сами ушли на покой, чтобы долгими зимними вечерами рассказывать своим внукам о том, как вы сражались с доминаторами и еще сотни других увлекательных историй, которые с вами произошли в насыщенном рейнджерском прошлом.
+		323=Вы в очередной раз приняли предложение, от которого трудно было отказаться. Согласившись возглавить пиратов, вы окончательно порвали со своим прошлым, в котором являлись одним из героев галактики - космическим рейнджером. Командование сочло вас погибшим, выплатив семье причитающуюся компенсацию в размере <0> cr.<br> <br>    В своей новой жизни вы развили бурную деятельность, взяв курс на дальнейшую интеграцию пиратского сообщества в официальные круги власти. Действуя с помощью таких инструментов достижения цели, как:  взятки, угрозы, шантаж и физическое устранение, вам почти удалось подмять под себя руководство Коалиции. И вот, когда вы уже ощущали себя без пяти минут серым кардиналом или даже императором галактики, наемный убийца метким выстрелом перечеркнул ваши притязания на верховную власть. Имя заказчика так и осталось неизвестным.<br> <br>    Но расстраиваться не стоит: по крайней мере, вы попали в галактическую энциклопедию!
+		224=Призвать Махпеллу
+		225=Отдать нуль-приказ
+		226=Дополнительные исследования
+		227=Ментальный Коммуникатор
+		132=Специалисты данного направления занимаются возрождеием уничтоженной технологии <clr>Ментального Коммуникатора<clrEnd> - устройства, позволяющего выходить с клисанами на связь. Собирая архивные данные и свидетельства очевидцев устройства, ученые также изучают современные клисанские ошметки, чтобы получить представление о произошедших за это время в языке "зеленых" метаморфозах. В этом процессе вам и предлагается поучаствовать.<br><br>До изучения технологии нам осталось собрать <0> тонн ошметков.
+		228=Z-трансмиттер МК II
+		133=Одним из дополнительных направлений является разработка <clr>Z-трансмиттера МК II<clrEnd>. Это название наверняка знакомо вам лишь по курсам истории рейнджерства, но сам предмет более чем реален - несколько экземпляров дошли до нас почти невредимыми. Устройство должно издавать гигантской мощности высокочастотный сигнал, напоминающий рев умирающего клисана. <br><br>Но испытания показали, что звуковая волна не оказывает на клисан никакого воздействия, отличного от кратковременного замешательства. Наши ученые предполагают, что за прошедшие сотни лет у клисан выработался иммунитет, и сейчас пытаются скорректировать импульс, основываясь на свежих данных о восприятии зеленых захватчиков.<br><br>До изучения технологии нам осталось собрать <0> тонн ошметков.
+		229=К основному исследованию
+		230=Был рад помочь
+		231=Все системы
+		232=Призвать Махпеллу (<0> дней)
+		233=Вас понял, выдвигаюсь
+		234=То есть, мне больше не нужно захватывать системы Коалиции?
+		235=Да, я согласен. Всегда предпочитал убийству доминаторов рыбалку.
+		236=Нет, я не смогу жить спокойно, пока доминаторы уничтожают мирных жителей. Я возвращаюсь на фронт.
+		237=Верно.
+		238=Конечно же, я согласен стать новым лидером!
+		239=Я предпочту сосредоточить свои усилия на уничтожении доминаторов.
+		240=Пока.
+		241=Конечно, я согласен! Наливай!
+		242=Доминаторы - слишком серьезная угроза, чтобы просто отмахнуться от нее и забыть. Я должен выполнить свой долг.
+		243=Вас понял
+		244=Понял-принял
+		171=Назад
+    }
+}
+ShipCharacterKlissan ^{
+    00=34,	33,	33,	Клисан
+}
+ShipCharacterNone ^{
+    00=34,	33,	33,	Неизвестный
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            BlockDamage ^{
+                Description=NoShow
+                Icon=1
+                Name=Можно удалить это через пару недель после 08.02.2021
+            }
+            Dodge ^{
+                Description=Акткод на уклонение клисан. Для мутят шанс 40%, для рогитов - 30%, для катаури - 22%, для нондусов - 14%, для эгемонов - 10%.
+                Description=При наложении на неклисанский корабль шанс равняется навыку маневренности, умноженному на три, т.е. при маневренности 2 шанс будет 6%, а при 6 - 18%.
+                Icon=1
+                Name=Уклонение
+                OnActCodeTypes=t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+                OnActCode ^{
+					01=dword k = ScriptItemActShip();
+					02=int chance = 0;
+					03=if(ShipSubType(k) == 1) chance = 10;
+					04=else if(ShipSubType(k) == 2) chance = 13;
+					05=else if(ShipSubType(k) == 3) chance = 17;
+					06=else if(ShipSubType(k) == 4) chance = 22;
+					07=else if(ShipSubType(k) == 5) chance = 30;
+					08=int bonus = 40 + GalaxyTechLevel() * 12;
+					09=chance = (chance * bonus) / 100;
+					10=if(Rnd(1, 100) <= chance) ScriptItemActParam(0);
+                }
+            }
+            Dodge_bonus ^{
+                Description=Акткод на уклонение клисан. Для мутят шанс 40%, для рогитов - 30%, для катаури - 22%, для нондусов - 14%, для эгемонов - 10%.
+                Description=При наложении на неклисанский корабль шанс равняется навыку маневренности, умноженному на три, т.е. при маневренности 2 шанс будет 6%, а при 6 - 18%.
+                Icon=1
+                Name=Уклонение
+                OnActCodeTypes=t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+                OnActCode ^{
+					01=dword k=ScriptItemActShip();
+					02=int chance=0;
+					03=if(ShipSubType(k)==1)chance=17;
+					04=else if(ShipSubType(k)==2)chance=23;
+					05=else if(ShipSubType(k)==3)chance=30;
+					06=else if(ShipSubType(k)==4)chance=43;
+					07=else if(ShipSubType(k)==5)chance=55;
+					08=int bonus=40+GalaxyTechLevel()*12;
+					09=chance=(chance*bonus)/100;
+					10=if(Rnd(1,100)<=chance) ScriptItemActParam(0);
+                }
+            }
+			Egemon_armor ^{
+				Description=Акткод на контратаку эгемона. Позволяет эгемону контратаковать противника случайной пушкой с шансом [12+%количество орудий%*6]% при каждом выстреле по кораблю. Немного технических подробностей: функция совершает 15 попыток найти пушку, дальности которой достаточно, чтобы попасть по обидчику, иначе контратаки не будет.
+				Description=При наложении на неклисанский корабль шанс считается по формуле [5 + %количество пушек% * 3 + *навык техники*].
+				Icon=1
+				Name=Контратака эгемона
+				OnActCodeTypes=t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+				OnActCode ^{
+					01=dword s=ScriptItemActObject1();
+					02=if(ObjectType(s)!=4 && ObjectType(s)!=5)exit;
+					03=dword k=ScriptItemActShip();
+					04=int dmg=ScriptItemActParam();
+					05=int chance=ShipCntWeapon(k)*8+10;
+					06=if(HullDamage(k)<20)chance=(chance*50)/100;
+					07=else if(HullDamage(k)<40)chance=(chance*70)/100;
+					08=else if(HullDamage(k)<75)chance=(chance*100)/100;
+					09=else chance=chance*150/100;
+					10=chance=chance*dmg/50;
+					11=if(chance<15)chance=15;
+					12=else if(chance>75)chance=75;
+					13=if(Rnd(1,100)<=chance)
+					14 ^{
+						01=if(ShipInScript(s) && !IsPlayer(s))
+						02 ^{
+							01=if(ShipCustomFaction(s)=='Klissan')exit;
+						}
+						03=dword i=0;
+						04=int cnt=0;
+						05=while(1)
+						06 ^{
+							01=cnt=cnt+1;
+							02=i=ShipWeapon(k,Rnd(1,ShipCntWeapon(k)));
+							03=if(GetEquipmentStats(i,2)>=Dist(k,s))
+							04 {
+								01=i=0;
+								02=break;
+							}
+							05=else if (ItemIsBroken(i))
+							06 ^{
+								01=i=0;
+								02=break;
+							}
+							07=else if(cnt==15)
+							08 ^{
+								01=i=0;
+								02=break;
+							}
+						}
+						07=if(HullHP(s)>100 && i)
+						08 ^{
+							01=int was_hp=HullHP(s);
+							02=if(HullHP(s))FireWeapon(k,s,i);
+							03=if(was_hp && !HullHP(s))HullHP(s,1);
+						}
+					}
+				}
+			}
+            Immortal ^{
+                Description=--
+                Icon=0
+                Name=Immortal
+                OnActCodeTypes=t_OnTakingDamage,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+                OnActCode ^{
+                    01=ScriptItemActParam(0);
+                }
+            }
+            Katauri_attack ^{
+                Description=Акткод на крит катаури. Позволяет нанести двойной урон любым неракетным выстрелом с шансом 25%, если цель имеет меньше половины ХП - тройной с шансом 33%.
+                Description=При наложении на неклисанский корабль шанс равняется навыку точности, умноженному на три, т.е. при точности 2 шанс будет 6%, а при 6 - 18%.
+                Icon=1
+                Name=Крит катаури
+                OnActCodeTypes=t_OnWeaponShot
+                OnActCode ^{
+					01=dword s = ScriptItemActObject1();
+					02=int chance = 0;
+					03=int low_hp = 0;
+					04=if(ObjectType(s) == 5)
+					05 ^{
+						01=if(HullDamage(s) > 50)
+						02 ^{
+							01=low_hp = 1;
+							02=chance = 33;
+						}
+					}
+					06=else chance = 25;
+					07=int roll = Rnd(1, 100);
+					08=if(roll <= chance && low_hp) ScriptItemActParam(2 * ScriptItemActParam());
+					09=else if(roll <= chance) ScriptItemActParam(round(1.5 * ScriptItemActParam()));
+                }
+            }
+            KlissanComm ^{
+                Description=Устройство, позволяющее сканировать клисан и выходить на связь с их мозговым центром.
+                Icon=0
+                Name=Ментальный Коммуникатор
+            }
+            Klissan_damage ^{
+                Description=
+                Icon=1
+                Name=
+            }
+            Kvinkgun ^{
+                Icon=1
+                Name=Kvinkgun
+                OnActCodeTypes=t_OnWeaponShot
+                OnActCode ^{
+					01=if(ItemName(ScriptItemActObject2())!='Квинкган')exit;
+					02=dword target=ScriptItemActObject1();
+					03=if(ObjectType(target)!=4 && ObjectType(target)!=5)exit;
+					04=ScriptItemActParam(Rnd(8,10));
+                }
+            }
+            Nargun ^{
+                Icon=1
+                Name=Nargun
+                OnActCodeTypes=t_OnWeaponShot2
+                OnActCode ^{
+					01=if(ItemName(ScriptItemActObject2())!='Лезвие Наргуна')exit;
+					02=if(Rnd(1,100)<40)ScriptItemActParam(1+128+2048+32768);
+					03=else ScriptItemActParam(1+32768);
+                }
+            }
+            Nondus_shield ^{
+                Description=Акткод на щит нондуса. Щит блокирует весь наносимый кораблю урон и имеет прочность 30-40% от запаса ХП нондуса, когда падает - наносит всем кораблям в радиусе 300 урон, равный последнему нанесенному нондусу, увеличенному вдвое.
+                Icon=1
+                Name=Щит нондуса
+                OnActCodeTypes=t_OnGettingWeaponHit
+                OnActCode ^{
+					01=dword k = ScriptItemActShip();
+					02=if(HullDamage(k) >= 80)
+					03 ^{
+						01=int dmg = 0;
+						02=for(int i = 0; i < StarShips(ShipStar(k)); i = i + 1)
+						03 ^{
+							01=dword s=StarShips(ShipStar(k),i);
+							02=if(Dist(s,k)>275)continue;
+							03=if(Dist(s,k)<=35)dmg=Rnd(750,1000);
+							04=else if(Dist(s,k)<=70)dmg=Rnd(600,750);
+							05=else if(Dist(s,k)<=105)dmg=Rnd(400,500);
+							06=else if(Dist(s,k)<=155)dmg=Rnd(240,320);
+							07=else if(Dist(s,k)<=205)dmg=Rnd(160,200);
+							08=else if(Dist(s,k)<=240)dmg=Rnd(90,140);
+							09=else if(Dist(s,k)<=275)dmg=Rnd(50,80);
+							10=if(ShipType(s)=='Klissan')dmg=(dmg*10)/100;
+							11=if(ShipStar(Player()) == ShipStar(k)) ShowEffect('Weapon.NoGraph', 0, s, k, dmg, 0, 0, 255,0,0);
+							12=DealDamageToShip(s, k, dmg, 2, 0);
+						}
+						04=if(ShipStar(Player()) == ShipStar(k)) ShowEffect('Weapon.Kamikaze', 0, s, k, 0, 0, 0, 0,0,0);
+						05=ShipDestroy(k);
+					}
+                }
+            }
+            Plague ^{
+                Description=Болезнь, распространяемая клисанами. Поражает кожу, конечности, лицо, дыхательные пути и нервную систему, внешне приводя к появлению уродливых образований на теле больного. Болезнь обычно длится недолго, но не лечится привычными средствами. Серьезно ухудшаются навыки пилотирования, социальные навыки пропадают напрочь.
+                Icon=1
+                Name=Клисанская проказа
+                OnActCodeTypes=t_OnStep
+                OnActStepTypes=0
+                OnActCode ^{
+					01=dword k=ScriptItemActShip();
+					02=ShipSpecialBonsues(k,bonSkill1,ShipSpecialBonsues(k,bonSkill1)-2);
+					03=ShipSpecialBonsues(k,bonSkill2,ShipSpecialBonsues(k,bonSkill2)-2);
+					04=ShipSpecialBonsues(k,bonSkill3,ShipSpecialBonsues(k,bonSkill3)-2);
+					05=ShipSpecialBonsues(k,bonSkill4,ShipSpecialBonsues(k,bonSkill4)-6);
+					06=ShipSpecialBonsues(k,bonSkill5,ShipSpecialBonsues(k,bonSkill5)-6);
+					07=ShipSpecialBonsues(k,bonSkill6,ShipSpecialBonsues(k,bonSkill6)-6);
+					08=if(Rnd(1,100)<10)
+					09 ^{
+						01=ShipSpecialBonsues(k,bonSkill1,ShipSpecialBonsues(k,bonSkill1)+2);
+						02=ShipSpecialBonsues(k,bonSkill2,ShipSpecialBonsues(k,bonSkill2)+2);
+						03=ShipSpecialBonsues(k,bonSkill3,ShipSpecialBonsues(k,bonSkill3)+2);
+						04=ShipSpecialBonsues(k,bonSkill4,ShipSpecialBonsues(k,bonSkill4)+6);
+						05=ShipSpecialBonsues(k,bonSkill5,ShipSpecialBonsues(k,bonSkill5)+6);
+						06=ShipSpecialBonsues(k,bonSkill6,ShipSpecialBonsues(k,bonSkill6)+6);
+						07=if(k==Player())Ether(0,'',<clr>'Клисанская проказа<clrEnd> отступила. Похоже, вы снова здоровы.');
+						08=ShipDeleteCustomShipInfo(k,'Plague');
+					}
+                }
+            }
+            Plague_inflict ^{
+                Description=
+                Icon=1
+                Name=
+            }
+            Plague_inflict2 ^{
+                Description=
+                Icon=1
+                Name=
+                OnActCodeTypes=t_OnWeaponShot
+                OnActCode ^{
+					00=exit;
+					01=dword s=ScriptItemActObject1();
+					02=if(ObjectType(s)!=5)exit;
+					03=if(ShipOwner(s)==5)exit;
+					04=dword gun=ScriptItemActObject2();
+					05=if(ShipInScript(s))
+					06 ^{
+						01=if(ShipCustomFaction(s)!='')exit;
+					}
+					07=if(ItemType(gun)==t_CustomWeapon)
+					08 ^{
+						01=if(CustomWeaponType(gun)!='klissan_emitter')exit;
+					}
+					09=if(Rnd(1,100)>8)exit;
+					10=ShipAddCustomShipInfo(s,'Plague');
+                }
+            }
+            Rogit_damage ^{
+                Description=Акткод на урон рогита, дает процентный бонус к урону, прямо пропорциональный проценту отсутствующего ХП.
+                Description=При наложении на неклисанский корабль бонус уменьшается вдвое.
+                Icon=1
+                Name=Урон рогита
+                OnActCodeTypes=t_OnWeaponShot
+                OnActCode ^{
+					01=if(ObjectType(ScriptItemActObject1())!=5)exit;
+					02=dword k=ScriptItemActShip();
+					03=int bonus=200-ItemDurability(ShipItems(k,0));
+					04=ScriptItemActParam((ScriptItemActParam()*bonus)/100);
+                }
+            }
+            Transmitter ^{
+                Description=обеспечивает функционирование Z-трансмиттера (это тупо маркер для скрипта, блять. че мешало просто переменную менять?)
+                Icon=1
+                Name=Трансмиттер
+            }
+        }
+    }
+}
+ShipName ^{
+    Klissan ^{
+        1=Брюхоног
+        10=Железня
+        100=Скиф
+        101=Дудец
+        102=Сеал
+        103=Яйценюк
+        104=Майдаун
+        105=Ландскнехт
+        106=Барриер
+        107=Блюр
+        108=Лейкоцит
+        109=Махаон
+        11=Желтобрюх
+        110=Лицехват
+        111=Ктулху
+        112=Ньярлатотеп
+        113=Интоксигатор
+        114=Чомпер
+        115=Йогг-Сарон
+        116=Нургл
+        117=Брудлинг
+        118=Апокалис
+        119=Даггот
+        12=Желтосвинг
+        120=Забытый
+        121=Архимонд
+        122=Нихилус
+        13=Живохват
+        14=Жироблюз
+        15=Злобник
+        16=Зоббер
+        17=Зууб
+        18=Квазор
+        19=Кипяшок
+        2=Голован
+        20=Клишер
+        21=Ксенод
+        22=Ломодюз
+        23=Мезостаз
+        24=Мертвяк
+        25=Могиллер
+        26=Пращер
+        27=Прессор
+        28=Пузан
+        29=Релаксер
+        3=Грассахач
+        30=Риггер
+        31=Рогоззер
+        32=Рохмори
+        33=Рошер
+        34=Рягва
+        35=Сабур
+        36=Санатар
+        37=Свингатор
+        38=Синебрюх
+        39=Синеглаз
+        4=Грах
+        40=Спиротеха
+        41=Сухожил
+        42=Сячехлец
+        43=Трясун
+        44=Черепец
+        45=Щупалец
+        46=Тентакль
+        47=Бородавочник
+        48=Злей
+        49=Жирдяй
+        5=Громожуй
+        50=Роялер
+        51=Кранник
+        52=Легочник
+        53=Старожил
+        54=Ногожим
+        55=Рошен
+        56=Половик
+        57=Ордовик
+        58=Лягва
+        59=Лицеквак
+        6=Грудан
+        60=Колыван
+        61=Болтогром
+        62=Термодюз
+        63=Жидогрыз
+        64=Шекель
+        65=Хрящер
+        66=Бздышек
+        67=Докатар
+        68=Пищальник
+        69=Вангер
+        7=Гусал
+        70=Аркебузер
+        71=Тальвар
+        72=Васал
+        73=Асцал
+        74=Пермозоид
+        75=Потокс
+        76=Летун
+        77=Бахх
+        78=Забральник
+        79=Выпедик
+        8=Гущебур
+        80=Дрищ
+        81=Ендовик
+        82=Кринжер
+        83=Полип
+        84=Долбун
+        85=Синепалец
+        86=Белокур
+        87=Жердочник
+        88=Грызун
+        89=Могильщик
+        9=Жабахар
+        90=Друбатур
+        91=Захер
+        92=Горох
+        93=Порожнер
+        94=Ирод
+        95=Мантис
+        96=Парлаксер
+        97=Кульбит
+        98=Рамзан
+        99=Болтун
+        CntNames=122
+    }
+}
+ShipType ^{
+    Dominator ^{
+        Blazer ^{
+            Klissan1=Эгемон
+            Klissan2=Нондус
+            Klissan3=Катаури
+            Klissan4=Рогит
+            Klissan5=Мутенок
+            None=
+        }
+        Keller ^{
+            Klissan1=Эгемон
+            Klissan2=Нондус
+            Klissan3=Катаури
+            Klissan4=Рогит
+            Klissan5=Мутенок
+            None=
+        }
+        Terron ^{
+            Klissan1=Эгемон
+            Klissan2=Нондус
+            Klissan3=Катаури
+            Klissan4=Рогит
+            Klissan5=Мутенок
+            None=
+        }
+    }
+    Fei ^{
+        Klissan=Нондус
+        None=
+    }
+    Gaal ^{
+        Klissan=Эгемон
+        None=
+    }
+    Klissan ^{
+        1=Эгемон
+        2=Нондус
+        3=Катаури
+        4=Рогит
+        5=Мутенок
+    }
+    Maloc ^{
+        Klissan=Мутенок
+        None=
+    }
+    Peleng ^{
+        Klissan=Рогит
+        None=
+    }
+    People ^{
+        Badass=
+        Klissan=Катаури
+        None=
+    }
+    TypeName ^{
+        Badass=Изменник
+        Handler=Секретный объект
+        HandlerSmall=СО
+        KB=Нейролинк
+        KBSmall=НЛ
+        Klissan1=Клисан
+        Klissan2=Клисан
+        Klissan3=Клисан
+        Klissan4=Клисан
+        Klissan5=Клисан
+        Machpella=
+        MachpellaSmall=
+        None=Неизвестный
+    }
+}
+UselessItems ^{
+    Usl_108 ^{
+        Cost=Average
+        Description=
+        Name=Старинный пистолет
+        Owner=Maloc
+        Size=1
+        Text=Древний самозарядный пистолет крупного калибра.
+    }
+    Usl_109 ^{
+        Cost=Small
+        Description=
+        Name=Фарюк-сталеед
+        Owner=Gaal
+        Size=1
+        Text=Мутировавшее экзотическое растение.
+    }
+    Usl_110 ^{
+        Cost=Average
+        Description=
+        Name=Темпоральный нейтрониум
+        Owner=PirateClan
+        Size=10
+        Text=Обогащенное астероидное топливо.
+    }
+    Usl_111 ^{
+        Cost=Average
+        Description=
+        Name=Облитератор Х-11
+        Owner=Gaal
+        Size=70
+        Text=Стационарный электромагнитный облитератор.
+    }
+    Usl_112 ^{
+        Cost=Small
+        Description=
+        Name=Плазменный пистолет
+        Owner=Maloc
+        Size=3
+        Text=Компактное (как для малока) ручное оружие.
+    }
+    Usl_113 ^{
+        Cost=Small
+        Description=
+        Name=Зерглинг
+        Owner=Maloc
+        Size=3
+        Text=Компактное (как для малока) ручное оружие.
+    }
+    Usl_114 ^{
+        Cost=Average
+        Description=
+        Name=Модуль отрицательной запятой
+        Owner=None
+        Size=5
+        Text=Революционный источник энергии.
+    }
+    kBlackHole ^{
+        Cost=Huge
+        Description=
+        Name=Генератор макрофазового сдвига
+        Owner=None
+        Size=10
+        Text=Данное устройство использует искусственную систему соединенных нервных центров и двигательных оснований Клисанов и позволяет имитировать используемые ими подпространственные импульсы, приводящие к стабилизации инициированной червоточины с фиксированными портальными характеристиками.
+    }
+    KlissanRemains1 ^{
+        Cost=Big
+        Description=
+        Name=Физионасос
+        Owner=None
+        Size=12
+        Text=Насос для перегонки протоплазмы, у клисан служит в качестве сердца.
+    }
+    KlissanRemains2 ^{
+        Cost=Small
+        Description=
+        Name=Мегазобатор
+        Owner=None
+        Size=10
+        Text=Служит для переработки и распределения запасов питательных веществ клисан.
+    }
+    KlissanRemains3 ^{
+        Cost=Small
+        Description=
+        Name=Макрообонятор
+        Owner=None
+        Size=8
+        Text=Чувствительный орган клисан, служащий для анализа химического состава окружающей среды.
+    }
+    KlissanRemains4 ^{
+        Cost=Average
+        Description=
+        Name=Термосвинги
+        Owner=None
+        Size=3
+        Text=Органы зрения клисанских кораблей, улавливающие излучение Жабродюз других кораблей.
+    }
+    KlissanRemains5 ^{
+        Cost=Mini
+        Description=
+        Name=Рогост
+        Owner=None
+        Size=4
+        Text=Остатки клисанской брони, представляющие собой ороговевший слой особых клеток-рефлекторов.
+    }
+    KlissanRemains6 ^{
+        Cost=Big
+        Description=
+        Name=Нейроцентр
+        Owner=None
+        Size=5
+        Text=Выполняет роль мозгового центра, отвечает за принятие клисаном решений.
+    }
+    KlissanRemains7 ^{
+        Cost=Average
+        Description=
+        Name=Аэрофильтры
+        Owner=None
+        Size=15
+        Text=Заборники и накопители сжатого воздуха, выполняют роль легких у клисан.
+    }
+    KlissanRemains8 ^{
+        Cost=Huge
+        Description=
+        Name=Биослоты
+        Owner=None
+        Size=25
+        Text=Углубления в мегапанцире, которые клисаны могут заращивать различным оружием.
+    }
+    KlissanRemains9 ^{
+        Cost=Average
+        Description=
+        Name=Жабродюзы
+        Owner=None
+        Size=14
+        Text=Фрагмент корпуса клисана с расположенными на нем жаберными щелями, выталкивающими плазменные потоки. Служит маневровым двигателем.
+    }
+    KlissanRemains10 ^{
+        Cost=Small
+        Description=
+        Name=Протопузырь
+        Owner=None
+        Size=12
+        Text=Емкость с толстыми мускульными стенками, в которой хранится запасное топливо на случай пробития бака.
+    }
+    KlissanRemains11 ^{
+        Cost=Average
+        Description=
+        Name=Биорегенератор
+        Owner=None
+        Size=8
+        Text=Амебообразный сгусток кристальной протоплазмы, регенерирующий поврежденные ткани.
+    }
+    KlissanRemains12 ^{
+        Cost=Small
+        Description=
+        Name=Плазмонить
+        Owner=None
+        Size=10
+        Text=Плазменная струя частиц с обратным тяготением, помогающая клисанам собирать добычу.
+    }
+    KlissanRemains13 ^{
+        Cost=Average
+        Description=
+        Name=Плазмощит
+        Owner=None
+        Size=15
+        Text=Упорядоченный веер плазменных частиц, способный поглощать часть энергии от внешних источников.
+    }
+    KlissanRemains14 ^{
+        Cost=Small
+        Description=
+        Name=Радиосенсоры
+        Owner=None
+        Size=9
+        Text=Группа органов, насыщенных электромагнитными рецепторами, служит подспорьем радару у клисан.
+    }
+    KlissanRemains15 ^{
+        Cost=Average
+        Description=
+        Name=Нейрощуп
+        Owner=None
+        Size=7
+        Text=Сложно устроенный орган, позволяющий сканировать неживые объекты.
+    }
+    KlissanRemains16 ^{
+        Cost=Small
+        Description=
+        Name=Протопузырь
+        Owner=None
+        Size=12
+        Text=Емкость с толстыми мускульными стенками, в которой хранится запасное топливо на случай пробития бака.
+    }
+    kTransmitter ^{
+        Cost=Big
+        Description=
+        Name=Z-трансмиттер МK II
+		OnActCodeTypes=t_OnStep
+		OnActStepTypes=11
+        OnActCode ^{
+			01=if(UselessItemData(CurItem(), 1) < 100)
+			02 ^{
+				01=UselessItemData(CurItem(), 1, UselessItemData(CurItem(), 1) + 1);
+			}
+        }
+        OnUseCode ^{
+            01=if(UselessItemData(CurItem(), 1) < 100)
+            02 ^{
+                01=MessageBox('Z-трансмиттер MК II разряжен. Необходимый заряд: 100%');
+                02=exit;
+            }
+            03=ShipAddCustomShipInfo(Player(), 'Transmitter', 'NoShow', Id(ShipStar(Player())) - 1);
+            04=MessageBox('Z-трансмиттер МК II активирован. Клисаны скоро прибудут в систему.');
+            05=UselessItemData(CurItem(), 1, 0);
+        }
+        Owner=None
+        Size=5
+        Text=При использовании в космосе генерирует частоты, призывающие клисанов. Энергия заряда: <Data1><color=255,240,100>%</color>.
+    }
+    secret_loot1 ^{
+        Cost=Big
+        Description=
+        Name=Болтер
+        Owner=None
+        Size=1
+        Text=Тяжелое автоматическое оружие.
+    }
+    secret_loot2 ^{
+        Cost=Huge
+        Description=
+        Name=Некрономикон
+        Owner=None
+        Size=1
+        Text=Книга мертвых. В состоянии алкогольного опьянения не читать!
+    }
+    secret_loot3 ^{
+        Cost=Big
+        Description=
+        Name=Самоходная мортира
+        Owner=None
+        Size=40
+        Text=Танк, работающий на угле.
+    }
+    secret_loot4 ^{
+        Cost=Huge
+        Description=
+        Name=Айскорн
+		OnActCodeTypes=t_OnStep
+		OnActStepTypes=11
+        OnActCode ^{
+			01=if(~FindItemInShip(Player(), CurItem())) PlayerImmunity(0);
+        }
+        Owner=None
+        Size=1
+        Text=Мистический меч.
+    }
+    secret_loot5 ^{
+        Cost=Big
+        Description=
+        Name=Череп Каар-дана
+        Owner=None
+        Size=1
+        Text=Останки древнего гаальского шамана.
+    }
+}

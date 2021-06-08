@@ -1,0 +1,290 @@
+Items ^{
+    Weapon ^{
+        Missile ^{
+            Multiplet ^{
+                Name=Ракета с ИИ
+                Text=Ракета с интеллектуальным блоком
+            }
+            Torpednik ^{
+                Name=Торпеда
+                Text=Торпеда со смертоносной боеголовкой
+            }
+            Torpedomet ^{
+                Name=Торпедка с ИИ
+                Text=Торпедка с интеллектуальным блоком
+            }
+        }
+        Name ~{
+            ExzoShocker=Экзошокер
+            Multiplet=Мультиплет
+            Mauler=Маулер
+            FusionQuasar=Термоядерный квазар	
+            Atomizer=Атомайзер
+            CryoProjector=Криогенный прожектор
+            Torpednik=Торпедник
+            Torpedomet=Торпедомет
+        }
+		CustomWeapon ~{
+			StatsVersion ^{
+				MolderNewGuns=07.06.20
+			}
+			MolderNewGuns ~{
+				1=ExzoShocker
+				2=Multiplet
+				3=Mauler
+				4=FusionQuasar
+				5=Atomizer
+				6=CryoProjector
+				7=Torpednik
+				8=Torpedomet
+				Count=8
+			}
+			ExzoShocker ~{
+				BaseGun=Torpedo_Tube
+				MinDamage=0
+				MaxDamage=1
+				DamageSet=Energy,Destruct,Shock,Magnetic,BlockWeapon,BlockDroid
+				ShotType=Splash
+				Speed=10
+				AverageRadius=150
+				SecondaryDamageRadius=450
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.20,1.40,1.70,2.00,2.40,2.80,3.20
+				ShotsPerTurn=4
+				ArcadeType=Atomic_Vision
+				MiningFactor=2
+				kCost=100
+				AverageSize=120
+				TechLevel=5
+				InventTechLevel=Wave_Phaser
+				StoreAvailability=CoalitionOnly
+				ShotEffectPath=Weapon.16
+				ShotEffectPalette=6
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=
+			}
+			Multiplet ~{
+				BaseGun=Electronic_Cutter
+				MinDamage=4
+				MaxDamage=20
+				DamageSet=Missile
+				ShotType=Torpedo
+				Speed=140
+				AverageRadius=550
+				SecondaryDamageRadius=75
+				MissileRadius=550
+				MissileMinSpeed=550
+				MissileMaxSpeed=900
+				MissileChanceToBeHit=50
+				mWeaponDamage=1.00,1.10,1.20,1.30,1.40,1.50,1.60,1.70
+				ShotsPerTurn=3
+				ArcadeType=IMHO-9000
+				MiningFactor=6
+				kCost=20
+				AverageSize=30
+				TechLevel=4
+				InventTechLevel=Missile_Launcher
+				StoreAvailability=Free
+				ShotEffectPath=Weapon.3
+				ShotEffectPalette=10
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+			Mauler ~{
+				BaseGun=Esodapher
+				MinDamage=30
+				MaxDamage=40
+				DamageSet=Splinter
+				ShotType=Normal
+				Speed=45
+				AverageRadius=480
+				SecondaryDamageRadius=0
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.35,1.45,1.60
+				ShotsPerTurn=1
+				ArcadeType=Multiresonator
+				MiningFactor=9
+				kCost=50
+				AverageSize=90
+				TechLevel=6
+				InventTechLevel=Flux
+				StoreAvailability=PirateOnly
+				ShotEffectPath=Weapon.8
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			FusionQuasar ~{
+				BaseGun=Treton
+				MinDamage=20
+				MaxDamage=24
+				DamageSet=Energy,ScanBonus,BonusToDamaged
+				ShotType=Exploder
+				Speed=80
+				AverageRadius=315
+				SecondaryDamageRadius=90
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.40,1.50
+				ShotsPerTurn=1
+				ArcadeType=Wave_Phaser
+				MiningFactor=1
+				kCost=8
+				AverageSize=40
+				TechLevel=3
+				InventTechLevel=Flux
+				StoreAvailability=CoalitionOnly
+				ShotEffectPath=Weapon.0
+				ShotEffectPalette=4
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=
+			}
+			Atomizer ~{
+				BaseGun=Caphasitor
+				MinDamage=3
+				MaxDamage=33
+				DamageSet=Splinter,ReduceEngine
+				ShotType=Splash
+				Speed=99
+				AverageRadius=225
+				SecondaryDamageRadius=140
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.50,2.00
+				ShotsPerTurn=1
+				ArcadeType=Electronic_Cutter
+				MiningFactor=8
+				kCost=17
+				AverageSize=70
+				TechLevel=4
+				InventTechLevel=Treton
+				StoreAvailability=Free
+				ShotEffectPath=Weapon.5
+				ShotEffectPalette=11
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=
+			}
+			CryoProjector ~{
+				BaseGun=Disintegrator
+				MinDamage=17
+				MaxDamage=39
+				DamageSet=Energy,Decelerate
+				ShotType=AreaDamage
+				Speed=65
+				AverageRadius=390
+				SecondaryDamageRadius=390
+				MissileRadius=0
+				MissileMinSpeed=0
+				MissileMaxSpeed=0
+				MissileChanceToBeHit=0
+				mWeaponDamage=1.00,1.10,1.15,1.20,1.25,1.30,1.35,1.40
+				ShotsPerTurn=1
+				ArcadeType=Vertix
+				MiningFactor=4
+				kCost=98
+				AverageSize=90
+				TechLevel=7
+				InventTechLevel=Flow_Blaster
+				StoreAvailability=CoalitionOnly
+				ShotEffectPath=Weapon.13
+				ShotEffectPalette=12
+				SplashEffectPath=Weapon.13
+				MissileExplosionEffectPath=
+			}
+			Torpedomet ~{
+				BaseGun=Torpedo_Tube
+				MinDamage=12
+				MaxDamage=15
+				DamageSet=Missile
+				ShotType=Torpedo
+				Speed=140
+				AverageRadius=800
+				SecondaryDamageRadius=100
+				MissileRadius=1200
+				MissileMinSpeed=600
+				MissileMaxSpeed=1200
+				MissileChanceToBeHit=6
+				mWeaponDamage=1.00,1.20,1.40,1.70,2.00,2.40,2.80,3.20
+				ShotsPerTurn=2
+				ArcadeType=Torpedo_Tube
+				MiningFactor=6
+				kCost=30
+				AverageSize=60
+				TechLevel=5
+				InventTechLevel=Missile_Launcher
+				StoreAvailability=PirateOnly
+				ShotEffectPath=Weapon.3
+				ShotEffectPalette=14
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+			Torpednik ~{
+				BaseGun=Torpedo_Tube
+				MinDamage=24
+				MaxDamage=30
+				DamageSet=Missile
+				ShotType=Torpedo
+				Speed=140
+				AverageRadius=800
+				SecondaryDamageRadius=100
+				MissileRadius=1200
+				MissileMinSpeed=600
+				MissileMaxSpeed=1200
+				MissileChanceToBeHit=6
+				mWeaponDamage=1.00,1.20,1.40,1.70,2.00,2.40,2.80,3.20
+				ShotsPerTurn=1
+				ArcadeType=Torpedo_Tube
+				MiningFactor=6
+				kCost=30
+				AverageSize=60
+				TechLevel=6
+				InventTechLevel=Missile_Launcher
+				StoreAvailability=CoalitionOnly
+				ShotEffectPath=Weapon.3
+				ShotEffectPalette=45
+				SplashEffectPath=Weapon.AuraEffect
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+		}
+		OriginalWeaponType ~{
+			Industrial_Laser=1
+			Fragmentation_Cannon=2
+			Flux=3
+			Missile_Launcher=4
+			Treton=5
+			Wave_Phaser=6
+			Flow_Blaster=7
+			Electronic_Cutter=8
+			Multiresonator=9
+			Atomic_Vision=10
+			Disintegrator=11
+			Turbogravitron=12
+			IMHO-9000=13
+			Vertix=14
+			Torpedo_Tube=15
+			Esodapher=16
+			Caphasitor=17
+			Lirecron=18
+		}
+        Text ^{
+            Atomizer=Распыляет массированные скопления раскаленных частиц на расстоянии до <Radius>, нанося <MinDamage>-<MaxDamage><Bonus> ед. урона всем объектам в области диаметром <color=255,255,102>280</color>. Постепенно выводит из строя двигательные установки кораблей противника.
+            CryoProjector=Последнее слово в технологии создания оружия массового поражения, пригодного для защиты коалиционных рубежей. Все объекты не далее дистанции <Radius> замедляются и получают умеренный урон <MinDamage>-<MaxDamage><Bonus> единиц. Из-за конструктивных недоработок установка все еще занимает очень значительный объем.
+            ExzoShocker=Громоздкий генератор всепроникающего энергетического поля, разработанный учеными Коалиции. На расстоянии до <Radius> наносит цели многократный, но слабый ионизирующий урон <CntAttacks>x(<MinDamage>-<MaxDamage>)<Bonus> единиц. В качестве дополнительного эффекта электронная начинка цели функционирует значительно хуже, а благодаря бозонному переходу все объекты в радиусе <color=255,255,102>450</color> от первоначального также получают урон.
+            FusionQuasar=Морально устаревшая версия коалиционного орудия времен клисанской войны. Концентрированный поток энергии наносит <MinDamage>-<MaxDamage><Bonus> единиц урона на расстоянии до <Radius>, постепенно наращивая ущерб до аннигиляционного взрыва радиусом <color=255,255,102>90</color>. Из-за своей архаичности обладает огромной стоимостью по сравнению с современными аналогами.
+            Mauler=Дальнобойная кинетическая артиллерия пиратского братства. Наносит мощный материальный урон <MinDamage>-<MaxDamage><Bonus> ед. на дистанции до <Radius>. Многие недолюбливают данное орудие за технологическую примитивность и немалые габариты.
+            Multiplet=Скорострельная ракетная платформа, способная наносить <CntAttacks>x(<MinDamage>-<MaxDamage>)<Bonus> единиц ущерба за один ход, быстро расходуя свой боезапас. Каждая ракета обладает встроенным блоком с примитивным искусственным интеллектом и наносит дополнительный урон от детонации в радиусе до <color=255,255,102>75</color>. Предельная дальность действия программного блока, а значит и запуска ракет, составляет <Radius>.<br>Количество ракет: <Count>/<MaxCount> шт.
+            Torpednik=Попытка великих инженеров коалиции адаптировать торпедный аппарат Блазера под использование современных систем. Торпедник способен наносить <CntAttacks>x(<MinDamage>-<MaxDamage>)<Bonus> единиц ущерба за один ход. Торпеда обладает встроенным блоком с примитивным искусственным интеллектом и наносит дополнительный урон от детонации в радиусе до <color=255,255,102>100</color>. Предельная дальность действия программного блока, а значит и запуска ракет, составляет <Radius>.<br>Количество ракет: <Count>/<MaxCount> шт.
+            Torpedomet=Пиратская версия уникального вооружения. Торпедомет способен наносить <CntAttacks>x(<MinDamage>-<MaxDamage>)<Bonus> единиц ущерба за один ход. Каждая торпедка обладает встроенным блоком с примитивным искусственным интеллектом и наносит дополнительный урон от детонации в радиусе до <color=255,255,102>100</color>. Предельная дальность действия программного блока, а значит и запуска ракет, составляет <Radius>.<br>Количество ракет: <Count>/<MaxCount> шт.
+        }
+    }
+}

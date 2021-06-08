@@ -1,0 +1,34 @@
+PlanetQuest ^{
+    ItemForPlanetQuest ^{
+        96=none
+        97=none
+    }
+    List ^{
+        96 ^{
+            Access=5
+            Dif=32
+            Genre=симулятор
+            Group=2
+            Image=Bm.PQI.Xenolog_03
+            Length=4
+            Name=Киберспорт
+        }
+        97 ^{
+            Access=5
+            Dif=32
+            Genre=экшн с хоррором
+            Group=2
+            Image=Bm.PQI.Massacri_00
+            Length=4
+            Name=Массакри
+        }
+    }
+    PlanetQuest ^{
+        96=Mods\Revolution\RevTextQuests\DATA\Quest\Rus\Cybersport.qmm
+        97=Mods\Revolution\RevTextQuests\DATA\Quest\Rus\Massacri.qmm
+    }
+    StartText ^{
+        96=Вы должны победить всех соперников в киберспортивном турнире по стратегической игре "Зверские Уродцы 13: Хэппи Энд". Оргкомитет "World Rulezzz Cyber Game" уже ждет вас.
+        97=Вы должны помочь полиции распутать серию жутких загадочных преступлений.
+    }
+}

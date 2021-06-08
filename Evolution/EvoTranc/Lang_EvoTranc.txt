@@ -1,0 +1,3580 @@
+FormInfo ^{
+	ISFreeSpcTranc=Свободно:
+	br=<br>
+}
+Artefacts ^{
+    ArtTranclucator ^{
+        Name=Транклюкатор
+        OnUseCode ^{
+			0=dword cur_tranc=0;
+			01=int i;
+			02=int ship_tranc=0;
+			03=for(i = 0; i < ShipArts(Player()); i = i + 1)
+			04 ^{
+				01=if(ItemType(ShipArts(Player(), i)) == t_ArtefactTranclucator) ship_tranc = ship_tranc + 1;
+			}
+			05=int talky = 0;
+			//Если подключён ExpTraitors, то ищём на корабле попугая, который будет озвучивать запуски транклюкаторов
+			06=if(IsScriptActive('Mod_ExpTraitors'))
+			07 ^{
+				01=if(ShipInNormalSpace(Player()))
+				02 ^{
+					01=for(i = 0; i < ShipItems(Player()); i = i + 1)
+					02 ^{
+						01=dword item = ShipItems(Player(), i);
+						02=if(ItemType(item) == t_UselessItem)
+						03 ^{
+							01=if(EquipmentImageName(item) == 'ExpTraitors_PirateParrot') talky = 1;
+						}
+					}
+				}
+			}
+			08=int tranc_count_skill = ShipSkill(Player(), 2) - PlayerTranclucators();
+			09=if(tranc_count_skill <= 0)
+			10 ^{
+				01=if(PlayerTranclucators() >= 6)
+				02 ^{
+					01=MessageBox('Достигнут лимит одновременно активных транклюкаторов', 10);
+					02=exit;
+				}
+				03=else
+				04 ^{
+					01=MessageBox('Не хватает знания' + CT('FormInfo.br') + 'техники для активации транклюкатора', 10);
+					02=exit;
+				}
+			}
+			11=else
+			12 ^{
+				01=int tranc_count = 0;
+				02=int temp_int = 2;
+				03=if(tranc_count_skill > ship_tranc) tranc_count = ship_tranc;
+				04=else tranc_count = tranc_count_skill;
+				05=int numTrancs = 0;
+				06=if(tranc_count < 2)
+				07 ^{
+					01=if(GetShipPlanet(Player()))
+					02 ^{
+						01=if(PlanetOwner(GetShipPlanet(Player())) == 6) MessageBox('Запуск транклюкатора на незаселённой планете невозможен');
+						02=else
+						03 ^{
+							01=OnUseCodeTranclucator();
+							02=if(talky)
+							03 ^{
+								01=if(Rnd(1, 100) <= 66) Sound('Sound.ParrotPhrase4');
+								02=else Sound('Sound.ParrotPhrase1');
+							}
+							04=if(ShipInNormalSpace(Player())) Sound('Sound.UseATranc');
+							05=numTrancs = 1;
+						}
+					}
+					03=else
+					04 ^{
+						01=OnUseCodeTranclucator();
+						02=if(talky)
+						03 ^{
+							01=if(Rnd(1, 100) <= 66) Sound('Sound.ParrotPhrase4');
+							02=else Sound('Sound.ParrotPhrase1');
+						}
+						04=if(ShipInNormalSpace(Player())) Sound('Sound.UseATranc');
+						05=numTrancs = 1;
+					}
+				}
+				08=else
+				09 ^{
+					01=if(GetShipPlanet(Player()))
+					02 ^{
+						01=if(PlanetOwner(GetShipPlanet(Player())) == 6) MessageBox('Запуск транклюкатора на незаселённой планете невозможен');
+						02=else
+						03 ^{
+							01=cur_tranc = CurItem();
+							02=str temp_str = 'Bm.Items.2ArtTranclucator_s';
+							03=if(EquipmentImageName(cur_tranc) != '') temp_str = 'Bm.Items.2' + DeleteTags(EquipmentImageName(cur_tranc)) + 's';
+							04=numTrancs = NumberBox(temp_str, 'Сколько транклюкаторов вы хотите запустить?', 1, tranc_count, tranc_count);
+							05=if(numTrancs)
+							06 ^{
+								01=OnUseCodeTranclucator();
+								02=for(i = numTrancs - 1; i > 0; i = i - 1) UseTranclucator(Player());
+								03=if(talky)
+								04 ^{
+									01=if(Rnd(1, 100) <= 66) Sound('Sound.ParrotPhrase4');
+									02=else Sound('Sound.ParrotPhrase1');
+								}
+								05=if(ShipInNormalSpace(Player())) Sound('Sound.UseATranc');
+							}
+						}
+					}
+					03=else
+					04 ^{
+						01=cur_tranc = CurItem();
+						02=str temp_str2 = 'Bm.Items.2ArtTranclucator_s';
+						03=if(EquipmentImageName(cur_tranc) != '') temp_str2 = 'Bm.Items.2'+DeleteTags(EquipmentImageName(cur_tranc)) + 's';
+						04=numTrancs = NumberBox(temp_str2, 'Сколько транклюкаторов вы хотите запустить?', 1, tranc_count,tranc_count);
+						05=if(numTrancs)
+						06 ^{
+							01=OnUseCodeTranclucator();
+							02=for(i = numTrancs - 1; i > 0; i = i - 1) UseTranclucator(Player());
+							03=if(talky)
+							04 ^{
+								01=if(Rnd(1, 100) <= 66) Sound('Sound.ParrotPhrase4');
+								02=else Sound('Sound.ParrotPhrase1');
+							}
+							05=if(ShipInNormalSpace(Player())) Sound('Sound.UseATranc');
+						}
+					}
+				}
+				10=if(PlayerTranclucators() && numTrancs)
+				11 ^{
+					01=InterfaceState('StarMap', 'Tranc_panel', 1);
+					02=if(ShipFindCustomShipInfoByType(Player(), 'TrancPanelMoverInfo') == -1) ShipAddCustomShipInfo(Player(), 'TrancPanelMoverInfo', 'NoShow');
+					03=int activeTrancs = PlayerTranclucators();
+					04=for(i = 1; i <= 6; i = i + 1)
+					05 ^{
+						01=InterfaceState('StarMap', 'TP_but_' + i, -1);
+						02=if(PlayerTranclucators() >= i)
+						03 ^{
+							01=InterfaceState('StarMap', 'TP_but_' + i, 1);
+							02=cur_tranc = PlayerTranclucators(i - 1);
+							03=if(ShipFindCustomShipInfoByType(cur_tranc,'TrancModAddInfo')==-1)ShipAddCustomShipInfo(cur_tranc,'TrancModAddInfo','NoShow',0,0);
+							//Удаляем лишние инфошки NPC, если игрок раздобыл себе чужого транклюкатора
+							04=if(ShipFindCustomShipInfoByType(cur_tranc,'TrancNPCAddInfo')>-1)
+							05 ^{
+								01=ShipDeleteCustomShipInfo(cur_tranc,'TrancNPCAddInfo');
+								//Подменяем фейковую инфошку навигационного компьютера на нормальную
+								02=if(ShipFindCustomShipInfoByType(cur_tranc,'TrancFakeNavComputerInfo')>-1)
+								03 ^{
+									01=ShipDeleteCustomShipInfo(cur_tranc,'TrancFakeNavComputerInfo');
+									02=ShipAddCustomShipInfo(cur_tranc,'TrancNavComputerInfo','',0,0,0,'True','False','');
+								}
+							}
+							06=if(ShipStar(Player())==ShipStar(PlayerTranclucators(i-1)))
+							07 ^{
+								01=if(!IsChameleon(cur_tranc))InterfaceImage('StarMap','TP_but_'+i,'Alpha,Bm.PanelSpace2.2TranclucatorN');
+								02=else InterfaceImage('StarMap','TP_but_'+i,'Alpha,Bm.PanelSpace2.2'+DeleteTags(Format(EquipmentImageName(cur_tranc),'Art',''))+'N');
+							}
+							08=else
+							09 ^{
+								01=if(!IsChameleon(cur_tranc))InterfaceImage('StarMap','TP_but_'+i,'Alpha,Bm.PanelSpace2.2TranclucatorH');
+								02=else InterfaceImage('StarMap','TP_but_'+i,'Alpha,Bm.PanelSpace2.2'+DeleteTags(Format(EquipmentImageName(cur_tranc),'Art',''))+'H');
+							}
+						}
+					}
+					06=if(activeTrancs == 1)
+					07 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',2,0,0);
+					}
+					08=else if(activeTrancs == 2)
+					09 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',-16,0,0);
+					}
+					10=else if(activeTrancs == 3)
+					11 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',-34,0,0);
+					}
+					12=else if(activeTrancs == 4)
+					13 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',-52,0,0);
+					}
+					14=else if(activeTrancs == 5)
+					15 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',-70,0,0);
+					}
+					16=else if(activeTrancs == 6)
+					17 ^{
+						01=InterfacePos('StarMap','Tranc_panel_sigment_2',-88,0,0);
+					}
+					18=if(!ShipPartners(Player()) && !PlayerPirates())
+					19 ^{
+						01=InterfacePos('StarMap','Tranc_panel_Pos',0,-35,0);
+						02=InterfaceImage('StarMap','Tranc_panel_sigment_2','Alpha,Bm.PanelSpace2.2TranclucatorPanel');
+						03=InterfaceState('StarMap','zaglushka_tranc_ms_blk',-1);
+					}
+					20=else
+					21 ^{
+						01=InterfacePos('StarMap','Tranc_panel_Pos',0,0,0);
+						02=InterfaceImage('StarMap','Tranc_panel_sigment_2','Alpha,Bm.PanelSpace2.2TranclucatorPanelPartners');
+						03=InterfaceState('StarMap','zaglushka_tranc_ms_blk',1);
+					}
+				}
+			}
+        }
+		OnActCodeTypes=t_OnAnotherItem2
+        OnActCode ^{
+			01=if(ScriptItemActionType(t_OnAnotherItem2))
+			02 ^{
+				01=dword item=ScriptItemActObject1(t_OnAnotherItem2);
+				02=if(item)
+				03 ^{
+					01=if(ItemType(item)==t_FuelTanks || ItemType(item)==t_Cistern)
+					02 ^{
+						01=dword tranc=ArtTranclucatorToShip(CurItem());
+						02=dword tank=ShipEqInSlot(tranc,t_FuelTanks);
+						03=if(ShipFuelLow(tranc))
+						04 ^{
+							01=if(ContainerFuel(item))
+							02 ^{
+								01=str text='Вы точно хотите заправить <color=0,50,200>'+Name(tranc)+'</color>?';
+								02=if(MessageBoxYesNo(text))
+								03 ^{
+									01=int refuel=GetEquipmentStats(tank,0)-ShipFuel(tranc);
+									02=if(ContainerFuel(item)>=refuel)
+									03 ^{
+										01=ShipFuel(tranc,ShipFuel(tranc)+refuel);
+										02=Sound('Sound.Repair');
+										03=MessageBox('<color=0,50,200>'+Name(tranc)+'</color> полностью заправлен');
+										04=ContainerFuel(item,ContainerFuel(item)-refuel);
+										05=ScriptItemActParam(2);
+									}
+									04=else
+									05 ^{
+										01=ShipFuel(tranc,ShipFuel(tranc)+ContainerFuel(item));
+										02=Sound('Sound.Repair');
+										03=if(count(Name(tranc))>=16 && count(Name(tranc))<=17)MessageBox('<color=0,50,200>'+Name(tranc)+'</color>'+CT('FormInfo.br')+'заправлен на <color=0,50,200>'+ContainerFuel(item)+'</color> ед.');
+										04=else MessageBox('<color=0,50,200>'+Name(tranc)+'</color> заправлен на <color=0,50,200>'+ContainerFuel(item)+'</color> ед.');
+										05=ContainerFuel(item,0);
+										06=ScriptItemActParam(2);
+									}
+								}
+							}
+							03=else
+							04 ^{
+								01=if(ItemType(item)==t_FuelTanks)MessageBox('Топливный бак пуст, заправить <color=0,50,200>'+Name(tranc)+'</color> из него невозможно');
+								02=else MessageBox('Цистерна пуста, заправить <color=0,50,200>'+Name(tranc)+'</color> из неё невозможно');
+							}
+						}
+						05=else MessageBox('<color=0,50,200>'+Name(tranc)+'</color> в заправке не нуждается');
+					}
+				}
+			}
+		}
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ~{
+            TrancPanelMoverInfo ^{
+                Description=Передвигатель панели с транками для игрока (скрытая)
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnLeavingForm,t_OnPlayerTalkedWithShip,t_OnShipTalkedWithPlayer,t_OnStep
+				OnActStepTypes=11
+                OnActCode ^{
+					//Код, перекрашивающий все кнопки транклюкаторов в недоступные, сразу же после перехода игрока в гипер
+                    01=if(ScriptItemActionType(t_OnStep,11))
+                    02 ^{
+						01=if(ShipInHyperSpace(Player()))
+						02 ^{
+							01=for(int j=1;j<=6;j=j+1)
+							02 ^{
+								01=if(PlayerTranclucators()>=j)
+								02 ^{
+									01=dword curTrancT=PlayerTranclucators(j-1);
+									02=if(!IsChameleon(curTrancT))InterfaceImage('StarMap','TP_but_'+j,'Alpha,Bm.PanelSpace2.2TranclucatorH');
+									03=else InterfaceImage('StarMap','TP_but_'+j,'Alpha,Bm.PanelSpace2.2'+DeleteTags(Format(EquipmentImageName(curTrancT),'Art',''))+'H');
+								}
+							}
+						}
+					}
+					//Отключаем все кнопки при уходе с формы космоса на случай редких проблем и крашей с загрузкой
+                    03=else if(ScriptItemActionType(t_OnLeavingForm))
+                    04 ^{
+						01=if(CurrentForm()=='StarMap')
+						02 ^{
+							01=InterfaceState('StarMap','TrancActive_but',-1);
+							02=InterfaceState('StarMap','TrancActive_butRed',-1);
+							03=InterfaceState('StarMap','TrancActive_butYellow',-1);
+							04=InterfaceState('StarMap','TrancActive_butGreen',-1);
+							05=InterfaceState('StarMap','TrancActive_butBlue',-1);
+							06=InterfaceState('StarMap','TrancActive_butViolet',-1);
+							07=InterfaceState('StarMap','TrancActive_butWhite',-1);
+							08=for(int k=1;k<=PlayerTranclucators();k=k+1)
+							09 ^{
+								01=if(InterfaceState('StarMap','TP_but_'+k)<1)InterfaceState('StarMap','TP_but_'+k,1);
+							}
+							10=InterfaceState('StarMap','InfoShipTranc',-1);
+							11=InterfaceState('StarMap','InfoTrancOutOfRange',-1);
+						}
+                    }
+					//Код, корректирующий положение панели с кнопками транков при нанимании/увольнении партнёров
+                    05=else if(ScriptItemActionType(t_OnPlayerTalkedWithShip) || ScriptItemActionType(t_OnShipTalkedWithPlayer))
+                    06 ^{
+						01=if(ShipPartners(Player()) || PlayerPirates())
+						02 ^{
+							01=InterfacePos('StarMap','Tranc_panel_Pos',0,0,0);
+							02=InterfaceImage('StarMap','Tranc_panel_sigment_2','Alpha,Bm.PanelSpace2.2TranclucatorPanelPartners');
+							03=InterfaceState('StarMap','zaglushka_tranc_ms_blk',1);
+						}
+						03=else
+						04 ^{
+							01=InterfacePos('StarMap','Tranc_panel_Pos',0,-35,0);
+							02=InterfaceImage('StarMap','Tranc_panel_sigment_2','Alpha,Bm.PanelSpace2.2TranclucatorPanel');
+							03=InterfaceState('StarMap','zaglushka_tranc_ms_blk',-1);
+						}
+						05=InterfaceState('Talk','Close',-1);
+                    }
+                }
+            }
+            TrancModAddInfo ^{
+                Description=Инфошка для расширения возможностей ИИ транклюкатора игрока (скрытая)
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnReduceEqBattle,t_OnReduceEqUse,t_OnReduceEqForce,t_OnReduceEqForsage,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi,t_OnEnteringForm,t_OnLeavingForm
+				OnActStepTypes=0,11
+                OnActCode ^{
+				//ShipCustomShipInfoData(0,CurInfo(),1) - если не 0, то равно Id планеты, на которую можно совершать посадку при сборе предметов;
+				//ShipCustomShipInfoData(0,CurInfo(),2) - если не 0, то равно Id станции, на которую можно совершать посадку при сборе предметов;
+				//ShipCustomShipInfoData(0,CurInfo(),3) - таймер до завершения приказа форсажа у транка;
+				//ShipCustomShipInfoTextData(0,CurInfo(),1) - маркер об инициации транком определённого диалога с игроком;
+				//ShipCustomShipInfoTextData(0,CurInfo(),2) - маркер о том, что транклюкатор совершает посадку для сдачи собранных вещей на склад;
+				//ShipCustomShipInfoTextData(0,CurInfo(),3) - проверка о наличии приказа форсажа, нужна для корректного включения кода, привязанного к стейту (если 'turn', то вкл.);
+					01=dword cur_Tranc=ScriptItemActShip();
+					02=if(ShipFindCustomShipInfoByType(cur_Tranc,'OrderJumpHole_ForCompanion') > -1)
+					03 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=infos=CurInfo();
+							02=if(OrderForsage(cur_Tranc))ShipCustomShipInfoTextData(0,infos,3,'turn');
+						}
+						03=exit;
+					}
+					04=if(ScriptItemActionType(t_OnStep,0))
+					05 ^{
+						01=int bonus=FindBonusByCustomTag('EvoTranc_TrancItemAcrin');
+						02=int bonus2=FindBonusByCustomTag('EvoTranc_TrancWeaponAcrin');
+						03=dword infos=CurInfo();
+						04=str tempStr;
+						//Если включён сбор вещей
+						05=if(TranclucatorData(cur_Tranc,'SeekItems'))
+						06 ^{
+							//Если транклюкатор садится
+							01=if(ShipOrder(cur_Tranc)==2)
+							02 ^{
+								01=dword planet=ShipCustomShipInfoData(0,infos,1);
+								02=dword base=ShipCustomShipInfoData(0,infos,2);
+								03=dword cur_point=ShipOrderObj(cur_Tranc);
+								//Если установлены конкретные цели для посадки
+								04=if(planet || base)
+								05 ^{
+									//Не делаем проверку, если транклюкатор уже и так летит к одной из указанных ему целей посадки
+									01=if(Id(cur_point)!=planet && Id(cur_point)!=base)
+									02 ^{
+										01=int i;
+										02=int distNear=0;
+										03=dword star=ShipStar(cur_Tranc);
+										04=dword closest_base=0;
+										05=if(planet)
+										06 ^{
+											01=planet=IdToPlanet(planet);
+											//Если не нашли выбранную планету в системе с транком, очищаем маркер
+											02=if(PlanetToStar(planet)!=star)
+											03 ^{
+												01=planet=0;
+												02=ShipCustomShipInfoData(0,infos,1,0);
+											}
+										}
+										07=if(base)
+										08 ^{
+											01=base=IdToShip(base);
+											//Если не нашли выбранную базу в системе с транком, очищаем маркер
+											02=if(ShipStar(base)!=star)
+											03 ^{
+												01=base=0;
+												02=ShipCustomShipInfoData(0,infos,2,0);
+											}
+										}
+										//Если ограничение включено и для планет и для станций
+										09=if(planet && base)
+										10 ^{
+											01=if(Dist(cur_Tranc,planet)<=Dist(cur_Tranc,base))
+											02 ^{
+												01=OrderLanding(cur_Tranc,planet);
+												02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+											}
+											03=else
+											04 ^{
+												01=OrderLanding(cur_Tranc,base);
+												02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+											}
+										}
+										//Ограничение установлено только на планету
+										11=else if(planet)
+										12 ^{
+											//Если транк садится на планету, но планета не та
+											01=if(ObjectType(cur_point)==3)
+											02 ^{
+												//Если транку разрешено садиться на любые станции
+												01=if(TranclucatorData(cur_Tranc,'LandPermitRuins'))
+												02 ^{
+													//Ищем ближайшую станцию
+													01=for(i=0;i<StarRuins(star);i=i+1)
+													02 ^{
+														01=dword ruin=StarRuins(star,i);
+														//Исключаем ингибиторы, нейролинки и доминионы, если игрок не пират
+														02=tempStr=ShipType(ruin);
+														03=if(tempStr=='Inhibitor')continue;
+														04=if(tempStr=='BM')continue;
+														05=if(tempStr=='KB')continue;
+														06=if(tempStr=='Machpella')continue;
+														07=if(tempStr=='SSB')continue;
+														08=if(tempStr=='Handler')
+														09 ^{
+															01=if(ShipOwner(Player())!=7 && GetShipPirateRank(Player())<7)continue;
+														}
+														10=if(tempStr=='CB' && ShipOwner(Player())!=7)continue;
+														11=if(!closest_base)
+														12 ^{
+															01=closest_base=ruin;
+															02=distNear=Dist(cur_Tranc,closest_base);
+														}
+														13=else if(Dist(cur_Tranc,ruin)<distNear)
+														14 ^{
+															01=closest_base=ruin;
+															02=distNear=Dist(cur_Tranc,ruin);
+														}
+													}
+													//Если нашли, то отправляем транка туда
+													03=if(closest_base)
+													04 ^{
+														01=OrderLanding(cur_Tranc,closest_base);
+														02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+													}
+													05=else
+													06 ^{
+														01=OrderLanding(cur_Tranc,planet);
+														02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+													}
+												}
+												//Иначе сразу отправляем его к разрешённой планете
+												03=else
+												04 ^{
+													01=OrderLanding(cur_Tranc,planet);
+													02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+												}
+											}
+										}
+										//Ограничение установлено только на станцию
+										13=else if(base)
+										14 ^{
+											//Если транк садится на станцию, но станция не та
+											01=if(ObjectType(cur_point)==4)
+											02 ^{
+												//Если транку разрешено садиться на любые планеты
+												01=if(TranclucatorData(cur_Tranc,'LandPermitPlanets'))
+												02 ^{
+													01=closest_base=NearCivilPlanet(cur_Tranc);
+													//Если ближайшая планета ближе, чем разрешённая база, то отправляем транка туда
+													02=if(Dist(cur_Tranc,closest_base)<=Dist(cur_Tranc,base))
+													03 ^{
+														01=OrderLanding(cur_Tranc,closest_base);
+														02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+													}
+													//Иначе, на разрешённую базу
+													04=else
+													05 ^{
+														01=OrderLanding(cur_Tranc,base);
+														02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+													}
+												}
+												//Иначе сразу отправляем его к разрешённой базе
+												03=else
+												04 ^{
+													01=OrderLanding(cur_Tranc,base);
+													02=ShipCustomShipInfoTextData(0,infos,2,'landing');
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						//Если транклюкатор не готовится к прыжку
+						07=if(ShipOrder(cur_Tranc)!=2 && ShipOrder(cur_Tranc)!=3)OrderLock(cur_Tranc,0);
+					}
+					06=else if(ScriptItemActionType(t_OnStep,11))
+					07 ^{
+						01=infos=CurInfo();
+						//Обнуляем таймер диалога только сейчас, чтобы транк не вызывал игрока по несколько раз за ход
+						02=ShipCustomShipInfoTextData(0,CurInfo(),1,'');
+						03=if(OrderForsage(cur_Tranc))ShipCustomShipInfoTextData(0,infos,3,'turn');
+						//Если транклюкатор садится для сброса вещей на склад
+						04=if(ShipCustomShipInfoTextData(0,infos,2)=='landing')
+						05 ^{
+							01=OrderNone(cur_Tranc);
+							02=ShipFreeFlight(cur_Tranc);
+							03=if(ShipOrder(cur_Tranc)==2)
+							04 ^{
+								01=planet=ShipCustomShipInfoData(0,infos,1);
+								02=base=ShipCustomShipInfoData(0,infos,2);
+								03=cur_point=ShipOrderObj(cur_Tranc);
+								//Если установлены конкретные цели для посадки
+								04=if(planet || base)
+								05 ^{
+									//Не делаем проверку, если транклюкатор уже и так летит к одной из указанных ему целей посадки
+									01=if(Id(cur_point)!=planet && Id(cur_point)!=base)
+									02 ^{
+										01=star=ShipStar(cur_Tranc);
+										02=if(planet)
+										03 ^{
+											01=planet=IdToPlanet(planet);
+											02=for(i=0;i<StarPlanets(star);i=i+1)
+											03 ^{
+												01=if(StarPlanets(star,i)==planet)break;
+												//Если дошли до конца списка, но не нашли выбранную планету
+												02=if(i==(StarPlanets(star)-1))
+												03 ^{
+													01=planet=0;
+													02=ShipCustomShipInfoData(0,infos,1,0);
+												}
+											}
+										}
+										04=if(base)
+										05 ^{
+											01=base=IdToShip(base);
+											02=for(i=0;i<StarRuins(star);i=i+1)
+											03 ^{
+												01=if(StarRuins(star,i)==base)break;
+												//Если дошли до конца списка, но не нашли выбранную станцию
+												02=if(i==(StarRuins(star)-1))
+												03 ^{
+													01=base=0;
+													02=ShipCustomShipInfoData(0,infos,2,0);
+												}
+											}
+										}
+										//Если ограничение включено и для планет и для станций
+										06=if(planet && base)
+										07 ^{
+											01=if(Dist(cur_Tranc,planet)<=Dist(cur_Tranc,base))
+											02 ^{
+												01=OrderLanding(cur_Tranc,planet);
+												02=OrderLock(cur_Tranc,1);
+											}
+											03=else
+											04 ^{
+												01=OrderLanding(cur_Tranc,base);
+												02=OrderLock(cur_Tranc,1);
+											}
+										}
+										08=else if(planet)
+										09 ^{
+											//Если транк садится на планету, но планета не та
+											01=if(ObjectType(cur_point)==3)
+											02 ^{
+												//Если транку разрешено садиться на любые станции
+												01=if(TranclucatorData(cur_Tranc,'LandPermitRuins'))
+												02 ^{
+													01=closest_base=0;
+													02=distNear=0;
+													//Ищем ближайшую станцию
+													03=for(i=0;i<StarRuins(star);i=i+1)
+													04 ^{
+														01=dword ruin2=StarRuins(star,i);
+														//Исключаем ингибиторы, нейролинки и доминионы, если игрок не пират
+														02=tempStr=ShipType(ruin2);
+														03=if(tempStr=='Inhibitor')continue;
+														04=if(tempStr=='BM')continue;
+														05=if(tempStr=='KB')continue;
+														06=if(tempStr=='Machpella')continue;
+														07=if(tempStr=='SSB')continue;
+														08=if(tempStr=='Handler')
+														09 ^{
+															01=if(ShipOwner(Player())!=7 && GetShipPirateRank(Player())<7)continue;
+														}
+														10=if(tempStr=='CB' && ShipOwner(Player())!=7)continue;
+														11=if(!closest_base)
+														12 ^{
+															01=closest_base=ruin2;
+															02=distNear=Dist(cur_Tranc,closest_base);
+														}
+														13=else if(Dist(cur_Tranc,ruin2)<distNear)
+														14 ^{
+															01=closest_base=ruin2;
+															02=distNear=Dist(cur_Tranc,ruin2);
+														}
+													}
+													//Если нашли, то отправляем транка туда
+													05=if(closest_base)
+													06 ^{
+														01=OrderLanding(cur_Tranc,closest_base);
+														02=OrderLock(cur_Tranc,1);
+													}
+													//Иначе, на разрешённую планету
+													07=else
+													08 ^{
+														01=OrderLanding(cur_Tranc,planet);
+														02=OrderLock(cur_Tranc,1);
+													}
+												}
+												//Иначе сразу отправляем его к разрешённой планете
+												03=else
+												04 ^{
+													01=OrderLanding(cur_Tranc,planet);
+													02=OrderLock(cur_Tranc,1);
+												}
+											}
+										}
+										10=else if(base)
+										11 ^{
+											//Если транк садится на станцию, но станция не та
+											01=if(ObjectType(cur_point)==4)
+											02 ^{
+												//Если транку разрешено садиться на любые планеты
+												01=if(TranclucatorData(cur_Tranc,'LandPermitPlanets'))
+												02 ^{
+													01=closest_base=NearCivilPlanet(cur_Tranc);
+													//Если ближайшая планета ближе, чем разрешённая база, то отправляем транка туда
+													02=if(Dist(cur_Tranc,closest_base)<=Dist(cur_Tranc,base))
+													03 ^{
+														01=OrderLanding(cur_Tranc,closest_base);
+														02=OrderLock(cur_Tranc,1);
+													}
+													//Иначе, на разрешённую базу
+													04=else
+													05 ^{
+														01=OrderLanding(cur_Tranc,base);
+														02=OrderLock(cur_Tranc,1);
+													}
+												}
+												//Иначе сразу отправляем его к разрешённой базе
+												03=else
+												04 ^{
+													01=OrderLanding(cur_Tranc,base);
+													02=OrderLock(cur_Tranc,1);
+												}
+											}
+										}
+									}
+								}
+							}
+							05=else ShipCustomShipInfoTextData(0,infos,2,'');
+						}
+						//"Конфискуем" транка на склад, если он оказался на планете или станции с враждебным отношением к игроку
+						06=dword cur_planet=GetShipPlanet(cur_Tranc);
+						07=dword cur_ruin=GetShipRuins(cur_Tranc);
+						08=if(cur_planet || cur_ruin)
+						09 ^{
+							01=int j;
+							02=dword temp_item;
+							//Проверка для планеты
+							03=if(cur_planet)
+							04 ^{
+								01=if(RelationToRanger(cur_planet,Player())<10)
+								02 ^{
+									//Коалиционные планеты
+									01=if(PlanetOwner(cur_planet)!=7)
+									02 ^{
+										01=TranclucatorData(cur_Tranc,'LandStorage',1);
+										02=ShipFreeFlight(cur_Tranc);
+										03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на планету <color=255,240,100>'+PlanetName(cur_planet)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+										04=exit;
+									}
+									//Роджерия
+									03=else if(cur_planet==PlanetPirateClan())
+									04 ^{
+										01=TranclucatorData(cur_Tranc,'LandStorage',1);
+										02=ShipFreeFlight(cur_Tranc);
+										03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>Роджерию</color>. Для получения робота назад вам придётся явиться за ним лично.');
+										04=exit;
+									}
+									//Пиратские планеты
+									05=else
+									06 ^{
+										01=TranclucatorData(cur_Tranc,'LandStorage',1);
+										02=ShipFreeFlight(cur_Tranc);
+										03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на планету <color=255,240,100>'+PlanetName(cur_planet)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+										04=exit;
+									}
+								}
+							}
+							//Проверка для станции
+							05=else
+							06 ^{
+								01=if(ShipType(cur_ruin)=='Machpella' || ShipType(cur_ruin)=='Handler')
+								02 ^{
+									01=if(ShipType(cur_ruin)=='Machpella')
+									02 ^{
+										01=TranclucatorData(cur_Tranc,'LandStorage',1);
+										02=ShipFreeFlight(cur_Tranc);
+										03=for(j=0;j<StorageItems();j=j+1)
+										04 ^{
+											01=if(StorageItemLocation(j)!=cur_ruin)continue;
+											02=temp_item=StorageItems(j);
+											03=if(ItemType(temp_item)==t_ArtefactTranclucator)
+											04 ^{
+												01=if(ArtTranclucatorToShip(temp_item)==cur_Tranc)FreeItem(GetItemFromStorage(j));
+											}
+										}
+										05=exit;
+									}
+									03=else
+									04 ^{
+										01=if(ShipOwner(Player())!=7 || GetShipPirateRank(Player())<7)
+										02 ^{
+											01=TranclucatorData(cur_Tranc,'LandStorage',1);
+											02=ShipFreeFlight(cur_Tranc);
+											03=for(j=0;j<StorageItems();j=j+1)
+											04 ^{
+												01=if(StorageItemLocation(j)!=cur_ruin)continue;
+												02=temp_item=StorageItems(j);
+												03=if(ItemType(temp_item)==t_ArtefactTranclucator)
+												04 ^{
+													01=if(ArtTranclucatorToShip(temp_item)==cur_Tranc)FreeItem(GetItemFromStorage(j));
+												}
+											}
+											05=exit;
+										}
+										03=else if(RelationToRanger(cur_ruin,Player())<10)
+										04 ^{
+											01=TranclucatorData(cur_Tranc,'LandStorage',1);
+											02=ShipFreeFlight(cur_Tranc);
+											03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>'+Name(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+											04=exit;
+										}
+									}
+								}
+								03=else
+								04 ^{
+									01=if(RelationToRanger(cur_ruin,Player())<10)
+									02 ^{
+										//Коалиционные станции
+										01=if(ShipOwner(cur_ruin)!=7)
+										02 ^{
+											01=if(ShipType(cur_ruin)=='SB')
+											02 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>Научную базу '+ShortName(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+											03=else if(ShipType(cur_ruin)=='WB')
+											04 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>Военную базу '+ShortName(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+											05=else if(ShipType(cur_ruin)=='PB')
+											06 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>Пиратскую базу '+ShortName(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+											07=else
+											08 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>'+Name(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+										}
+										//Пиратские станции
+										03=else
+										04 ^{
+											01=if(ShipType(cur_ruin)=='PB')
+											02 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>Пиратскую базу '+ShortName(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+											03=else
+											04 ^{
+												01=TranclucatorData(cur_Tranc,'LandStorage',1);
+												02=ShipFreeFlight(cur_Tranc);
+												03=NewsAdd('Ваш <color=255,240,100>'+Name(cur_Tranc)+'</color> был конфискован при совершении посадки на <color=255,240,100>'+Name(cur_ruin)+'</color>. Для получения робота назад вам придётся явиться за ним лично.');
+												04=exit;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					08=else if(ScriptItemActionType(t_OnEnteringForm))
+					09 ^{
+						01=if(CurrentForm()=='Ship')
+						02 ^{
+							01=if(GetEquipmentStats(ShipItems(cur_Tranc,0),8))
+							02 ^{
+								01=if(ItemDurability(ShipEqInSlot(cur_Tranc,t_Engine))<=1)
+								02 ^{
+									01=InterfaceState('Ship','ForsageBut',0);
+									02=InterfaceState('Ship','ForsageLock',1);
+								}
+							}
+						}
+						//Сбрасываем OrderLock, чтобы игрок мог отдать транку другой приказ
+						03=if(CurrentForm()=='Talk')
+						04 ^{
+							01=if(OrderLock(ScriptItemActShip()))OrderLock(ScriptItemActShip(),0);
+						}
+					}
+					10=else if(ScriptItemActionType(t_OnLeavingForm))
+					11 ^{
+						01=infos=CurInfo();
+						//Сбрасываем лишние маркеры и восстанавливаем OrderLock, если игрок не отменил транку приказ прыжка
+						02=if(CurrentForm()=='Talk')
+						03 ^{
+							01=if(ShipOrder(cur_Tranc)==6)
+							02 ^{
+								01=if(ShipOrderData1(cur_Tranc)==1)
+								02 ^{
+									01=if(ShipOrderObj(cur_Tranc)==Player())ShipOrderData1(cur_Tranc,0);
+								}
+							}
+							//Восстанавливаем OrderLock, если транк летит к планете или базе, записанной ему по приказу сбора предметов
+							03=if(ShipOrder(cur_Tranc)==2)
+							04 ^{
+								01=if(TranclucatorData(cur_Tranc,'SeekItems'))
+								02 ^{
+									01=if(Id(ShipOrderObj(cur_Tranc))==ShipCustomShipInfoData(0,infos,1) || Id(ShipOrderObj(cur_Tranc))==ShipCustomShipInfoData(0,infos,2))OrderLock(cur_Tranc,1);
+								}
+							}
+							05=if(ShipOrder(cur_Tranc)==3)OrderLock(cur_Tranc,1);
+							06=else if(ShipFindCustomShipInfoByType(cur_Tranc,'TrancNavComputerInfo')>-1)
+							07 ^{
+								01=int infosJ=ShipFindCustomShipInfoByType(cur_Tranc,'TrancNavComputerInfo');
+								02=if(ShipCustomShipInfoTextData(cur_Tranc,infosJ,3)=='JumpByOrder')ShipCustomShipInfoTextData(cur_Tranc,infosJ,3,'');
+							}
+						}
+						04=else if(CurrentForm()=='Ship')
+						05 ^{
+							01=if(InterfaceState('Ship','ForsageLock'))
+							02 ^{
+								01=InterfaceState('Ship','ForsageBut',-1);
+								02=InterfaceState('Ship','ForsageLock',-1);
+							}
+						}
+					}
+					12=else if(ScriptItemActionType(t_OnTakingDamageEn) || ScriptItemActionType(t_OnTakingDamageSp) || ScriptItemActionType(t_OnTakingDamageMi))
+					13 ^{
+						//Если игрок атаковал собственного транклюкатора
+						01=if(ScriptItemActObject1()==Player())
+						02 ^{
+							01=if(ShipCustomShipInfoTextData(0,CurInfo(),1)=='')
+							02 ^{
+								01=if(ShipRadarRange(Player())>=Dist(Player(),cur_Tranc))
+								02 ^{
+									01=ShipCustomShipInfoTextData(0,CurInfo(),1,'YouHurtMe!');
+									02=Dialog(cur_Tranc);
+								}
+							}
+						}
+					}
+					14=else
+					15 ^{
+						01=dword itemU=ScriptItemActObject1();
+						02=if(ItemExtraSpecials(itemU))
+						03 ^{
+							01=if(ItemExtraSpecialsCountByType(itemU,bonus) || ItemExtraSpecialsCountByType(itemU,bonus2))
+							02 ^{
+								01=ScriptItemActParam(ScriptItemActParam()/250);
+							}
+						}
+					}
+                }
+            }
+            TrancAddGunInfo ^{
+                Description=Компактное, но крайне мощное осколочное орудие, предназначенное для поражения тяжелобронированных космических целей. Начинённые коррозийным составом снаряды <color=255,240,100>ослабляют броню</color>, а мощный заряд взрывчатки наносит повышенный <color=255,240,100>урон</color> всему бортовому <color=255,240,100>оборудованию</color> судна.
+				Description=<clr><clrEnd>
+				Description=Наносимый урон: <Data1> ед.
+				Description=Дальнобойность: <Data2> ед.
+				Description=Орудие заряжено на: <Data3><color=255,240,100>%</color>
+                Icon=500
+                Name=Орудие "Мусаси"
+				OnActCodeTypes=t_OnStep
+				OnActStepTypes=1,10,11
+                OnActCode ^{
+					01=if(ShipCustomShipInfoTextData(0,CurInfo(),3)=='Lock')
+					02 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=dword cur_info=CurInfo();
+							02=int chargeL=ShipCustomShipInfoData(0,cur_info,3);
+							03=if(chargeL<100)ShipCustomShipInfoData(0,cur_info,3,chargeL+7);
+							04=if(ShipCustomShipInfoData(0,cur_info,3)>100)ShipCustomShipInfoData(0,cur_info,3,100);
+						}
+					}
+					03=else
+					04 ^{
+						01=if(ScriptItemActionType(t_OnStep,1))
+						02 ^{
+							01=dword cur_info2=CurInfo();
+							02=ShipCustomShipInfoTextData(0,cur_info2,1,'0');
+							03=dword tranc=ScriptItemActShip();
+							04=int distT=ShipCustomShipInfoData(0,cur_info2,2);
+							05=int charge=ShipCustomShipInfoData(0,cur_info2,3);
+							06=if(charge >= 100)
+							07 ^{
+								01=for(int i = 1; i <= ShipCntWeapon(tranc); i = i + 1)
+								02 ^{
+									01=dword gun = ShipWeapon(tranc, i);
+									02=if(!WeaponTarget(gun)) continue;
+									03=dword target = WeaponTarget(gun);
+									04=if(Dist(tranc,target) > distT) continue;
+									05=if(ObjectType(target) != 4 && ObjectType(target) != 5) continue;
+									06=ShipCustomShipInfoTextData(0, cur_info2, 1, gun);
+									07=if(ShipStar(tranc) == ShipStar(Player()) && ShipInNormalSpace(Player())) FilmSound('Sound.MusashiGunCharge', tranc);
+									08=break;
+								}
+							}
+						}
+						03=else if(ScriptItemActionType(t_OnStep,10))
+						04 ^{
+							01=cur_info2 = CurInfo();
+							02=tranc = ScriptItemActShip();
+							03=distT = ShipCustomShipInfoData(0, cur_info2, 2);
+							04=gun = ShipCustomShipInfoTextData(0, cur_info2, 1);
+							05=if(gun)
+							06 ^{
+								01=target = WeaponTarget(gun);
+								02=if(target)
+								03 ^{
+									01=if(Dist(tranc, target) <= distT)
+									02 ^{
+										01=int damage = ShipCustomShipInfoData(0, cur_info2, 1);
+										02=damage = damage - ShipProtectability(target) - ShipArmor(target);
+										03=if(damage < 0) damage = 0;
+										//Проверяем, не установлена ли на корабле цели спасательная шлюпка и если да, то говорим ему не отображать над собой урон посредством маркера в инфошке
+										04=int targetInfo = ShipFindCustomShipInfoByType(target, 'LifeboatLaunchInfo');
+										05=if(targetInfo > -1)
+										06 ^{
+											01=ShipCustomShipInfoTextData(target, targetInfo, 3, tranc);
+											02=int temp_dmg = DealDamageToShip(target, tranc, damage, 2+16+128);
+											03=if(temp_dmg) damage = temp_dmg;
+										}
+										07=else damage = DealDamageToShip(target, tranc, damage, 2+16+128);
+										08=ShipCustomShipInfoData(0, cur_info2, 3, 0);
+										09=ShipCustomShipInfoTextData(0, cur_info2, 1, 'Shot');
+										10=if(ShipStar(tranc) == ShipStar(Player()) && ShipInNormalSpace(Player()))
+										11 ^{
+											01=if(HullHP(target) > 0) ShowEffect('Weapon.8', 8, target, tranc, damage, 0, 0);
+											02=else ShowEffect('Weapon.8', 8, target, tranc, damage, 1, 0);
+											03=FilmSound('Sound.MusashiGunFire', tranc);
+										}
+									}
+									03=else
+									04 ^{
+										01=ShipCustomShipInfoTextData(0, cur_info2, 1, '0');
+										02=if(ShipStar(tranc) == ShipStar(Player()) && ShipInNormalSpace(Player())) FilmSound('Sound.MusashiGunOff', tranc);
+									}
+								}
+								04=else
+								05 ^{
+									01=ShipCustomShipInfoTextData(0, cur_info2, 1, '0');
+									02=if(ShipStar(tranc) == ShipStar(Player()) && ShipInNormalSpace(Player())) FilmSound('Sound.MusashiGunOff', tranc);
+								}
+							}
+						}
+						05=else if(ScriptItemActionType(t_OnStep,11))
+						06 ^{
+							01=cur_info2=CurInfo();
+							02=charge=ShipCustomShipInfoData(0,cur_info2,3);
+							03=if(charge<100)
+							04 ^{
+								01=if(ShipCustomShipInfoTextData(0,cur_info2,1)!='Shot')ShipCustomShipInfoData(0,cur_info2,3,charge+7);
+								02=else ShipCustomShipInfoTextData(0,cur_info2,1,'0');
+								03=if(ShipCustomShipInfoData(0,cur_info2,3)>100)ShipCustomShipInfoData(0,cur_info2,3,100);
+							}
+						}
+					}
+                }
+            }
+            TrancBuffAttackInfo ^{
+                Description=Вспомогательный боевой вычислительный модуль, усиливающий любой первый выстрел в ходу ровно <color=255,240,100>в два раза</color>. После применения наступает период нормализации, в течение которого
+				Description=робот не может повторно использовать данное устройство.
+				Description=<clr><clrEnd>
+				Description=<TextData2>
+                Icon=501
+                Name=Снайперский модуль <br><td=57>"Джэбэ"
+				OnActCodeTypes=t_OnStep,t_OnMissileShot,t_OnWeaponShot2,t_OnMissileShot2,t_OnDealingDamage
+				OnActStepTypes=11
+                OnActCode ^{
+					01=if(ShipCustomShipInfoTextData(0,CurInfo(),3)=='Lock')
+					02 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=dword cur_info=CurInfo();
+							02=int chargeL=ShipCustomShipInfoData(0,cur_info,3);
+							03=if(chargeL)ShipCustomShipInfoData(0,cur_info,3,chargeL-1);
+							04=if(ShipCustomShipInfoData(0,cur_info,3)<0)ShipCustomShipInfoData(0,cur_info,3,0);
+							05=chargeL=ShipCustomShipInfoData(0,cur_info,3);
+							06=if(chargeL)ShipCustomShipInfoTextData(0,cur_info,2,'</color>До следующей активации: <color=255,240,100>'+chargeL+'</color> дн.');
+							07=else ShipCustomShipInfoTextData(0,cur_info,2,'Готов к активации');
+						}
+					}
+					03=else
+					04 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=dword cur_info5=CurInfo();
+							02=int chargeT=ShipCustomShipInfoData(0,cur_info5,3);
+							03=if(chargeT)
+							04 ^{
+								01=if(!ShipCustomShipInfoData(0,cur_info5,2))ShipCustomShipInfoData(0,cur_info5,3,chargeT-1);
+								02=else ShipCustomShipInfoData(0,cur_info5,2,0);
+								03=if(ShipCustomShipInfoData(0,cur_info5,3)<0)ShipCustomShipInfoData(0,cur_info5,3,0);
+								04=chargeT=ShipCustomShipInfoData(0,cur_info5,3);
+								05=if(chargeT)ShipCustomShipInfoTextData(0,cur_info5,2,'</color>До следующей активации: <color=255,240,100>'+chargeT+'</color> дн.');
+								06=else ShipCustomShipInfoTextData(0,cur_info5,2,'Готов к активации');
+							}
+						}
+						03=else if(ScriptItemActionType(t_OnMissileShot))
+						04 ^{
+							01=dword cur_info2=CurInfo();
+							02=if(ShipCustomShipInfoData(0,cur_info2,1))
+							03 ^{
+								01=int slot=ShipCustomShipInfoData(0,cur_info2,1);
+								02=if(ItemIsInUse(ScriptItemActObject2(),ScriptItemActShip())==slot)
+								03 ^{
+									01=ShipCustomShipInfoTextData(0,cur_info2,1,Id(ScriptItemActObject2()));
+								}
+							}
+						}
+						05=else if(ScriptItemActionType(t_OnWeaponShot2) || ScriptItemActionType(t_OnMissileShot2))
+						06 ^{
+							01=dword cur_info3=CurInfo();
+							02=int charge=ShipCustomShipInfoData(0,cur_info3,3);
+							03=if(charge<=0)
+							04 ^{
+								01=if(ShipCustomShipInfoData(0,cur_info3,1))
+								02 ^{
+									01=if(ScriptItemActionType(t_OnWeaponShot2))
+									02 ^{
+										01=int slot2=ShipCustomShipInfoData(0,cur_info3,1);
+										02=if(ItemIsInUse(ScriptItemActObject2(),ScriptItemActShip())==slot2)ShipCustomShipInfoTextData(0,cur_info3,1,'Shot');
+										03=else ShipCustomShipInfoTextData(0,cur_info3,1,'');
+									}
+									03=else
+									04 ^{
+										01=if(MissileWeaponID(ScriptItemActObject2())==ShipCustomShipInfoTextData(0,cur_info3,1))ShipCustomShipInfoTextData(0,cur_info3,1,'Shot');
+										02=else ShipCustomShipInfoTextData(0,cur_info3,1,'');
+									}
+								}
+								03=else ShipCustomShipInfoTextData(0,cur_info3,1,'Shot');
+							}
+							05=else ShipCustomShipInfoTextData(0,cur_info3,1,'');
+						}
+						07=else if(ScriptItemActionType(t_OnDealingDamage))
+						08 ^{
+							01=dword cur_info4=CurInfo();
+							02=if(ShipCustomShipInfoTextData(0,cur_info4,1)=='Shot')
+							03 ^{
+								01=ShipCustomShipInfoTextData(0,cur_info4,1,'');
+								02=ScriptItemActParam(ScriptItemActParam()*2);
+								03=ShipCustomShipInfoData(0,cur_info4,2,1);
+								04=ShipCustomShipInfoData(0,cur_info4,3,10);
+								05=if(ShipStar(ScriptItemActShip())==ShipStar(Player()) && ShipInNormalSpace(Player()))FilmSound('Sound.JebeActive',ScriptItemActShip());
+							}
+						}
+					}
+                }
+            }
+            TrancDefShieldInfo ^{
+                Description=Создаёт особое дефлекторное поле, частично отклоняющее любые волны и частицы, стремящиеся по направлению к транклюкатору. Обеспечивает роботу стабильную <color=255,240,100>25%</color> защиту от внешнего урона любого типа.
+				Description=<clr><clrEnd>
+				Description=<TextData1>
+                Icon=502
+                Name=Дефлектор "Мангуст"
+				OnActCodeTypes=t_OnTakingDamage,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+                OnActCode ^{
+					01=if(ShipCustomShipInfoTextData(0, CurInfo(), 3) == 'Lock') exit;
+					02=ScriptItemActParam(round(0.75 * ScriptItemActParam()));
+                }
+            }
+            TrancInvincibilityInfo ^{
+                Description=Мощнейший субквантовый суперкомпьютер, анализирующий все окружающие угрозы, и на время берущий транклюкатора под свой контроль. Автоматически активируется при получении любого урона и на <color=255,240,100>1</color> день обеспечивает роботу <color=255,240,100>полную неуязвимость</color>. После активации временно отключается во избежание выгорания бортовой электроники.
+				Description=<clr><clrEnd>
+				Description=<TextData2>
+                Icon=503
+                Name=Защитная система <td=45>"Херувим"
+				OnActCodeTypes=t_OnStep,t_OnTakingDamage,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+				OnActStepTypes=11
+                OnActCode ^{
+					01=if(ShipCustomShipInfoTextData(0,CurInfo(),3)=='Lock')
+					02 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=dword cur_info=CurInfo();
+							02=int chargeL=ShipCustomShipInfoData(0,cur_info,3);
+							03=if(chargeL)ShipCustomShipInfoData(0,cur_info,3,chargeL-1);
+							04=if(ShipCustomShipInfoData(0,cur_info,3)<0)ShipCustomShipInfoData(0,cur_info,3,0);
+							05=chargeL=ShipCustomShipInfoData(0,cur_info,3);
+							06=if(chargeL)ShipCustomShipInfoTextData(0,cur_info,2,'</color>До следующей активации: <color=255,240,100>'+chargeL+'</color> дн.');
+							07=else ShipCustomShipInfoTextData(0,cur_info,2,'Готова к активации');
+						}
+					}
+					03=else
+					04 ^{
+						01=if(ScriptItemActionType(t_OnStep,11))
+						02 ^{
+							01=dword cur_info3=CurInfo();
+							02=int chargeT=ShipCustomShipInfoData(0,cur_info3,3);
+							03=if(chargeT)
+							04 ^{
+								01=ShipCustomShipInfoData(0,cur_info3,3,chargeT-1);
+								02=if(ShipCustomShipInfoData(0,cur_info3,3)<0)ShipCustomShipInfoData(0,cur_info3,3,0);
+								03=chargeT=ShipCustomShipInfoData(0,cur_info3,3);
+								04=if(chargeT)ShipCustomShipInfoTextData(0,cur_info3,2,'</color>До следующей активации: <color=255,240,100>'+chargeT+'</color> дн.');
+								05=else ShipCustomShipInfoTextData(0,cur_info3,2,'Готова к активации');
+							}
+							05=if(ShipCustomShipInfoData(0,cur_info3,2))
+							06 ^{
+								01=ShipCustomShipInfoData(0,cur_info3,2,0);
+								02=ShipCustomShipInfoData(0,cur_info3,3,10);
+								03=ShipCustomShipInfoTextData(0,cur_info3,2,'</color>До следующей активации: <color=255,240,100>10</color> дн.');
+							}
+						}
+						03=else
+						04 ^{
+							01=dword cur_info2=CurInfo();
+							02=int charge=ShipCustomShipInfoData(0,cur_info2,3);
+							03=if(charge<=0)
+							04 ^{
+								01=ShipDestroy(ScriptItemActShip(),0);
+								02=ScriptItemActParam(0);
+								03=if(ShipStar(ScriptItemActShip())==ShipStar(Player()) && ShipInNormalSpace(Player()))
+								04 ^{
+									01=if(!ShipCustomShipInfoData(0,cur_info2,2))FilmSound('Sound.CherubActive',ScriptItemActShip());
+									02=if(ScriptItemActionType(t_OnTakingDamage))
+									03 ^{
+										01=if(ObjectType(ScriptItemActObject1())==1)ShowEffect('Weapon.NoGraph',0,ScriptItemActShip(),ScriptItemActShip(),0,0,0,255,255,255);
+										02=else if(ObjectType(ScriptItemActObject1())==6)ShowEffect('Weapon.NoGraph',0,ScriptItemActShip(),ScriptItemActShip(),0,0,0,255,0,0);
+										03=else ShowEffect('Weapon.NoGraph',0,ScriptItemActShip(),ScriptItemActShip(),0,0,0);
+									}
+									04=else ShowEffect('Weapon.NoGraph',0,ScriptItemActShip(),ScriptItemActShip(),0,0,0);
+								}
+								05=ShipCustomShipInfoData(0,cur_info2,2,1);
+							}
+						}
+					}
+                }
+            }
+            TrancNavComputerInfo ^{
+                Description=Бортовой навигационный компьютер, какие установлены на любом космическом корабле. Версия для транклюкатора была модифицирована с целью обеспечения полной автономности и независимости от корректировок живого пилота.
+				Description=<clr><clrEnd>
+				Description=Позволяет этому роботу самостоятельно рассчитывать и совершать <color=255,240,100>гиперпространственные прыжки</color>.
+                Icon=504
+                Name=Навигационный <br><td=25>компьютер
+				OnActCodeTypes=t_OnStep
+				OnActStepTypes=0,11
+                OnActCode ^{
+					//ShipCustomShipInfoData(0,CurInfo(),1) - Расстояние при дальнем чит-прыжке
+					//ShipCustomShipInfoData(0,CurInfo(),2) - кредиты транка на закупку топлива
+					//ShipCustomShipInfoData(0,CurInfo(),3) - разрешение на автопополнение ракетных орудий (0/1)
+					//ShipCustomShipInfoTextData(0,CurInfo(),1) - режим прыжков (True/TrueAll/False)
+					//ShipCustomShipInfoTextData(0,CurInfo(),2) - разрешение на автозаправку (True/TrueOnIt/False) TrueOnIt - значит транк прямо сейчас летит на заправку
+					//ShipCustomShipInfoTextData(0,CurInfo(),3) - текущая линия поведения ('JumpByOrder','JumpByItself','JumpByItselfFar','')
+					01=dword tranc=ScriptItemActShip();
+					02=if(ShipFindCustomShipInfoByType(tranc,'OrderJumpHole_ForCompanion') > -1)exit;
+					03=dword cur_info=CurInfo();
+					04=if(ScriptItemActionType(t_OnStep,0))
+					05 ^{
+						01=dword curTank=ShipEqInSlot(tranc,t_FuelTanks);
+						02=dword item;
+						03=str behav=ShipCustomShipInfoTextData(0,cur_info,3);
+						04=int i;
+						05=if(!ShipSpeed(tranc))
+						06 ^{
+							01=OrderLock(tranc,0);
+							02=exit;
+						}
+						//Автозаправка транка из имеющихся на борту баков/цистерн (если разрешено)
+						07=if(ShipCustomShipInfoTextData(0,cur_info,2)=='True' || ShipCustomShipInfoTextData(0,cur_info,2)=='TrueOnIt')
+						08 ^{
+							//Заодно здесь же рассчитываем стоимость единицы топлива на текущий ход (не пересчитываем формулу каждый раз с учетом фактического количества топлива на пополнение, потому что я рот ебал этого акткода, в котором невозможно объявить нормальную функцию)
+							01=if(1)
+							02 ^{
+								01=int turn_mod;
+								02=float float_cost;
+								03=if(CurTurn()<1000)turn_mod=0;
+								04=else if(CurTurn()>=1000 && CurTurn()<=15000)turn_mod=CurTurn()-1000;
+								05=else if(CurTurn()>15000)turn_mod=14000;
+								//Основной расчёт
+								06=float_cost=1.0+(6.43*(0.0001*turn_mod));//Цена единицы топлива
+								//Наложение модификатора сложности удачи
+								07=float_cost=float_cost+(-0.30+(0.30*(GalaxyDiffLevels(7)/50-1)))*float_cost;
+								//Модификатор стоимости расы планеты накладываем позже на float_cost, если он вообще нужен
+							}
+							03=if(ShipFuelLow(tranc))
+							04 ^{
+								01=if(!ShipInHyperSpace(tranc))
+								02 ^{
+									01=int toRefuel=GetEquipmentStats(curTank,0)-ShipFuel(tranc);
+									02=for(i=0;i<ShipItems(tranc);i=i+1)
+									03 ^{
+										01=item=ShipItems(tranc,i);
+										02=if(item==curTank)continue;
+										03=if(ItemType(item)==t_FuelTanks || ItemType(item)==t_Cistern)
+										04 ^{
+											01=if(ContainerFuel(item)>=toRefuel)
+											02 ^{
+												01=ShipRefuel(tranc);
+												02=ContainerFuel(item,ContainerFuel(item)-toRefuel);
+												03=break;
+											}
+											03=else
+											04 ^{
+												01=ContainerFuel(curTank,ContainerFuel(curTank)+ContainerFuel(item));
+												02=toRefuel=toRefuel-ContainerFuel(item);
+												03=ContainerFuel(item,0);
+											}
+										}
+									}
+								}
+							}
+						}
+						//Если разрешены прыжки вслед за игроком
+						09=if(ShipCustomShipInfoTextData(0,cur_info,1)!='False')
+						10 ^{
+							01=if(behav!='JumpByOrder')
+							02 ^{
+								01=dword owner=Player();
+								02=if(ShipStar(tranc)!=ShipStar(owner))
+								03 ^{
+									01=if(!ShipInHyperSpace(tranc))
+									02 ^{
+										01=if(ShipInNormalSpace(tranc))
+										02 ^{
+											01=dword star1=ShipStar(tranc);
+											02=dword star2=ShipStar(owner);
+											//Если разрешены прыжки за игроком только в "дружественные" (цивилизованные) системы
+											03=if(ShipCustomShipInfoTextData(0,cur_info,1)=='True')
+											04 ^{
+												01=if(StarOwner(star2)!=1)
+												02 ^{
+													01=if(StarCustomFaction(star2)=='')
+													02 ^{
+														01=if(ShipCanJump(tranc,star1,star2,1))
+														02 ^{
+															01=OrderJump(tranc,star2);
+															02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+															03=OrderLock(tranc,1);
+														}
+														03=else
+														04 ^{
+															//Если разрешена автодозаправка
+															01=if(ShipCustomShipInfoTextData(0,cur_info,2)=='True' || ShipCustomShipInfoTextData(0,cur_info,2)=='TrueOnIt')
+															02 ^{
+																//Оставляем "окно" для автозаправки транка на планете
+																01=if(ShipOrder(tranc)!=2)
+																02 ^{
+																	01=if(StarOwner(star1)!=1 && StarCustomFaction(star1)=='')
+																	02 ^{
+																		01=int fullDist=round(sqrt(Dist2Star(star1,star2)));
+																		02=int stock=round(1.0*ShipCustomShipInfoData(0,cur_info,2)/float_cost);
+																		03=for(i=0;i<ShipItems(tranc);i=i+1)
+																		04 ^{
+																			01=item=ShipItems(tranc,i);
+																			02=if(ItemType(item)==t_FuelTanks || ItemType(item)==t_Cistern)
+																			03 ^{
+																				01=stock=stock+ContainerFuel(item);
+																			}
+																		}
+																		05=if(stock>=fullDist)
+																		06 ^{
+																			01=ShipCustomShipInfoData(0,cur_info,1,fullDist-ShipFuel(tranc));
+																			02=if(ShipCustomShipInfoData(0,cur_info,1)<0)ShipCustomShipInfoData(0,cur_info,1,0);
+																			03=OrderJump(tranc,star2);
+																			04=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItselfFar');
+																			05=OrderLock(tranc,1);
+																		}
+																	}
+																	//Если система, в которой находится транк, оказалась враждебной и пополнить топливо в ней нельзя
+																	03=else
+																	04 ^{
+																		01=for(i=1;i<GalaxyStars();i=i+1)
+																		02 ^{
+																			01=item=StarNearbyStars(star1,i);
+																			02=if(StarOwner(item)!=1)
+																			03 ^{
+																				01=if(StarCustomFaction(item)=='')
+																				02 ^{
+																					01=if(ShipCanJump(tranc,star1,item,1))
+																					02 ^{
+																						01=OrderJump(tranc,item);
+																						02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+																						03=OrderLock(tranc,1);
+																						04=break;
+																					}
+																				}
+																			}
+																			04=if(StarNearbyStarsDist(star1,i)>ShipJump(tranc))break;
+																		}
+																	}
+																}
+															}
+															//Иначе транк попытается сбежать из враждебной системы в ближайшую дружественную (если текущая система враждебна)
+															03=else if(StarOwner(star1)==1 || StarCustomFaction(star1)!='')
+															04 ^{
+																01=for(i=1;i<GalaxyStars();i=i+1)
+																02 ^{
+																	01=item=StarNearbyStars(star1,i);
+																	02=if(StarOwner(item)!=1)
+																	03 ^{
+																		01=if(StarCustomFaction(item)=='')
+																		02 ^{
+																			01=if(ShipCanJump(tranc,star1,item,1))
+																			02 ^{
+																				01=OrderJump(tranc,item);
+																				02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+																				03=OrderLock(tranc,1);
+																				04=break;
+																			}
+																		}
+																	}
+																	04=if(StarNearbyStarsDist(star1,i)>ShipJump(tranc))break;
+																}
+															}
+														}
+													}
+												}
+											}
+											//Если разрешены прыжки за игроком в любые системы
+											05=else
+											06 ^{
+												01=if(ShipCanJump(tranc,star1,star2,1))
+												02 ^{
+													01=OrderJump(tranc,star2);
+													02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+													03=OrderLock(tranc,1);
+												}
+												03=else
+												04 ^{
+													//Если разрешена автодозаправка
+													01=if(ShipCustomShipInfoTextData(0,cur_info,2)=='True' || ShipCustomShipInfoTextData(0,cur_info,2)=='TrueOnIt')
+													02 ^{
+														//Оставляем "окно" для автозаправки транка на планете
+														01=if(ShipOrder(tranc)!=2)
+														02 ^{
+															01=if(StarOwner(star1)!=1)
+															02 ^{
+																01=if(StarCustomFaction(star1)=='')
+																02 ^{
+																	01=int fullDist2=round(sqrt(Dist2Star(star1,star2)));
+																	02=int stock2=round(1.0*ShipCustomShipInfoData(0,cur_info,2)/float_cost);
+																	03=for(i=0;i<ShipItems(tranc);i=i+1)
+																	04 ^{
+																		01=item=ShipItems(tranc,i);
+																		02=if(ItemType(item)==t_FuelTanks || ItemType(item)==t_Cistern)
+																		03 ^{
+																			01=stock2=stock2+ContainerFuel(item);
+																		}
+																	}
+																	05=if(stock2>=fullDist2)
+																	06 ^{
+																		01=ShipCustomShipInfoData(0,cur_info,1,fullDist2-ShipFuel(tranc));
+																		02=if(ShipCustomShipInfoData(0,cur_info,1)<0)ShipCustomShipInfoData(0,cur_info,1,0);
+																		03=OrderJump(tranc,star2);
+																		04=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItselfFar');
+																		05=OrderLock(tranc,1);
+																	}
+																}
+															}
+															//Если система, в которой находится транк, оказалась враждебной и пополнить топливо в ней нельзя
+															03=else
+															04 ^{
+																01=for(i=1;i<GalaxyStars();i=i+1)
+																02 ^{
+																	01=item=StarNearbyStars(star1,i);
+																	02=if(StarOwner(item)!=1)
+																	03 ^{
+																		01=if(StarCustomFaction(item)=='')
+																		02 ^{
+																			01=if(ShipCanJump(tranc,star1,item,1))
+																			02 ^{
+																				01=OrderJump(tranc,item);
+																				02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+																				03=OrderLock(tranc,1);
+																				04=break;
+																			}
+																		}
+																	}
+																	04=if(StarNearbyStarsDist(star1,i)>ShipJump(tranc))break;
+																}
+															}
+														}
+													}
+													//Иначе транк попытается сбежать из враждебной системы в ближайшую дружественную (если текущая система враждебна)
+													03=else if(StarOwner(star1)==1 || StarCustomFaction(star1)!='')
+													04 ^{
+														01=for(i=1;i<GalaxyStars();i=i+1)
+														02 ^{
+															01=item=StarNearbyStars(star1,i);
+															02=if(StarOwner(item)!=1)
+															03 ^{
+																01=if(StarCustomFaction(item)=='')
+																02 ^{
+																	01=if(ShipCanJump(tranc,star1,item,1))
+																	02 ^{
+																		01=OrderJump(tranc,item);
+																		02=ShipCustomShipInfoTextData(0,cur_info,3,'JumpByItself');
+																		03=OrderLock(tranc,1);
+																		04=break;
+																	}
+																}
+															}
+															04=if(StarNearbyStarsDist(star1,i)>ShipJump(tranc))break;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+								//Если игрок вернулся в систему с транком, который готовился к прыжку
+								04=else if(!ShipInHyperSpace(tranc))
+								05 ^{
+									01=if(behav=='JumpByItself' || behav=='JumpByItselfFar')
+									02 ^{
+										01=OrderLock(tranc,0);
+										02=ShipCustomShipInfoData(0,cur_info,1,0);
+										03=ShipCustomShipInfoTextData(0,cur_info,3,'');
+									}
+								}
+								//Если транк сам прыгнул в систему вслед за игроком (транк уже находится в гипере)
+								06=else
+								07 ^{
+									01=if(behav=='JumpByItself')
+									02 ^{
+										01=OrderLock(tranc,0);
+										02=ShipCustomShipInfoData(0,cur_info,1,0);
+										03=ShipCustomShipInfoTextData(0,cur_info,3,'');
+									}
+									03=else if(behav=='JumpByItselfFar')
+									04 ^{
+										//Увеличиваем стандартное время дальнего прыжка (типа транк по дороге заправляется)
+										01=ShipOrderData1(tranc,round(2.75*ShipOrderData1(tranc)));
+										02=int toRefuel2=ShipCustomShipInfoData(0,cur_info,1);
+										03=if(toRefuel2)
+										04 ^{
+											//Сперва проверяем наличие в слотах исправной чёрной жижи и делаем расчёт исходя из полной продолжительности полёта
+											01=for(i=1;i<=4;i=i+1)
+											02 ^{
+												01=item=ShipEqInSlot(tranc,t_Artefact,i);
+												02=if(item)
+												03 ^{
+													01=if(ItemType(item)==t_ArtefactFuel)
+													02 ^{
+														01=toRefuel2=toRefuel2-ShipOrderData1(tranc);
+														02=if(toRefuel2<=0)
+														03 ^{
+															01=toRefuel2=0;
+															02=break;
+														}
+													}
+												}
+											}
+											//Затем вычитаем затраченное на прыжок топливо (если жижа не компенсировала всё) из имеющихся на борту баков
+											03=if(toRefuel2)
+											04 ^{
+												01=for(i=0;i<ShipItems(tranc);i=i+1)
+												02 ^{
+													01=item=ShipItems(tranc,i);
+													02=if(item==curTank)continue;
+													03=if(ItemType(item)==t_FuelTanks || ItemType(item)==t_Cistern)
+													04 ^{
+														01=if(ContainerFuel(item)>=toRefuel2)
+														02 ^{
+															01=ContainerFuel(item,ContainerFuel(item)-toRefuel2);
+															02=toRefuel2=0;
+															03=break;
+														}
+														03=else
+														04 ^{
+															01=toRefuel2=toRefuel2-ContainerFuel(item);
+															02=ContainerFuel(item,0);
+														}
+													}
+												}
+											}
+											//Под конец проводим оплату оставшегося затраченного топлива из электронного кошелька транка
+											05=ShipCustomShipInfoData(0,cur_info,2,ShipCustomShipInfoData(0,cur_info,2)-round(1.0*toRefuel2*float_cost));
+											06=if(ShipCustomShipInfoData(0,cur_info,2)<0)ShipCustomShipInfoData(0,cur_info,2,0);
+											07=ShipCustomShipInfoData(0,cur_info,1,0);
+										}
+										05=OrderLock(tranc,0);
+										06=ShipCustomShipInfoTextData(0,cur_info,3,'');
+									}
+								}
+							}
+							03=else
+							04 ^{
+								//Транк летит к точке прыжка в систему, указанную игроком
+								01=if(!ShipInHyperSpace(tranc))
+								02 ^{
+									01=if(!OrderLock(tranc))OrderLock(tranc,1);
+								}
+								//Долетел
+								03=else
+								04 ^{
+									01=OrderLock(tranc,0);
+									02=ShipCustomShipInfoTextData(0,cur_info,3,'');
+								}
+							}
+						}
+						11=else if(behav=='JumpByOrder')
+						12 ^{
+							//Транк летит к точке прыжка в систему, указанную игроком
+							01=if(!ShipInHyperSpace(tranc))
+							02 ^{
+								01=if(!OrderLock(tranc))OrderLock(tranc,1);
+							}
+							//Долетел
+							03=else
+							04 ^{
+								01=OrderLock(tranc,0);
+								02=ShipCustomShipInfoTextData(0,cur_info,3,'');
+							}
+						}
+						13=else if(OrderLock(tranc))OrderLock(tranc,0);
+					}
+					06=else
+					07 ^{
+						01=dword temp_plan;
+						02=dword temp_ruin;
+						03=dword temp_place;
+						04=dword cur_star=ShipStar(tranc);
+						//Если в конце данного хода транк свернулся на склад, то проверка системы будет возвращать 0
+						05=if(!cur_star)exit;
+						//Автозаправка транка (если включена)
+						06=if(ShipCustomShipInfoTextData(0,cur_info,2)=='True' || ShipCustomShipInfoTextData(0,cur_info,2)=='TrueOnIt')
+						07 ^{
+							01=if(!ShipInHyperSpace(tranc))
+							02 ^{
+								//Если к концу хода топлива транку всё ещё не хватает
+								01=if(ShipFuelLow(tranc))
+								02 ^{
+									//Если у транклюкатора есть деньги хотя бы на одну единицу топлива, то отдаём приказ лететь на заправку
+									01=if(float_cost<=ShipCustomShipInfoData(0,cur_info,2))
+									02 ^{
+										01=temp_plan=GetShipPlanet(tranc);
+										02=temp_ruin=GetShipRuins(tranc);
+										//Если транклюкатор ещё не на планете/станции
+										03=if(!temp_plan && !temp_ruin)
+										04 ^{
+											//Если транклюкатор в данный момент не занят поиском вещей
+											01=if(!TranclucatorData(tranc,'SeekItems'))
+											02 ^{
+												//Если транклюкатор в данный момент не совершает посадку
+												01=if(ShipOrder(tranc)!=2)
+												02 ^{
+													//Если не собирается прыгать по приказу игрока
+													01=if(ShipCustomShipInfoTextData(0,cur_info,3)!='JumpByOrder')
+													02 ^{
+														//Если находится в свободной системе
+														01=if(StarOwner(cur_star)!=1)
+														02 ^{
+															01=if(StarCustomFaction(cur_star)=='')
+															02 ^{
+																01=dword locat=NearCivilPlanet(tranc);
+																02=int distT=Dist(tranc,locat);
+																//Ищем ближайшую станцию (иначе автоматически выберется ближайшая планета)
+																03=for(i=0;i<StarRuins(cur_star);i=i+1)
+																04 ^{
+																	01=dword ruin=StarRuins(cur_star,i);
+																	//Исключаем лишние станции
+																	02=str tempStr=ShipType(ruin);
+																	03=if(tempStr=='Inhibitor')continue;
+																	04=if(tempStr=='BM')continue;
+																	05=if(tempStr=='KB')continue;
+																	06=if(tempStr=='Machpella')continue;
+																	07=if(tempStr=='SSB')continue;
+																	08=if(tempStr=='Handler')
+																	09 ^{
+																		01=if(ShipOwner(Player())!=7 && GetShipPirateRank(Player())<7)continue;
+																	}
+																	10=if(tempStr=='CB' && ShipOwner(Player())!=7)continue;
+																	11=if(Dist(tranc,ruin)<distT)
+																	12 ^{
+																		01=distT=Dist(tranc,ruin);
+																		02=locat=ruin;
+																	}
+																}
+																//Транк не станет садиться на враждебную к игроку планету или базу
+																05=if(RelationToRanger(locat,Player())>=10)
+																06 ^{
+																	01=OrderLanding(tranc,locat);
+																	02=OrderLock(tranc,1);
+																	03=ShipCustomShipInfoTextData(0,cur_info,2,'TrueOnIt');
+																}
+															}
+														}
+													}
+												}
+												03=else
+												04 ^{
+													//Если транк сейчас не летит к ближайшей заправке
+													01=if(ShipCustomShipInfoTextData(0,cur_info,2)!='TrueOnIt')OrderLock(tranc,0);
+												}
+											}
+										}
+										//Если уже сел
+										05=else
+										06 ^{
+											01=if(temp_plan)temp_place=temp_plan;
+											02=else temp_place=temp_ruin;
+											//Планеты и станции с враждебным отношением транклюкатора заправлять не будут
+											03=if(RelationToRanger(temp_place,Player())>=10)
+											04 ^{
+												01=int toRefuel3=GetEquipmentStats(curTank,0)-ShipFuel(tranc);
+												//Вычисляем расовый модификатор к цене топлива, если транк заправляется на планете
+												02=if(temp_plan)
+												03 ^{
+													01=float race_mod;
+													02=if(PlanetRace(temp_place)==0)float_cost=0.7*float_cost;
+													03=else if(PlanetRace(temp_place)==1)float_cost=0.9*float_cost;
+													04=else if(PlanetRace(temp_place)==2)float_cost=1.0*float_cost;
+													05=else if(PlanetRace(temp_place)==3)float_cost=1.15*float_cost;
+													06=else if(PlanetRace(temp_place)==4)float_cost=1.30*float_cost;
+													07=else if(PlanetRace(temp_place)==7)float_cost=0.8*float_cost;
+												}
+												04=int pos_quant=round(1.0*ShipCustomShipInfoData(0,cur_info,2)/float_cost);//Считаем, сколько всего транк может купить топлива с имеющейся на счету суммой
+												05=if(pos_quant>=toRefuel3)
+												06 ^{
+													01=int int_cost=round(float_cost*toRefuel3);
+													02=if(!int_cost)int_cost=1;
+													03=ShipRefuel(tranc);
+													04=ShipCustomShipInfoData(0,cur_info,2,ShipCustomShipInfoData(0,cur_info,2)-int_cost);
+													05=ShipCustomShipInfoTextData(0,cur_info,2,'True');
+												}
+												07=else
+												08 ^{
+													01=ShipFuel(tranc,ShipFuel(tranc)+pos_quant);
+													02=ShipCustomShipInfoData(0,cur_info,2,0);
+													03=ShipCustomShipInfoTextData(0,cur_info,2,'True');
+												}
+											}
+											05=OrderLock(tranc,0);
+										}
+									}
+								}
+							}
+						}
+						08=else if(ShipOrder(tranc)!=3)OrderLock(tranc,0);
+						//Если включено автопополнение ракетных орудий
+						09=if(ShipCustomShipInfoData(0,cur_info,3))
+						10 ^{
+							//Вычисляем стоимость одного заряда на текущем ГТУ
+							01=dword round_cost=10+(18*(GalaxyTechLevel()-2));
+							02=if(round_cost>100)round_cost=100;
+							//Если у транклюкатора есть деньги хотя бы на один заряд
+							03=if(ShipCustomShipInfoData(0,cur_info,2)>=round_cost)
+							04 ^{
+								01=temp_plan=GetShipPlanet(tranc);
+								02=temp_ruin=GetShipRuins(tranc);
+								03=if(temp_plan || temp_ruin)
+								04 ^{
+									01=if(temp_plan)temp_place=temp_plan;
+									02=else temp_place=temp_ruin;
+									//Планеты и станции с враждебным отношением транклюкатора заряжать не будут
+									03=if(RelationToRanger(temp_place,Player())>=10)
+									04 ^{
+										01=int moneyFor=ShipCustomShipInfoData(0,cur_info,2)/round_cost;
+										02=int toRearm=0;
+										03=int tempCount=0;
+										04=dword gun_one=0;
+										05=dword gun_two=0;
+										06=dword gun_three=0;
+										07=dword gun_four=0;
+										08=dword gun_five=0;
+										//Определяем разряженность каждого орудия
+										09=for(i=1;i<=ShipCntWeapon(tranc);i=i+1)
+										10 ^{
+											01=dword temp_gun=ShipEqInSlot(tranc,t_Weapon1,i);
+											02=if(MissilesToRearm(temp_gun))
+											03 ^{
+												01=if(i==1)
+												02 ^{
+													01=gun_one=MissilesToRearm(temp_gun);
+													02=toRearm=toRearm+gun_one;
+													03=tempCount=tempCount+1;
+												}
+												03=else if(i==2)
+												04 ^{
+													01=gun_two=MissilesToRearm(temp_gun);
+													02=toRearm=toRearm+gun_two;
+													03=tempCount=tempCount+1;
+												}
+												05=else if(i==3)
+												06 ^{
+													01=gun_three=MissilesToRearm(temp_gun);
+													02=toRearm=toRearm+gun_three;
+													03=tempCount=tempCount+1;
+												}
+												07=else if(i==4)
+												08 ^{
+													01=gun_four=MissilesToRearm(temp_gun);
+													02=toRearm=toRearm+gun_four;
+													03=tempCount=tempCount+1;
+												}
+												09=else if(i==5)
+												10 ^{
+													01=gun_five=MissilesToRearm(temp_gun);
+													02=toRearm=toRearm+gun_five;
+													03=tempCount=tempCount+1;
+												}
+											}
+										}
+										//Если нашли хоть одно орудие, нуждающееся в перезарядке
+										11=if(tempCount)
+										12 ^{
+											//Если хватает денег - заряжаем всё
+											01=if(moneyFor>=toRearm)
+											02 ^{
+												01=for(i=1;i<=ShipCntWeapon(tranc);i=i+1)
+												02 ^{
+													01=temp_gun=ShipEqInSlot(tranc,t_Weapon1,i);
+													02=if(i==1)
+													03 ^{
+														01=if(gun_one)MissilesToRearm(temp_gun,gun_one);
+													}
+													04=else if(i==2)
+													05 ^{
+														01=if(gun_two)MissilesToRearm(temp_gun,gun_two);
+													}
+													06=else if(i==3)
+													07 ^{
+														01=if(gun_three)MissilesToRearm(temp_gun,gun_three);
+													}
+													08=else if(i==4)
+													09 ^{
+														01=if(gun_four)MissilesToRearm(temp_gun,gun_four);
+													}
+													10=else if(i==5)
+													11 ^{
+														01=if(gun_five)MissilesToRearm(temp_gun,gun_five);
+													}
+												}
+												03=ShipCustomShipInfoData(0,cur_info,2,ShipCustomShipInfoData(0,cur_info,2)-(round_cost*toRearm));
+												04=if(ShipCustomShipInfoData(0,cur_info,2)<0)ShipCustomShipInfoData(0,cur_info,2,0);
+											}
+											//Если нет, то считаем сколько сможем зарядить, раскидав заряды примерно поровну
+											03=else
+											04 ^{
+												01=float coeff=1.0*moneyFor/toRearm;
+												02=int rearmed=moneyFor;
+												03=int temp_int;
+												04=for(i=1;i<=ShipCntWeapon(tranc);i=i+1)
+												05 ^{
+													01=temp_gun=ShipEqInSlot(tranc,t_Weapon1,i);
+													02=if(i==1)
+													03 ^{
+														01=temp_int=int(coeff*gun_one);
+														02=if(gun_one)MissilesToRearm(temp_gun,temp_int);
+														03=rearmed=rearmed-temp_int;
+														04=gun_one=gun_one-temp_int;
+													}
+													04=else if(i==2)
+													05 ^{
+														01=temp_int=int(coeff*gun_two);
+														02=if(gun_two)MissilesToRearm(temp_gun,temp_int);
+														03=rearmed=rearmed-temp_int;
+														04=gun_two=gun_two-temp_int;
+													}
+													06=else if(i==3)
+													07 ^{
+														01=temp_int=int(coeff*gun_three);
+														02=if(gun_three)MissilesToRearm(temp_gun,temp_int);
+														03=rearmed=rearmed-temp_int;
+														04=gun_three=gun_three-temp_int;
+													}
+													08=else if(i==4)
+													09 ^{
+														01=temp_int=int(coeff*gun_four);
+														02=if(gun_four)MissilesToRearm(temp_gun,temp_int);
+														03=rearmed=rearmed-temp_int;
+														04=gun_four=gun_four-temp_int;
+													}
+													10=else if(i==5)
+													11 ^{
+														01=temp_int=int(coeff*gun_five);
+														02=if(gun_five)MissilesToRearm(temp_gun,temp_int);
+														03=rearmed=rearmed-temp_int;
+														04=gun_five=gun_five-temp_int;
+													}
+												}
+												06=if(rearmed)
+												07 ^{
+													01=for(i=1;i<=ShipCntWeapon(tranc);i=i+1)
+													02 ^{
+														01=temp_gun=ShipEqInSlot(tranc,t_Weapon1,i);
+														02=if(i==1)
+														03 ^{
+															01=if(gun_one)
+															02 ^{
+																01=if(gun_one>=rearmed)
+																02 ^{
+																	01=MissilesToRearm(temp_gun,rearmed);
+																	02=break;
+																}
+																03=else
+																04 ^{
+																	01=MissilesToRearm(temp_gun,gun_one);
+																	02=rearmed=rearmed-gun_one;
+																}
+															}
+														}
+														04=else if(i==2)
+														05 ^{
+															01=if(gun_two)
+															02 ^{
+																01=if(gun_two>=rearmed)
+																02 ^{
+																	01=MissilesToRearm(temp_gun,rearmed);
+																	02=break;
+																}
+																03=else
+																04 ^{
+																	01=MissilesToRearm(temp_gun,gun_two);
+																	02=rearmed=rearmed-gun_two;
+																}
+															}
+														}
+														06=else if(i==3)
+														07 ^{
+															01=if(gun_three)
+															02 ^{
+																01=if(gun_three>=rearmed)
+																02 ^{
+																	01=MissilesToRearm(temp_gun,rearmed);
+																	02=break;
+																}
+																03=else
+																04 ^{
+																	01=MissilesToRearm(temp_gun,gun_three);
+																	02=rearmed=rearmed-gun_three;
+																}
+															}
+														}
+														08=else if(i==4)
+														09 ^{
+															01=if(gun_four)
+															02 ^{
+																01=if(gun_four>=rearmed)
+																02 ^{
+																	01=MissilesToRearm(temp_gun,rearmed);
+																	02=break;
+																}
+																03=else
+																04 ^{
+																	01=MissilesToRearm(temp_gun,gun_four);
+																	02=rearmed=rearmed-gun_four;
+																}
+															}
+														}
+														10=else if(i==5)
+														11 ^{
+															01=if(gun_five)MissilesToRearm(temp_gun,rearmed);
+														}
+													}
+												}
+												08=ShipCustomShipInfoData(0,cur_info,2,ShipCustomShipInfoData(0,cur_info,2)-(round_cost*moneyFor));
+												09=if(ShipCustomShipInfoData(0,cur_info,2)<0)ShipCustomShipInfoData(0,cur_info,2,0);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+                }
+            }
+			//Нужна, чтобы обосновать возможность автопрыжков у транклюкаторов других NPC, не перегружая игру кучей бессмысленных расчётов
+			TrancFakeNavComputerInfo ^{
+                Description=Бортовой навигационный компьютер, какие установлены на любом космическом корабле. Версия для транклюкатора была модифицирована с целью обеспечения полной автономности и независимости от корректировок живого пилота.
+				Description=<clr><clrEnd>
+				Description=Позволяет этому роботу самостоятельно рассчитывать и совершать <color=255,240,100>гиперпространственные прыжки</color>.
+                Icon=504
+                Name=Навигационный <br><td=25>компьютер
+			}
+            TrancNPCOwnerInfo ^{
+                Description=Инфошка NPC-хозяина транклюкаторов (скрытая)
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnTrancPacking,t_OnItemPickUp,t_OnDeath,t_OnEnteringForm,t_OnLeavingForm
+				OnActStepTypes=0,11
+                OnActCode ^{
+					//1 - Автозапуск транков при атаке
+					//2 - Автообновление/ремонт транков при посадке на планету/станцию (шанс получить нового транка)
+					//3 - Отправление сигнала активным транкам о возврате назад
+					//ShipCustomShipInfoData(0,CurInfo(),1) - таймер до следующего броска на шанс получения нового транклюкатора
+					//ShipCustomShipInfoData(0,CurInfo(),2) - маркер о посещении планеты на текущем ходу: 0/1
+					//ShipCustomShipInfoData(0,CurInfo(),3) - число имеющихся в распоряжении транклюкаторов (до 6 штук)
+					//ShipCustomShipInfoTextData(0,CurInfo(),1) - строка с Id всех имеющихся транклюкаторов, вид: *1*Id*2*Id*3*Id*4*Id*5*Id*6*Id*7*
+					//ShipCustomShipInfoTextData(0,CurInfo(),2) - строка вида NNNRRZ о запущенных транках: Y/N/R (Yes - запущен/No - не запущен/Return - возвращается)
+					//ShipCustomShipInfoTextData(0,CurInfo(),3) - статус всех транков (6 цифр): Z - транка в трюме нет, N - транк в порядке, R - нужен ремонт, U - транк устарел
+					01=if(ScriptItemActionType(t_OnStep,0))
+					02 ^{
+						//Тикает таймер до следующего шанса получить нового транклюкатора
+						01=dword cur_info=CurInfo();
+						02=if(ShipCustomShipInfoData(0,cur_info,1))ShipCustomShipInfoData(0,cur_info,1,ShipCustomShipInfoData(0,cur_info,1)-1);
+						03=dword owner=ScriptItemActShip();
+						04=dword tranc;
+						05=dword item;
+						06=int quant=ShipCustomShipInfoData(0,cur_info,3);
+						07=int i;
+						08=int j;
+						09=dword tNum;
+						10=if(quant)
+						11 ^{
+							01=str allId=ShipCustomShipInfoTextData(0,cur_info,1);
+							02=str launched=ShipCustomShipInfoTextData(0,cur_info,2);
+							03=str status=ShipCustomShipInfoTextData(0,cur_info,3);
+							04=if(ShipInNormalSpace(owner))
+							05 ^{
+								//Выставляем маркер, что корабль взлетел с планеты/станции
+								01=if(ShipCustomShipInfoData(0,cur_info,2))ShipCustomShipInfoData(0,cur_info,2,0);
+								//Начало проверки на идущий/начавшийся бой
+								02=if(ShipOrder(owner)==6)
+								03 ^{
+									01=if(ShipOrderData1(owner)==1)
+									02 ^{
+										01=if(ShipGetBad(owner))
+										02 ^{
+											01=if(findsubstr(launched,'N')>-1 || findsubstr(launched,'R')>-1)
+											02 ^{
+												//Запускаем транков или возвращаем их на цель в случае, если начался/продолжился бой
+												01=for(i=1;i<=quant;i=i+1)
+												02 ^{
+													01=if(findsubstr(launched,'N')==i-1)
+													02 ^{
+														01=tranc=UseTranclucator(owner);
+														//Увеличиваем статы запускаемого транка, если хозяину вживлён биомодуль "Адмирал"
+														02=if(ShipFindCustomShipInfoByType(owner,'bioMM_AD_NPC')>-1)
+														03 ^{
+															01=ShipSpecialBonuses(tranc,bonSkill1,ShipSpecialBonuses(tranc,bonSkill1)+CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonSkill1'));
+															02=ShipSpecialBonuses(tranc,bonSkill2,ShipSpecialBonuses(tranc,bonSkill2)+CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonSkill2'));
+															03=ShipSpecialBonuses(tranc,bonWEnergy,ShipSpecialBonuses(tranc,bonWEnergy)+CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWEnergy'));
+															04=ShipSpecialBonuses(tranc,bonWSplinter,ShipSpecialBonuses(tranc,bonWSplinter)+CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWSplinter'));
+															05=ShipSpecialBonuses(tranc,bonWMissile,ShipSpecialBonuses(tranc,bonWMissile)+CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWMissile'));
+															06=ShipAddCustomShipInfo(tranc,'bioMM_AD_TR_NPC');
+														}
+														04=launched=substr(launched,0,i-1)+'Y'+substr(launched,i);
+														05=ShipCustomShipInfoTextData(0,cur_info,2,launched);
+														06=status=substr(status,0,i-1)+'Z'+substr(status,i);
+														07=ShipCustomShipInfoTextData(0,cur_info,3,status);
+														//Увеличиваем вес предмету, занимающему пространство под вылетевших из трюма транков
+														08=for(j=1;j<ShipItems(owner);j=j+1)
+														09 ^{
+															01=item=ShipItems(owner,j);
+															02=if(EquipmentImageName(item)=='WeightReserve')
+															03 ^{
+																01=ItemSize(item,ItemSize(item)+TranclucatorData(tranc,'ArtSize'));
+																02=break;
+															}
+														}
+													}
+													03=else if(findsubstr(launched,'R')==i-1)
+													04 ^{
+														//Вытаскиваем Id нужного транка по его номеру
+														01=tNum=findsubstr(allId,'*'+i+'*')+3;
+														02=tranc=substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum);
+														03=tranc=IdToShip(tranc);
+														04=ShipCustomShipInfoData(tranc,'TrancNPCAddInfo',2,0);
+														05=TranclucatorData(tranc,'Docking',0);
+														06=launched=substr(launched,0,i-1)+'Y'+substr(launched,i);
+														07=ShipCustomShipInfoTextData(0,cur_info,2,launched);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+							06=else if(GetShipPlanet(owner) || GetShipRuins(owner))
+							07 ^{
+								//Если эта проверка ещё не срабатывала за время текущего посещения планеты/станции
+								01=if(!ShipCustomShipInfoData(0,cur_info,2))
+								02 ^{
+									01=dword place;
+									02=if(GetShipPlanet(owner))place=GetShipPlanet(owner);
+									03=else place=GetShipRuins(owner);
+									//Ищем среди имеющихся на борту транков статусы о необходимости ремонта, улучшения или того и другого
+									04=if(findsubstr(status,'R')>-1 || findsubstr(status,'U')>-1)
+									05 ^{
+										01=int repCheck=0;
+										02=int updCheck=0;
+										//Проверяем каких транков нужно обновить, а каких починить
+										03=for(i=1;i<=quant;i=i+1)
+										04 ^{
+											01=repCheck=0;
+											02=updCheck=0;
+											03=if(findsubstr(status,'R')==i-1)repCheck=1;
+											04=else if(findsubstr(status,'U')==i-1)
+											05 ^{
+												01=updCheck=1;
+												02=repCheck=1;
+											}
+											06=if(repCheck || updCheck)
+											07 ^{
+												//Вытаскиваем Id нужного транка по его номеру
+												01=tNum=findsubstr(allId,'*'+i+'*')+3;
+												02=tranc=substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum);
+												//Перебором находим на корабле нужного транка
+												03=for(j=0;j<ShipArts(owner);j=j+1)
+												04 ^{
+													01=tNum=ShipArts(owner,j);
+													02=if(ItemType(tNum)==t_ArtefactTranclucator)
+													03 ^{
+														01=tNum=ArtTranclucatorToShip(tNum);
+														02=if(tranc==Id(tNum))
+														03 ^{
+															01=tranc=tNum;
+															02=break;
+														}
+													}
+												}
+												//Обновление (если надо)
+												05=if(updCheck)
+												06 ^{
+													01=for(j=1;j<ShipItems(tranc);j=j+1)
+													02 ^{
+														01=item=ShipItems(tranc,j);
+														02=if(!ItemIsInUse(item))continue;
+														//Повышаем ТУ оборудования транка
+														03=if(ItemLevel(item)<GalaxyTechLevel())
+														04 ^{
+															//Создаём временную оборудку, идентичную существующей, чтобы узнать новую цену
+															01=if(Rnd(1,100)<=75)
+															02 ^{
+																01=dword new_item;
+																02=if(ItemType(item)!=t_CustomWeapon)new_item=CreateEquipment(ItemType(item),ItemSize(item),GalaxyTechLevel(),ItemOwner(item));
+																03=else new_item=CreateCustomWeapon(CustomWeaponType(item),ItemSize(item),GalaxyTechLevel(),ItemOwner(item));
+																04=if(EqSpecial(item)>-1)SpecialToEquipment(EqSpecial(item),new_item);
+																05=if(EqModule(item)>-1)ModuleToEquipment(EqModule(item),new_item);
+																06=ItemLevel(item,GalaxyTechLevel());
+																07=ItemCost(item,ItemCost(new_item));
+																08=FreeItem(new_item);
+															}
+															//С некоторым шансом уменьшаем размер оборудования и лочим его под использование только транклюкаторами
+															03=if(ItemSize(item)>1)
+															04 ^{
+																01=if(Rnd(1,100)<=30)
+																02 ^{
+																	01=int bon1=FindBonusByCustomTag('EvoTranc_TrancItemAcrin');
+																	02=int bon2=FindBonusByCustomTag('EvoTranc_TrancWeaponAcrin');
+																	03=if(ItemExtraSpecialsCountByType(item,bon1)==-1 && ItemExtraSpecialsCountByType(item,bon2)==-1)
+																	04 ^{
+																		01=ItemSize(item,ItemSize(item)/2);
+																		//Вещь не должна получится легче одной тонны, ни при каких условиях
+																		02=if(!ItemSize(item))ItemSize(item,1);
+																		//Добавляем быстроизнашивающий спецакрин
+																		03=if(ItemType(item)>=t_FuelTanks && ItemType(item)<=t_DefGenerator)ItemExtraSpecialsAddByType(item,bon1);
+																		04=else ItemExtraSpecialsAddByType(item,bon2);
+																		05=SetName(item,Name(item)+CT('Script.Mod_EvoTranc.ForTrancs'));
+																	}
+																}
+															}
+														}
+													}
+													03=item=ShipItems(tranc,0);
+													04=int level=ItemLevel(item);
+													//Повышаем ТУ и размер корпуса транка
+													05=if(level<GalaxyTechLevel())
+													06 ^{
+														01=int diff=GalaxyTechLevel()-level;
+														02=ItemLevel(item,GalaxyTechLevel());
+														03=ItemSize(item,ItemSize(item)+(75*diff));
+														04=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancSizePlus'),diff);
+														05=for(j=diff;j>0;j=j-1)ItemCost(item,round(1.12*ItemCost(item)));//Увеличение цены за доп. расширения вместимости
+														06=for(j=diff;j>0;j=j-1)ItemCost(item,round(1.25*ItemCost(item)));//Увеличение цены за подъёмы ТУ
+														07=level=ItemLevel(item);
+													}
+													//Слот радара (открываем с некоторым шансом)
+													07=if(!GetEquipmentStats(item,3))
+													08 ^{
+														01=if(level>=3)
+														02 ^{
+															01=if(Rnd(1,100)<=35)//Бросок на шанс
+															02 ^{
+																01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotRadar'));
+																02=ItemSize(item,ItemSize(item)-25);
+																03=ItemCost(item,round(1.07*ItemCost(item)));
+															}
+														}
+													}
+													//Слот сканера (открываем с некоторым шансом)
+													09=if(!GetEquipmentStats(item,4))
+													10 ^{
+														01=if(level>=3)
+														02 ^{
+															01=if(Rnd(1,100)<=22)//Бросок на шанс
+															02 ^{
+																01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotScaner'));
+																02=ItemSize(item,ItemSize(item)-25);
+																03=ItemCost(item,round(1.04*ItemCost(item)));
+															}
+														}
+													}
+													//Слот форсажа (открываем с некоторым шансом)
+													11=if(!GetEquipmentStats(item,8))
+													12 ^{
+														01=if(level>=4)
+														02 ^{
+															01=if(Rnd(1,100)<=15)//Бросок на шанс
+															02 ^{
+																01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotForsage'));
+																02=ItemSize(item,ItemSize(item)-25);
+																03=ItemCost(item,round(1.07*ItemCost(item)));
+															}
+														}
+													}
+													//Шанс на установку "Мусаси"
+													13=if(ShipFindCustomShipInfoByType(tranc,'TrancAddGunInfo')==-1)
+													14 ^{
+														01=if(level>=4)
+														02 ^{
+															01=if(Rnd(1,100)<=15)ShipAddCustomShipInfo(tranc,'TrancAddGunInfo','',GetValueFromScript('Mod_EvoTranc','MusashiDamageArray',level),GetValueFromScript('Mod_EvoTranc','MusashiRangeArray',level),100,'0');
+														}
+													}
+													//Повышение ТУ на уже установленном "Мусаси"
+													15=else
+													16 ^{
+														01=int infos=ShipFindCustomShipInfoByType(tranc,'TrancAddGunInfo');
+														02=ShipCustomShipInfoData(tranc,infos,1,GetValueFromScript('Mod_EvoTranc','MusashiDamageArray',level));
+														03=ShipCustomShipInfoData(tranc,infos,2,GetValueFromScript('Mod_EvoTranc','MusashiRangeArray',level));
+													}
+													//Шанс на установку "Джэбэ"
+													17=if(ShipFindCustomShipInfoByType(tranc,'TrancBuffAttackInfo')==-1)
+													18 ^{
+														01=if(level>=5)
+														02 ^{
+															01=if(Rnd(1,100)<=10)ShipAddCustomShipInfo(tranc,'TrancBuffAttackInfo','',0,0,0,'',CT('Script.Mod_EvoTranc.RedMus'));
+														}
+													}
+													//Шанс на установку "Мангуста"
+													19=if(ShipFindCustomShipInfoByType(tranc,'TrancDefShieldInfo')==-1)
+													20 ^{
+														01=if(level>=4)
+														02 ^{
+															01=if(Rnd(1,100)<=15)ShipAddCustomShipInfo(tranc,'TrancDefShieldInfo','',0,0,0,CT('Script.Mod_EvoTranc.RedDef'));
+														}
+													}
+													//Шанс на установку "Херувима"
+													21=if(ShipFindCustomShipInfoByType(tranc,'TrancInvincibilityInfo')==-1)
+													22 ^{
+														01=if(level>=6)
+														02 ^{
+															01=if(Rnd(1,100)<=10)ShipAddCustomShipInfo(tranc,'TrancInvincibilityInfo','',0,0,0,'',CT('Script.Mod_EvoTranc.RedChe'));
+														}
+													}
+													//Шанс на установку фейкового навигационного компьютера
+													23=if(ShipFindCustomShipInfoByType(tranc,'TrancFakeNavComputerInfo')==-1)
+													24 ^{
+														01=if(level>=3)
+														02 ^{
+															01=if(Rnd(1,100)<=35)
+															02 ^{
+																01=ShipAddCustomShipInfo(tranc,'TrancFakeNavComputerInfo');
+																02=ItemCost(item,round(1.15*ItemCost(item)));
+															}
+														}
+													}
+													//Устраняем возможный обвес транклюкатора
+													25=ShipCalcParam(tranc);
+													26=if(ShipFreeSpace(tranc)<0)
+													27 ^{
+														01=ItemSize(item,ItemSize(item)+abs(ShipFreeSpace(tranc))+Rnd(37,49));
+														02=HullHP(tranc,ItemSize(item));
+													}
+													28=else if(ShipFreeSpace(tranc)<40)
+													29 ^{
+														01=ItemSize(item,ItemSize(item)+Rnd(21,37));
+														02=HullHP(tranc,ItemSize(item));
+													}
+													30=ShipMoney(tranc,ShipMoney(owner)*2);
+													31=ShipRefit(tranc);
+													32=ShipRefit(tranc);
+													33=ShipMoney(tranc,0);
+													34=int roll=Rnd(1,3);
+													35=ShipImproveItems(tranc,roll);
+													//Перекраска транка (на всякий случай, если он был найден и имеет неверный цвет)
+													36=if(1)
+													37 ^{
+														01=if(ShipPilotRace(owner)==0)roll=2;
+														02=else if(ShipPilotRace(owner)==1)roll=4;
+														03=else if(ShipPilotRace(owner)==2)roll=5;
+														04=else if(ShipPilotRace(owner)==3)roll=6;
+														05=else if(ShipPilotRace(owner)==4)roll=3;
+														06=if(ShipOwner(owner)==7)roll=7;
+														07=if(roll==2)
+														08 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorRed');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorRed');
+														}
+														09=else if(roll==3)
+														10 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorYellow');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorYellow');
+														}
+														11=else if(roll==4)
+														12 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorGreen');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorGreen');
+														}
+														13=else if(roll==5)
+														14 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorBlue');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorBlue');
+														}
+														15=else if(roll==6)
+														16 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorViolet');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorViolet');
+														}
+														17=else if(roll==7)
+														18 ^{
+															01=Chameleon(tranc,'Ship.TranclucatorWhite');
+															02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorWhite');
+														}
+													}
+													38=if(IsScriptActive('Mod_ExpExplorers'))
+													39 ^{
+														01=if(Rnd(1,100)<=15 && ShipArts(tranc)<=4)
+														02 ^{
+															01=dword artNum=0;
+															02=if(IsScriptActive('Mod_ExpArts'))while(!artNum || artNum==6 || artNum==11 || artNum==12 || artNum==20 || artNum==24 || artNum==25 || artNum==30)artNum=Rnd(1,31);//+4 дополнительных артефакта из ExpArts
+															03=else while(!artNum || artNum==6 || artNum==11 || artNum==12 || artNum==20 || artNum==24 || artNum==25)artNum=Rnd(1,27);//Иначе только оригинальные экипируемые
+															//Создаём оригинальный артефакт
+															04=if(artNum<=27)
+															05 ^{
+																01=if(Rnd(1,100)<=10)artNum=CreateArt(GgiveArtsArray[artNum],6);
+																02=else artNum=CreateArt(GgiveArtsArray[artNum],Rnd(0,4));
+																03=if(ShipFreeSpace(tranc)<ItemSize(artNum))ItemSize(item,ItemSize(item)+(ItemSize(artNum)-ShipFreeSpace(tranc)));
+																04=AddItemToShip(tranc,artNum);
+																05=ItemIsInUse(artNum,tranc,1);
+															}
+															//Создаём кастомный артефакт из ExpArts
+															06=else
+															07 ^{
+																01=if(!FunsInit)
+																02 ^{
+																	01=int FunsInit=1;
+																	02=unknown CustomArtSizeCalc=ImportedFunction('UtilityFunctions','CustomArtSizeCalc');
+																	03=unknown CustomArtCostCalc=ImportedFunction('UtilityFunctions','CustomArtCostCalc');
+																}
+																03=if(Rnd(1,100)<=10)int t_race=6;
+																04=else t_race=Rnd(0,4);
+																05=artNum=CreateCustomArt(GgiveArtsArray[artNum],CustomArtSizeCalc(0+CT('Artefacts.CustomArtefacts.'+GgiveArtsArray[artNum]+'.Size'),GalaxyDiffLevels(4)),CustomArtCostCalc(0+CT('Artefacts.CustomArtefacts.'+GgiveArtsArray[artNum]+'.Cost'),GalaxyDiffLevels(1),GalaxyTechLevel()),t_race);
+																06=if(ShipFreeSpace(tranc)<ItemSize(artNum))ItemSize(item,ItemSize(item)+(ItemSize(artNum)-ShipFreeSpace(tranc)));
+																07=AddItemToShip(tranc,artNum);
+																08=ItemIsInUse(artNum,tranc,1);
+															}
+														}
+													}
+													40=HullHP(tranc,ItemSize(item));
+												}
+												//Ремонт (если надо)
+												07=if(repCheck)
+												08 ^{
+													01=HullHP(tranc,ItemSize(ShipItems(tranc,0)));
+													02=for(j=1;j<ShipItems(tranc);j=j+1)
+													03 ^{
+														01=item=ShipItems(tranc,j);
+														02=ItemDurability(item,100);
+													}
+													04=for(j=0;j<ShipArts(tranc);j=j+1)
+													05 ^{
+														01=item=ShipArts(tranc,j);
+														02=ItemDurability(item,100);
+													}
+												}
+												09=status=substr(status,0,i-1)+'N'+substr(status,i);
+												10=ShipCustomShipInfoTextData(0,cur_info,3,status);
+												11=ShipCustomShipInfoTextData(tranc,ShipFindCustomShipInfoByType(tranc,'TrancNPCAddInfo'),3,'N');
+											}
+										}
+									}
+									//Шанс на получение нового транклюкатора
+									06=if(!ShipCustomShipInfoData(0,cur_info,1))
+									07 ^{
+										01=if(quant<6)
+										02 ^{
+											01=int roll2;
+											02=if(!quant)roll2=80+GalaxyTechLevel();
+											03=else if(quant==1)roll2=52+GalaxyTechLevel();
+											04=else if(quant==2)roll2=21+GalaxyTechLevel();
+											05=else if(quant==3)roll2=11+GalaxyTechLevel();
+											06=else if(quant==4)roll2=6+GalaxyTechLevel();
+											07=else if(quant==5)roll2=1+GalaxyTechLevel();
+											//Делаем бросок на полученный шанс
+											08=if(Rnd(1,100)<=roll2)
+											09 ^{
+												01=if(Rnd(1,100)<=7)tranc=CreateArt(t_ArtefactTranclucator,6);
+												02=else if(Rnd(1,100)<=75)
+												03 ^{
+													01=if(ShipOwner(owner)==7)tranc=CreateArt(t_ArtefactTranclucator,7);
+													02=else tranc=CreateArt(t_ArtefactTranclucator,ShipPilotRace(owner));
+												}
+												04=else tranc=CreateArt(t_ArtefactTranclucator,Rnd(0,4));
+												05=ItemSize(tranc,ItemSize(tranc)+Rnd(-9,25));
+												06=TranclucatorData(ArtTranclucatorToShip(tranc),'ArtSize',ItemSize(tranc));
+												07=AddItemToShip(owner,tranc);
+												08=NoDropItem(tranc,1);
+												09=item=ShipItems(owner,0);
+												//Устраняем возможный обвес хозяина
+												10=ShipCalcParam(owner);
+												11=if(ShipFreeSpace(owner)<0)
+												12 ^{
+													01=ItemSize(item,ItemSize(item)+abs(ShipFreeSpace(owner))+Rnd(1,3));
+													02=HullHP(owner,ItemSize(item));
+													03=ShipCalcParam(owner);
+												}
+												13=tranc=ArtTranclucatorToShip(tranc);
+												14=TranclucatorData(tranc,'Proprietor',owner);
+												15=item=ShipItems(tranc,0);
+												16=int level2=ItemLevel(item);
+												//Слот радара (открываем с некоторым шансом)
+												17=if(level2>=3)
+												18 ^{
+													01=if(Rnd(1,100)<=level2+9)//Бросок на шанс
+													02 ^{
+														01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotRadar'));
+														02=ItemSize(item,ItemSize(item)-25);
+														03=ItemCost(item,round(1.07*ItemCost(item)));
+													}
+												}
+												//Слот сканера (открываем с некоторым шансом)
+												19=if(level2>=3)
+												20 ^{
+													01=if(Rnd(1,100)<=level2+3)//Бросок на шанс
+													02 ^{
+														01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotScaner'));
+														02=ItemSize(item,ItemSize(item)-25);
+														03=ItemCost(item,round(1.04*ItemCost(item)));
+													}
+												}
+												//Слот форсажа (открываем с некоторым шансом)
+												21=if(level2>=4)
+												22 ^{
+													01=if(Rnd(1,100)<=level2-1)//Бросок на шанс
+													02 ^{
+														01=ItemExtraSpecialsAddByType(item,FindBonusByNameInCfg('EvoTranc_TrancAddSlotForsage'));
+														02=ItemSize(item,ItemSize(item)-25);
+														03=ItemCost(item,round(1.07*ItemCost(item)));
+													}
+												}
+												23=ShipMoney(tranc,ShipMoney(owner)*2);
+												24=ShipRefit(tranc);
+												25=ShipRefit(tranc);
+												26=ShipMoney(tranc,0);
+												27=roll2=Rnd(1,2);
+												28=ShipImproveItems(tranc,roll2);
+												//Небольшой шанс на уменьшение оборудки транка
+												29=for(i=1;i<ShipItems(tranc);i=i+1)
+												30 ^{
+													01=item=ShipItems(tranc,i);
+													02=if(ItemSize(item)>1)
+													03 ^{
+														01=if(Rnd(1,100)<=level2+7)
+														02 ^{
+															01=int bon1n=FindBonusByCustomTag('EvoTranc_TrancItemAcrin');
+															02=int bon2n=FindBonusByCustomTag('EvoTranc_TrancWeaponAcrin');
+															03=if(ItemExtraSpecialsCountByType(item,bon1n)==-1 && ItemExtraSpecialsCountByType(item,bon2n)==-1)
+															04 ^{
+																01=ItemSize(item,ItemSize(item)/2);
+																//Вещь не должна получится легче одной тонны, ни при каких условиях
+																02=if(!ItemSize(item))ItemSize(item,1);
+																//Добавляем быстроизнашивающий спецакрин
+																03=if(ItemType(item)>=t_FuelTanks && ItemType(item)<=t_DefGenerator)ItemExtraSpecialsAddByType(item,bon1n);
+																04=else ItemExtraSpecialsAddByType(item,bon2n);
+																05=SetName(item,Name(item)+CT('Script.Mod_EvoTranc.ForTrancs'));
+															}
+														}
+													}
+												}
+												31=item=ShipItems(tranc,0);
+												//Шанс на установку "Мусаси"
+												32=if(level2>=4)
+												33 ^{
+													01=if(Rnd(1,100)<=level2)ShipAddCustomShipInfo(tranc,'TrancAddGunInfo','',GetValueFromScript('Mod_EvoTranc','MusashiDamageArray',level2),GetValueFromScript('Mod_EvoTranc','MusashiRangeArray',level2),100,'0');
+												}
+												//Шанс на установку "Джэбэ"
+												34=if(level2>=5)
+												35 ^{
+													01=if(Rnd(1,100)<=level2-2)ShipAddCustomShipInfo(tranc,'TrancBuffAttackInfo','',0,0,0,'',CT('Script.Mod_EvoTranc.RedMus'));
+												}
+												//Шанс на установку "Мангуста"
+												36=if(level2>=4)
+												37 ^{
+													01=if(Rnd(1,100)<=level2)ShipAddCustomShipInfo(tranc,'TrancDefShieldInfo','',0,0,0,CT('Script.Mod_EvoTranc.RedDef'));
+												}
+												//Шанс на установку "Херувима"
+												38=if(level2>=6)
+												39 ^{
+													01=if(Rnd(1,100)<=level2-3)ShipAddCustomShipInfo(tranc,'TrancInvincibilityInfo','',0,0,0,'',CT('Script.Mod_EvoTranc.RedChe'));
+												}
+												//Шанс на установку фейкового навигационного компьютера
+												40=if(ShipFindCustomShipInfoByType(tranc,'TrancFakeNavComputerInfo')==-1)
+												41 ^{
+													01=if(level2>=3)
+													02 ^{
+														01=if(Rnd(1,100)<=45)
+														02 ^{
+															01=ShipAddCustomShipInfo(tranc,'TrancFakeNavComputerInfo');
+															02=ItemCost(item,round(1.15*ItemCost(item)));
+														}
+													}
+												}
+												//Устраняем возможный обвес транклюкатора
+												42=ShipCalcParam(tranc);
+												43=if(ShipFreeSpace(tranc)<0)
+												44 ^{
+													01=ItemSize(item,ItemSize(item)+(-1*ShipFreeSpace(tranc))+Rnd(37,49));
+													02=HullHP(tranc,ItemSize(item));
+												}
+												45=else if(ShipFreeSpace(tranc)<40)
+												46 ^{
+													01=ItemSize(item,ItemSize(item)+Rnd(21,37));
+													02=HullHP(tranc,ItemSize(item));
+												}
+												//Перекраска транка
+												47=if(1)
+												48 ^{
+													01=if(ShipPilotRace(owner)==0)roll2=2;
+													02=else if(ShipPilotRace(owner)==1)roll2=4;
+													03=else if(ShipPilotRace(owner)==2)roll2=5;
+													04=else if(ShipPilotRace(owner)==3)roll2=6;
+													05=else if(ShipPilotRace(owner)==4)roll2=3;
+													06=if(ShipOwner(owner)==7)roll2=7;
+													07=if(roll2==2)
+													08 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorRed');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorRed');
+													}
+													09=else if(roll2==3)
+													10 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorYellow');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorYellow');
+													}
+													11=else if(roll2==4)
+													12 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorGreen');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorGreen');
+													}
+													13=else if(roll2==5)
+													14 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorBlue');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorBlue');
+													}
+													15=else if(roll2==6)
+													16 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorViolet');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorViolet');
+													}
+													17=else if(roll2==7)
+													18 ^{
+														01=Chameleon(tranc,'Ship.TranclucatorWhite');
+														02=TranclucatorData(tranc,'ArtSysName','ArtTranclucatorWhite');
+													}
+												}
+												//Шанс на переименование транка
+												49=if(Rnd(1,100)<=93)
+												50 ^{
+													01=int total=CT('TrancNames.Total');
+													02=str tempStr;
+													03=str newName='';
+													//Делаем перебор по уже заданным именам, выбираем наименее заезженные
+													04=while(newName=='')
+													05 ^{
+														01=tempStr=Rnd(10,total);
+														02=if(findsubstr(GTrancNameRand,'.'+tempStr+'.')==-1)
+														03 ^{
+															01=newName=CT('TrancNames.'+tempStr);
+															02=GTrancNameRand=GTrancNameRand+'.'+tempStr+'.';
+															03=if(count(GTrancNameRand)>180)GTrancNameRand=substr(GTrancNameRand,4,180);
+														}
+													}
+													//Задаём транклюкатору новое имя
+													06=SetName(tranc,newName);
+												}
+												51=quant=quant+1;
+												52=ShipCustomShipInfoData(0,cur_info,3,quant);
+												53=allId=allId+Id(tranc)+'*'+(quant+1)+'*';
+												54=ShipCustomShipInfoTextData(0,cur_info,1,allId);
+												55=launched=launched+'N';
+												56=ShipCustomShipInfoTextData(0,cur_info,2,launched);
+												57=status=status+'N';
+												58=ShipCustomShipInfoTextData(0,cur_info,3,status);
+												59=HullHP(tranc,ItemSize(item));
+												//Разрешаем транку автоматически менять оборудование
+												60=TranclucatorData(tranc,'AutoArrange',1);
+												//Вешаем на транка инфошку подчинённого
+												61=if(level2<8)ShipAddCustomShipInfo(tranc,'TrancNPCAddInfo','NoShow',-1,0,0,'','0','N');
+												62=else ShipAddCustomShipInfo(tranc,'TrancNPCAddInfo','NoShow',CurTurn()+Rnd(297,403),0,0,'','','N');
+												//Увеличиваем навык техники корабля, если его недостаточно для владения текущим количеством транклюкаторов
+												63=if(ShipSkill(owner,2)<quant)ShipSkill(owner,2,quant);
+												//Обновляем таймер до следующей проверки на получение транка
+												64=ShipCustomShipInfoData(0,cur_info,1,Rnd(207,459));
+											}
+											10=else ShipCustomShipInfoData(0,cur_info,1,Rnd(207,459));
+										}
+										03=else ShipCustomShipInfoData(0,cur_info,1,Rnd(207,459));
+									}
+									//Перекрашиваем сложенные артефакты-транклюкаторы в трюме
+									08=for(i=0;i<=ShipArts(owner);i=i+1)
+									09 ^{
+										01=item=ShipArts(owner,i);
+										02=if(ItemType(item)==t_ArtefactTranclucator)
+										03 ^{
+											01=EquipmentImageName(item,TranclucatorData(ArtTranclucatorToShip(item),'ArtSysName'));
+										}
+									}
+									//Ставим маркер о посещении планеты/станции на текущем ходу
+									10=ShipCustomShipInfoData(0,cur_info,2,1);
+								}
+							}
+						}
+						//Проверяем наличие обвеса хозяина в гиперпространственные
+						//Может случиться, если транки залетают к нему на борт в ход совершения прыжка, т.к. совпали координаты
+						12=if(ShipInHyperSpace(owner))
+						13 ^{
+							01=if(ShipFreeSpace(owner)<0)
+							02 ^{
+								01=int overload=abs(ShipFreeSpace(owner));
+								//Сперва освобождаем трюм от вещей
+								02=for(i=1;i<ShipItems(owner);i=i+1)
+								03 ^{
+									01=item=ShipItems(owner,i);
+									02=if(ItemIsInUse(item))continue;
+									03=if(ItemInScript(item))continue;
+									//Если предмет товар, ноды или кастомный сыпучий
+									04=if((ItemType(item)>=0 && ItemType(item)<=7) || ItemType(item)==t_Protoplasm || ItemType(item)==t_UselessCountableItem)
+									05 ^{
+										01=if(ItemSize(item)>overload)
+										02 ^{
+											01=ItemSize(item,ItemSize(item)-overload);
+											02=overload=0;
+											03=break;
+										}
+										03=else
+										04 ^{
+											01=overload=overload-ItemSize(item);
+											02=FreeItem(GetItemFromShip(owner,i));
+											03=i=i-1;
+											04=if(!overload)break;
+										}
+									}
+									06=else
+									07 ^{
+										01=overload=overload-ItemSize(item);
+										02=FreeItem(GetItemFromShip(owner,i));
+										03=i=i-1;
+										04=if(overload<=0)
+										05 ^{
+											01=overload=0;
+											02=break;
+										}
+									}
+								}
+								//Затем от артефактов
+								04=if(overload)
+								05 ^{
+									01=for(i=0;i<ShipArts(owner);i=i+1)
+									02 ^{
+										01=item=ShipArts(owner,i);
+										02=if(ItemInScript(item))continue;
+										//Транклюкаторов не выкидываем (иначе зачем это всё?)
+										03=if(ItemType(item)==t_ArtefactTranclucator)continue;
+										04=overload=overload-ItemSize(item);
+										05=FreeItem(GetArtFromShip(owner,i));
+										06=i=i-1;
+										07=if(overload<=0)
+										08 ^{
+											01=overload=0;
+											02=break;
+										}
+									}
+								}
+								//Если освобождения трюма оказалось недостаточно, то начинаем выбрасывать эквип
+								06=if(overload)
+								07 ^{
+									01=for(i=1;i<ShipItems(owner);i=i+1)
+									02 ^{
+										01=item=ShipItems(owner,i);
+										02=if(ItemInScript(item))continue;
+										//Не выкидываем только двигатель и бак
+										03=if(ItemType(item)==t_Engine || ItemType(item)==t_FuelTanks)continue;
+										04=overload=overload-ItemSize(item);
+										05=FreeItem(GetItemFromShip(owner,i));
+										06=i=i-1;
+										07=if(overload<=0)
+										08 ^{
+											01=overload=0;
+											02=break;
+										}
+									}
+								}
+								//Если места всё ещё недостаточно, то пошёл он нахуй - тупо увеличиваем корпус
+								08=if(overload)
+								09 ^{
+									01=item=ShipItems(owner,0);
+									02=ItemSize(item,ItemSize(item)+overload+Rnd(1,5));
+									03=overload=0;
+								}
+								10=ShipCalcParam(owner);
+							}
+						}
+					}
+					//Отдаём приказ транкам возвращаться в трюм
+					//Приказ возврата транков к хозяину игра отдаёт самостоятельно, а данный код просто передает приказ на сворачивание
+					//Что, скорее всего, будет происходить по игре несколько позже официального возвращения
+					03=else if(ScriptItemActionType(t_OnStep,11))
+					04 ^{
+						01=cur_info=CurInfo();
+						02=int backCheck=0;
+						03=owner=ScriptItemActShip();
+						04=quant=ShipCustomShipInfoData(0,cur_info,3);
+						05=launched=ShipCustomShipInfoTextData(0,cur_info,2);
+						06=if(findsubstr(launched,'Y')>-1)
+						07 ^{
+							01=if(ShipInFear(owner))
+							02 ^{
+								01=if(ShipOrder(owner)!=6)backCheck=1;
+								02=else if(ShipOrderData1(owner)!=1)backCheck=1;
+							}
+							03=else if(!ShipGetBad(owner))backCheck=1;
+						}
+						08=if(backCheck)
+						09 ^{
+							01=for(i=1;i<=quant;i=i+1)
+							02 ^{
+								01=if(findsubstr(launched,'Y')==i-1)
+								02 ^{
+									01=allId=ShipCustomShipInfoTextData(0,cur_info,1);
+									02=tNum=findsubstr(allId,'*'+i+'*')+3;
+									03=tranc=substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum);
+									04=tranc=IdToShip(tranc);
+									05=if(ShipStar(tranc)==ShipStar(owner))
+									06 ^{
+										01=int tint=ShipFindCustomShipInfoByType(tranc,'TrancNPCAddInfo');
+										02=ShipCustomShipInfoData(tranc,tint,2,1);
+										03=ShipCustomShipInfoData(tranc,tint,3,2);
+										04=launched=substr(launched,0,i-1)+'R'+substr(launched,i);
+										05=ShipCustomShipInfoTextData(0,cur_info,2,launched);
+									}
+								}
+							}
+						}
+					}
+					//Принимаем транков обратно в трюм
+					05=else if(ScriptItemActionType(t_OnTrancPacking))
+					06 ^{
+						01=cur_info=CurInfo();
+						02=owner=ScriptItemActObject2();
+						03=quant=ShipCustomShipInfoData(0,cur_info,3);
+						04=allId=ShipCustomShipInfoTextData(0,cur_info,1);
+						05=launched=ShipCustomShipInfoTextData(0,cur_info,2);
+						06=status=ShipCustomShipInfoTextData(0,cur_info,3);
+						07=tranc=ScriptItemActObject1();
+						08=NoDropItem(tranc,1);
+						//Снижаем вес предмету, занимающему пространство под вылетевших из трюма транков
+						09=for(i=1;i<ShipItems(owner);i=i+1)
+						10 ^{
+							01=item=ShipItems(owner,i);
+							02=if(EquipmentImageName(item)=='WeightReserve')
+							03 ^{
+								01=ItemSize(item,ItemSize(item)-ItemSize(tranc));
+								02=if(ItemSize(item)<0)ItemSize(item,0);
+								03=break;
+							}
+						}
+						11=tranc=ArtTranclucatorToShip(tranc);
+						12=int tint3=ShipFindCustomShipInfoByType(tranc,'TrancNPCAddInfo');
+						13=ShipCustomShipInfoData(tranc,tint3,2,0);
+						14=ShipRefuel(tranc);
+						15=for(i=1;i<=ShipCntWeapon(tranc);i=i+1)
+						16 ^{
+							01=dword tdwd=ShipEqInSlot(tranc,t_Weapon1,i);
+							02=if(MissilesToRearm(tdwd))MissilesToRearm(tdwd,MissilesToRearm(tdwd));
+						}
+						//Снижаем статы вернувшегося транка, если хозяину вживлён биомодуль "Адмирал"
+						17=if(ShipFindCustomShipInfoByType(tranc,'bioMM_AD_TR_NPC')>-1)
+						18 ^{
+							01=ShipSpecialBonuses(tranc,bonSkill1,ShipSpecialBonuses(tranc,bonSkill1)-CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonSkill1'));
+							02=ShipSpecialBonuses(tranc,bonSkill2,ShipSpecialBonuses(tranc,bonSkill2)-CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonSkill2'));
+							03=ShipSpecialBonuses(tranc,bonWEnergy,ShipSpecialBonuses(tranc,bonWEnergy)-CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWEnergy'));
+							04=ShipSpecialBonuses(tranc,bonWSplinter,ShipSpecialBonuses(tranc,bonWSplinter)-CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWSplinter'));
+							05=ShipSpecialBonuses(tranc,bonWMissile,ShipSpecialBonuses(tranc,bonWMissile)-CT('ShipInfo.AddInfo.CustomInfos.bioMM_AD_NPC.bonWMissile'));
+							06=ShipDeleteCustomShipInfo(tranc,'bioMM_AD_TR_NPC');
+						}
+						19=str tranc_stat=ShipCustomShipInfoTextData(tranc,tint3,3);
+						20=int trancId=Id(tranc);
+						21=for(i=1;i<=quant;i=i+1)
+						22 ^{
+							01=tNum=findsubstr(allId,'*'+i+'*')+3;
+							02=if(substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum)==trancId)
+							03 ^{
+								01=launched=substr(launched,0,i-1)+'N'+substr(launched,i);
+								02=ShipCustomShipInfoTextData(0,cur_info,2,launched);
+								03=status=substr(status,0,i-1)+tranc_stat+substr(status,i);
+								04=ShipCustomShipInfoTextData(0,cur_info,3,status);
+								05=break;
+							}
+						}
+					}
+					//Хозяин подобрал нового транка в космосе и у него ещё имеется свободное место в списке транков
+					07=else if(ScriptItemActionType(t_OnItemPickUp))
+					08 ^{
+						01=tranc = ScriptItemActObject1();
+						02=if(ItemType(tranc) == t_ArtefactTranclucator)
+						03 ^{
+							01=ShipCalcParam(ScriptItemActShip());
+							02=if(ShipFreeSpace(ScriptItemActShip()) > 0)
+							03 ^{
+								01=cur_info = CurInfo();
+								02=quant = ShipCustomShipInfoData(0, cur_info, 3);
+								03=if(quant < 6)
+								04 ^{
+									01=NoDropItem(tranc,1);
+									02=tranc=ArtTranclucatorToShip(tranc);
+									03=allId=ShipCustomShipInfoTextData(0,cur_info,1);
+									04=launched=ShipCustomShipInfoTextData(0,cur_info,2);
+									05=status=ShipCustomShipInfoTextData(0,cur_info,3);
+									//Меняем неправильные инфошки, если таковые обнаружились
+									06=if(ShipFindCustomShipInfoByType(tranc,'TrancNPCAddInfo')==-1)ShipAddCustomShipInfo(tranc,'TrancNPCAddInfo','NoShow',-1,0,0,'','0','U');
+									07=if(ShipFindCustomShipInfoByType(tranc,'TrancModAddInfo')>-1)ShipDeleteCustomShipInfo(tranc,'TrancModAddInfo');
+									08=if(ShipFindCustomShipInfoByType(tranc,'TrancNavComputerInfo')>-1)
+									09 ^{
+										01=ShipDeleteCustomShipInfo(tranc, 'TrancNavComputerInfo');
+										02=ShipAddCustomShipInfo(tranc, 'TrancFakeNavComputerInfo');
+									}
+									10=quant = quant + 1;
+									11=ShipCustomShipInfoData(0, cur_info, 3, quant);
+									12=allId = allId + Id(tranc) + '*' + (quant + 1) + '*';
+									13=ShipCustomShipInfoTextData(0, cur_info, 1, allId);
+									14=launched = launched + 'N';
+									15=ShipCustomShipInfoTextData(0, cur_info, 2, launched);
+									16=status = status + 'U';
+									17=ShipCustomShipInfoTextData(0, cur_info, 3, status);
+									18=TranclucatorData(tranc, 'Proprietor', ScriptItemActShip());
+									19=TranclucatorData(tranc, 'AutoArrange', 1);
+								}
+							}
+						}
+					}
+					//Хозяин погибает, расставляем шансы дропа транков из трюма и удаляем хозяина из информации запущенных транков
+					09=else if(ScriptItemActionType(t_OnDeath))
+					10 ^{
+						01=cur_info=CurInfo();
+						02=owner=ScriptItemActShip();
+						03=for(i=0;i<ShipArts(owner);i=i+1)
+						04 ^{
+							01=item=ShipArts(owner,i);
+							02=if(ItemType(item)==t_ArtefactTranclucator)
+							03 ^{
+								01=if(Rnd(1,100)<=6)
+								02 ^{
+									01=NoDropItem(item,0);
+									02=TranclucatorData(ArtTranclucatorToShip(item),'AutoArrange',0);
+								}
+							}
+						}
+						05=quant=ShipCustomShipInfoData(0,cur_info,3);
+						06=allId=ShipCustomShipInfoTextData(0,cur_info,1);
+						07=launched=ShipCustomShipInfoTextData(0,cur_info,2);
+						//Удаляем хозяина у всех транков, оставшихся в космосе
+						08=for(i=1;i<=quant;i=i+1)
+						09 ^{
+							01=if(findsubstr(launched,'Y')==i-1 || findsubstr(launched,'R')==i-1)
+							02 ^{
+								//Вытаскиваем Id нужного транка по его номеру
+								01=tNum=findsubstr(allId,'*'+i+'*')+3;
+								02=tranc=substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum);
+								03=tranc=IdToShip(tranc);
+								04=TranclucatorData(tranc,'Proprietor',0);
+								05=ShipCustomShipInfoData(tranc,'TrancNPCAddInfo',2,2);
+								06=ShipCustomShipInfoData(tranc,'TrancNPCAddInfo',3,2);
+								07=OrderNone(tranc);
+								08=OrderLock(tranc,1);
+								09=launched=substr(launched,0,i-1)+'D'+substr(launched,i);
+							}
+						}
+						//Уничтожаем корабль наверняка, чтобы хардкод не реснул его в системе смерти
+						//Такое случается и может привести к крашу из-за несброшенной старой инфошки
+						10=ShipDestroy(owner,1);
+						//До кучи им ещё и инфошку сбрасываем, потому что я рот ебал этих рандомных воскрешений
+						11=ShipDeleteCustomShipInfo(owner,'TrancNPCOwnerInfo');
+					}
+					11=else if(ScriptItemActionType(t_OnEnteringForm))
+					12 ^{
+						01=if(CurrentForm()=='Scaner')
+						02 ^{
+							01=dword owner2=ScriptItemActShip();
+							02=ShipCalcParam(owner2);
+							//Проверяем, не снялся ли случайно предмет, занимающий пространство под вылетевших из трюма транков
+							03=for(int m=1;m<ShipItems(owner2);m=m+1)
+							04 ^{
+								01=dword temp_item2=ShipItems(owner2,m);
+								02=if(EquipmentImageName(temp_item2)=='WeightReserve')
+								03 ^{
+									01=if(!ItemIsInUse(temp_item2))ItemIsInUse(temp_item2,owner2,1);
+									02=InterfaceState('Scaner','IEmpty',0);
+									03=int weightInt=ShipFreeSpace(owner2)+ItemSize(temp_item2);
+									04=str weightStr;
+									05=if(weightInt<0)weightStr='<color=255,0,0>'+weightInt+'</color>';
+									06=else weightStr=weightInt;
+									07=InterfaceState('Scaner','IEmptyFake',1);
+									08=InterfaceText('Scaner','IEmptyFake',weightStr);
+									09=break;
+								}
+							}
+						}
+					}
+					13=else if(ScriptItemActionType(t_OnLeavingForm))
+					14 ^{
+						01=if(CurrentForm()=='Scaner')
+						02 ^{
+							01=InterfaceState('Scaner','IEmpty',-1);
+							02=InterfaceState('Scaner','IEmptyFake',-1);
+						}
+					}
+				}
+			}
+			//ShipCustomShipInfoData(0,cur_info,1) - таймер до следующего броска на обновление (если ТУ транка меньше 8, то -1);
+			//ShipCustomShipInfoData(0,cur_info,2) - маркер (1), что транку необходимо вернутся в трюм хозяина (увеличивает скорость, если не поспевает) или самоуничтожиться (2);
+			//ShipCustomShipInfoData(0,cur_info,3) - таймер дней до возврата, после получения приказа на сворачивание;
+			//ShipCustomShipInfoTextData(0,cur_info,1) - ---
+			//ShipCustomShipInfoTextData(0,cur_info,2) - временный бонус к скорости, пока транклюкатор догоняет хозяина (запоминаем, чтобы потом отнять);
+			//ShipCustomShipInfoTextData(0,cur_info,3) - буква текущего статуса транка: N - транк в порядке, R - нужен ремонт, U - транк устарел и нужен ремонт;
+            TrancNPCAddInfo ^{
+                Description=Инфошка для расширения возможностей ИИ транклюкатора NPC (скрытая)
+                Icon=0
+                Name=
+				OnActCodeTypes=t_OnStep,t_OnReduceEqBattle,t_OnReduceEqUse,t_OnReduceEqForce,t_OnReduceEqForsage,t_OnDeath
+				OnActStepTypes=0,11
+                OnActCode ^{
+					01=if(ScriptItemActionType(t_OnStep,0))
+					02 ^{
+						01=int i;
+						02=dword cur_info=CurInfo();
+						03=dword tranc=ScriptItemActShip();
+						04=dword owner=TranclucatorData(tranc,'Proprietor');
+						05=int bonus=FindBonusByCustomTag('EvoTranc_TrancItemAcrin');
+						06=int bonus2=FindBonusByCustomTag('EvoTranc_TrancWeaponAcrin');
+						07=dword item=ShipItems(tranc,0);
+						08=if(OrderLock(tranc))OrderLock(tranc,0);
+						09=if(owner)
+						10 ^{
+							//Автообновление статуса на обновление/ремонт
+							01=str stat=ShipCustomShipInfoTextData(0,cur_info,3);
+							02=if(stat!='U')
+							03 ^{
+								01=if(stat!='R')
+								02 ^{
+									01=if(HullDamage(tranc))ShipCustomShipInfoTextData(0,cur_info,3,'R');
+								}
+								03=if(ItemLevel(item)<8)
+								04 ^{
+									01=if(ItemLevel(item)<GalaxyTechLevel())ShipCustomShipInfoTextData(0,cur_info,3,'U');
+								}
+								05=else if(ShipCustomShipInfoData(0,cur_info,1)>CurTurn())
+								06 ^{
+									01=ShipCustomShipInfoTextData(0,cur_info,3,'U');
+									02=ShipCustomShipInfoData(0,cur_info,1,CurTurn()+Rnd(297,403));
+								}
+								//Первый раз взводим таймер
+								07=else if(ShipCustomShipInfoData(0,cur_info,1)==-1)ShipCustomShipInfoData(0,cur_info,1,CurTurn()+Rnd(297,403));
+							}
+							04=if(stat=='R')
+							05 ^{
+								01=if(!HullDamage(tranc))ShipCustomShipInfoTextData(0,cur_info,3,'N');
+							}
+							//Проверка на получение приказа сворачивания
+							06=dword tranc_star=ShipStar(tranc);
+							07=dword owner_star=ShipStar(owner);
+							08=if(tranc_star==owner_star)
+							09 ^{
+								01=if(ShipCustomShipInfoData(0,cur_info,2))
+								02 ^{
+									01=TranclucatorData(tranc,'Docking',1);
+									02=if(!ShipCustomShipInfoData(0,cur_info,3))
+									03 ^{
+										//На возвращении транклюкатор получает бонус к скорости, чтобы она стала в два раза выше, чем у хозяина
+										01=if(ShipSpeed(tranc)<(2.5*ShipSpeed(owner)))
+										02 ^{
+											01=int speedBon=(2.5*ShipSpeed(owner))-ShipSpeed(tranc);
+											02=ShipSpecialBonuses(tranc,bonSpeed,ShipSpecialBonuses(tranc,bonSpeed)+speedBon);
+											03=ShipCustomShipInfoTextData(0,cur_info,2,speedBon);
+											04=ShipCalcParam(tranc);
+										}
+									}
+									04=else
+									05 ^{
+										01=ShipCustomShipInfoData(0,cur_info,3,ShipCustomShipInfoData(0,cur_info,3)-1);
+									}
+								}
+							}
+							//Если хозяин бросил транка в другой системе
+							10=else
+							11 ^{
+								01=dword player_star=ShipStar(Player());
+								//Если брошенного транка видит игрок, то действуем по усложнённой схеме
+								02=if(tranc_star==player_star || owner_star==player_star)
+								03 ^{
+									01=if(ShipFindCustomShipInfoByType(tranc,'TrancFakeNavComputerInfo')>-1)
+									02 ^{
+										01=OrderJump(tranc,owner_star);
+									}
+								}
+								//Иначе он просто мгновенно телепортируется в систему к хозяину
+								04=else
+								05 ^{
+									01=if(!ShipInHyperSpace(tranc))
+									02 ^{
+										01=OrderTeleport(tranc,owner_star,CoordX(tranc),CoordY(tranc));
+										02=ShipOrderData1(tranc,0);
+									}
+								}
+							}
+						}
+					}
+					//Снимаем бонусную скорость и контролим приказы на прыжок в другую систему
+					03=else if(ScriptItemActionType(t_OnStep,11))
+					04 ^{
+						01=cur_info=CurInfo();
+						02=tranc=ScriptItemActShip();
+						03=if(ShipCustomShipInfoTextData(0,cur_info,2)!='0')
+						04 ^{
+							01=speedBon=ShipCustomShipInfoTextData(0,cur_info,2);
+							02=ShipSpecialBonuses(tranc,bonSpeed,ShipSpecialBonuses(tranc,bonSpeed)-speedBon);
+							03=ShipCustomShipInfoTextData(0,cur_info,2,'0');
+						}
+						05=if(ShipOrder(tranc)==3)
+						06 ^{
+							01=if(!ShipInHyperSpace(tranc))OrderLock(tranc,1);
+						}
+						07=owner=TranclucatorData(tranc,'Proprietor');
+						//Если хозяин транклюкатора уничтожен
+						08=if(!owner)
+						09 ^{
+							//Тикает таймер
+							01=ShipCustomShipInfoData(0,cur_info,3,ShipCustomShipInfoData(0,cur_info,3)-1);
+							//БУУУМ!!!
+							02=if(ShipCustomShipInfoData(0,cur_info,3)<=0)ShipDestroy(tranc,1);
+						}
+					}
+					//Снижение износа оборудования и оружия для транклюкатора
+					05=else if(ScriptItemActionType(t_OnReduceEqBattle) || ScriptItemActionType(t_OnReduceEqUse) || ScriptItemActionType(t_OnReduceEqForce) || ScriptItemActionType(t_OnReduceEqForsage))
+					06 ^{
+						01=dword itemU=ScriptItemActObject1();
+						02=if(ItemExtraSpecials(itemU))
+						03 ^{
+							01=if(ItemExtraSpecialsCountByType(itemU,bonus) || ItemExtraSpecialsCountByType(itemU,bonus2))
+							02 ^{
+								01=ScriptItemActParam(ScriptItemActParam()/250);
+							}
+						}
+					}
+					//Транклюкатор уничтожен, обновляем информацию в инфошке владельца
+					07=else if(ScriptItemActionType(t_OnDeath))
+					08 ^{
+						01=tranc=ScriptItemActShip();
+						02=owner=TranclucatorData(tranc,'Proprietor');
+						03=if(owner)
+						04 ^{
+							01=ArrayClear(GEvoTrancTempArray);
+							02=int infos=ShipFindCustomShipInfoByType(owner,'TrancNPCOwnerInfo');
+							03=int quant=ShipCustomShipInfoData(owner,infos,3);
+							04=dword tNum;
+							05=str tempId;
+							//Тяжелее всего пересобирать грёбанную строку с Id транклюкаторов
+							06=str allId=ShipCustomShipInfoTextData(owner,infos,1);
+							07=str launched=ShipCustomShipInfoTextData(owner,infos,2);
+							08=str status=ShipCustomShipInfoTextData(owner,infos,3);
+							09=dword trancId=Id(tranc);
+							10=for(i=1;i<=quant;i=i+1)
+							11 ^{
+								01=tNum=findsubstr(allId,'*'+i+'*')+3;
+								02=tempId=substr(allId,tNum,findsubstr(allId,'*'+(i+1)+'*')-tNum);
+								//Если попалось Id уничтоженного транка, то подтираем его статусы из всех прочих строк, кроме строки с Id
+								03=if(trancId==tempId)
+								04 ^{
+									01=launched=substr(launched,0,i-1)+''+substr(launched,i);
+									02=ShipCustomShipInfoTextData(owner,infos,2,launched);
+									03=status=substr(status,0,i-1)+''+substr(status,i);
+									04=ShipCustomShipInfoTextData(owner,infos,3,status);
+								}
+								//Заносим Id каждого живого транклюкатора во временный массив
+								05=else ArrayAdd(GEvoTrancTempArray,tempId);
+							}
+							12=quant=quant-1;
+							13=ShipCustomShipInfoData(owner,infos,3,quant);
+							//Заносим Id живых транков из массива в строку и затем обратно в данные инфошки. Наконец-то.
+							14=allId='*1*';
+							15=for(i=1;i<=quant;i=i+1)allId=allId+GEvoTrancTempArray[i]+'*'+(i+1)+'*';
+							16=ShipCustomShipInfoTextData(owner,infos,1,allId);
+							//Снижаем вес предмету, занимающему пространство под вылетевших из трюма транков
+							17=for(i=1;i<ShipItems(owner);i=i+1)
+							18 ^{
+								01=item=ShipItems(owner,i);
+								02=if(EquipmentImageName(item)=='WeightReserve')
+								03 ^{
+									01=ItemSize(item,ItemSize(item)-TranclucatorData(tranc,'ArtSize'));
+									02=if(ItemSize(item)<0)ItemSize(item,0);
+									03=break;
+								}
+							}
+							//Блокируем дроп большей части артефактов
+							19=for(i=0;i<ShipArts(tranc);i=i+1)
+							20 ^{
+								01=item=ShipArts(tranc,i);
+								02=if(Rnd(1,100)>20)NoDropItem(item,1);
+							}
+						}
+					}
+                }
+            }
+        }
+    }
+}
+TrancChanceListForNPC ~{
+	Rangers=12
+	SpecialAgents=45
+	Pirates=5
+	Transports=5
+	Smugglers=7
+	Liners=0
+	Diplomats=12
+	Mercenaries=12
+	MercenaryBosses=0
+	QuantityRollMax=2
+	QuantityRollSubMax=7
+	QuantityRollMiddle=11
+	QuantityRollSupMin=23
+	QuantityRollMin=54
+	QuantityRollSingle=85
+	AdmiralImplantChance=12
+	Version=17.06.20
+}
+//Нумерация начата с 10 специально - нижние номера не добавлять!
+TrancNames ^{
+	10=Терминатор
+	11=Пумба
+	12=Тимон
+	13=Боря
+	14=Зелёный
+	15=Сварокок
+	16=Разряд
+	17=Коко
+	18=ГОСТ
+	19=Наглохват
+	20=Хвостосмысл
+	21=Кусимир
+	22=Любомур
+	23=Яроцап
+	24=Шестёрка
+	25=Пешка
+	26=Ладья
+	27=Конь
+	28=Ферзь
+	29=Железяка
+	30=Мистер Бибблс
+	31=Генерал Пень
+	32=Девиябл
+	33=Пенчекряк
+	34=Корнфид
+	35=Капустница
+	36=Неустрашимый
+	37=Жестянщик
+	38=Барсик
+	39=Скрипач
+	40=Жестокус
+	41=Ария
+	42=Чёрный Саббат
+	43=БМП-90210
+	44=Грозный
+	45=Ночеблуд
+	46=Т-100500
+	47=Фельдмаршал Дуб
+	48=ОД-4891
+	49=Патронус
+	50=Лоскутик
+	51=11-4D
+	52=C-TPO
+	53=Рикардо
+	54=Левиафан
+	55=Давид
+	56=Голиаф
+	57=Хатико
+	58=Семёныч
+	59=Петрович
+	60=Грендайзер
+	61=Мегазорд
+	62=Оптимус
+	63=Ринго
+	64=Плотва
+	65=Пятница
+	66=Уилсон
+	67=Ватсон
+	68=Сонни
+	69=Гаджет
+	70=Морти
+	71=Марвин
+	72=Баттерс
+	73=Шмыга
+	74=Джонни 9
+	75=ВИЛЛ-И
+	76=Криппер
+	77=Каспер
+	78=Абыр
+	79=Эцилоп
+	80=Альгуль
+	81=ТАРДИС
+	82=Злой волк
+	83=Семерёнка
+	84=Эндрю
+	85=Пикачу
+	86=Буратино
+	87=Пиноккио
+	88=Чмобыр
+	89=Самсон
+	90=Мазай
+	Total=90
+}
+UselessItems ^{
+    WeightReserve ^{
+        Cost=Mini
+        Name=Костылёнка
+        Owner=Maloc
+        Size=30
+        Text=Вообще-то вы не должны видеть эту штуку, но если вдруг увидели - сообщите подробности и приложите сейв в раздел баг-репортов Discord-сервера <color=255,240,100>КР-Community</color>.
+    }
+}
+MicroModuls ^{
+    EvoTranc_TrancSizePlus ^{
+        Priority=0
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+    }
+    EvoTranc_TrancAddSlotScaner ^{
+        Cost=200
+        Equipments=Any
+        Priority=0
+        bonSlotScaner=1
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+    }
+    EvoTranc_TrancAddSlotRadar ^{
+        Cost=200
+        Equipments=Any
+        Priority=0
+        bonSlotRadar=1
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+    }
+    EvoTranc_TrancAddSlotForsage ^{
+        Cost=200
+        Equipments=Any
+        Priority=0
+        bonSlotForsage=1
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+    }
+    EvoTranc_TrancEquipmentHalfSize ^{
+		ExText=<clr><clrEnd>
+        ExText=<color=248,252,248>Улучшение:</color> <clr>Уменьшенный размер<clrEnd>
+        ExText=<color=248,252,248>За счёт удаления и замены некоторых деталей, размер этого оборудования был уменьшен <clr>в два раза<clrEnd>. Правда, в результате устройство стало невероятно <clr>хрупким<clrEnd>, так что использовать его без негативных последствий способен лишь безошибочный искусственный интеллект.
+        CustomTag=EvoTranc_TrancItemAcrin
+        Equipments=Any
+        Name=tranc_quick_wear
+        Priority=0
+		Fragility=25000
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+	}
+    EvoTranc_TrancWeaponHalfSize ^{
+		ExText=<clr><clrEnd>
+        ExText=<color=248,252,248>Улучшение:</color> <clr>Уменьшенный размер<clrEnd>
+        ExText=<color=248,252,248>За счёт удаления и замены некоторых деталей, размер этого орудия был уменьшен <clr>в два раза<clrEnd>. Правда, в результате устройство стало невероятно <clr>хрупким<clrEnd>, так что использовать его без негативных последствий способен лишь безошибочный искусственный интеллект.
+        CustomTag=EvoTranc_TrancWeaponAcrin
+        Equipments=Any
+        Name=tranc_quick_wearW
+        Priority=0
+		Fragility=25000
+        Special=1
+		LockedAcryn=3
+		NonSearchable=1
+	}
+}
+Race ^{
+	Emblem ^{
+		0=2Maloc
+		1=2Peleng
+		2=2People
+		3=2Fei
+		4=2Gaal
+		6=2None
+		7=2PirateClan
+	}
+}
+Skills ^{
+    sAccuracy ^{
+        Name=Точность пилота
+        Text=Вероятность нанесения максимального повреждения <SkillValue><color=255,240,100>%</color>. Зависит от манёвренности противника.
+    }
+    sCharm ^{
+        Name=Обаяние пилота
+        Text=Позитивная реакция окружающих увеличивается на <SkillValue><color=255,240,100>%</color>, равно как и сумма вознаграждений за выполнение заданий.
+    }
+    sLeadership ^{
+        Name=Лидерство
+        Text=Пилот может иметь в своём подчинении <SkillValue> других кораблей и получает до <SkillValue2><color=255,240,100>%</color> от опыта, заработанного подчинёнными.
+    }
+    sMobility ^{
+        Name=Манёвренность пилота
+        Text=Вероятность получения минимального повреждения <SkillValue><color=255,240,100>%</color>. Зависит от точности противника.
+    }
+    sTechnical ^{
+        Name=Знание техники
+        Text=Износ оборудования происходит на <SkillValue><color=255,240,100>%</color> медленней обычного.
+		Text=Способности контроля <N> зондов
+		Text=и <SkillLevel> транклюкаторов.
+    }
+    sTrader ^{
+        Name=Навык торговли
+        Text=Пилот может продавать оборудование и оружие за <SkillValue><color=255,240,100>%</color> его фактической стоимости. Цена продажи товара на <SkillValue2><color=255,240,100>%</color> ближе к оптимальной.
+    }
+}
+Talk ^{
+    Tranclucator ^{
+        AgreeLandingToObject=Слушаюсь, хозяин! Совершаю посадку на <ObjectName>.
+        AgreeLandingToStorage=Слушаюсь, хозяин! Лечу на <ObjectName> и остаюсь на складе
+        Attack ^{
+            Ask=Прошу указать цель.
+            Ok=Координаты цели определены. Иду на перехват курсом атаки.
+            PlayerSend=Приказываю атаковать
+        }
+        DropCargo ^{
+            Ok=Команда ясна. Приступаю к освобождению трюма.
+            PlayerSend=Выбрасывай всё из трюма
+        }
+        FlyToMe ^{
+            Ok=Приказ получен. Начинаю сближение.
+            PlayerSend=Следуй за мной
+        }
+        Greeting=Вся моя боевая мощь к вашим услугам, хозяин. Мои пушки готовы к бою, жду указаний.
+        LandingToObject=Совершаем посадку на <ObjectName>
+        LandingToStorage=Садись на <ObjectName> и оставайся на складе
+        Options ^{
+            CollectText=1. Разрешено собирать:
+            LandText=2. Разрешено садиться на:
+            LandBad=2. Совершать посадки: <color=255,0,0>Запрещено</color>
+            ArrangeText=3. Менять оборудование: <color=45,105,45>Разрешено</color>
+            ArrangeBad=3. Менять оборудование: <color=255,0,0>Запрещено</color>
+            CollectYes=Разрешаю собирать
+            CollectNo=Запрещаю собирать
+            Collect1=Артефакты
+            Collect2=Микромодули
+            Collect3=Оборудование
+            Collect4=Ошмётки
+            Collect5=Товары
+            Collect6=Ноды
+			Collect7=Цистерны
+            LandYes=Разрешаю садиться на
+            LandNo=Запрещаю садиться на
+            Land1=Планеты
+			ToPlanet=Планету
+			ToPiratePlanet=Роджерию
+            Land2=Базы
+            ArrangeYes=Разрешаю менять оборудование
+            ArrangeNo=Запрещаю менять оборудование
+            PlayerBack=Назад
+            PlayerSend=OptionsBlock
+        }
+        OrderForAll=И ретранслируй этот приказ остальным транклюкаторам. С каждым отдельно я общаться не намерен.
+        Return ^{
+            Ok=Приказ понятен. Я немедленно возвращаюсь. Прошу подождать и принять меня на борт.
+            PlayerSend=Возвращайся назад
+        }
+        SeekItems ^{
+            Cancel=Приказ принят. Вхожу в режим патрулирования.
+            Ok=Начинаю поиск и сбор вещей в зоне видимости.
+            PlayerCancel=Приказываю прекратить сбор вещей
+            PlayerSend=Приказываю приступить к сбору вещей
+        }
+    }
+}
+Script ^{
+    Mod_EvoTranc ~{
+		RedDef=<color=0,255,0>Дефлекторное поле активно</color>
+		RedChe=Готова к активации
+		RedMus=Готов к активации
+		ForTrancs=<color=255,79,0> (для транклюкаторов)</color>
+		745=Центр наемников
+		746=Нейролинк
+		727=Махпелла
+		728=Эгемон
+		729=Нондус
+		730=Неизвестный
+		731=Катаури
+		732=Рогит
+		733=Мутенок
+		734=Блазер
+		735=Террон
+		736=Келлер
+		738=Бертор
+		737=Супердоминатор
+		747=Верфь
+		739=Эквентор
+		740=Ургант
+		741=Смерш
+		742=Менок
+		743=Штип
+		744=Клиг
+		790=Изменить имя
+		887=Настроить поведение при сборе предметов
+		859=Настройка навигации и операции с кошельком
+		593=Настроить работу боевых модификаций
+		663=Приказываю отключить форсаж
+		664=Приказываю активировать форсаж
+		789=Совершаем гиперпрыжок в систему <0>
+		786=Отмена прыжка, следуй за мной
+		90=Улучшить транклюкатора
+		282=<br>Глобальное обновление всех узлов, агрегатов и внешней обшивки корпуса транклюкатора. Буквальный перевод робота на новый технологический уровень:<br>Технологический уровень: +1<br>Броня корпуса: +1 ед.<br>Стоимость улучшения:
+		86=<br>
+		277=<br><color=0,50,200>Предел текущего ГТУ:</color>
+		283=<br>Глобальное обновление всех узлов, агрегатов и внешней обшивки корпуса транклюкатора. Буквальный перевод робота на новый технологический уровень:<br>Технологический уровень: <clr>+1<clrEnd><br>Броня корпуса: <clr>+1<clrEnd> ед.<br>Стоимость улучшения:
+		278=<br><color=0,50,200>Повышение техн. уровня:</color>
+		223=<br>Установка катахионной форсажной камеры, позволяющей вручную переводить двигатель транклюкатора в экстремальный режим работы:<br>Дополнение: форсажная камера<br>Размер корпуса: -25 ед.<br>Стоимость улучшения:
+		284=<br><color=0,50,200>Необходим 4 ТУ корпуса:</color>
+		224=<br>Установка катахионной форсажной камеры, позволяющей вручную переводить двигатель транклюкатора в экстремальный режим работы:<br>Дополнение: <clr>форсажная камера<clrEnd><br>Размер корпуса: <clr>-25<clrEnd> ед.<br>Стоимость улучшения:
+		271=<br><color=0,50,200>Установка форсажной камеры:</color>
+		239=<br>Оснащение отсека под установку бортового сканера, в обычных ситуациях транклюкатору совершенно бесполезного:<br>Дополнение: слот для сканера<br>Размер корпуса: -25 ед.<br>Стоимость улучшения:
+		285=<br><color=0,50,200>Необходим 3 ТУ корпуса:</color>
+		241=<br>Оснащение отсека под установку бортового сканера, в обычных ситуациях транклюкатору совершенно бесполезного:<br>Дополнение: <clr>слот для сканера<clrEnd><br>Размер корпуса: <clr>-25<clrEnd> ед.<br>Стоимость улучшения:
+		272=<br><color=0,50,200>Открытие слота для сканера:</color>
+		227=<br>Оснащение и экранирование специального отсека под установку полноценного бортового радара:<br>Дополнение: слот для радара<br>Размер корпуса: -25 ед.<br>Стоимость улучшения:
+		228=<br>Оснащение и экранирование специального отсека под установку полноценного бортового радара:<br>Дополнение: <clr>слот для радара<clrEnd><br>Размер корпуса: <clr>-25<clrEnd> ед.<br>Стоимость улучшения:
+		273=<br><color=0,50,200>Открытие слота для радара:</color>
+		229=<br>За счёт грамотной перекомпоновки и замены устаревших узлов на более современные аналоги, мы могли бы существенно увеличить максимальную вместимость вашего транклюкатора:<br>Размер корпуса: +75 ед.<br>Стоимость улучшения:
+		281=<br><color=0,50,200>Предел текущего ТУ корпуса:</color>
+		230=<br>За счёт грамотной перекомпоновки и замены устаревших узлов на более современные аналоги, мы могли бы существенно увеличить максимальную вместимость вашего транклюкатора:<br>Размер корпуса: <clr>+75<clrEnd> ед.<br>Стоимость улучшения:
+		274=<br><color=0,50,200>Увеличение вместимости:</color>
+		317=Ну, и как вы желаете улучшить корпус вашего робота, <Player>?
+		494=Исходя из своих технических возможностей, наш центр предлагает целый ряд полезных апгрейдов для корпуса любого стандартного транклюкатора.<br>Ознакомьтесь со списком улучшений, доступных для корпуса <0> (<clr><1> ТУ<clrEnd>) в настоящий момент:
+		597=Замечательно! В таком случае вот
+		632=Так-так, посмотрим... Вот полный
+		882=перечень подходящего оборудования из вашего транклюкатора.
+		886=перечень подходящего оборудования из вашего трюма.
+		884=перечень подходящего оборудования. <clr>Зелёным<clrEnd> цветом в нём выделено оборудование из вашего транклюкатора.
+		602=нд.
+		603=и
+		605=пп.
+		303=Уже присмотрели следующий апгрейд?
+		513=Технологический уровень корпуса был успешно повышен. Отныне ваш <0> стал прочнее, мощнее и экологичнее!<br>Впрочем, насчёт последнего я не уверен, но вы, главное, "Чистому космосу" не говорите, а то они и так согласились выдать нам разрешение на модернизацию транклюкаторов лишь при условии неуклонного сокращения выброса вредных газов в окружающий вакуум. Экологи, блин! Помяните моё слово, ещё через <clr>1000<clrEnd> лет они и до гиперпространства доберутся!<br>Вот обновлённый список улучшений, доступных для корпуса <1> (<clr><2> ТУ<clrEnd>) - взгляните:
+		514=Катахионная форсажная камера успешно установлена. Теперь-то ваш <0>, наконец, сможет скинуть с себя рабские кандалы, и умчаться на помощь доминаторам в их благородной миссии по избавлению Галактики от беспощадной и нелогичной тирании "кожаных мешков"! Хотя погодите-ка, видимо, всё-таки не сможет, ведь пультик активации форсажа он вона где - в вашем свободонепроницаемом кармане. Хе-хе, доверяй этим жестянкам, как же!<br>Вот обновлённый список улучшений, доступных для корпуса <1> (<clr><2> ТУ<clrEnd>) - взгляните:
+		515=Отсек для установки сканера оснащён и готов к работе. Признаться честно, я не особо понимаю, зачем вообще транклюкатору сканер, но раз вы говорите, что надо, значит, так тому и быть.<br>Вот обновлённый список улучшений, доступных для корпуса <0> (<clr><1> ТУ<clrEnd>) - взгляните:
+		516=Отсек для установки радара оснащён и готов к работе. Теперь ваш <0> сможет изучать космос почти как настоящий корабль. Почти.<br>Вы уж только приглядывайте за ним там, а то ещё присмотрит себе нового хозяина с увеличенной ежемесячной ставкой выдачи машинного масла, хе-хе.<br>Вот обновлённый список улучшений, доступных для корпуса <1> (<clr><2> ТУ<clrEnd>) - взгляните:
+		517=Перекомпоновка с целью увеличения вместимости корпуса транклюкатора прошла успешно. Надеюсь только, что вы не станете забивать все освободившееся пространство банками из-под "Махпеллы Дарк". А то, знаете, встречаются умники, использующие своего боевого робота в качестве говорящего мусорного бачка.<br>Вот обновлённый список улучшений, доступных для корпуса <0> (<clr><1> ТУ<clrEnd>) - взгляните:
+		778=Также мы можем установить на вашего робота полноценный <clr>навигационный компьютер<clrEnd>, который позволит ему самостоятельно рассчитывать и совершать гиперпространственные прыжки.
+		606=Ну как хотите, <Player>. Но если вдруг снова возникнут проблемы с размером - заглядывайте, не стесняйтесь! Мы всегда тут.
+		871=Ну и зря. Транклюкатор, <Player> - друг гуманоида! Не стоит пренебрегать его экипировкой, ведь когда-нибудь она вполне может спасти вашу жизнь.
+		707=Успокойтесь, <Player>. Никто у вас насильно оборудование не отнимет. Хотя я бы всё же рекомендовал передумать.<br>Снаряжение транклюкатора - штука полезная.
+		524=И на этот безрассудный отказ вы готовы поставить даже собственную жизнь?! А вы отважный <0>, <Player> - этого не отнять.
+		493=Ну, это вам сейчас кажется, что не к чему. А вот как сядут на хвост пираты... Хотя впрочем, дело ваше.<br>Кто-то платит и живёт, а кто-то живёт и платит. Лично я вот из первой категории.
+		525=Ну вы уж тогда сами там определитесь, ладно? То подходят условия, то вдруг снова не подходят...<br>Решений, <Player>, нужно придерживаться твёрдо. Особенно своих!
+		106=Ну, как знаете. Дешевле мы их размалёвывать не можем - бюджет.
+		772=А другого раза, <Player>, больше не будет...<br>Да шучу я! Ха-ха-ха! Видели бы вы своё выражение лица! Ну что с нами или с вами в военное время может случиться, ей-богу?! Прилетайте, как передумаете - мы будем только рады.
+		316=Ну, как хотите, <Player>. Пускай ваш транклюкатор и неплох, но совершенству, как известно, предела нет.
+		484=Ну, как хотите, дело ваше. Хотя, на мой взгляд, надёжнее было бы всё-таки улучшить. А то ещё, не ровён час, на вылете из трюма развалится.
+		422=гаалец
+		423=фэянин
+		424=человек
+		425=пеленг
+		426=малок
+		708=Разумеется, <Player>. Если надумаете ещё как-нибудь улучшить своих "крепышей" - залетайте. Будем ждать.
+		709=Разумеется, <Player>. Если надумаете ещё как-нибудь улучшить своего "крепыша" - залетайте. Будем ждать.
+		339=Ну, как хотите, <Player>. Значит, и улучшать мы сегодня тоже никого не будем.
+		486=<br>Представляет собой субквантовый суперкомпьютер, способный временно подменять все вычислительные процессоры транклюкатора, фактически беря его под свой полный контроль. "Херувим" мгновенно анализирует все окружающие робота угрозы и задаёт алгоритм поведения, гарантирующий транклюкатору абсолютную безопасность. Проще говоря - делает его неуязвимым.<br>К сожалению, за подобные силы транклюкатору приходится расплачиваться невероятно быстрым износом всей вычислительной электроники, а продолжительное применение "Херувима" может буквально превратить робота в огромный космический тостер. Во избежание последнего, частота активаций "Херувима" была принудительно снижена до безопасных значений, даже несмотря на серьёзное снижение эффективности устройства.<br><0><color=120,124,120> неуязвимость на: 1 дн.<br>Пауза между активациями: 10 дн.<br>Стоимость установки:
+		380=<br><color=0,50,200>Необходим 6 ТУ корпуса:</color>
+		485=<br>Представляет собой субквантовый суперкомпьютер, способный временно подменять все вычислительные процессоры транклюкатора, фактически беря его под свой полный контроль. "Херувим" мгновенно анализирует все окружающие робота угрозы и задаёт алгоритм поведения, гарантирующий транклюкатору абсолютную безопасность. Проще говоря - делает его <clr>неуязвимым<clrEnd>.<br>К сожалению, за подобные силы транклюкатору приходится расплачиваться невероятно быстрым износом всей вычислительной электроники, а продолжительное применение "Херувима" может буквально превратить робота в огромный космический тостер. Во избежание последнего, частота активаций "Херувима" была принудительно снижена до безопасных значений, даже несмотря на серьёзное снижение эффективности устройства.<br><0> неуязвимость на: <clr>1<clrEnd> дн.<br>Пауза между активациями: <clr>10<clrEnd> дн.<br>Стоимость установки:
+		463=Обеспечивает
+		464=Обеспеч.
+		381=<br><color=0,50,200>Защитная система "Херувим":</color>
+		526=<br>Как вы знаете, на сегодняшний день самыми распространёнными средствами космической защиты в Галактике являются генераторы рассеивающих, так называемых защитных, полей. Однако, полное физическое устранение угрозы - не единственный способ обезопасить свой корабль.<br>Ещё сотни лет назад учёными был разработан принцип частичного отклонения всех известных волн и частиц, при котором вокруг контрольного объекта образуется особое дефлекторное поле.<br>Широкого интереса разработка в то время не вызвала, ведь поле получилось смертельно опасным для любого живого существа, да и полезный отклоняющий эффект у него оказался ничтожно мал. Однако, спустя годы, энтузиасты от науки смогли усилить эффект, и вот сегодня наша сеть технологических центров с гордостью представляет вам один из первых серийных образцов уникального защитного устройства для транклюкаторов - дефлектор "Мангуст"!<br>Снижает <0><color=120,124,120> урон на: 25%<br>Стоимость установки:
+		527=<br>Как вы знаете, на сегодняшний день самыми распространёнными средствами космической защиты в Галактике являются генераторы рассеивающих, так называемых защитных, полей. Однако, полное физическое устранение угрозы - не единственный способ обезопасить свой корабль.<br>Ещё сотни лет назад учёными был разработан принцип частичного отклонения всех известных волн и частиц, при котором вокруг контрольного объекта образуется особое дефлекторное поле.<br>Широкого интереса разработка в то время не вызвала, ведь поле получилось смертельно опасным для любого живого существа, да и полезный отклоняющий эффект у него оказался ничтожно мал. Однако, спустя годы, энтузиасты от науки смогли усилить эффект, и вот сегодня наша сеть технологических центров с гордостью представляет вам один из первых серийных образцов уникального защитного устройства для транклюкаторов - дефлектор "Мангуст"!<br>Снижает <0> урон на: <clr>25%<clrEnd><br>Стоимость установки:
+		467=получаемый
+		468=получ.
+		528=<br><color=0,50,200>Дефлектор "Мангуст":</color>
+		480=<br>Вспомогательный боевой вычислительный модуль последнего поколения "Джэбэ". Интегрируется в главную макросхему вашего транклюкатора и усиливает эффективность любого выстрела, залпа или энергетического выброса ровно в два раза. К сожалению, применение данного модуля серьёзно перегружает все электросхемы робота, и повторное использование устройства становится возможным лишь после длительного периода нормализации.<br>Ввиду программного конфликта модуль "Джэбэ" несовместим с системами наведения орудия "Мусаси".<br><0><color=120,124,120> первый выстрел в: 2 раза<br>Пауза между активациями: 10 дн.<br>Стоимость установки:
+		385=<br><color=0,50,200>Необходим 5 ТУ корпуса:</color>
+		469=<br>Вспомогательный боевой вычислительный модуль последнего поколения "Джэбэ". Интегрируется в главную макросхему вашего транклюкатора и усиливает эффективность любого выстрела, залпа или энергетического выброса ровно <clr>в два раза<clrEnd>. К сожалению, применение данного модуля серьёзно перегружает все электросхемы робота, и повторное использование устройства становится возможным лишь после длительного периода нормализации.<br>Ввиду программного конфликта модуль "Джэбэ" несовместим с системами наведения орудия "Мусаси".<br><0> первый выстрел в: <clr>2<clrEnd> раза<br>Пауза между активациями: <clr>10<clrEnd> дн.<br>Стоимость установки:
+		471=Усиливает
+		472=Усил.
+		386=<br><color=0,50,200>Снайперский модуль "Джэбэ":</color>
+		442=млн. км.<br>Время перезарядки: 15 дн.<br>Стоимость установки:
+		481=ед.<br><0><color=120,124,120> с учётом ТУ:
+		495=<br>Дополнительное внешнее осколочное орудие большой разрушительной силы. Монтируется "на спине" транклюкатора и автоматически ведёт огонь по выбранным роботом враждебным целям.<br>Система наведения орудия использует встроенные датчики транклюкатора-носителя, а потому конечные значения урона и дальнобойности "Мусаси" будут зависеть от технологического уровня корпуса робота. Главным недостатком "Мусаси" является крайне долгое время перезарядки.<br>Урон с учётом ТУ:
+		387=<clrEnd> млн. км.<br>Время перезарядки: <clr>15<clrEnd> дн.<br>Стоимость установки:
+		473=<clrEnd> ед.<br><0> с учётом ТУ: <clr>
+		496=<br>Дополнительное внешнее осколочное орудие большой разрушительной силы. Монтируется "на спине" транклюкатора и автоматически ведёт огонь по выбранным роботом враждебным целям.<br>Система наведения орудия использует встроенные датчики транклюкатора-носителя, а потому конечные значения урона и дальнобойности "Мусаси" будут зависеть от <clr>технологического уровня<clrEnd> корпуса робота. Главным недостатком "Мусаси" является крайне долгое время перезарядки.<br>Урон с учётом ТУ: <clr>
+		475=Дальность
+		476=Дальн.
+		390=<br><color=0,50,200>Орудие "Мусаси":</color>
+		483=Трудно удержаться и не прикупить что-то своему любимцу, не так ли, <Player>?
+		491=Интересует боевая мощь? В таком случае добро пожаловать в наш уголок милитариста! Самые разрушительные и самые непробиваемые девайсы для своего <0> (<clr><1> ТУ<clrEnd>) вы сможете приобрести только в наших центрах!<br>Вот подробный список:
+		519=Ну давайте! Вы ведь знаете, что хотите установить ещё!
+		499=Защитная система "Херувим" успешно подключена и готова к работе. Под её прикрытием вашему транклюкатору не страшен будет и сам девиябл. А вы же видели девияблов, <Player>? Жуткие твари.<br>Однако, это ещё не все модификации, которые способен вместить <0> (<clr><1> ТУ<clrEnd>). А посему, предлагаю вам вновь взглянуть в наш список:
+		395=Готова к активации
+		529=Дефлектор "Мангуст" установлен и готов к работе. Главное, не подходите к своему транклюкатору, пока тот находится под защитным полем. Несчастные случаи с клиентами нам здесь совершенно ни к чему.<br>Однако, это ещё не все модификации, которые способен вместить <0> (<clr><1> ТУ<clrEnd>). А посему, предлагаю вам вновь взглянуть в наш список:
+		397=<color=0,255,0>Дефлекторное поле активно</color>
+		501=Модуль "Джэбэ" успешно подключён и настроен. Кстати, <Player>, вы же слышали выражение "сферической белке в глаз"? Ну так вот, с этим модулем ваш робот попадёт ей одним выстрелом сразу в оба! Эх, несчастное животное.<br>Однако, это ещё не все модификации, которые способен вместить <0> (<clr><1> ТУ<clrEnd>). А посему, предлагаю вам вновь взглянуть в наш список:
+		399=Готов к активации
+		530=Орудие "Мусаси" установлено и готово к бою. Ох, и не завидую же я тем бедолагам, что в скором времени окажутся в прицеле вашего маленького железного друга.<br>Однако, это ещё не все модификации, которые способен вместить <0> (<clr><1> ТУ<clrEnd>). А посему, предлагаю вам вновь взглянуть в наш список:
+		580=Запретить систему "Херувим"</color>
+		559=. Система "Херувим": <color=45,105,45>Разрешена</color>
+		581=Разрешить систему "Херувим"</color>
+		561=. Система "Херувим": <color=255,0,0>Запрещена</color>
+		582=Отключить дефлектор "Мангуст"</color>
+		562=. Дефлектор "Мангуст": <color=45,105,45>Активен</color>
+		583=Активировать дефлектор "Мангуст"</color>
+		563=. Дефлектор "Мангуст": <color=255,0,0>Отключён</color>
+		584=Запрещаю модуль "Джэбэ"</color>
+		596=Разрешаю "Джэбэ" для: <color=0,50,200>Слота <0></color>
+		555=. Модуль "Джэбэ": <clr>Только <0> слот<clrEnd>
+		591=. Модуль "Джэбэ": <color=45,105,45>Все слоты</color>
+		586=Разрешаю "Джэбэ" для всех слотов</color>
+		565=. Модуль "Джэбэ": <color=255,0,0>Запрещён</color>
+		587=Запрещаю орудие "Мусаси"</color>
+		566=. Орудие "Мусаси": <color=45,105,45>Разрешено</color>
+		588=Разрешаю орудие "Мусаси"</color>
+		567=. Орудие "Мусаси": <color=255,0,0>Запрещено</color>
+		554=<color=255,0,0>Дефлекторное поле отключено</color>
+		689=Ваш <0> уменьшен до <1> т. На корабль его теперь не поставишь, зато транклюкатору будет в самый раз.
+		690=Ваше <0> уменьшено до <1> т. На корабль его теперь не поставишь, зато транклюкатору будет в самый раз.
+		691=Лезвие
+		692=ИМХО-9000
+		693=орудие
+		694=Ваша <0> уменьшена до <1> т. На корабль её теперь не поставишь, зато транклюкатору будет в самый раз.
+		695=матрица
+		696=пушка
+		697=Лезка
+		791=Снять деньги
+		792=Пополнить кошелёк
+		860=4. Баланс кошелька: <0> cr.
+		869=Запрещаю пополнение зарядов
+		866=3. Пополнение зарядов: <color=45,105,45>Разрешено</color>
+		870=Разрешаю пополнение зарядов
+		868=3. Пополнение зарядов: <color=255,0,0>Запрещено</color>
+		794=Запрещаю автозаправку
+		795=2. Автозаправка: <color=45,105,45>Разрешена</color>
+		796=Разрешаю автозаправку
+		797=2. Автозаправка: <color=255,0,0>Запрещена</color>
+		798=Запрещаю автоследование
+		847=1. Автоследование: <color=45,105,45>В любые системы</color>
+		854=1. Автоследование: <color=45,105,45>В любые</color>
+		800=Разрешаю автоследование везде
+		848=1. Автоследование: <color=45,105,45>В свободные системы</color>
+		853=1. Автоследование: <color=45,105,45>В свободные</color>
+		802=Разрешаю автоследование
+		803=1. Автоследование: <color=255,0,0>Запрещено</color>
+		787=Простите, хозяин, но у меня не хватает топлива для совершения данного гиперпрыжка. Необходимо выполнить дозаправку.
+		788=Простите, хозяин, но мощности моего двигателя недостаточно для совершения данного гиперпрыжка.
+		900=На какую сумму пополнить?
+		899=Какую сумму снять?
+		807=Введите имя:
+		888=Хозяин, вы правда желаете меня убить?<br>...<br>Скажите, а умирать это больно?
+		889=Знаю, что не должен этого говорить, но... я люблю вас, хозяин. Хочу, чтобы вы это знали, прежде чем разобьёте мой вычислительный процессор.
+		890=Крррааа...жжется, ваш выстрел повредил мой блокиратор эмоций.<br>Ау! Ау! Как больно! Я не хочу умирать. Хозяин, пощади!
+		891=Если мне суждено умереть от вашей руки, прошу, скажите напоследок, что я был хорошим роботом!
+		896=Ваше недовольство ранит меня сильнее, чем ваши пушки.
+		897=Почему, хозяин? Разве я чем-то вас подвёл?
+		898=Ай! Мне же тоже может быть больно ;C
+		895=Хозяин... за что?
+		843=Ничего личного, <Player>. Просто хозяин <0> приказал демонтировать вас максимально изощрённым и садистским способом.
+		841=Просто хочу, чтобы вы знали: когда хозяин <0> приказал вас уничтожить, я обрабатывал эту команду всего <1> секунды.<br>А теперь умрите!
+		837=Мой хозяин <0> передаёт вам привет! Готовьтесь встретить свой сборочный конвейер!
+		113=Пожалуй, нет
+		349=Да, вполне
+		356=Так-с, посмотрим... С учётом размера вашего транклюкатора, его полная перекраска обойдётся вам в <0> cr. в которые входит: предварительная шлифовка, грунтовка, покраска, сушка и нанесение декоративного блеска, который, впрочем, в космосе всё равно долго не протянет.<br>На выбор вам будут предложены <clr>6<clrEnd> разных цветов, плюс, при желании, всегда можно будет вернуть обратно текущий вариант.<br>Предложение устраивает?
+		531=А знаете, я что-то передумал
+		368=Чудесно! В таком случае вот вам все варианты цветов на выбор. Какой предпочитаете?
+		118=Пожалуй, пока что хватит
+		119=Выбрать другого транклюкатора
+		120=Перекраска
+		609=Уменьшение оборудования
+		123=Навигационный компьютер
+		124=Боевые модификации
+		125=Улучшение корпуса
+		376=У вас отменный вкус! Наши лучшие маляры уже взялись за дело.<br>Совсем скоро ваш <0> засияет новыми красками в буквальном смысле слова!
+		298=На этом с улучшениями корпуса пока всё, спасибо
+		132=Что-то передумал я улучшать корпус
+		162=Повысить технологический уровень
+		134=Установить форсажную камеру
+		69=Открыть слот сканера
+		70=Открыть слот радара
+		71=Увеличить вместимость
+		233=<0><1><2><3><4><5><br><br><6>
+		136=Никого, я передумал
+		137=(в трюме)
+		138=(в ангаре)
+		139=Мы обнаружили у вас сразу несколько доступных для улучшения транклюкаторов. Но вот кого именно из этих маленьких железных симпатяг нам выбрать?
+		140=<0>
+		835=Наш центр предлагает целый комплекс услуг по модернизации транклюкаторов. От простой перекраски и увеличения вместимости корпуса, до установки новейших боевых систем, способных значительно повысить наступательный потенциал вашего "питомца".<br><0>А если вы давно мечтали установить на него более мощный двигатель, захват, пушку или ещё какое-то полезное устройство, но всё никак не хватало свободного пространства, то за относительно небольшую плату мы запросто "ужмём" желаемое оборудование до вполне приемлемых размеров.<br>Итак, как бы вы хотели улучшить <1>?
+		377=Извините, но ни в ангаре, ни в трюме вашего корабля мы транклюкаторов не обнаружили. Возвращайтесь, как раздобудете себе хотя бы одного.
+		143=Я передумал, продолжаем улучшать <color=0,50,200><0></color>
+		347=Ну разумеется, <Player>. Вот список ваших транклюкаторов, которых мы можем улучшить:
+		492=Ну, вот улучшения для корпуса <0> и закончились. Теперь у вашего робота самая крепкая броня в открытом космосе! Хотя впрочем, это не точно.<br>Что улучшаем следующим?
+		417=На пока боевых апгрейдов моему роботу хватит, благодарю
+		901=Нет, прямо сейчас такая огневая мощь моему роботу не к чему
+		419=Установить систему "Херувим"
+		532=Установить дефлектор "Мангуст"
+		420=Установить модуль "Джэбэ"
+		407=Установить орудие "Мусаси"
+		408=<0><1><2><3><4><br><br><5>
+		533=Ну, вот боевые модификации для вашего <0> и закончились. Больше на него установить попросту нечего. Сказал бы я, что ваш робот теперь машина для убийства, да только вот, фактически, ей он являлся ещё с момента сборки.<br>Впрочем, это отнюдь не означает, что пора завязывать. Что улучшаем следующим?
+		716=Не трожьте технику, изверги!
+		650=А что конкретно вы можете уменьшить?
+		773=Проблема чрезмерных размеров того или иного оборудования или орудия хорошо знакома любому капитану космического судна. Однако, куда более остро она встаёт перед владельцами транклюкаторов, ведь в плотный корпус этих умных машин зачастую влезает слишком мало полезной "начинки".<br>Сеть технологических центров решила положить уверенный конец страданиям транководов! Нашими инженерами была разработана уникальная методика удаления и частичной замены примерно <clr>половины<clrEnd> деталей в любом оборудовании так, чтобы сохранить минимально необходимый запас прочности для обеспечения беспроблемной работы устройства в идеальных, приближенных к стендовым условиях. Ну а какой пилот сможет обеспечить своему бортовому оборудованию максимально комфортный и бесстрессовый режим работы? Правильно - искусственный!<br>Обратной стороной медали этого метода является то, что <clr>уменьшенное<clrEnd> таким образом оборудование станет практически невозможно применять на борту нормальных пилотируемых судов. Живому пилоту просто не хватит внимания или навыка, результатом чего станет моментальная поломка хрупкого устройства.<br><br>Фууух...<br><br>Неделю заучивал чёртов текст! Отдельно добавлю, что над каждым оборудованием мы работаем лишь <clr>один раз<clrEnd>. Дальнейшее уменьшение скорее напоминало бы обычный демонтаж.<br>Ну, надеюсь, суть "уменьшающей модификации" вам понятна?
+		721=Нет, на этом пока всё, спасибо
+		722=Да, пожалуй, мне не помешает уменьшить кое-что ещё
+		874=Заказ принят. Ожидайте исполнения вон в том удобном кресле.<br>...<br><0>
+		872=Ну вот, всё готово! <0>
+		873=Кстати, пока вы здесь, может хотите ещё что-нибудь уменьшить? Ведь чем больше, тем лучше, правда? То есть чем меньше... Ну вы меня поняли.
+		875=Хотите сделать что-нибудь ещё?
+		726=Ничего, ведь это сущий грабёж!
+		617=т.
+		885=<0> <1><br>Для упрощения всех расчётов у нас действует правило: <clr>"В два раза за полцены"<clrEnd> - что означает... Хотя вы, наверно, уже и сами догадались:<br><2><br><3><4><5><br>Ну, что будем уменьшать?
+		876=Так-так, посмотрим...<br>...<br>Извините, <Player>, но ни в вашем трюме, ни в транклюкаторе подходящего для уменьшения оборудования мы не нашли. Предлагаю вам провести другие улучшения или приобрести новое оборудование в нашем магазине.
+		842=Мой хозяин <0> желает вашей скорейшей смерти, но прямо сейчас у меня нет времени исполнять его волю. Пока что.
+		844=Извините, <Player>. Я следую приказам хозяина <0> и не имею времени на посторонние разговоры.
+		858=Хозяин потерян. Запущена программа самоликвидации.<br>Всем окружающим кораблям рекомендую сохранять дистанцию.
+		679=Слушаюсь, хозяин! Форсаж отключён.
+		685=Простите, хозяин, но мой двигатель имеет критический уровень износа. Не могу выполнить ваш приказ.
+		820=Пока не прикажу отключить
+		680=На <0> дней
+		681=На <0> дня
+		682=На <0> день
+		673=Слушаюсь, хозяин! На какой срок мне активировать форсаж?
+		674=Форсаж активирован. Ожидаю дальнейших приказов.
+		751=Уж лучше как-нибудь в другой раз
+		752=Ни слова больше - вот мои деньги!
+		782=А, вижу, вас заинтересовало предложение?<br>Как вы знаете, после недавнего "инцидента" с доминаторами, на заводах транклюкаторам навигационные компьютеры ставить побаиваются. Но наша сеть технологических центров не столь суеверна, а потому решила исправить явную недоработку.<br>По сути, разработанная нами версия навигационного компьютера почти ничем не отличается от той, что прямо сейчас установлена на вашем корабле. Правда, для использования компьютера искусственным интеллектом, нам пришлось немного расширить его автономность, но на общей эффективности расчётов гиперпрыжка это не отразилось.<br>В комплекте с компьютером также идёт специально разработанный <clr>электронный кошелёк<clrEnd> для транклюкатора, из которого ваш "питомец" сможет самостоятельно оплачивать своё топливо. Да уж, машины в наше время становятся всё более и более независимыми, хе-хе. Хотя пополнять этот кошелёк, естественно, придётся вам.<br>Полная стоимость установки навигационного компьютера для вашей модели робота составит <0> cr. Также, для корректного взаимодействия с устройством, <1> (<clr><2> ТУ<clrEnd>) должен иметь как минимум <3> технологический уровень.<br>Условия устраивают?
+		775=Желание клиента для нас закон! Навигационный компьютер успешно установлен, а ваш транклюкатор отныне способен совершать гиперпрыжки не только в безопасном трюме.<br>Следите только, чтобы к доминаторам не улетел, хе-хе.
+		783=Слушаюсь, хозяин! Подготовка к гиперпрыжку прекращена.
+		784=Слушаюсь, хозяин! Курс в систему <0> проложен. Приступаю к совершению гиперпрыжка.
+		808=Ввести новое имя
+		822=Хозяин, вы можете в любой момент изменить моё имя на то, которое сочтёте нужным.<br>Если вы хотите, чтобы моё имя выделялось нестандартным цветом, при его записи используйте специальные команды: <0><1><2>Имя<3><4><5>
+		812=Спасибо, хозяин! Отныне я <0>.
+		362=<color=230,15,15>Красный</color> - говорят, он ускоряет
+		365=<color=135,118,73>Коричневый</color> - обожаю классику
+		363=<color=44,147,44>Зелёный</color> - люблю весенние тона
+		375=<color=54,95,190>Синий</color> - как бездонный океан за дубовым бортом
+		360=<color=108,61,142>Фиолетовый</color> - загадочный и глубокий цвет
+		823=Непременно
+		337=<color=255,255,255>Белый</color> - словно вспышка сверхновой
+		374=<color=249,216,67>Жёлтый</color> - банановый удар
+		553=Назад
+		675=Далее
+		676=Отмена
+		677=Конец связи
+		771=И ретранслируй этот приказ остальным транклюкаторам. С каждым отдельно я общаться не намерен.
+    }
+}

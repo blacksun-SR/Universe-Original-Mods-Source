@@ -1,0 +1,634 @@
+MicroModuls ^{
+    EvoMM_BigTank ^{
+        Cost=60
+        CustomTag=EvoMM_BigTank
+        Equipments=FuelTank
+        Name=Биг-бак
+        Owner=PirateClan
+        Priority=40
+        RacialRestriction=1
+        Size=140
+        Text=Микромодуль второго уровня. Заменяет все мало-мальски дорогие детали <clr>топливного бака<clrEnd> на более дешёвые и громоздкие. Пригоден лишь для <clr>пиратских<clrEnd> поделий.
+        Text=<clr><clrEnd>
+        Text=Объём бака: <bonFuel> ед.
+        Text=Стоимость: <clr>-40%<clrEnd>
+        Text=Размер: <clr>+40%<clrEnd>
+        bonFuel=15
+    }
+    EvoMM_Burn ^{
+        Cost=150
+        CustomTag=EvoMM_Burn
+        Equipments=WEnergy,WSplinter
+        Name=Бёрн
+        Owner=Maloc,Peleng,Fei,Gaal
+        Priority=5
+        Size=110
+        Text=Микромодуль первого уровня. Модифицирует боеприпасы и системы фокусировки оружия, благодаря чему возрастает наносимый урон и дальность поражения цели. Не совместим с ракетным оружием и оборудованием людей.
+        Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Стоимость: <clr>+50%<clrEnd>
+        Text=Размер: <clr>+10%<clrEnd>
+        bonWEnergy=17
+        bonWRadius=55
+        bonWSplinter=25
+    }
+    EvoMM_ChwangStop ^{
+        Cost=125
+        CustomTag=EvoMM_ChwangStop
+        Equipments=Hook
+        Name=Чванг-Стоп
+        Owner=PirateClan,NonKling
+        Priority=5
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Был разработан по заказу братков многоуважаемого лякуши Чванг-Хана на его однотысячное космическое ограбление.<br>Значительно повышает характеристики<br>любого <clr>пиратского захвата<clrEnd>.
+        Text=<clr><clrEnd>
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Дальность захвата: <bonHookRadius> ед.
+        Text=Скорость захвата: <clr><bonHookMaxSpeed><clrEnd> ед.
+        Text=Стоимость: <clr>+25%<clrEnd>
+        bonHook=55
+        bonHookMaxSpeed=2
+        bonHookMinSpeed=2
+        bonHookRadius=25
+    }
+    EvoMM_Creed ^{
+        CustomTag=EvoMM_Creed
+        Equipments=Engine,Scaner,Radar
+        Name=Крид
+        Owner=Kling
+        Priority=35
+        RacialRestriction=1
+        Text=Микромодуль второго уровня. Добавляет в навигационную систему <clr>доминаторских двигателей<clrEnd> 5-й элемент гиперпространственной навигации, увеличивая тем самым скорость и дальность гиперпрыжка. При установке в доминаторский <clr>радар<clrEnd> или <clr>сканер<clrEnd> вызывает ретракцию высокочастотного контроллера помех, что приводит к существенному улучшению их характеристик.
+        Text=<clr><clrEnd>
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        bonJump=7
+        bonRadar=1100
+        bonScan=8
+        bonSpeed=130
+    }
+    EvoMM_Dream ^{
+        Cost=125
+        CustomTag=EvoMM_Dream
+        Equipments=FuelTank,Droid,Hook,DefGenerator
+        Name=Дрим
+        Owner=Kling
+        Priority=10
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Сразу после установки оптимизирует, заменяет и совершенствует только <clr>доминаторское<clrEnd> оборудование. Способы взаимодействия установить не удалось, а сам процесс моментален и изучению не подлежит. Ремонт модифицированного таким образом оборудования крайне затруднителен и, следовательно, более затратен.
+        Text=<clr><clrEnd>
+        Text=Объём бака: <bonFuel> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Эффективность дроида: <bonDroid> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Дальность захвата: <bonHookRadius> ед.
+        Text=Генератор поля: <bonDef> ед.
+        Text=Стоимость: <clr>+25%<clrEnd>
+        bonDef=8
+        bonDroid=35
+        bonFuel=30
+        bonHook=50
+        bonHookRadius=30
+        bonRadar=1400
+    }
+    EvoMM_Durasel ^{
+        Cost=120
+        CustomTag=EvoMM_Durasel
+        Equipments=WEnergy
+        Name=Дюрасель
+        Owner=Kling
+        Priority=70
+        RacialRestriction=1
+        Size=120
+        Text=Микромодуль третьего уровня. Позволяет повысить мощность выстрела, благодаря замене энергетических блоков орудий на более тяжёлые, мощные и, как следствие, дорогие. Из-за усиления рассеивающего эффекта дальность выстрела незначительно снижается. Совместим только с оружием <clr>доминаторов<clrEnd>.
+        Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Стоимость: <clr>+20%<clrEnd>
+        Text=Размер: <clr>+20%<clrEnd>
+        bonWEnergy=16
+        bonWRadius=-20
+    }
+    EvoMM_Duzer ^{
+        CustomTag=EvoMM_Duzer
+        Equipments=FuelTank
+        Name=Дюзер
+        Owner=Peleng
+        Priority=20
+        Text=Микромодуль первого уровня. Разработанный <clr>пеленгами<clrEnd> модуль для превращения значительной части топливного бака в потайной грузовой отсек без подозрительного сокращения его объёма. Этот микромодуль был впоследствии модифицирован учёными Коалиции, однако совместить его с баками не пеленгской конструкции так и не удалось.
+        Text=<clr><clrEnd>
+        Text=Объём бака: <bonFuel> ед.
+        bonFuel=25
+    }
+    EvoMM_Electromagnet ^{
+        CustomTag=EvoMM_Electromagnet
+        Equipments=WSplinter
+        Name=Электромагнит
+        Owner=Kling
+        Priority=30
+        RacialRestriction=1
+        Size=110
+        Text=Микромодуль первого уровня. Оплетает ствол осколочного оружия электромагнитными катушками, разгоняющими снаряд, что позволяет орудию стрелять значительно дальше. Разгон снаряда также повышает вероятность успешного поражения брони противника. Дополнительная батарея и рельсовый генератор увеличивают вес орудий. Применим только в <clr>доминаторском<clrEnd> вооружении <clr>осколочного<clrEnd> типа.
+        Text=<clr><clrEnd>
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Размер: <clr>+10%<clrEnd>
+        bonWRadius=65
+        bonWSplinter=10
+    }
+    EvoMM_Emikan ^{
+        CustomTag=EvoMM_Emikan
+        Equipments=Engine,Scaner
+        Name=Емикан
+        Owner=Keller
+        Priority=10
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Был разработан искусственным интеллектом и вобрал в себя многолетние статистические данные о массовом применении всевозможных видов <clr>двигателей<clrEnd> и <clr>сканеров<clrEnd>. Совместим только с доминаторским оборудованием <clr>келлероидной<clrEnd> серии.
+        Text=<clr><clrEnd>
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Мощность сканера: <bonScan> ед.
+        bonJump=10
+        bonScan=14
+        bonSpeed=150
+    }
+    EvoMM_Enterquad ^{
+        CustomTag=EvoMM_Enterquad
+        Equipments=Engine
+        Name=Энтерквад
+        Priority=90
+        Text=Микромодуль третьего уровня. Увеличивает скорость <clr>двигателя<clrEnd> за счёт ввода субквадратической системы вычисления расхода топлива.
+        Text=<clr><clrEnd>
+        Text=Скорость двигателя: <bonSpeed> ед.
+        bonSpeed=50
+    }
+    EvoMM_Fascon ^{
+        CustomTag=EvoMM_Fascon
+        Equipments=Droid
+        Name=Фаскон
+        Owner=Terron
+        Priority=10
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Был разработан искусственным интеллектом и вобрал в себя многолетние статистические данные о массовом применении всевозможных видов <clr>ремонтных дроидов<clrEnd>. Совместим только с доминаторским оборудованием <clr>терроноидной<clrEnd> серии.
+        Text=<clr><clrEnd>
+        Text=Эффективность дроида: <bonDroid> ед.
+        bonDroid=35
+    }
+    EvoMM_FoncerX ^{
+        Cost=120
+        CustomTag=EvoMM_FoncerX
+        Equipments=Engine
+        Name=Фонсер-Икс
+        Owner=Kling
+        Priority=15
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Путём эффективной реорганизации силовых потоков в <clr>доминаторском двигателе<clrEnd>, переводит устройство с номинального режима работы на щадящую форсажную частоту. Ожидаемого ускорения износа двигателя, однако, не происходит по причине грамотного использования принципа обратной интурбации.
+        Text=<clr><clrEnd>
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Стоимость: <clr>+20%<clrEnd>
+        bonSpeed=210
+    }
+    EvoMM_Foros ^{
+        Cost=20
+        CustomTag=EvoMM_Foros
+        Equipments=Engine
+        Fragility=77
+        Name=Форос
+        Owner=Peleng,People,Fei,Gaal
+        Priority=55
+        Size=120
+        Text=Микромодуль второго уровня. Идеально подходит для <clr>двигателей<clrEnd>, постоянно эксплуатируемых в форсажном режиме. Существенно снижает расходы на ремонт, встраивая в них удобные и долговечные, но громоздкие системы диагностики и быстрого доступа ко всем ключевым узлам. Не совместим с <clr>малокскими<clrEnd> двигателями, из-за крайней бестолковости их конструкции.
+        Text=<clr><clrEnd>
+        Text=Надёжность: <clr>+30%<clrEnd>
+        Text=Стоимость: <clr>-80%<clrEnd>
+        Text=Размер: <clr>+20%<clrEnd>
+    }
+    EvoMM_Googlebot ^{
+        Cost=120
+        CustomTag=EvoMM_Googlebot
+        Equipments=Scaner
+        Name=Гуглбот
+        Owner=Maloc
+        Priority=85
+        Text=Микромодуль третьего уровня. Подключает <clr>сканер малокского<clrEnd> производства к единой сети Галанет, в результате чего каждую неделю происходит его автоматическая калибровка и неотключаемое обновление программного обеспечения.
+        Text=<clr><clrEnd>
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Стоимость: <clr>+20%<clrEnd>
+        bonScan=5
+    }
+    EvoMM_Grab ^{
+        CustomTag=EvoMM_Grab
+        Equipments=Hook
+        Name=Хап
+        Owner=Maloc,Peleng,People,Fei
+        Priority=75
+        Size=120
+        Text=Микромодуль третьего уровня. Разработан известным пеленгским учёным Сикпаком Хапугой, прославившимся своей невероятной хронической и совершенно неизлечимой клептоманией. Также известен дерзкими похищениями небольших, но очень ценных предметов с большого расстояния. Из хулиганских побуждений Сикпак сделал этот микромодуль несовместимым с <clr>гаальским<clrEnd> оборудованием.
+        Text=<clr><clrEnd>
+        Text=Дальность захвата: <bonHookRadius> ед.
+        Text=Размер: <clr>+20%<clrEnd>
+        bonHookRadius=20
+    }
+    EvoMM_Graviton ^{
+        Cost=140
+        CustomTag=EvoMM_Graviton
+        Equipments=Hull
+        Name=Гравитон
+        Owner=PirateClan
+        Priority=31
+        RacialRestriction=1
+        Size=90
+        Text=Микромодуль второго уровня. Как-то раз <clr>пиратские<clrEnd> "учёные" разобрали артефакт антигравиратор до блоков гравитонов, и с помощью долота, кувалд и какой-то матери внедрили его в свои корпуса. Ко всеобщему удивлению, масса и размер <clr>корпуса<clrEnd> от этого и впрямь уменьшились.
+        Text=<clr><clrEnd>
+        Text=Масса корабля: <bonMass><clr>%<clrEnd>
+        Text=Стоимость: <clr>+40%<clrEnd>
+        Text=Размер: <clr>-10%<clrEnd>
+        bonMass=-50
+    }
+    EvoMM_Inhibitor ^{
+        CustomTag=EvoMM_Inhibitor
+        Equipments=WEnergy,WSplinter,WMissile,Engine,FuelTank,Droid,Hook,DefGenerator,Scaner,Radar
+        Name=Ингибитор
+        Owner=None,NonKling
+        Priority=31
+        Text=Микромодуль второго уровня. Наносит специальное вещество, уменьшающее воздействие вредных космических лучей на <clr>любое неопознанное<clrEnd> оборудование, позволяя повысить его эффективность без изменения оригинальной структуры устройства.
+        Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Объём бака: <bonFuel> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Эффективность дроида: <bonDroid> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Дальность захвата: <bonHookRadius> ед.
+        Text=Генератор поля: <bonDef> ед.
+        bonDef=3
+        bonDroid=11
+        bonFuel=9
+        bonHook=15
+        bonHookRadius=10
+        bonJump=3
+        bonRadar=450
+        bonScan=5
+        bonSpeed=30
+        bonWEnergy=10
+        bonWMissile=14
+        bonWSplinter=14
+    }
+    EvoMM_Ionizer ^{
+        CustomTag=EvoMM_Ionizer
+        Equipments=WMissile
+        Fragility=117
+        Name=Ионизатор
+        Owner=Any
+        Priority=50
+        Text=Микромодуль второго уровня. Модифицирует механизм заряжания <clr>ракетного орудия<clrEnd> так, что в результате каждая ракета при попадании производит ионизацию поверхности<br>корпуса цели, тем самым увеличивая<br>наносимый ей урон.
+        Text=<clr><clrEnd>
+        Text=Дополнительный эффект: <clr>ионизация цели<clrEnd>
+        Text=Надёжность: <clr>-15%<clrEnd>
+        WeaponMods=Shock
+    }
+    EvoMM_Junkometer ^{
+        Cost=40
+        CustomTag=EvoMM_Junkometer
+        Equipments=Radar
+        Name=Хламометр
+        Priority=90
+        Size=140
+        Text=Микромодуль третьего уровня. Заменяет дорогие компактные детали <clr>радара<clrEnd> на дешёвые низкокачественные и громоздкие заменители. В результате данной операции радар становится значительно дешевле, но и значительно прибавляет в размерах, а также теряет часть своей изначальной мощности.
+        Text=<clr><clrEnd>
+        Text=Стоимость: <clr>-60%<clrEnd>
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Размер: <clr>+40%<clrEnd>
+        bonRadar=-200
+    }
+    EvoMM_LaserJet ^{
+        Cost=117
+        CustomTag=EvoMM_LaserJet
+        Equipments=W01
+        Fragility=115
+        Name=Лазер-Джет
+        Owner=Any
+        Priority=70
+        Size=130
+        Text=Микромодуль третьего уровня. Кто сказал, что <clr>промышленные лазеры<clrEnd> бесполезны?
+        Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Надёжность: <clr>-15%<clrEnd>
+        Text=Стоимость: <clr>+15%<clrEnd>
+        Text=Размер: <clr>+30%<clrEnd>
+        bonWEnergy=14
+        bonWRadius=20
+    }
+    EvoMM_Minimus ^{
+        Cost=110
+        CustomTag=EvoMM_Minimus
+        Equipments=Engine,Radar,Scaner,Droid,Hook,DefGenerator,FuelTank
+        Fragility=125
+        Name=Минимус
+        Owner=Kling
+        Priority=70
+        RacialRestriction=1
+        Size=55
+        Text=Микромодуль третьего уровня. По соображениям учёных этот модуль, созданный <clr>доминаторами<clrEnd>, изначально предназначался исключительно кораблям серии "Штип". Из свойств выявлено значительное снижение размера любого оборудования, за исключением корпуса и орудий, без изменения характеристик последнего. Модуль встраивается в наиболее тяжёлые узлы, полностью заменяя их на облегчённые аналоги. При этом подвергнутое улучшению оборудование начинает работать на износ и сложнее поддаётся ремонту.
+        Text=<clr><clrEnd>
+        Text=Размер: <clr>-45%<clrEnd>
+        Text=Надёжность: <clr>-20%<clrEnd>
+        Text=Стоимость: <clr>+10%<clrEnd>
+    }
+    EvoMM_Nahwaton ^{
+        CustomTag=EvoMM_Nahwaton
+        Equipments=Engine,FuelTank,Hook
+        Name=Нахватон
+        Owner=PirateClan
+        Priority=31
+        RacialRestriction=1
+        Text=Микромодуль второго уровня. Был изобретён пленённым <clr>пиратами<clrEnd> далани, пообещавшим сделать их <clr>захваты<clrEnd> эффективнее в обмен на свою жизнь. Ходят слухи, что фэянин сбежал в родную систему во время демонстрации получившейся разработки пиратам, умолчав о скрытых особенностях микромодуля, увеличивающих объём <clr>топливного бака<clrEnd> и дальность <clr>гиперпрыжка<clrEnd>.
+        Text=<clr><clrEnd>
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Объём бака: <bonFuel> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Дальность захвата: <bonHookRadius> ед.
+        bonFuel=15
+        bonHook=25
+        bonHookRadius=20
+        bonJump=9
+    }
+    EvoMM_Nanotoid ^{
+        CustomTag=EvoMM_Nanotoid
+        Equipments=Droid
+        Name=Нанитоид
+        Owner=Kling
+        Priority=95
+        RacialRestriction=1
+        Text=Микромодуль третьего уровня. Инсталлирует вспомогательный миниатюрный манипулятор <clr>ремонтному дроиду<clrEnd>. С таким манипулятором робот способен эффективнее производить локальный ремонт, однако блокиратор самообучения искусственного интеллекта стандартных коалиционных дроидов не позволяет им эффективно использовать столь высокотехнологичное оборудование. По этой причине установка данного микромодуля возможна лишь на относительно независимые <clr>доминаторские<clrEnd> дианоды.
+        Text=<clr><clrEnd>
+        Text=Эффективность дроида: <bonDroid> ед.
+        bonDroid=10
+    }
+    EvoMM_Navigator4_44 ^{
+        Cost=70
+        CustomTag=EvoMM_Navigator4_44
+        Equipments=Radar,WEnergy,WSplinter,Scaner
+        Name=Навигатор v. 4.44
+        Owner=Kling
+        Priority=70
+        RacialRestriction=1
+        Size=120
+        Text=Микромодуль третьего уровня. Инсталлирует в девайс новые сенсоры для обнаружения и распознавания объектов, а также обновляет системы наведения энергетического и осколочного оружия, что благоприятно сказывается на максимальной дальности стрельбы. Новые детали более дешёвые и громоздкие, что прямо отражается на итоговой стоимости и размере устройства. Совместим только с <clr>доминаторской<clrEnd> программной архитектурой.
+        Text=<clr><clrEnd>
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Стоимость: <clr>-30%<clrEnd>
+        Text=Размер: <clr>+20%<clrEnd>
+        bonRadar=444
+        bonScan=4
+        bonWRadius=44
+    }
+    EvoMM_Navitek ^{
+        CustomTag=EvoMM_Navitek
+        Equipments=WMissile
+        Name=Навитек
+        Owner=PirateClan
+        Priority=55
+        RacialRestriction=1
+        Size=130
+        Text=Микромодуль второго уровня. Подключаясь к <clr>ракетному орудию<clrEnd>, "Навитек" заменяет стандартную систему наведения на утяжелённый навигационный локатор, который выискивает наиболее уязвимые места в защитном контуре цели. Поиск производится за считанные секунды, после чего локатор автоматически направляет выпущенные ракеты в обнаруженные в обороне бреши. К несчастью, данный навигационный локатор совместим лишь с <clr>пиратскими<clrEnd> типами орудий.
+        Text=<clr><clrEnd>
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Размер: <clr>+30%<clrEnd>
+        bonWMissile=25
+    }
+    EvoMM_Oberon13 ^{
+        CustomTag=EvoMM_Oberon13
+        Equipments=Hull
+        Name=Оберон 13
+        Owner=PirateClan
+        Priority=70
+        RacialRestriction=1
+        Size=113
+        Text=Микромодуль третьего уровня. Увеличивает вместимость <clr>корпуса<clrEnd> с помощью трансформаторного оберон-луча, однако из-за сильных всплесков энергии частично сжигается внутренний слой брони. Данный луч запрещен к применению из-за мощнейших выбросов радиации, но для <clr>пиратов<clrEnd> подобные бюрократические мелочи никогда не являлись серьёзной преградой.
+        Text=<clr><clrEnd>
+        Text=Размер корпуса: <clr>+13%<clrEnd>
+        Text=Броня корпуса: <bonHull> ед.
+        bonHull=-2
+    }
+    EvoMM_PP1111 ^{
+        CustomTag=EvoMM_PP1111
+        Equipments=Radar
+        Name=РР-1111
+        Owner=Peleng,People,Fei,Gaal
+        Priority=30
+        Size=130
+        Text=Микромодуль первого уровня. Встраивает в <clr>радар<clrEnd> сканирующую сетку РР-1111 повышенной мощности, значительно повышающую его изначальную дальность. Из-за того, что для подключения РР-1111 требуется высокотехнологичный разъём UUSB-6, у микромодуля отсутствует совместимость с оборудованием <clr>малокской<clrEnd> расы.
+        Text=<clr><clrEnd>
+        Text=Дальность радара: <bonRadar> млн. км.
+        Text=Размер: <clr>+30%<clrEnd>
+        bonRadar=1111
+    }
+    EvoMM_Plasmer ^{
+        CustomTag=EvoMM_Plasmer
+        Equipments=Engine,WEnergy
+        Name=Плазмер
+        Owner=Kling
+        Priority=5
+        RacialRestriction=1
+        Size=120
+        Text=Микромодуль первого уровня. Прочищает топливные фильтры <clr>двигателя<clrEnd> обработанной плазмой, ускоряющей циркуляцию топлива по всем его узлам. Также микромодуль совместим с <clr>энергетическим оружием<clrEnd>, поскольку выделяемая им плазма может быть с лёгкостью конвертирована в дополнительный заряд для усиления импульса в момент выстрела. Оборудование Коалиции подобной плазменной перегрузки не выдерживает, а вот <clr>доминаторское<clrEnd> просто становится немного тяжелей.
+        Text=<clr><clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> пк.
+        Text=Размер: <clr>+20%<clrEnd>
+        bonJump=17
+        bonSpeed=200
+        bonWEnergy=25
+    }
+    EvoMM_Pressor ^{
+        Cost=150
+        CustomTag=EvoMM_Pressor
+        Equipments=FuelTank
+        Name=Прессор
+        Owner=PirateClan
+        Priority=80
+        RacialRestriction=1
+        Text=Микромодуль третьего уровня. Увеличивает вместимость <clr>топливного бака<clrEnd> благодаря внедрению новой технологии сжатия топлива. Данная технология была скопирована <clr>пиратами<clrEnd> в секретной лаборатории Коалиции, после чего незамедлительно выдана за передовую разработку собственных инженеров.
+        Text=<clr><clrEnd>
+        Text=Объём бака: <bonFuel> ед.
+        Text=Стоимость: <clr>+50%<clrEnd>
+        bonFuel=15
+    }
+    EvoMM_Proberon ^{
+        CustomTag=EvoMM_Proberon
+        Equipments=WMissile
+        Name=Проберон
+        Owner=Blazer
+        Priority=25
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Был разработан искусственным интеллектом и вобрал в себя многолетние статистические данные о массовом применении всевозможных видов <clr>ракетного оружия<clrEnd>. Совместим только с доминаторскими орудиями <clr>блазероидной<clrEnd> серии.
+        Text=<clr><clrEnd>
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Скорость ракет: <bonMissileSpeed> ед.
+        bonMissileSpeed=300
+        bonWMissile=20
+    }
+    EvoMM_Prom ^{
+        CustomTag=EvoMM_Prom
+        Equipments=DefGenerator,Hook
+        Name=Пром
+        Owner=Kling
+        Priority=50
+        RacialRestriction=1
+        Size=140
+        Text=Микромодуль второго уровня. Встраиваясь в <clr>доминаторское<clrEnd> оборудование, обеспечивает более равномерное распределение энергетических потоков. Увеличивая размер, способствует ускоренному выведению шума из системных узлов <clr>генератора защитного поля<clrEnd>, а при установке в <clr>захват<clrEnd>, блокирует систему контроля мощности, делая захват менее мощным, но взамен увеличивая максимальную дистанцию его работы.
+        Text=<clr><clrEnd>
+        Text=Генератор поля: <bonDef> ед.
+        Text=Дальность захвата: <bonHookRadius> ед.
+        Text=Мощность захвата: <bonHook> ед.
+        Text=Размер: <clr>+40%<clrEnd>
+        bonDef=6
+        bonHook=-30
+        bonHookRadius=45
+    }
+    EvoMM_Protonic ^{
+        CustomTag=EvoMM_Protonic
+        Equipments=WSplinter
+        Name=Протоник
+        Owner=Kling
+        Priority=75
+        RacialRestriction=1
+        Text=Микромодуль третьего уровня. За счёт оснащения <clr>осколочных<clrEnd> снарядов капсулированными протонами, увеличивает разрушительный потенциал выстрела. Правда, капсулированные протоны также наводит вихревые помехи в системах наведения, что снижает эффективную дальность ведения огня. Совместим только с высокотехнологичными осколочными орудиями <clr>доминаторов<clrEnd>.
+        Text=<clr><clrEnd>
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        bonWRadius=-40
+        bonWSplinter=15
+    }
+    EvoMM_RobinBoom ^{
+        CustomTag=EvoMM_RobinBoom
+        Equipments=WSplinter
+        Name=Робин Бум
+        Priority=50
+        Text=Микромодуль второго уровня. Внедряет в программный код <clr>осколочных орудий<clrEnd> так называемый "снайперский" алгоритм, в результате чего точность, а, следовательно, и дальность их стрельбы значительно возрастают.
+        Text=<clr><clrEnd>
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        bonWRadius=40
+    }
+    EvoMM_RocketBoomgie ^{
+        Cost=200
+        CustomTag=EvoMM_RocketBoogie
+        Equipments=WMissile
+        Name=Рокет-Бумги
+        Owner=Kling
+        Priority=15
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Был разработан малоками ещё до начала доминаторской войны. Предназначался только для <clr>доминаторских ракетных орудий<clrEnd>, серьёзно повышая их разрушительный потенциал за счёт применения секретных малокских взрывчатых составов.
+        Text=<clr><clrEnd>
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Стоимость: <clr>+100%<clrEnd>
+        bonWMissile=50
+    }
+    EvoMM_ScanTech ^{
+        Cost=110
+        CustomTag=EvoMM_ScanTech
+        Equipments=Scaner
+        Name=СканТек
+        Owner=Kling
+        Priority=15
+        RacialRestriction=1
+        Size=75
+        Text=Микромодуль первого уровня. Подключает <clr>сканер<clrEnd> к зашифрованной доминаторской сети, благодаря чему эффективность сканирования увеличивается. Заменяет шифровальные блоки сканера на более чувствительные к импульсам, делая его более лёгким, но также и более дорогим в обслуживании. Из-за встроенной системы распознавания "свой-чужой" способен функционировать только в <clr>доминаторских<clrEnd> устройствах.
+        Text=<clr><clrEnd>
+        Text=Мощность сканера: <bonScan> ед.
+        Text=Стоимость: <clr>+10%<clrEnd>
+        Text=Размер: <clr>-25%<clrEnd>
+        bonScan=10
+    }
+    EvoMM_Scarf ^{
+        CustomTag=EvoMM_Scarf
+        Equipments=DefGenerator
+        Name=Скарф
+        Owner=Kling
+        Priority=70
+        RacialRestriction=1
+        Size=110
+        Text=Микромодуль третьего уровня. Повышает интенсивность фильтра помех <clr>генератора защитного поля<clrEnd>, добавляя контроллер пси-защиты нулевого уровня. При активации контроллер резервирует под себя дополнительное внутреннее пространство в трюме. Применим только в <clr>доминаторских<clrEnd> защитных пси-матрицах.
+        Text=<clr><clrEnd>
+        Text=Генератор поля: <bonDef> ед.
+        Text=Размер: <clr>+10%<clrEnd>
+        bonDef=4
+    }
+    EvoMM_Tetron ^{
+        Cost=130
+        CustomTag=EvoMM_Tetron
+        Equipments=WMissile
+        Name=Тетрон
+        Owner=Gaal
+        Priority=65
+        Size=150
+        Text=Микромодуль второго уровня. Заполняет боеголовки <clr>ракет<clrEnd> и <clr>торпед<clrEnd> жидким тетрилом, значительно повышая их огневую мощь. Увы, но генератор тетрила также увеличивает размер и стоимость модифицированного оружия. Кроме того, только <clr>гаальские<clrEnd> ракеты обладают достаточной прочностью для безопасного заполнения данным веществом.
+        Text=<clr><clrEnd>
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Стоимость: <clr>+30%<clrEnd>
+        Text=Размер: <clr>+50%<clrEnd>
+        bonWMissile=30
+    }
+    EvoMM_Titanium ^{
+        Cost=120
+        CustomTag=EvoMM_Titanium
+        Equipments=Engine,FuelTank,Radar,Scaner,Droid,Hook,DefGenerator,WEnergy,WSplinter,WMissile
+        Fragility=83
+        Name=Титаниум
+        Owner=Peleng,Maloc
+        Priority=75
+        Size=120
+        Text=Микромодуль третьего уровня. Заменяет наиболее ходовые детали <clr>малокского<clrEnd> или <clr>пеленгского<clrEnd> оборудования на новые, выполненные из более прочного, но также более дорогого в обслуживании и более тяжёлого сплава.
+        Text=<clr><clrEnd>
+        Text=Надёжность: <clr>+20%<clrEnd>
+        Text=Стоимость: <clr>+20%<clrEnd>
+        Text=Размер: <clr>+20%<clrEnd>
+    }
+    EvoMM_Unique ^{
+        CustomTag=EvoMM_Unique
+        Equipments=Hull
+        Name=Уникум
+        Priority=50
+        Text=Микромодуль второго уровня. Встраивает в бортовой компьютер корабля программно-аппаратную систему <clr>"Умный корпус"<clrEnd>. Эта система позволяет дольше удерживать наведение орудий на цели и эффективнее эксплуатировать бортовое оборудование. Главный её недостаток - дестабилизация работы защитной матрицы, что приводит к существенному увеличению получаемых повреждений.
+        Text=<clr><clrEnd>
+        Text=Навык точности: <bonSkill1>
+        Text=Навык техники: <bonSkill3>
+        Text=Восприимчивость к урону: <clr>+30%<clrEnd>
+        Fragility=130
+        bonSkill1=2
+        bonSkill3=2
+    }
+    EvoMM_Vampiric ^{
+        Cost=150
+        CustomTag=EvoMM_Vampiric
+        Equipments=W06,W09,W10
+        Name=Вампирик
+        Priority=20
+        Text=Микромодуль первого уровня. Во время боя в автономном режиме притягивает к орудию обломки повреждённых кораблей и использует их для восстановления структуры корпуса корабля носителя. Все энергетические схемы оружия при этом работают в предкритическом режиме, значительно увеличивая износ всех узлов и снижая эффективность каждого выстрела. Совместим только с <clr>волновым фазером<clrEnd>, <clr>мультирезонатором<clrEnd> и <clr>атомным визионом<clrEnd>, любимым оружием создателя микромодуля.
+        Text=<clr><clrEnd>
+        Text=Дополнительный эффект: <clr>вампиризм<clrEnd>
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Надёжность: <clr>-15%<clrEnd>
+        Text=Стоимость: <clr>+50%<clrEnd>
+        Fragility=117
+        WeaponMods=Drain
+        bonWEnergy=-17
+        bonWRadius=-20
+        bonWSplinter=-17
+    }
+}

@@ -1,0 +1,68 @@
+Items ^{
+    Weapon ^{
+        Missile ^{
+            Mabokit ^{
+                Name=Снаряд
+                Text=Магнитный самонаводящийся снаряд
+            }
+        }
+        Name ^{
+            Mabokit=МаБоКиТ-79
+        }
+        Text ^{
+            Mabokit=Поражает цель магнитными самонаводящимися шаровыми снарядами, наносящими <CntShots>x(<MinDamage>-<MaxDamage>)<Bonus> ед. урона цели и окружающим её объектам.<br>Количество залпов: <Count>/<MaxCount> шт.
+        }
+		CustomWeapon ~{
+			StatsVersion ^{
+				EvoMabokit=09.06.20
+			}
+			Mabokit ~{
+				BaseGun=Missile_Launcher
+				MinDamage=8
+				MaxDamage=10
+				DamageSet=Missile
+				ShotType=Missile2
+				Speed=20
+				AverageRadius=500
+				SecondaryDamageRadius=100
+				MissileRadius=800
+				MissileMinSpeed=700
+				MissileMaxSpeed=900
+				MissileChanceToBeHit=70
+				mWeaponDamage=1.00,1.15,1.30,1.45,1.60,1.75,1.90,2.05
+				ShotsPerTurn=1
+				ArcadeType=Missile_Launcher
+				MiningFactor=2
+				kCost=2.5
+				AverageSize=20
+				TechLevel=1
+				InventTechLevel=Industrial_Laser
+				StoreAvailability=Free
+				ShotEffectPath=Weapon.4
+				ShotEffectPalette=6
+				SplashEffectPath=Weapon.NoGraph
+				MissileExplosionEffectPath=Weapon.MissileHit
+			}
+		}
+		OriginalWeaponType ~{
+			Industrial_Laser=1
+			Fragmentation_Cannon=2
+			Flux=3
+			Missile_Launcher=4
+			Treton=5
+			Wave_Phaser=6
+			Flow_Blaster=7
+			Electronic_Cutter=8
+			Multiresonator=9
+			Atomic_Vision=10
+			Disintegrator=11
+			Turbogravitron=12
+			IMHO-9000=13
+			Vertix=14
+			Torpedo_Tube=15
+			Esodapher=16
+			Caphasitor=17
+			Lirecron=18
+		}
+    }
+}

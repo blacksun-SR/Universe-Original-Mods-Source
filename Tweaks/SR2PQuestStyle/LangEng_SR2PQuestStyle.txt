@@ -1,0 +1,11 @@
+FormPQuest ^{
+    HelpAnimTextOff=Text animation off
+    HelpAnimTextOn=Text animation on
+    HelpExit=Exit (<color=255,245,80>R</color> - restart quest)
+    HelpExitAlt=Exit
+    HelpStyle1=Gray background
+    HelpStyle2=Dark background
+    HelpStyle3=Light background
+	HelpStyle4=Yellow background
+    HelpStyle5=Green background
+}

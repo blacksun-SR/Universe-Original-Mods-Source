@@ -1,0 +1,607 @@
+MicroModuls ^{
+	EvoArmada_DreadnoughtMaloc ^{
+        Equipments=Hull
+		//HullGraphSize=230
+        KindGraph=DreadnoughtMaloc
+        Name=</color><Type> корпус дредноута
+        Owner=Maloc,NonKling
+        Special=1
+        LockedAcryn=3
+		NonSearchable=1
+        Priority=0
+        Text=<color=248,252,248>Один из крупнейших боевых кораблей Коалиции, гордость Объединённого Галактического флота. Заслуженно вселяет благоговейный трепет в сердца экипажа и ужас в души врагов.</color>
+        Fragility=70
+        Cost=7500
+        //Size=450
+		bonSlotForsage=-1
+		bonMass=50
+	}
+	EvoArmada_DreadnoughtPeleng ^{
+        Equipments=Hull
+		//HullGraphSize=230
+        KindGraph=DreadnoughtPeleng
+        Name=</color><Type> корпус дредноута
+        Owner=Peleng,NonKling
+        Special=1
+        LockedAcryn=3
+		NonSearchable=1
+        Priority=0
+        Text=<color=248,252,248>Один из крупнейших боевых кораблей Коалиции, гордость Объединённого Галактического флота. Заслуженно вселяет благоговейный трепет в сердца экипажа и ужас в души врагов.</color>
+        Fragility=70
+        Cost=7500
+        //Size=450
+		bonSlotForsage=-1
+		bonMass=50
+	}
+	EvoArmada_DreadnoughtPeople ^{
+        Equipments=Hull
+		//HullGraphSize=230
+        KindGraph=DreadnoughtPeople
+        Name=</color><Type> корпус дредноута
+        Owner=People,NonKling
+        Special=1
+        LockedAcryn=3
+		NonSearchable=1
+        Priority=0
+        Text=<color=248,252,248>Один из крупнейших боевых кораблей Коалиции, гордость Объединённого Галактического флота. Заслуженно вселяет благоговейный трепет в сердца экипажа и ужас в души врагов.</color>
+        Fragility=70
+        Cost=7500
+        //Size=450
+		bonSlotForsage=-1
+		bonMass=50
+	}
+	EvoArmada_DreadnoughtFei ^{
+        Equipments=Hull
+		//HullGraphSize=230
+        KindGraph=DreadnoughtFei
+        Name=</color><Type> корпус дредноута
+        Owner=Fei,NonKling
+        Special=1
+        LockedAcryn=3
+		NonSearchable=1
+        Priority=0
+        Text=<color=248,252,248>Один из крупнейших боевых кораблей Коалиции, гордость Объединённого Галактического флота. Заслуженно вселяет благоговейный трепет в сердца экипажа и ужас в души врагов.</color>
+        Fragility=80
+        Cost=7500
+        //Size=400
+		bonSlotForsage=-1
+		bonMass=50
+	}
+	EvoArmada_DreadnoughtGaal ^{
+        Equipments=Hull
+		//HullGraphSize=230
+        KindGraph=DreadnoughtGaal
+        Name=</color><Type> корпус дредноута
+        Owner=Gaal,NonKling
+        Special=1
+        LockedAcryn=3
+		NonSearchable=1
+        Priority=0
+        Text=<color=248,252,248>Один из крупнейших боевых кораблей Коалиции, гордость Объединённого Галактического флота. Заслуженно вселяет благоговейный трепет в сердца экипажа и ужас в души врагов.</color>
+        Fragility=80
+        Cost=7500
+        //Size=400
+		bonSlotForsage=-1
+		bonMass=50
+	}
+    EvoArmada_CoalitionBattleshipHull ^{
+		Equipments=Hull
+		Name=</color><Type> корпус линкора
+		Owner=Maloc,Peleng,People,Fei,Gaal,NonKling
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+		Text=<color=248,252,248>Могучий боевой корабль, предназначенный для ведения ожесточённых артиллерийских перестрелок на больших дистанциях. Постройка даже одного такого обходится истощённому военному бюджету Коалиции очень дорого, а его потеря - ещё дороже.</color>
+        Fragility=90
+		Cost=5500
+		//Size=300
+		bonSlotForsage=-1
+		bonMass=25
+    }
+    EvoArmada_CorvettePirateClan ^{
+		Equipments=Hull
+		Owner=PirateClan,NonKling
+        LockedAcryn=3
+		//HullGraphSize=133
+        KindGraph=PirateCorvette
+        Name=</color><Type> корпус корвета
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Достаточно мощный для уничтожения любого небольшого судна, корвет, однако, слишком мал для ведения полномасштабных линейных сражений. В то же время "стая" таких кораблей вполне может стать неприятным сюрпризом для любого местного флота, не обладающего значительными силами для отражения внезапной пиратской атаки.</color>
+		Fragility=80
+        Cost=1500
+		//Size=275
+		bonMass=25
+		bonSlotForsage=-1
+    }
+    EvoArmada_FrigatePirateClan ^{
+		Equipments=Hull
+		Owner=PirateClan,NonKling
+        LockedAcryn=3
+		//HullGraphSize=185
+        KindGraph=PirateFrigate
+        Name=</color><Type> корпус фрегата
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Крупный многопушечный корабль, который, при соблюдении некоторых условий, вполне способен дать достойный отпор даже в линейном артиллерийском бою. Ограниченность ресурсов братства, правда, не позволяет производить такие в серийных масштабах, а потому и суммарная боевая эффективность данных судов не слишком велика.</color>
+		Fragility=80
+        Cost=2500
+		//Size=650
+		bonMass=75
+		bonSlotForsage=-1
+    }
+    EvoArmada_GalleonPirateClan ^{
+		Equipments=Hull
+		Owner=PirateClan,NonKling
+        LockedAcryn=3
+		//HullGraphSize=220
+        KindGraph=PirateGalleon
+        Name=</color><Type> корпус галеона
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Массивный тяжелобронированный корабль с прекрасным (по пиратским меркам) вооружением. Лучшее, что способно предложить своему импровизированному флоту разобщённое пиратское "адмиралтейство".</color>
+		Fragility=80
+        Cost=3500
+		//Size=900
+		bonMass=100
+		bonSlotForsage=-1
+    }
+    EvoArmada_KligDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Небольшой и крайне проворный доминаторский корабль-брандер. В случае явного превосходства противника постарается как можно скорее сократить дистанцию и активировать устройство самоуничтожения, чем способен наносить серьёзные повреждения, несмотря на свою крайне незначительную огневую мощь. По совместительству является основной ударной силой боевых авианесущих платформ типа "бертор".</color>
+		Fragility=85
+        Cost=200
+    }
+    EvoArmada_ShtipDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Быстрый доминаторский корабль-разведчик, как правило, первым вступающий в боевое столкновение с противником. Несмотря на малые размеры и незначительную огневую мощь, в определённых ситуациях может представлять серьёзную угрозу.</color>
+		Fragility=90
+        Cost=500
+    }
+    EvoArmada_MenocDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Лёгкий универсальный доминаторский перехватчик, в чьи задачи входит как можно скорее завязать бой с противником, и не дать ему покинуть систему до прибытия основных ударных сил.</color>
+        Cost=500
+    }
+    EvoArmada_SmershDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Тяжёлый доминаторский перехватчик, специализирующийся на дальнобойном вооружении. Обладает серьёзной огневой мощью, но слабой защищённостью, а потому стремится сохранять дистанцию и не подпускать противника на расстояние точного выстрела.</color>
+		Fragility=120
+        Cost=750
+    }
+    EvoArmada_UrgantDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Крупный ударный доминаторский корабль, сопоставимый по огневой мощи и защищённости с судами класса "корвет". Стремится как можно скорее сократить расстояние до противника и навязать ему бой на малой дистанции.</color>
+		Fragility=80
+        Cost=1250
+		Size=150
+    }
+    EvoArmada_EquantorDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Тяжёлый артиллерийский доминаторский корабль, сопоставимый по огневой мощи и защищённости с судами класса "крейсер". Специализируется на энергетическом вооружении и ведении боя на дальних дистанциях.</color>
+		Fragility=90
+        Cost=3500
+		Size=225
+		bonMass=25
+    }
+    EvoArmada_BertorDomHull ^{
+		Equipments=Hull
+		Owner=Kling
+        LockedAcryn=3
+        Name=</color><Type> корпус доминатора
+        NonSearchable=1
+        Priority=0
+        Special=1
+        Text=<color=248,252,248>Огромная тяжелобронированная авианесущая платформа, сопоставимая по огневой мощи и защищённости с судами класса "линкор". Помимо воспроизводства лёгких брандеров типа "клиг", занимается ремонтом и усилением всех окружающих доминаторов, входящих в состав группы прикрытия.</color>
+		Fragility=80
+        Cost=5500
+		Size=300
+    }
+    EvoArmada_ExtraSpecialsLineBreak ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=<clr><clrEnd>
+    }
+    EvoArmada_bonWEnergy ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Сила энергетического оружия: <bonWEnergy> ед.
+		bonWEnergy=1
+    }
+	EvoArmada_bonWSplinter ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Сила осколочного оружия: <bonWSplinter> ед.
+		bonWSplinter=1
+    }
+    EvoArmada_bonWMissile ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Сила ракетного оружия: <bonWMissile> ед.
+		bonWMissile=1
+    }
+    EvoArmada_bonWRadius ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Дальность стрельбы: <bonWRadius> ед.
+		bonWRadius=1
+    }
+    EvoArmada_bonHull ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Броня корпуса: <bonHull> ед.
+		bonHull=1
+    }
+    EvoArmada_bonSpeed ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Скорость двигателя: <bonSpeed> ед.
+		bonSpeed=1
+    }
+    EvoArmada_bonDroid ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Эффективность дроида: <bonDroid> ед.
+		bonDroid=1
+    }
+    EvoArmada_bonDef ^{
+		Equipments=Any
+		Special=1
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        ExText=Генератор поля: <bonDef> ед.
+		bonDef=1
+    }
+    ShuDomiks_KligDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=75
+    }
+    ShuDomiks_ShtipDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=100
+    }
+    ShuDomiks_MenocDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=100
+    }
+    ShuDomiks_SmershDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=100
+    }
+    ShuDomiks_UrgantDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=125
+		Size=150
+    }
+    ShuDomiks_EquantorDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=200
+		Size=225
+    }
+    ShuDomiks_BertorDomHull ^{
+        LockedAcryn=3
+        NonSearchable=1
+        Special=1
+        Cost=250
+		Size=300
+    }
+}
+FormIntroduction ^{
+    MCW1=Создание галактики
+    MCW2=Создание звёзд
+    MCW3=Создание планет
+    MCW4=Распределение квестов
+    MCW5=Генерация кораблей
+    MCW6=Создание баз
+    MCW7=Проходит время
+    MCW8=Готово
+    Text=<clr><clrEnd>    Добровольцы! Вы сделали правильный выбор, решив пополнить славные ряды рейнджеров! Команды линкоров и дредноутов могут гордиться своими красивыми мундирами, но триста лет назад, во время клисанской войны, они терпели поражение за поражением, и не они, а именно рейнджеры раскрыли тайну Махпеллы и положили конец самой страшной войне в истории нашего сектора Галактики! Рейнджеры - не пушечное мясо, только и способное, что подчиняться приказам; каждый рейнджер - сам себе генерал и отдел снабжения!
+    Text=<br>    Правда, за столетия мира кое-кто стал забывать о славной истории и традициях рейнджеров. Ну что ж - самое время о них вспомнить! Как вам известно, шесть лет назад Коалиция разумных рас столкнулась с новым врагом, не менее страшным, чем клисаны. Это доминаторы, новая форма кибержизни, по неизвестной причине атакующая нас в космосе и на планетах. Большинство доминаторов - полуразумные роботы, но где-то должны быть и управляющие ими мозговые центры. Сначала считалось, что такой центр только один, но эта ошибка дорого обошлась Коалиционному флоту в битве у Гралгара! Теперь мы знаем, что таких центров как минимум три, и каждый из них управляет своей серией доминаторов. Мы узнали и откуда взялись эти роботы, и кое-что об их устройстве, но эта информация засекречена. Возможно, вам дадут к ней доступ позже, а пока - не время для лишних слов, доминаторы уже захватили кучу планет, а флот до сих пор не может оправиться после Гралгарской бойни!
+    Text=<br>    Но и это ещё не всё! Пользуясь тем, что все храбрые воины не щадя себя сражаются с роботами, заявили о себе пираты, начав порабощать одну за другой обескровленные системы Коалиции! Сначала их не воспринимали всерьёз, но теперь-то всем понятно, что на самом деле они так же опасны, как и доминаторы! Мы вынуждены воевать на два фронта, и войска Коалиции по-прежнему самое слабое звено в этом противостоянии. Значит, последняя надежда снова на рейнджеров, и вас отделяет от славы только медкомиссия. Впрочем, хочу вас обрадовать - в связи с тяжёлым положением на фронтах врачам дана негласная директива признавать годными всех! А сейчас - р-разойдись!
+}
+Script ^{
+	Mod_EvoArmada ^{
+		DreadnoughtWasLaunched0=Недавно власти планеты #0# системы #1# отрапортовали о введении в строй нового <color=0,50,200>рагнардума</color> #2#. Честь и слава <color=0,50,200>малокским</color> войнам, за чьими широкими спинами отныне будет надёжно укрыт от врага весь галактический сектор #3#!
+		DreadnoughtWasLaunched1=Срочное донесение из системы #1#! С планеты #0# был только что запущен <color=0,50,200>ушичванк</color> #2#. Пожелаем удачи нашим <color=0,50,200>пеленгским</color> коллегам в привнесении толики настоящего правосудия в жизни обитателей сектора #3#!
+		DreadnoughtWasLaunched2=Сегодня с верфей планеты #0# системы #1# был спущен <color=0,50,200>дредноут</color> #2#. Пожелаем же удачи бравым защитникам <color=0,50,200>человечества</color>, в их руках отныне находится безопасность и процветание всего галактического сектора #3#!
+		DreadnoughtWasLaunched3=Высокотехнологичный автоматизированный порт планеты #0# системы #1# с гордостью отрапортовал о введении в строй нового <color=0,50,200>экелифара</color> #2#. Как остроумно заметил капитан нового <color=0,50,200>фэянского</color> судна в своей публичной речи: "Ничто не должно вставать на пути технического прогресса, особенно воплощённого в многотонной боевой машине разрушения и сдобренного изрядной толикой верховенства высшего интеллекта над варварской агрессией неразумных форм жизни!" Пожелаем же удачи храбрым фэянским войнам в их почётной миссии по охранению правопорядка и обороне всего галактического сектора #3#!
+		DreadnoughtWasLaunched4=Хаотичное нарушение вселенского равновесия, вызванного тяжёлой аурой военного времени, вынудило гаальский Конвент запустить с планеты #0# в системе #1# настоящий боевой <color=0,50,200>ноозикар</color> #2#. Следующим же постановлением Конвента стало объявление сегодняшней даты днём национального траура в связи с проявлением чрезмерной агрессии всего <color=0,50,200>гаальского</color> народа в отношении гармонии космического пространства сектора #3#. Помянем вместе с убеждёнными пацифистами судьбы всех недоброжелателей, опрометчиво пожелающих встать на пути строгого блюдения мира этой превосходной боевой машины!
+	}
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+			Dreadnought_Infos ^{
+				Icon=0
+				Name=
+				Description=NoShow
+				OnActCodeTypes=t_OnDeath
+                OnActCode ^{
+					01=dword cur_ship = ScriptItemActShip();
+                    02=for(int i = 1; i < ArrayDim(GDreadnoughtArray); i = i + 1)
+					03 ^{
+						01=if(Id(StarToCon(ShipStar(cur_ship))) == GDreadnoughtArray[i])
+						02 ^{
+							01=ArrayDelete(GDreadnoughtArray, i);
+							02=arraychange(GDreadnoughtArray, 7);
+							03=GDreadnoughtArray[0] = GDreadnoughtArray[0] - 1;
+							04=break;
+						}
+					}
+                }
+			}
+			PirateGalleon_Infos ^{
+				Icon=0
+				Name=
+				Description=NoShow
+				OnActCodeTypes=t_OnDeath
+                OnActCode ^{
+					01=dword cur_ship = ScriptItemActShip();
+                    02=for(int i = 1; i < ArrayDim(GGalleonArray); i = i + 1)
+					03 ^{
+						01=if(Id(StarToCon(ShipStar(cur_ship))) == GGalleonArray[i])
+						02 ^{
+							01=ArrayDelete(GGalleonArray, i);
+							02=arraychange(GGalleonArray, 5);
+							03=GGalleonArray[0] = GGalleonArray[0] - 1;
+							04=break;
+						}
+					}
+                }
+			}
+			EvoArmada_CapitalShipInfos ^{
+				Icon=0
+				Name=
+				Description=Инфошка для пересчёта числа доп. залпов при стрельбе крупных кораблей по более мелким судам
+				OnActCodeTypes=t_OnStep
+				OnActStepTypes=0,11
+                OnActCode ^{
+					01=dword ship = ScriptItemActShip();
+					02=if(!ship) exit;
+					03=if(!ScriptItemActParam())
+					04 ^{
+						01=if(ShipInNormalSpace(ship))
+						02 ^{
+							01=if(ShipGetBad(ship))
+							02 ^{
+								//Делаем проверку, что данный корабль атакует другой корабль и что другой корабль не имеет доп. залпов, то есть является небольшим по размеру
+								01=dword cur_info = 0;
+								02=for(int i = 1; i <= 5; i = i + 1)
+								03 ^{
+									01=dword gun = ShipWeapon(ship, i);
+									02=if(gun)
+									03 ^{
+										01=dword target = WeaponTarget(gun);
+										02=if(target)
+										03 ^{
+											01=if(ObjectType(target) == 5)
+											02 ^{
+												01=int target_attacks = ShipSpecialBonuses(target, bonAttacks);
+												02=if(!target_attacks)
+												03 ^{
+													01=cur_info = CurInfo();
+													02=break;
+												}
+											}
+										}
+									}
+									04=else break;
+								}
+								//Если проверка успешна, то снижаем число залпов, которые сможет произвести атакующий
+								04=if(cur_info)
+								05 ^{
+									01=int add_attacks = ShipCustomShipInfoData(0, cur_info, 1);
+									02=int attacks_penalty = ShipSkill(ship, 'AccuracyCur') - ShipSkill(target, 'MobilityCur');
+									03=if(attacks_penalty < 0)
+									04 ^{
+										01=add_attacks = add_attacks + attacks_penalty;
+										02=if(add_attacks < 0) add_attacks = 0;
+									}
+									05=ShipSpecialBonuses(ship, bonAttacks, add_attacks);
+								}
+							}
+						}
+					}
+					//В конце хода сбрасываем число дополнительных залпов на стандартное для корабля значение
+					05=else
+					06 ^{
+						01=add_attacks = ShipCustomShipInfoData(0, CurInfo(), 1);
+						02=ShipSpecialBonuses(ship, bonAttacks, add_attacks);
+					}
+                }
+			}
+			GunBatteryLabelsSwitcher ^{
+				Icon=0
+				Name=
+				Description=NoShow
+				OnActCodeTypes=t_OnEnteringForm,t_OnReEnteringForm,t_OnScan
+                OnActCode ^{
+					01=str form = CurrentForm();
+					02=if(form == 'Ship' || form == 'Scaner')
+					03 ^{
+						//Если нужно, то включаем индикаторы батарей при заходе/обновлении формы
+						01=dword ship = FormCurShip();
+						02=int attacks_count = ShipSpecialBonuses(ship, bonAttacks);
+						03=if(attacks_count > 0)
+						04 ^{
+							01=for(int i = 1; i <= 5; i = i + 1)
+							02 ^{
+								01=if(ShipEqInSlot(ship, t_Weapon1, i))
+								02 ^{
+									01=InterfaceText(form, 'GunBatteryLabelSlot' + i, 'x' + (attacks_count + 1));
+									03=InterfaceState(form, 'GunBatteryLabelSlot' + i, 1);
+								}
+								03=else
+								04 ^{
+									01=InterfaceState(form, 'GunBatteryLabelSlot' + i, 0);
+								}
+							}
+						}
+						05=else
+						06 ^{
+							//Выключаем все индикаторы батарей при заходе на форму, т.к. при уходе событие t_OnScan не работает
+							01=for(i = 1; i <= 5; i = i + 1)
+							02 ^{
+								01=InterfaceState(form, 'GunBatteryLabelSlot' + i, 0);
+							}
+						}
+					}
+                }
+			}
+			GunBatteryLabelsSwitcherForRuinsBlyat ^{
+				Icon=0
+				Name=Потому что события открытия/закрытия формы срабатывают только для того корабля, на котором они висят, иначе бы было слишком просто
+				Description=NoShow
+				OnActCodeTypes=t_OnEnteringForm,t_OnReEnteringForm
+                OnActCode ^{
+					01=str form = CurrentForm();
+					02=if(form == 'Ship')
+					03 ^{
+						//Если нужно, то включаем индикаторы батарей при заходе/обновлении формы
+						01=dword ship = FormCurShip();
+						02=int attacks_count = ShipSpecialBonuses(ship, bonAttacks);
+						03=if(attacks_count > 0)
+						04 ^{
+							01=for(int i = 1; i <= 5; i = i + 1)
+							02 ^{
+								01=if(ShipEqInSlot(ship, t_Weapon1, i))
+								02 ^{
+									01=InterfaceText(form, 'GunBatteryLabelSlot' + i, 'x' + (attacks_count + 1));
+									03=InterfaceState(form, 'GunBatteryLabelSlot' + i, 1);
+								}
+								03=else
+								04 ^{
+									01=InterfaceState(form, 'GunBatteryLabelSlot' + i, 0);
+								}
+							}
+						}
+						05=else
+						06 ^{
+							//Выключаем все индикаторы батарей при заходе на форму, т.к. при уходе событие t_OnScan не работает
+							01=for(i = 1; i <= 5; i = i + 1)
+							02 ^{
+								01=InterfaceState(form, 'GunBatteryLabelSlot' + i, 0);
+							}
+						}
+					}
+                }
+			}
+        }
+    }
+}
+ShipType ^{
+    Fei ^{
+        Dreadnought=Экелефар
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+    Gaal ^{
+        Dreadnought=Ноозикар
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+    Maloc ^{
+        Dreadnought=Рагнардум
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+    Peleng ^{
+        Dreadnought=Ушичванк
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+    People ^{
+        Dreadnought=Дредноут
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+    TypeName ^{
+		Dreadnought=Дредноут
+		WarriorBig=Линкор
+		PirateCorvette=Корвет
+		PirateFrigate=Фрегат
+		PirateGalleon=Галеон
+    }
+}

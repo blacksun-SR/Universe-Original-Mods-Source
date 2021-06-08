@@ -1,0 +1,402 @@
+Script ^{
+    Mod_EvoMC ^{
+		141=1 января
+        126=Закупиться медикаментами
+        120=<br>
+        133=Рейнджер, у вас нет денег для покупки наших медикаментов.
+        137=Медикаменты, согласно пункту <clr>18/2<clrEnd> параграфа <clr>744<clrEnd> медицинского кодекса, предписаны исключительно для использования в чрезвычайных ситуаций, когда оказать врачебную помощь медикам в космосе невозможно.<br>Рассматривая данную ситуацию как патологически опасную для наших народов, мы можем допустить продажу <0> различных медикаментов в год.<br>По нашим данным в этом году вы приобрели <1> ед. медикаментов. Итого вы можете купить <2> ед. любого препарата.<br>Вот что у нас есть на данный момент: <3>
+        138=По нашим данным в этом году вы приобрели <0> ед. медикаментов. До конца года вы не можете приобрести медикаменты, поскольку исчерпали ваш лимит (<1> ед.).<br>Ждём вас в следующем году.
+        136=Отличный выбор.<br>Помните, что медикаменты опасны для здоровья. Они вызывают привыкание, можно и наркоманом стать, да и летальные исходы не редкость.<br>Но еще лучше вести здоровый образ жизни, поддерживать свое тело в хорошей физической форме. Для души читайте устав рейнджеров и занимайтесь медитацией!
+        129=Согласно пункту <clr>1/2<clrEnd> параграфа <clr>10<clrEnd> медицинского кодекса, медикаменты отпускаются только при наличии действующего медицинского полиса.
+        139=На данный момент у нас закончились медикаменты, которые мы можем вам продать. Дождитесь следующей партии или зайдите в мед. пункт на прием стимулятора.
+        125=<0>
+        140=Ну хоть пробничек дайте! Что... не положено... Ну тогда пока
+        132=Уйти из магазина медикаментов
+    }
+}
+UselessItems ^{
+    Usl_Drug01 ^{
+        Cost=Average
+        Name=Штамм вируса "Чекумаш"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите заразить себя лёгкой формой <color=0,50,200>Чекумаша</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),2,30);
+                02=Ether(0,'','Штамм вируса <clr>Чекумаш<clrEnd> успешно введен в ваш организм. Иммунитет к данной болезни будет выработан через 30 дней.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Вводит антигенный материал с целью вызвать иммунитет к болезни Чекумаш.<br> Даёт стойкость к визуальным и слуховым галлюцинациям на 2 года. Для получения эффекта придётся немного переболеть этой болезнью.
+    }
+    Usl_Drug02 ^{
+        Cost=Average
+        Name=Штамм вируса "Святой фанатизм"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите заразить себя лёгкой формой <color=0,50,200>Святого фанатизма</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),3,30);
+                02=Ether(0,'','Штамм вируса <clr>Святой фанатизм<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Вводит антигенный материал с целью вызвать иммунитет к болезни Святой фанатизм.<br> Даёт стойкость к визуальным галлюцинациям на 2 года. Для получения эффекта придётся немного переболеть этой болезнью.
+    }
+    Usl_Drug03 ^{
+        Cost=Average
+        Name=Штамм вируса "Загадочная луатанация"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите заразить себя лёгкой формой <color=0,50,200>Загадочной луатанации</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),5,30);
+                02=Ether(0,'','Штамм вируса <clr>Загадочная луатанация<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Вводит вирусный материал с целью вызвать болезнь Загадочная Луатанация, для изучения её галактическими учёными.<br> Медицинский анализатор будет автоматически собирать данные о вашем самочувствие и отсылать их нам, а мы в свою очередь будем пополнять ваш счет. К сожалению повторное заражение возможно только через 2 года.
+    }
+    Usl_Drug04 ^{
+        Cost=Average
+        Name=Штамм вируса "Великий малососус"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите заразить себя лёгкой формой <color=0,50,200>Великого малососуса</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),9,30);
+                02=Ether(0,'','Штамм вируса <clr>Великий малососус<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem()) > -1) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Вводит вирусный материал с целью вызвать болезнь Великий Малососус, не только малокам.<br> Медицинский анализатор будет автоматически собирать данные о вашем самочувствие и отсылать их нам. Изучение болезни не финансируется галактической академией наук. Повторное заражение возможно только через 2 года.
+    }
+    Usl_Drug05 ^{
+        Cost=Average
+        Name=Гормон "Новый молизон"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Новый молизон</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),12,30);
+                02=Ether(0,'','Гормон <clr>Новый молизон<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Вводит ударную дозу биологически активного вещества для увеличивания навыков точности и манёвренности. Учёные медики считают превышение этого гормона от нормы болезнью, так как феромоны больного начинают вызывать у окружающих отвращение к еде и медикаментам.<br>Впоследствии имеет невосприимчивость к гормону какое-то время.
+    }
+    Usl_Drug06 ^{
+        Cost=Average
+        Name=Стимулятор "Малокская сижа"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Малокскую сижу</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),13,ShipHealthFactor(0,13)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Малокская сижа<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Жидкий стимулятор облачённый в особую капсулу, улучшает меткость и маневренность, почти до предела.<br>Принимать только в случаях острой необходимости, так как вызывает привыкание.
+    }
+    Usl_Drug07 ^{
+        Cost=Average
+        Name=Стимулятор "Одноглазый Хамас"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Одноглазого Хамаса</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),14,ShipHealthFactor(0,14)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Одноглазый Хамас<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Содержит эмбрион уникального существа облачённого в особую капсулу, который даёт силу воздействия гипнозом над существами. Ухудшает навыки лидерства и обаяния.<br>К сожалению Хамас не может долго жить вне инкубатора. Вживлять не чаще раза в год, так как вызывает зависимость к симбионту.
+    }
+    Usl_Drug08 ^{
+        Cost=Average
+        Name=Стимулятор "Звёздная пыль"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Звёздную пыль</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),15,ShipHealthFactor(0,15)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Звездная пыль<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Порошкообразный стимулятор из вещества «чёрных дыр», улучшает функции мозга любой расы. Повышает целый ряд навыков на длительное время.<br>Принимать не слишком часто, так как эффект плацебо исчезнет полностью.
+    }
+    Usl_Drug09 ^{
+        Cost=Average
+        Name=Стимулятор "Супер техник"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Супер техника</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),16,ShipHealthFactor(0,16)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Супер техник<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Фэянский биостимулятор развивающий технические до предела. В рибонуклеиновых кислотах этого вещества, содержатся профессиональные технические знания работы с любым оборудованием.<br>После действия стимулятора мозг существа возвращается в исходное не техническое состояние.
+    }
+    Usl_Drug10 ^{
+        Cost=Average
+        Name=Стимулятор "Гаалистра времени"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Гаалистру времени</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),17,ShipHealthFactor(0,17)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Гаалистра времени<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Гаальский боевой стимулятор, кратковременно заставляет мозг работать в несколько тысяч раз быстрее, увеличивая точность и манёвренность пилота. Скорость реакций организма возрастает до максимума, что позволяет умело управлять двигателем в предфорсажном режиме.<br>Срок действия очень ограничен из-за мозговых перегрузок.
+    }
+    Usl_Drug11 ^{
+        Cost=Average
+        Name=Стимулятор "Кровяной джогар"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Кровяной джогар</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),18,ShipHealthFactor(0,18)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Кровяной джогар<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Содержит суспензию маслянистого сгустка из малокского песочного джогара. Стимулятор улучшает кровоснабжение, заменяя кровяные тельца своими — более мощными искусственными заменителями.<br>Делает организм менее восприимчивым к болезням.
+    }
+    Usl_Drug12 ^{
+        Cost=Average
+        Name=Стимулятор "Рагобамский шепот"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Рагобамский шепот</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),19,ShipHealthFactor(0,19)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Рагобамский шепот<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Стимулятор сделан из настоя на вонючей болотной жиже, с применением радиоактивной выжимки яда рагобамских жаб. Повышает мастерство уговоров и объяснений, отношение к пилоту улучшается.<br>Можно есть рагобамских жаб.
+    }
+    Usl_Drug13 ^{
+        Cost=Average
+        Name=Стимулятор "Ведущий Шахманду"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Ведущего Шахманду</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),20,ShipHealthFactor(0,20)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Ведущий Шахманду<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Воздействие этого пеленгского препарата дает на некоторое время сильную веру в себя. Это бесценное качество, позволяет сплотить вокруг себя толпы соратников!<br>Препарат улучшает навыки лидерства и позволяет заключать партнерские контракты на длительный срок.
+    }
+    Usl_Drug14 ^{
+        Cost=Average
+        Name=Стимулятор "Психотропный кэш"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Психотропный кэш</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),21,ShipHealthFactor(0,21)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Психотропный кэш<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Стимулятор воздействует на мозговые волны существа выводя их в резонанс с радаром и сканером. Оборудование от такого воздействия увеличивает свою мощь.<br>Человек-сканер вызывает раздражение у окружающих, что приводит к негативной оценке любых действий последнего.
+    }
+    Usl_Drug15 ^{
+        Cost=Average
+        Name=Стимулятор "Торговая маркировка"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Торговую маркировку</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),22,ShipHealthFactor(0,22)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Торговая маркировка<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=В молекуле РНК стимулятора содержится большой объём знаний в деле совершения торговых операций. Увеличивает торговый опыт и позволяет продавать оборудование за полную стоимость.<br>После действия стимулятора мозг существа возвращается в исходное состояние.
+    }
+    Usl_Drug16 ^{
+        Cost=Average
+        Name=Стимулятор "Дубльплекс"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Дубльплекс</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),23,ShipHealthFactor(0,23)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Дубльплекс<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Содержит краткоживущий вирус, искусственно выведенный на Земле в 2117 году. Ходят упорные слухи, что зараженному этим вирусом всегда сопутствует удача во всех его делах, хотя это так и не было доказано. В качестве побочного эффекта снижает навыки атаки и маневренности.<br>Зато носителю вируса гарантируется высокое вознаграждение за выполнение правительственных заданий, поскольку суеверные гуманоиды найдутся на любой планете.
+    }
+    Usl_Drug17 ^{
+        Cost=Average
+        Name=Стимулятор "Абсолютный статус"
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите принять <color=0,50,200>Абсолютный статус</color>?'))
+            02 ^{
+                01=ShipHealthFactor(Player(),24,ShipHealthFactor(0,24)*Rnd(9,20)/10);
+                02=Ether(0,'','Стимулятор <clr>Абсолютный статус<clrEnd> успешно введен в ваш организм.');
+                03=if (FindItemInShip(Player(),CurItem())>0) FreeItem(GetItemFromShip(Player(),FindItemInShip(Player(),CurItem())));
+                04=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Внедряет поведение высокостатусного существа на микробиологическом уровне, что видно при био-сканировании в правительственных учреждениях. Таким гуманоидам предъявляются особые, минимальные требования, в смысле сроков при выдаче правительственных заданий.
+    }
+    Usl_Urine ^{
+        Cost=Average
+        Name=Народное средство "Настойка урины"
+		OnActCodeTypes=t_OnStep
+		OnActStepTypes=11
+        OnActCode ^{
+			01=UselessItemData(CurItem(),1,UselessItemData(CurItem(),1)+1);
+			02=if(UselessItemData(CurItem(),1)==Rnd(14,17))
+			03 ^{
+				01=UselessItemData(CurItem(),2,Rnd(0,3));
+				02=UselessItemData(CurItem(),1,0);
+			}
+        }
+        OnUseCode ^{
+            01=if(MessageBoxYesNo('Вы точно хотите <color=0,50,200>хлебнуть урины</color>?'))
+            02 ^{
+                01=dword num_ill;
+                02=dword num_med = 0;
+                03=str text;
+                04=unknown array = newarray(1);
+                05=for(num_ill = 1; num_ill < 13; num_ill = num_ill + 1)
+                06 ^{
+                    01=if(ShipHealthFactor(Player(), num_ill))
+                    02 ^{
+                        01=ArrayAdd(array, num_ill);
+                        02=num_med = num_med + 1;
+                    }
+                }
+                07=if(!num_med) Ether(0, '', 'Вы ощутили неприятную горечь во рту и чувство сожаления о растраченном впустую медикаменте, ведь никаких симптомов болезней у вас не было.');
+                08=else
+                09 ^{
+                    01=num_ill = Rnd(1, num_med);
+                    02=text = 'Illness.Illness.' + (array[num_ill] - 1) + '.Name';
+                    03=if(UselessItemData(CurItem(), 2) == 0)
+                    04 ^{
+                        01=ShipHealthFactor(Player(), array[num_ill], 0);
+                        02=Ether(0, '', 'Настойка урины положительно подействовала на вас, полностью избавив от недуга <clr>' + CT(text) + '<clrEnd>!');
+                    }
+                    05=if(UselessItemData(CurItem(), 2) == 1)
+                    06 ^{
+                        01=num_med=ShipHealthFactor(Player(), array[num_ill]) / 2;
+                        02=ShipHealthFactor(Player(), array[num_ill], num_med);
+                        03=Ether(0, '', 'Настойка урины положительно подействовала на вас, уменьшив срок действия недуга <clr>' + CT(text) + '<clrEnd> в два раза!');
+                    }
+                    07=if(UselessItemData(CurItem(), 2) == 2)
+                    08 ^{
+                        01=num_med = ShipHealthFactor(Player(), array[num_ill]) + ShipHealthFactor(Player(), array[num_ill]) / 2;
+                        02=ShipHealthFactor(Player(), array[num_ill], num_med);
+                        03=Ether(0, '', 'Настойка урины отрицательно подействовала на вас, увеличив срок действия недуга <clr>'+CT(text)+'<clrEnd> в полтора раза!');
+                    }
+                    09=if(UselessItemData(CurItem(), 2) == 3) Ether(0, '', '<clr>Настойка урины<clrEnd> не смогла избавить вас от болезни <clr>' + CT(text) + '<clrEnd>!');
+                }
+                10=if(~FindItemInShip(Player(),CurItem())) FreeItem(GetItemFromShip(Player(), FindItemInShip(Player(), CurItem())));
+                11=else FreeItem(GetItemFromStorage(FindItemInStorage(CurItem())));
+				12=if(1)
+				13 ^{
+					//Игрок хлебнул урины
+					01=if(ShipFindCustomShipInfoByType(Player(), 'EvoMC_UrineCurse') == -1)
+					02 ^{
+						01=ShipSpecialBonuses(Player(), bonSkill5,ShipSpecialBonuses(Player(), bonSkill5) - 3);
+						02=ShipSpecialBonuses(Player(), bonSkill6,ShipSpecialBonuses(Player(), bonSkill6) - 3);
+						03=ShipAddCustomShipInfo(Player(), 'EvoMC_UrineCurse', '', CurTurn() + Rnd(93, 124), 3, 3);
+						//Вешаем штраф к выносливости имплантов
+						04=if(IsScriptActive('Mod_ExpImplants'))
+						05 ^{
+							01=GlobalImplantsEnduranceBonus = GlobalImplantsEnduranceBonus - 2;
+						}
+					}
+					//Игрок хлебнул урины, пока действовал предыдущий дебаф
+					03=else
+					04 ^{
+						01=ShipSpecialBonuses(Player(), bonSkill5, ShipSpecialBonuses(Player(), bonSkill5) - 1);
+						02=ShipSpecialBonuses(Player(), bonSkill6, ShipSpecialBonuses(Player(), bonSkill6) - 1);
+						03=ShipCustomShipInfoData(Player(), 'EvoMC_UrineCurse', 1, CurTurn() + Rnd(124, 186));
+						04=ShipCustomShipInfoData(Player(), 'EvoMC_UrineCurse', 2, ShipCustomShipInfoData(Player(), 'EvoMC_UrineCurse', 2) + 1);
+						05=ShipCustomShipInfoData(Player(), 'EvoMC_UrineCurse', 3, ShipCustomShipInfoData(Player(), 'EvoMC_UrineCurse', 3) + 1);
+					}
+				}
+            }
+        }
+        Owner=None
+        Size=1
+        Text=Может излечить вас от болезни или снизить её длительность.<br>Хорошее, но малоэффективное средство против любой хвори.
+    }
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+			EvoMC_UrineCurse ^{
+                Description=Ваши амбулаторные пристрастия разделяют далеко не все представители разумных рас Галактики. На протяжении некоторого времени ваши социальные навыки будут снижены.
+                Icon=1
+                Name=Фанат народной медицины
+                OnActCodeTypes=t_OnStep
+				OnActStepTypes=11
+				OnActCode ^{
+					01=dword cur_info = CurInfo();
+					//Снимаем с игрока штрафы к навыкам, если действие уринового дебафа завершено
+					02=if(ShipCustomShipInfoData(0, cur_info,1) <= CurTurn())
+					03 ^{
+						01=ShipSpecialBonuses(Player(), bonSkill5, ShipSpecialBonuses(Player(), bonSkill5) + ShipCustomShipInfoData(0, cur_info, 2));
+						02=ShipSpecialBonuses(Player(), bonSkill6, ShipSpecialBonuses(Player(), bonSkill6) + ShipCustomShipInfoData(0, cur_info, 3));
+						03=ShipDeleteCustomShipInfo(Player(), 'EvoMC_UrineCurse');
+						//Снимаем штраф к выносливости имплантов
+						04=if(IsScriptActive('Mod_ExpImplants'))
+						05 ^{
+							01=GlobalImplantsEnduranceBonus = GlobalImplantsEnduranceBonus + 2;
+						}
+					}
+				}
+			}
+		}
+	}
+}

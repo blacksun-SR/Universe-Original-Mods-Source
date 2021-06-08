@@ -1,0 +1,807 @@
+Script ^{
+    Mod_ExpExplorers ^{
+		0=<0>
+		LineBreak=<br>
+		PlayerCoalAsk=Ей, видишь вон ту "чёрную дыру"? Давай-ка бросай все свои дела и дуй в неё вместе со мной
+		CoalAgree=В "чёрную дыру" говоришь? Ну ладно, уже лечу, буду ждать тебя у края червоточины.
+		CoalDisagree=Ну уж нет, в эту "чёрную дыру" ты меня не затащишь! Судя по показаниям сканера, там происходит какая-то аномальная активность, а проверять степень её "аномальности" на своей обшивке у меня желания нет.
+		CoalDisagreeLowHP=Прошу меня простить, но мой корабль в критическом состоянии. Соваться в таком виде в "чёрную дыру" - форменное самоубийство!
+		PlayerCoalDisagree=Эх ты, а ещё напарничек называется!
+		PlayerPirateAsk=Браток, а подсоби-ка мне вон ту "чёрную дыру" обшмонать, а?
+		PirateAgree=Замётано, босс, по части "дырок" я специалист видный, хе-хе! Буду ждать у входа.
+		PirateDisagree=Не, сорян, босс, но на сканерах чё-то какая-то муть с этой "дыркой" творится. Не хочу на своей шкуре проверять, что там конкретно в ней не так.
+		PirateDisagreeLowHP=Слушай, ну мне вот вообще сейчас не в мазу в эту жопу соваться, смекаешь? Корабль того и гляди пополам треснет!
+		PlayerPirateDisagree=Чё?! Зассал? Тоже мне пират космический, блин!
+		PlayerTrancAsk=Приказываю отставить все свои дела и лететь за мной в указанную "чёрную дыру"
+		TrancAgree=Слушаюсь, хозяин! Устанавливаю курс на указанную червоточину.<br>По прибытии на место буду ожидать вас у границы гиперперехода.
+		TrancDisagree=Простите хозяин, но я вынужден отказать в исполнении вашего приказа.<br>Судя по моим датчикам, гиперактивность в указанной червоточине превышает допустимые пределы. Имеется значительная вероятность, что мои навигационные системы <clr>не выдержат<clrEnd> нагрузки, и я буду навсегда потерян в неизученном пространстве, что идёт вразрез с моей основной программой служения вам.
+		PlayerTrancDisagree=Тьфу ты, глупая машина!
+	}
+}
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            PlayerInHoleTurnBlock ^{
+                Description=Удалить после 05.02.21
+                Icon=0
+                Name=
+			}
+            BraveExplorer ^{
+                Description=Невидимая инфошка для бравого исследователя "чёрных дыр"
+                Icon=0
+                Name=Sir Robin, The Brave
+				//Data1 - маркер о готовящемся или совершаемом прыжке в ЧД:
+				//	0 - рейнджер не в ЧД;
+				//	1 - рейнджер заметил ЧД в системе;
+				//	2 - рейнджер летит к замеченной ЧД;
+				//	3 - рейнджер находится в ЧД и событие её посещения уже сработало;
+				//	4 - рейнджер влетел в ЧД одновременно с игроком, выставляется из скрипта;
+				//	5 - рейнджер влетел в ЧД одновременно с игроком, но получать артефакт в этот раз он не должен (и потому не получит), выставляется из скрипта;
+				//Data2 - Id "чёрной дыры", в которую прыгает рейнджер;
+				//Data3 - счётчик посещённых рейнджером ЧД;
+				//TextData1 - Id последней посещённой ЧД, чтобы рейнджер не влетал в неё же снова (иногда бывало);
+				//TextData2 - сколько ЧД осталось посетить до следующего звания или 'NoRank', если повышение недоступно;
+				//TextData3 - учёное звание числом;
+				OnActCodeTypes=t_OnDeath,t_OnStep,t_OnEnteringForm,t_OnLeavingForm
+				OnActStepTypes=0,11
+                OnActCode ^{
+					01=dword ship=ScriptItemActShip();
+					02=dword cur_info=CurInfo();
+					//Начало расчёта хода
+					03=if(ScriptItemActionType(t_OnStep,0))
+					04 ^{
+						01=if(ShipInScript(ship,0))exit;
+						02=if(ShipPartners(ship))exit;
+						03=if(ShipIsPartner(ship))
+						04 ^{
+							//Если данного рейнджера сделали партнёром, пока он направлялся к ЧД
+							01=if(ShipCustomShipInfoData(0,cur_info,1))
+							02 ^{
+								01=ShipCustomShipInfoData(0,cur_info,1,0);
+								02=ShipCustomShipInfoData(0,cur_info,2,0);
+								03=OrderLock(ship,0);
+							}
+							03=exit;
+						}
+						05=dword THoleExistCheck=0;
+						//Рейнджер влетел в ЧД, чистим данные инфошки и выдаём ему рандомный артефакт
+						06=if(ShipInHole(ship))
+						07 ^{
+							01=int action_mark=ShipCustomShipInfoData(0,cur_info,1);
+							02=if(action_mark != 3)
+							03 ^{
+								//Если не погиб (может погибнуть в совместной аркадной битве с игроком), то получает артефакт
+								01=if(HullHP(ship) > 0)
+								02 ^{
+									//Если рейнджер не влетел в ЧД вместе с игроком
+									01=if(action_mark < 4)
+									02 ^{
+										//Снижаем кораблю его уровень здоровья (типа поломали во время АБ)
+										01=HullHP(ship,round(0.01*Rnd(0,100)*HullHP(ship)));
+										//Здесь же у него имеется небольшой шанс погибнуть в ЧД
+										02=if(!HullHP(ship))
+										03 ^{
+											01=ShipDestroy(ship,1);
+											02=ShipCustomShipInfoData(0,cur_info,1,3);
+											03=exit;
+										}
+									}
+									//Метка, сигнализирующая о том, что выдавать рейнджеру артефакт за посещение ЧД в этот раз не нужно
+									03=if(action_mark == 5)
+									04 ^{
+										01=ShipCustomShipInfoData(0,cur_info,1,3);
+										02=exit;
+									}
+									05=OrderLock(ship,0);
+									//Ставим маркер о том, что рейнджер находится в ЧД, и событие её посещения уже сработало
+									06=ShipCustomShipInfoData(0,cur_info,1,3);
+									//Запоминаем посещённую ЧД, чтобы рейнджер не влетал в неё несколько раз подряд
+									07=ShipCustomShipInfoTextData(0,cur_info,1,ShipCustomShipInfoData(0,cur_info,2));
+									08=ShipCustomShipInfoData(0,cur_info,2,0);
+									//Накидываем рейнджеру немного денег
+									09=ShipMoney(ship,round(1.2*ShipMoney(ship)));
+									//Добавляем +1 к счётчику посещённых рейнджером ЧД
+									10=int countBH=ShipCustomShipInfoData(0,cur_info,3)+1;
+									11=ShipCustomShipInfoData(0,cur_info,3,countBH);
+									//Если подключён мод с учёными званиями
+									12=if(IsScriptActive('Mod_ExpScienceRanks'))
+									13 ^{
+										//Если получение новых званий в принципе доступно рейнджеру
+										01=if(ShipCustomShipInfoTextData(0,cur_info,2)!='NoRank')
+										02 ^{
+											//Проверяем, хватает ли рейнджеру посещённых ЧД для получения нового звания
+											01=int forNextRank=ShipCustomShipInfoTextData(0,cur_info,2);
+											02=int cur_rank=ShipCustomShipInfoTextData(0,cur_info,3);
+											//Если мод ExpScienceRanks был подключён позже ExpExplorers
+											03=if(forNextRank==-1)
+											04 ^{
+												//То сперва узнаём, сколько ЧД нужно посетить до первого звания
+												01=forNextRank=CT('RankScientific.1.BlackHolesCount');
+												02=forNextRank=forNextRank-countBH;
+												03=ShipCustomShipInfoTextData(0,cur_info,2,forNextRank);
+											}
+											05=while(countBH-CT('RankScientific.'+cur_rank+'.BlackHolesCount')>=forNextRank && ShipCustomShipInfoTextData(0,cur_info,2)!='NoRank')
+											06 ^{
+												//Повышаем учёное звание
+												01=cur_rank=cur_rank+1;
+												02=ShipCustomShipInfoTextData(0,cur_info,3,cur_rank);
+												//Если звание всё ещё не максимально
+												03=if(cur_rank<8)
+												04 ^{
+													//То считаем и запоминаем, сколько ЧД осталось до следующего звания
+													01=forNextRank=CT('RankScientific.'+(cur_rank+1)+'.BlackHolesCount');
+													02=forNextRank=forNextRank-countBH;
+													03=ShipCustomShipInfoTextData(0,cur_info,2,forNextRank);
+												}
+												//Иначе блокируем дальнейшие повышения
+												05=else ShipCustomShipInfoTextData(0,cur_info,2,'NoRank');
+											}
+										}
+									}
+									//Меняем рейнджеру характер на более подходящий его роду деятельности, если он уже побывал в ЧД как минимум 10 раз
+									14=if(countBH>=10)
+									15 ^{
+										01=str type=ShipType(ship);
+										02=if(type!='RangerExplorer' && type!='RangerPirateExplorer')
+										03 ^{
+											01=if(type=='Ranger')ShipType(ship,'RangerExplorer');
+											02=else ShipType(ship,'RangerPirateExplorer');
+										}
+									}
+									16=dword Tequip1=0;
+									17=dword Tequip2=0;
+									18=dword Tequip3=0;
+									19=dword Tequip4=0;
+									//Узнаём сколько и чем слотов под артефакты занято у рейнджера
+									20=for(int i=0; i<ShipArts(ship); i=i+1)
+									21 ^{
+										01=dword Tart=ShipArts(ship,i);
+										02=if(ItemIsInUse(Tart))
+										03 ^{
+											01=if(!Tequip1)Tequip1=Tart;
+											02=else if(!Tequip2)Tequip2=Tart;
+											03=else if(!Tequip3)Tequip3=Tart;
+											04=else if(!Tequip4)Tequip4=Tart;
+										}
+									}
+									22=int max_arts_types = ArrayDim(GgiveArtsArray) - 1;
+									23=dword TrndArt = 0;
+									//Если нашли у рейнджера инфошку хозяина транклюкаторов, то даём ему шанс на получение нового транка
+									24=int TrndCount=ShipFindCustomShipInfoByType(ship,'TrancNPCOwnerInfo');
+									25=if(TrndCount > -1)
+									26 ^{
+										//Транклюкатор выпадет рейнджеру-хозяину с вероятностью в 15%
+										01=if(Rnd(1, 100) <= 15)
+										02 ^{
+											//Если число транклюкаторов у этого рейнджера ещё не максимально
+											01=if(ShipCustomShipInfoData(ship, TrndCount, 3) < 6)
+											02 ^{
+												01=TrndArt = CreateArt(t_ArtefactTranclucator, 6);
+												//Если у рейнджера хватает места в трюме под нового транклюкатора
+												02=if(ShipFreeSpace(ship) >= ItemSize(TrndArt))
+												03 ^{
+													01=AddItemToShip(ship, TrndArt);
+													02=CreateActCodeEvent(t_OnItemPickUp, ship, ship, TrndArt, 0, 0);
+													03=TrndArt = 0;
+													//Маркер, что свой артефакт рейнджер уже получил
+													04=TrndCount = -1;
+												}
+												04=else
+												05 ^{
+													01=FreeItem(TrndArt);
+													02=TrndArt = 0;
+													03=TrndCount = 0;
+												}
+											}
+											03=else TrndCount = 0;
+										}
+										03=else TrndCount = 0;
+									}
+									//Выбираем артефакт и убеждаемся, что выбранный тип артефакта ещё не стоит ни в одном из слотов рейнджера
+									27=if(TrndCount > -1) while(1)
+									28 ^{
+										01=if(IsScriptActive('Mod_ExpArts')) TrndArt = Rnd(1, max_arts_types); //+4 дополнительных артефакта из ExpArts
+										02=else TrndArt = Rnd(1, 27); //Иначе только оригинальные экипируемые
+										//В рандоме выпал оригинальный артефакт
+										03=if(TrndArt <= 27)
+										04 ^{
+											01=if(GgiveArtsArray[TrndArt] != ItemType(Tequip1)) break;
+											02=else if(GgiveArtsArray[TrndArt] != ItemType(Tequip2)) break;
+											03=else if(GgiveArtsArray[TrndArt] != ItemType(Tequip3)) break;
+											04=else if(GgiveArtsArray[TrndArt] != ItemType(Tequip4)) break;
+											//Если выпавший артефакт в слоте рейнджера уже есть, то продолжаем крутить рандомизатор по количеству возможных типов артов в принципе, авось чего выпадет
+											05=else
+											06 ^{
+												01=TrndArt = 0;
+												02=TrndCount = TrndCount + 1;
+												03=if(IsScriptActive('Mod_ExpArts'))
+												04 ^{
+													01=if(TrndCount == max_arts_types)
+													02 ^{
+														01=TrndArt = 0;
+														02=break;
+													}
+												}
+												05=else if(TrndCount == 27)
+												06 ^{
+													01=TrndArt = 0;
+													02=break;
+												}
+											}
+										}
+										//В рандоме выпал кастомный артефакт
+										05=else
+										06 ^{
+											01=if(GgiveArtsArray[TrndArt] != EquipmentImageName(Tequip1)) break;
+											02=else if(GgiveArtsArray[TrndArt] != EquipmentImageName(Tequip2)) break;
+											03=else if(GgiveArtsArray[TrndArt] != EquipmentImageName(Tequip3)) break;
+											04=else if(GgiveArtsArray[TrndArt] != EquipmentImageName(Tequip4)) break;
+											//Если выпавший артефакт в слоте рейнджера уже есть, то продолжаем крутить рандомизатор по количеству возможных типов артов в принципе, авось чего выпадет
+											05=else
+											06 ^{
+												01=TrndArt = 0;
+												02=TrndCount = TrndCount + 1;
+												03=if(TrndCount == max_arts_types)
+												04 ^{
+													01=TrndArt = 0;
+													02=break;
+												}
+											}
+										}
+									}
+									29=if(TrndArt)
+									30 ^{
+										//Создаём оригинальный артефакт
+										01=if(TrndArt <= 27)
+										02 ^{
+											01=TrndArt = CreateArt(GgiveArtsArray[TrndArt], 6);
+											02=if(ShipFreeSpace(ship) >= ItemSize(TrndArt)) AddItemToShip(ship, TrndArt);
+											03=else FreeItem(TrndArt);
+										}
+										//Создаём кастомный артефакт из ExpArts
+										03=else
+										04 ^{
+											01=if(!FunsInit)
+											02 ^{
+												01=int FunsInit = 1;
+												02=unknown CustomArtSizeCalc = ImportedFunction('UtilityFunctions', 'CustomArtSizeCalc');
+												03=unknown CustomArtCostCalc = ImportedFunction('UtilityFunctions', 'CustomArtCostCalc');
+											}
+											03=TrndArt = CreateCustomArt(GgiveArtsArray[TrndArt], CustomArtSizeCalc(0 + CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Size'), GalaxyDiffLevels(4)), CustomArtCostCalc(0 + CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Cost'), GalaxyDiffLevels(1), GalaxyTechLevel()), 6);
+											04=if(ShipFreeSpace(ship) >= ItemSize(TrndArt)) AddItemToShip(ship, TrndArt);
+											05=else FreeItem(TrndArt);
+										}
+									}
+								}
+							}
+							04=exit;
+						}
+						08=if(!ShipInNormalSpace(ship))
+						09 ^{
+							//Убираем маркер о готовности к прыжку/совершаемом прыжке, если рейнджер ушёл в гипер или сел на планету/станцию
+							01=ShipCustomShipInfoData(0, cur_info, 1, 0); //Маркер о готовности/совершаемом прыжке
+							02=ShipCustomShipInfoData(0, cur_info, 2, 0); //Id ЧД
+							03=exit;
+						}
+						10=dword TCurStar = ShipStar(ship);
+						//Ищем ЧД в системе, если её ещё не обнаружили
+						11=if(ShipInNormalSpace(ship))
+						12 ^{
+							01=if(ShipCustomShipInfoData(0, cur_info, 1) <= 0)
+							02 ^{
+								01=for(i = 0; i < GalaxyHoles(); i = i + 1)
+								02 ^{
+									01=dword THole = GalaxyHoles(i);
+									//Нашли ЧД в системе, триггер в положение 1
+									02=if(HoleStar1(THole) == TCurStar || HoleStar2(THole) == TCurStar)
+									03 ^{
+										//Проверка на кастомные ЧД (оригинальные будут всегда возвращать '')
+										01=if(HoleMap(THole) == '')
+										02 ^{
+											//Проверка на ЧД Келлера (если её вход и выход находятся в одной системе)
+											01=if(Keller())
+											02 ^{
+												01=if(HoleStar1(THole) != HoleStar2(THole))
+												02 ^{
+													01=ShipCustomShipInfoData(0, cur_info, 1, 1);
+													02=ShipCustomShipInfoData(0, cur_info, 2, Id(THole));
+													03=break;
+												}
+											}
+											03=else
+											04 ^{
+												01=ShipCustomShipInfoData(0, cur_info, 1, 1);
+												02=ShipCustomShipInfoData(0, cur_info, 2, Id(THole));
+												03=break;
+											}
+										}
+									}
+								}
+							}
+						}
+						//Перебираем условия для возможности залёта рейнджера в ЧД
+						13=if(ShipCustomShipInfoData(0, cur_info, 1) == 1)
+						14 ^{
+							01=if(ShipOrder(ship)!=1 && ShipOrder(ship)!=3 && ShipOrder(ship)!=6)exit;//Рейнджер выполняет что-то важное
+							02=if(ShipOrder(ship)==6 && ShipGetBad(ship)>0)exit;//Рейнджер с кем-то воюет
+							03=if(ShipFreeSpace(ship)<10)exit;//У рейнджера слишком мало свободного места в трюме
+							04=if((0+ShipCustomShipInfoTextData(0,cur_info,1))==ShipCustomShipInfoData(0,cur_info,2))exit;//Рейнджер уже посещал данную ЧД
+							//Рейнджер решился (шанс 9.0% на каждый ход)
+							05=if(Rnd(1,1000)<=90)
+							06 ^{
+								//Проверяем, что обнаруженная ранее ЧД всё ещё существует в системе
+								01=for(i=0; i<GalaxyHoles(); i=i+1)
+								02 ^{
+									01=THoleExistCheck=GalaxyHoles(i);
+									02=if(ShipCustomShipInfoData(0,cur_info,2) == Id(THoleExistCheck))break;
+									03=else THoleExistCheck=0;
+								}
+								03=if(THoleExistCheck)
+								04 ^{
+									01=dword THole2=THoleExistCheck;
+									//Отдаём приказ рейнджеру залететь в ЧД
+									02=OrderJumpHole(ship,THole2,100);
+									03=OrderLock(ship,1);
+									//Добавляем соответствующий маркер
+									04=ShipCustomShipInfoData(0,cur_info,1,2);
+								}
+								05=else
+								06 ^{
+									//Обнуляем всю информацию о ЧД и её существовании
+									01=ShipCustomShipInfoData(0,cur_info,1,0);
+									02=ShipCustomShipInfoData(0,cur_info,2,0);
+								}
+							}
+						}
+						//Корабль направляется к ЧД
+						15=if(ShipCustomShipInfoData(0,cur_info,1) == 2)
+						16 ^{
+							//Проверяем, что выбранная ЧД всё ещё существует
+							01=for(i=0; i<GalaxyHoles(); i=i+1)
+							02 ^{
+								01=THoleExistCheck=GalaxyHoles(i);
+								02=if(ShipCustomShipInfoData(0,cur_info,2) == Id(THoleExistCheck))break;
+								03=else
+								04 ^{
+									01=THoleExistCheck=0;
+									02=OrderLock(ship,0);
+								}
+							}
+							//Если существует
+							03=if(THoleExistCheck)
+							04 ^{
+								//Отдаём приказ рейнджеру залететь в ЧД
+								01=OrderJumpHole(ship,THoleExistCheck,100);
+								02=OrderLock(ship,1);
+								//Добавляем соответствующий маркер
+								03=ShipCustomShipInfoData(0,cur_info,1,2);
+							}
+							//Если нет
+							05=else
+							06 ^{
+								01=ShipCustomShipInfoData(0,cur_info,1,0);
+								02=ShipCustomShipInfoData(0,cur_info,2,0);
+							}
+						}
+					}
+					//Конец расчёта хода
+					05=else if(ScriptItemActionType(t_OnStep,11))
+					06 ^{
+						01=if(ShipIsPartner(ship))exit;
+						02=action_mark=ShipCustomShipInfoData(0,cur_info,1);
+						//Рейнджер направляется к дыре, выставляем приказ на движение по её координатам (чтобы не глючил маркер движения)
+						03=if(action_mark == 2)
+						04 ^{
+							01=if(ShipInNormalSpace(ship))
+							02 ^{
+								01=ShipOrder(ship,1);
+								02=ShipOrderObj(ship,0);
+							}
+						}
+						//Рейнджер находится в ЧД и его обработчик события в ЧД уже сработал
+						05=else if(action_mark == 3)
+						06 ^{
+							//Обнуляем этот маркер, если рейнджер покинул ЧД
+							01=if(!ShipInHole(ship))ShipCustomShipInfoData(0,cur_info,1,0);
+						}
+					}
+					//Смерть исследователя
+					07=else if(ScriptItemActionType(t_OnEnteringForm))
+					08 ^{
+						01=if(CurrentForm()=='Scaner')
+						02 ^{
+							//Если подключён мод с учёными званиями
+							01=if(IsScriptActive('Mod_ExpScienceRanks'))
+							02 ^{
+								//Если учёные звания для этого рейнджера не заблокированы
+								01=if(ShipCustomShipInfoTextData(0,cur_info,3)>-1)
+								02 ^{
+									01=int science_rank;
+									//Если счётчик посещённых ЧД уже включился в нормальную работу
+									02=if(ShipCustomShipInfoTextData(0,cur_info,2)=='NoRank')
+									03 ^{
+										01=science_rank=ShipCustomShipInfoTextData(0,cur_info,3);
+										//Определяем вид окна со званием (выводится при наведении курсора)
+										02=if(science_rank==0)InterfaceImage('Scaner','CustomRankImageL_2','GI,Bm.FormShip2.2BH_img');
+										03=else if(science_rank==1)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2BH_img');
+										04=else if(science_rank==2)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR1_img');
+										05=else if(science_rank==3)InterfaceImage('Scaner','CustomRankImageL_4','GI,Bm.FormShip2.2SR1_img');
+										06=else if(science_rank==4)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR2_img');
+										07=else if(science_rank==5)InterfaceImage('Scaner','CustomRankImageL_5','GI,Bm.FormShip2.2SR2_img');
+										08=else if(science_rank==6)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR3_img');
+										09=else if(science_rank==7)InterfaceImage('Scaner','CustomRankImageL_2','GI,Bm.FormShip2.2SR3_img');
+										10=else if(science_rank==8)InterfaceImage('Scaner','CustomRankImageL_4','GI,Bm.FormShip2.2SR4_img');
+										//Делаем имидж званий видимым на форме Scaner
+										11=InterfaceState('Scaner','ScienceRankImage',1);
+									}
+									04=else if(ShipCustomShipInfoTextData(0,cur_info,2)>-1)
+									05 ^{
+										01=science_rank=ShipCustomShipInfoTextData(0,cur_info,3);
+										//Определяем вид окна со званием (выводится при наведении курсора)
+										02=if(science_rank==0)InterfaceImage('Scaner','CustomRankImageL_2','GI,Bm.FormShip2.2BH_img');
+										03=else if(science_rank==1)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2BH_img');
+										04=else if(science_rank==2)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR1_img');
+										05=else if(science_rank==3)InterfaceImage('Scaner','CustomRankImageL_4','GI,Bm.FormShip2.2SR1_img');
+										06=else if(science_rank==4)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR2_img');
+										07=else if(science_rank==5)InterfaceImage('Scaner','CustomRankImageL_5','GI,Bm.FormShip2.2SR2_img');
+										08=else if(science_rank==6)InterfaceImage('Scaner','CustomRankImageL_3','GI,Bm.FormShip2.2SR3_img');
+										09=else if(science_rank==7)InterfaceImage('Scaner','CustomRankImageL_2','GI,Bm.FormShip2.2SR3_img');
+										10=else if(science_rank==8)InterfaceImage('Scaner','CustomRankImageL_4','GI,Bm.FormShip2.2SR4_img');
+										//Делаем имидж званий видимым на форме Scaner
+										11=InterfaceState('Scaner','ScienceRankImage',1);
+									}
+								}
+							}
+						}
+					}
+					09=else if(ScriptItemActionType(t_OnLeavingForm))
+					10 ^{
+						01=if(CurrentForm()=='Scaner')
+						02 ^{
+							//Если подключён мод с учёными званиями
+							01=if(IsScriptActive('Mod_ExpScienceRanks'))
+							02 ^{
+								//Выключаем имидж с учёными званиями при уходе с формы Scaner
+								01=InterfaceState('Scaner','ScienceRankImage',0);
+							}
+						}
+					}
+					11=else if(ScriptItemActionType(t_OnDeath))
+					12 ^{
+						//При гибели рейнджера рандомно лочим 50% его артов, чтобы не выпадали
+						01=for(i=0;i<ShipArts(ship);i=i+1)
+						02 ^{
+							01=dword TArt=ShipArts(ship,i);
+							02=if(Rnd(1,100)<=50)NoDropItem(TArt,1);
+							03=else NoDropItem(TArt,0);
+						}
+					}
+				}
+			}
+            OrderJumpHole_ForCompanion ^{
+                Description=Невидимая инфошка для компаньона игрока, способного летать в ЧД
+                Icon=0
+                Name=Sir Robin, The Loyal
+				//Data1 - маркер о готовящемся или совершаемом прыжке в ЧД:
+				//	1 - партнёр летит к указанной ЧД;
+				//	2 - партнёр находится в ЧД и событие её посещения уже сработало;
+				//Data2 - Id "чёрной дыры", в которую прыгает партнёр;
+				//TextData1 - координата X координаты ЧД в которую направляется корабль;
+				//TextData2 - координата Y координаты ЧД в которую направляется корабль;
+				OnActCodeTypes=t_OnStep,t_OnLeavingForm,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+				OnActStepTypes=0,11
+                OnActCode ^{
+					01=dword ship=ScriptItemActShip();
+					02=dword cur_info=CurInfo();
+					//Начало расчёта хода
+					03=if(ScriptItemActionType(t_OnStep,0))
+					04 ^{
+						01=dword THoleExistCheck=0;
+						//Корабль влетел в ЧД, чистим данные инфошки и выдаём ему рандомный артефакт
+						02=if(ShipInHole(ship))
+						03 ^{
+							01=if(ShipCustomShipInfoData(0,cur_info,1) != 2)
+							02 ^{
+								//Если не погиб (может погибнуть в совместной аркадной битве с игроком), то активируем обработчик победы
+								01=if(HullHP(ship) > 0)
+								02 ^{
+									01=OrderLock(ship,0);
+									//Ставим маркер о том, что корабль находится в ЧД, и событие её посещения уже сработало
+									02=ShipCustomShipInfoData(0,cur_info,1,2);
+									//Если нашли на данном корабле инфошку исследователя
+									03=int explorer_info=ShipFindCustomShipInfoByType(ship,'BraveExplorer');
+									04=if(explorer_info > -1)
+									05 ^{
+										//Добавляем +1 к счётчику посещённых кораблём ЧД
+										10=int countBH=ShipCustomShipInfoData(ship,explorer_info,3)+1;
+										11=ShipCustomShipInfoData(ship,explorer_info,3,countBH);
+										//Если подключён мод с учёными званиями
+										12=if(IsScriptActive('Mod_ExpScienceRanks'))
+										13 ^{
+											//Если получение новых званий в принципе доступно рейнджеру
+											01=if(ShipCustomShipInfoTextData(ship,explorer_info,2) != 'NoRank')
+											02 ^{
+												//Проверяем, хватает ли рейнджеру посещённых ЧД для получения нового звания
+												01=int forNextRank=ShipCustomShipInfoTextData(ship,explorer_info,2);
+												02=int cur_rank=ShipCustomShipInfoTextData(ship,explorer_info,3);
+												//Если мод ExpScienceRanks был подключён позже ExpExplorers
+												03=if(forNextRank == -1)
+												04 ^{
+													//То сперва узнаём, сколько ЧД нужно посетить до первого звания
+													01=forNextRank=CT('RankScientific.1.BlackHolesCount');
+													02=forNextRank=forNextRank-countBH;
+													03=ShipCustomShipInfoTextData(ship,explorer_info,2,forNextRank);
+												}
+												05=while( (countBH - CT('RankScientific.'+cur_rank+'.BlackHolesCount') >= forNextRank) && (ShipCustomShipInfoTextData(ship,explorer_info,2) != 'NoRank') )
+												06 ^{
+													//Повышаем учёное звание
+													01=cur_rank=cur_rank+1;
+													02=ShipCustomShipInfoTextData(ship,explorer_info,3,cur_rank);
+													//Если звание всё ещё не максимально
+													03=if(cur_rank < 8)
+													04 ^{
+														//То считаем и запоминаем, сколько ЧД осталось до следующего звания
+														01=forNextRank=CT('RankScientific.'+(cur_rank+1)+'.BlackHolesCount');
+														02=forNextRank=forNextRank-countBH;
+														03=ShipCustomShipInfoTextData(ship,explorer_info,2,forNextRank);
+													}
+													//Иначе блокируем дальнейшие повышения
+													05=else ShipCustomShipInfoTextData(ship,explorer_info,2,'NoRank');
+												}
+											}
+										}
+									}
+								}
+							}
+							03=exit;
+						}
+						04=if(!ShipInNormalSpace(ship))
+						05 ^{
+							//Отменяем приказ о прыжке, если корабль ушёл в гипер или сел на планету/станцию
+							01=OrderLock(ship,0);
+							02=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+							03=ShipFreeFlight(ship);
+							04=exit;
+						}
+						//Корабль направляется к ЧД
+						06=if(ShipCustomShipInfoData(0,cur_info,1) == 1)
+						07 ^{
+							//Проверяем, что указанная ЧД всё ещё существует
+							01=for(int i=0; i<GalaxyHoles(); i=i+1)
+							02 ^{
+								01=THoleExistCheck=GalaxyHoles(i);
+								02=if(ShipCustomShipInfoData(0,cur_info,2) == Id(THoleExistCheck))break;
+								03=else
+								04 ^{
+									01=OrderLock(ship,0);
+									02=THoleExistCheck=0;
+								}
+							}
+							//Если существует
+							03=if(THoleExistCheck)
+							04 ^{
+								01=int check=1;
+								//Делаем проверки на то, что корабль всё ещё исполняет отданный ему приказ
+								//Если игрок сам забил на отданный приказ и свалил
+								02=if(!ShipInNormalSpace(Player()))
+								03 ^{
+									01=OrderLock(ship,0);
+									02=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+									03=ShipFreeFlight(ship);
+									04=exit;
+								}
+								//Определяем расстояние до входа/выхода в ЧД
+								04=unknown DistCoords=ImportedFunction('UtilityFunctions','DistCoords');
+								05=if(HoleStar1(THoleExistCheck) == ShipStar(ship))
+								06 ^{
+									01=int BH_X=HoleX1(THoleExistCheck);
+									02=int BH_Y=HoleY1(THoleExistCheck);
+									03=ShipCustomShipInfoTextData(0,cur_info,1,BH_X);
+									04=ShipCustomShipInfoTextData(0,cur_info,2,BH_Y);
+								}
+								07=else
+								08 ^{
+									01=BH_X=HoleX2(THoleExistCheck);
+									02=BH_Y=HoleY2(THoleExistCheck);
+									03=ShipCustomShipInfoTextData(0,cur_info,1,BH_X);
+									04=ShipCustomShipInfoTextData(0,cur_info,2,BH_Y);
+								}
+								09=if(DistCoords(CoordX(ship), CoordY(ship), BH_X, BH_Y) <= 200)
+								10 ^{
+									01=check=1;
+									02=if(DistCoords(CoordX(Player()), CoordY(Player()), BH_X, BH_Y) <= 195)
+									03 ^{
+										//Если и корабль и игрок оба находятся рядом с ЧД, и игрок как раз направляется в неё
+										01=if(ShipOrderObj(Player()) == THoleExistCheck)
+										02 ^{
+											//Отдаём приказ кораблю залететь в ЧД
+											01=OrderJumpHole(ship,THoleExistCheck,100);
+											02=OrderLock(ship,1);
+											03=exit;
+										}
+										03=else check=0;
+									}
+									04=else check=0;
+									05=if(!check)
+									06 ^{
+										//Иначе отдаём приказ кораблю крутиться на месте в ожидании игрока
+										//Следим за тем, чтобы новое направление разворота не выходила за границы минимального радиуса
+										//для одноходового залёта в ЧД
+										01=float angle=pi*(ShipAngle(ship)+90.0)/Rnd(179,181);
+										02=int dX = cos(angle)*10.0+CoordX(ship) - BH_X;
+										03=int dY = sin(angle)*10.0+CoordY(ship) - BH_Y;
+										04=if(dX*dX+dY*dY > 180*180)
+										05 ^{
+											01=dX=0.5*dX;
+											02=dY=0.5*dY;
+										}
+										06=OrderMove(ship,BH_X+dX,BH_Y+dY);
+										07=OrderLock(ship,1);
+										08=exit;
+									}
+								}
+								11=else
+								12 ^{
+									//Отдаём приказ кораблю залететь в ЧД
+									01=OrderJumpHole(ship,THoleExistCheck,100);
+									02=OrderLock(ship,1);
+									03=exit;
+								}
+							}
+							//Если нет
+							05=else
+							06 ^{
+								//Отменяем приказ на прыжок
+								01=OrderLock(ship,0);
+								02=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+								03=ShipFreeFlight(ship);
+								04=exit;
+							}
+						}
+					}
+					//Конец расчёта хода
+					05=else if(ScriptItemActionType(t_OnStep,11))
+					06 ^{
+						//Корабль направляется к дыре, выставляем приказ на движение по её координатам (чтобы не блокировать ЧД приказом на залёт в неё)
+						01=if(ShipCustomShipInfoData(0,cur_info,1) == 1)
+						02 ^{
+							01=if(ShipInNormalSpace(ship))
+							02 ^{
+								01=OrderMove(ship,ShipCustomShipInfoTextData(0,cur_info,1),ShipCustomShipInfoTextData(0,cur_info,2));
+								02=exit;
+							}
+						}
+						//Корабль находится в ЧД и его обработчик события в ЧД уже сработал
+						03=else if(ShipCustomShipInfoData(0,cur_info,1) == 2)
+						04 ^{
+							//Сбрасываем приказ прыжка, если рейнджер покинул ЧД
+							01=if(!ShipInHole(ship))
+							02 ^{
+								01=OrderLock(ship,0);
+								02=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+								03=ShipFreeFlight(ship);
+								04=exit;
+							}
+						}
+					}
+					07=else if(ScriptItemActionType(t_OnLeavingForm))
+					08 ^{
+						01=if(CurrentForm() == 'Talk')
+						02 ^{
+							//Если игрок порвал отношения с партнёром
+							01=if(!ShipIsPartner(ship))
+							02 ^{
+								01=if(ShipTypeN(ship) != t_Tranclucator)
+								02 ^{
+									01=OrderLock(ship, 0);
+									02=ShipDeleteCustomShipInfo(ship, 'OrderJumpHole_ForCompanion');
+									03=ShipFreeFlight(ship);
+									04=exit;
+								}
+								03=else
+								04 ^{
+									//Если игрок приказал транклюкатору делать что-то ещё, проверяем заодно и всех остальных активных транклюкаторов
+									//Мог быть отдан групповой приказ
+									01=for(i = 0; i < PlayerTranclucators(); i = i + 1)
+									02 ^{
+										01=ship = PlayerTranclucators(i);
+										02=if(ShipFindCustomShipInfoByType(ship, 'OrderJumpHole_ForCompanion') == -1) continue;
+										03=if(ShipOrder(ship) == 1)
+										04 ^{
+											01=OrderLock(ship, 1);
+											02=continue;
+										}
+										05=ShipDeleteCustomShipInfo(ship, 'OrderJumpHole_ForCompanion');
+										06=OrderLock(ship, 0);
+									}
+								}
+							}
+							03=else
+							04 ^{
+								//Если игрок приказал партнёру делать что-то ещё, проверяем заодно и всех остальных партнёров
+								//Так как игроком мог быть отдан групповой приказ
+								01=for(i = 0; i < ShipPartners(Player()); i = i + 1)
+								02 ^{
+									01=ship = ShipPartners(Player(), i);
+									02=if(ShipFindCustomShipInfoByType(ship, 'OrderJumpHole_ForCompanion') == -1) continue;
+									03=if(ShipOrder(ship) == 1)
+									04 ^{
+										01=OrderLock(ship, 1);
+										02=continue;
+									}
+									05=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+									06=OrderLock(ship,0);
+								}
+								03=for(i = 0; i < PlayerPirates(); i = i + 1)
+								04 ^{
+									01=ship = PlayerPirates(i);
+									02=if(ShipFindCustomShipInfoByType(ship, 'OrderJumpHole_ForCompanion') == -1) continue;
+									03=if(ShipOrder(ship) == 1)
+									04 ^{
+										01=OrderLock(ship, 1);
+										02=continue;
+									}
+									05=ShipDeleteCustomShipInfo(ship, 'OrderJumpHole_ForCompanion');
+									06=OrderLock(ship, 0);
+								}
+								05=exit;
+							}
+							//Удаляем все возможные оверрайды с кнопки закрытия формы диалога
+							05=InterfaceState('Talk', 'Close', -1);
+						}
+					}
+					//По кораблю ведут огонь
+					09=else
+					10 ^{
+						01=if(ShipTypeN(ship) != t_Tranclucator)
+						02 ^{
+							//Корабль забивает на приказ, если получил слишком много повреждений, а игрок свалил хрен пойми куда
+							01=if(HullDamage(ship) >= 70)
+							02 ^{
+								01=if(Dist(ship,Player()) > 250)
+								02 ^{
+									01=OrderLock(ship,0);
+									02=ShipDeleteCustomShipInfo(ship,'OrderJumpHole_ForCompanion');
+									03=ShipFreeFlight(ship);
+									04=exit;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+ShipType ^{
+    Fei ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+    Gaal ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+    Maloc ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+    Peleng ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+    People ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+    TypeName ^{
+		RangerExplorer=Рейнджер
+        RangerPirateExplorer=Изменник
+    }
+}
+ShipCharacterRangerExplorer ^{
+    00=34,	33,	33, Исследователь
+}
+ShipCharacterRangerPirateExplorer ^{
+    00=34,	33,	33, Авантюрист
+}

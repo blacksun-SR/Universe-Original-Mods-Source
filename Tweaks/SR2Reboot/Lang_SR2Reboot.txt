@@ -1,0 +1,1672 @@
+FormInfo ^{
+	br=<br>
+    Equipment ^{
+        Susceptibility=
+    }
+}
+Items ^{
+    Hull ^{
+        Text=Стойкость корпуса: <Size> (<MaxSize>) единиц, обшивка блокирует до <HitProtect> единиц ущерба.
+		mAlloy=1,2,3,4,5,6,7,8
+		mFragilityByLevelEnergy=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByLevelMissile=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByLevelSplinter=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByOwnerEnergy=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByOwnerMissile=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByOwnerSplinter=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+		mFragilityByShipType=1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+	}
+}
+FormRuins ^{
+    CB ^{
+        ConstructPirate ^{
+            StatsHull=броня <HitProtect>
+		}
+	}
+}
+MicroModuls ~{
+}
+Script ^{
+    Mod_SR2Reborn ^{
+    }
+}
+HullType ^{
+    SeriesName=Серия "<Name>"
+    0 ^{
+        Artefact=2
+        Cost=110
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Мутабор
+        Probability=3
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Liner
+        Size=80
+        Text=Линейка лайнеров с дополнительной системой подключения артефактов и возможностью форсажа.
+        Weapon=0
+        Year=0
+    }
+    1 ^{
+        Artefact=4
+        Cost=120
+        Def=1
+        Droid=0
+        Forsage=1
+        Hook=1
+        Name=Тяжелый гавон
+        Probability=5
+        Race=Maloc
+        Radar=0
+        Scaner=1
+        ShipType=Transport
+        Size=110
+        Text=Малокское транспортное судно, переоборудованное для шпионажа и разведки.
+        Weapon=-1
+        Year=5
+    }
+    10 ^{
+        Artefact=0
+        Cost=120
+        Def=1
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Индиго
+        Probability=3
+        Race=People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat,Liner
+        Size=100
+        Text=Корпус для безопасной перевозки пассажиров. Имеет защитное поле и дополнительное вооружение.
+        Weapon=1
+        Year=0
+    }
+    11 ^{
+        Artefact=3
+        Cost=90
+        Def=1
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Мириада
+        Probability=10
+        Race=Maloc,Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat
+        Size=70
+        Text=Серия корпусов правительственного заказа, для дипломатических миссий пеленгов и малоков.
+        Weapon=1
+        Year=0
+    }
+    12 ^{
+        Artefact=0
+        Cost=20
+        Def=0
+        Droid=-1
+        Forsage=-1
+        Hook=0
+        Name=Эконом
+        Probability=10
+        Race=Fei,Gaal
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger,Liner,Diplomat
+        Size=80
+        Text=Небольшой экономичный корпус. Отличное решение при ограниченных средствах и разумном подходе к эргономичности.
+        Weapon=0
+        Year=0
+    }
+    120 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Трантболл
+        Probability=1
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=100
+        Text=Обычный малокский корпус.
+        Weapon=0
+        Year=0
+    }
+    121 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Херши
+        Probability=1
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=100
+        Text=Серия стандартных пеленгских корпусов.
+        Weapon=0
+        Year=0
+    }
+    122 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Стандарт
+        Probability=1
+        Race=People
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=100
+        Text=Стандартный корпус человеческого производства.
+        Weapon=0
+        Year=0
+    }
+    123 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Калай
+        Probability=1
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=100
+        Text=Серия стандартных фэянских корпусов.
+        Weapon=0
+        Year=0
+    }
+    124 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Омоко
+        Probability=1
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=100
+        Text=Серия стандартных гаальских корпусов.
+        Weapon=0
+        Year=0
+    }
+    125 ^{
+        Artefact=0
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Тадай
+        Probability=2
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Warrior
+        Size=100
+        Text=Серия стандартных малокских корпусов с захватом.
+        Weapon=0
+        Year=0
+    }
+    126 ^{
+        Artefact=0
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Кацап
+        Probability=2
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Liner
+        Size=100
+        Text=Серия стандартных пеленгских корпусов с захватом.
+        Weapon=0
+        Year=0
+    }
+    127 ^{
+        Artefact=0
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Трек
+        Probability=2
+        Race=People
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Diplomat,Warrior
+        Size=100
+        Text=Стандартная серия корпусов людей, с местом под захват.
+        Weapon=0
+        Year=0
+    }
+    128 ^{
+        Artefact=0
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Лантака
+        Probability=2
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Diplomat,Warrior
+        Size=100
+        Text=Серия стандартных фэянских корпусов с захватом.
+        Weapon=0
+        Year=0
+    }
+    129 ^{
+        Artefact=0
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Олапу
+        Probability=2
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Diplomat
+        Size=100
+        Text=Серия стандартных гаальских корпусов с захватом.
+        Weapon=0
+        Year=0
+    }
+    13 ^{
+        Artefact=0
+        Cost=10
+        Def=-1
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Экспериметр
+        Probability=40
+        Race=People, Peleng
+        Radar=-1
+        Scaner=-1
+        ShipType=Diplomat,Liner
+        Size=50
+        Text=Незавершенная совместная разработка пеленгских и человеческих ученых. Установка генератора поля, радара и сканера невозможна.
+        Weapon=0
+        Year=0
+    }
+    130 ^{
+        Artefact=0
+        Cost=110
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Визор
+        Probability=3
+        Race=Maloc,Peleng
+        Radar=1
+        Scaner=1
+        ShipType=Transport,Liner
+        Size=100
+        Text=Стандартная серия корпусов с радаром и сканером.
+        Weapon=0
+        Year=0
+    }
+    14 ^{
+        Artefact=0
+        Cost=80
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=-1
+        Name=Большой челнок
+        Probability=20
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Transport
+        Size=130
+        Text=Корабль для перевозки крупногабаритных грузов. Установка захвата невозможна.
+        Weapon=0
+        Year=0
+    }
+    15 ^{
+        Artefact=0
+        Cost=200
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Багамот
+        Probability=20
+        Race=Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner
+        Size=160
+        Text=Большой корпус для большого бизнеса. Производится людьми и пеленгами.
+        Weapon=0
+        Year=40
+    }
+    16 ^{
+        Artefact=0
+        Cost=40
+        Def=-1
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Мирта
+        Probability=30
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Diplomat
+        Size=100
+        Text=Корабль, изготовленный по всем канонам пацифистской идеологии. Бюджетная модель.
+        Weapon=-2
+        Year=40
+    }
+    17 ^{
+        Artefact=0
+        Cost=220
+        Def=1
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Тортило
+        Probability=10
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner
+        Size=180
+        Text=Вместительный корпус для безопасной перевозки арестованных грузов и пленников.
+        Weapon=0
+        Year=60
+    }
+    18 ^{
+        Artefact=0
+        Cost=160
+        Def=1
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Глобал-союз
+        Probability=20
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Liner,Diplomat
+        Size=200
+        Text=Большой корпус для безопасных перевозок. Безупречный выбор.
+        Weapon=0
+        Year=30
+    }
+    19 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=1
+        Name=Аррива
+        Probability=20
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Diplomat,Ranger
+        Size=130
+        Text=Корпус для благородных целей. Фэяне создали самые комфортные условия в жилых отсеках.
+        Weapon=-1
+        Year=30
+    }
+    2 ^{
+        Artefact=1
+        Cost=300
+        Def=1
+        Droid=1
+        Forsage=1
+        Fragility=100
+        Hook=1
+        Name=Эльдорадо
+        Probability=50
+        Race=Peleng,People,Gaal
+        Radar=1
+        Scaner=1
+        ShipType=Liner,Diplomat,Ranger
+        Size=140
+        Text=Роскошный корпус, внутренние отсеки отделаны кожей пакряков и золотом. Полный комплект оборудования.
+        Weapon=0
+        Year=0
+    }
+    20 ^{
+        Artefact=-2
+        Cost=200
+        Def=1
+        Droid=1
+        Forsage=1
+        Fragility=100
+        Hook=1
+        Name=Захадум
+        Probability=100
+        Race=Peleng
+        Radar=1
+        Scaner=1
+        ShipType=Liner,Diplomat,Pirate
+        Size=70
+        Text=Скоростная серия с полной защитой, вооружением и навигацией. Создано для спецслужб пеленгов.
+        Weapon=1
+        Year=20
+    }
+    21 ^{
+        Artefact=0
+        Cost=110
+        Def=0
+        Droid=-1
+        Forsage=1
+        Hook=0
+        Name=Толстяк Крю
+        Probability=10
+        Race=People
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner
+        Size=120
+        Text=Серия модернизированных судов от старика Крю, который любил комфорт и панически боялся дроидов.
+        Weapon=0
+        Year=0
+    }
+    22 ^{
+        Artefact=4
+        Cost=110
+        Def=0
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Феникс Крю
+        Probability=20
+        Race=Fei
+        Radar=0
+        Scaner=1
+        ShipType=Diplomat
+        Size=70
+        Text=Сделанная стариком Крю модификация малого фэянского транспорта, переоборудованного для ведения боя.
+        Weapon=2
+        Year=30
+    }
+    23 ^{
+        Artefact=2
+        Cost=40
+        Def=1
+        Droid=-1
+        Forsage=1
+        Fragility=100
+        Hook=-1
+        Name=Курьер
+        Probability=5
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat
+        Size=70
+        Text=Серия миниатюрных корпусов, предназначенных для быстрой доставки ценных грузов и информации.
+        Weapon=-1
+        Year=0
+    }
+    3 ^{
+        Artefact=0
+        Cost=50
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Святой Брамин
+        Probability=4
+        Race=People,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner
+        Size=110
+        Text=Недорогой корпус для религиозной и благотворительной деятельности.
+        Weapon=-1
+        Year=0
+    }
+    30 ^{
+        Artefact=0
+        Cost=140
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Легион смерти
+        Probability=3
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Pirate,Warrior
+        Size=110
+        Text=Мощный боевой корпус. Выбор настоящих мужчин.
+        Weapon=1
+        Year=30
+    }
+    31 ^{
+        Artefact=0
+        Cost=120
+        Def=1
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Ночной ястреб
+        Probability=3
+        Race=Peleng,Fei
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=90
+        Text=Надежный корабль-перехватчик. Выбор пеленгских и фэянских пиратов.
+        Weapon=0
+        Year=0
+    }
+    32 ^{
+        Artefact=0
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Черная вдова
+        Probability=4
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Warrior, Ranger
+        Size=100
+        Text=Маневренный боевой корабль. Выбор беспощадных убийц.
+        Weapon=2
+        Year=10
+    }
+    33 ^{
+        Artefact=0
+        Cost=110
+        Def=0
+        Droid=-1
+        Forsage=0
+        Hook=0
+        Name=Убишак
+        Probability=10
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=90
+        Text=Серия украденных и модернизированных пеленгами корпусов. Место для дроида переоборудовано под оружейный отсек.
+        Weapon=1
+        Year=30
+    }
+    34 ^{
+        Artefact=-3
+        Cost=70
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Карающий луч
+        Probability=3
+        Race=Maloc,People,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=100
+        Text=Полнофункциональный боевой корабль низкой ценовой категории. Установка артефактов не предусмотрена.
+        Weapon=0
+        Year=0
+    }
+    35 ^{
+        Artefact=2
+        Cost=50
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Жалящая стрела
+        Probability=5
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=80
+        Text=Легкий боевой корабль для быстрого реагирования. Незаменим для охоты на пиратов.
+        Weapon=0
+        Year=0
+    }
+    36 ^{
+        Artefact=0
+        Cost=110
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Возмездие неба
+        Probability=3
+        Race=Maloc,Peleng,People,Fei
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=100
+        Text=Грозная серия корпусов для молниеносных атак. Всегда в моде.
+        Weapon=0
+        Year=0
+    }
+    37 ^{
+        Artefact=1
+        Cost=80
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Неопатруль
+        Probability=10
+        Race=People,Fei
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=100
+        Text=Корпус с человеческой и фэянской полицейской маркировкой. Предназначен для сбора таможенных грузов.
+        Weapon=-1
+        Year=0
+    }
+    38 ^{
+        Artefact=0
+        Cost=50
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Слепая ярость
+        Probability=20
+        Race=Maloc,Peleng,People
+        Radar=-1
+        Scaner=-1
+        ShipType=Ranger,Warrior
+        Size=120
+        Text=Машина для убийства. Установка радара и сканера невозможна.
+        Weapon=1
+        Year=40
+    }
+    39 ^{
+        Artefact=2
+        Cost=250
+        Def=0
+        Droid=1
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Чегантина
+        Probability=20
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=200
+        Text=Пеленгский парадный боевой крейсер. На второй палубе установлен тренажерный зал и грязевой бассейн. Создан по проекту верховного лякуша.
+        Weapon=1
+        Year=70
+    }
+    4 ^{
+        Artefact=0
+        Cost=40
+        Def=-1
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Экстрим-лайт
+        Probability=10
+        Race=Maloc,People,Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Ranger, Pirate
+        Size=60
+        Text=Низкобюджетная серия для экстремальных полетов на высоких скоростях. Максимум скорости - минимум защиты.
+        Weapon=-1
+        Year=0
+    }
+    40 ^{
+        Artefact=0
+        Cost=30
+        Def=-1
+        Droid=-1
+        Forsage=-1
+        Hook=0
+        Name=Микробус
+        Probability=100
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Transport,Liner,Diplomat,Ranger,Pirate,Warrior
+        Size=80
+        Text=Из этого корпуса удалены все лишние и редко используемые модули.
+        Weapon=0
+        Year=0
+    }
+    41 ^{
+        Artefact=2
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=1
+        Name=Техноскала
+        Probability=20
+        Race=Fei,People
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=90
+        Text=Эта серия высокотехнологичных корпусов включает полный комплект мест под оборудование. Техническое совершенство корпусной мысли.
+        Weapon=0
+        Year=80
+    }
+    42 ^{
+        Artefact=0
+        Cost=30
+        Def=0
+        Droid=0
+        Forsage=-1
+        Fragility=100
+        Hook=0
+        Name=Бравада
+        Probability=10
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger
+        Size=60
+        Text=Небольшой корпус для смелых бойцов. Место под сканер не предусмотрено. Режим форсажа не поддерживается.
+        Weapon=0
+        Year=0
+    }
+    43 ^{
+        Artefact=0
+        Cost=120
+        Def=-1
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Жандарм
+        Probability=5
+        Race=Maloc,Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=100
+        Text=Гроза пиратов. Выглядит настолько устрашающим, что инженеры даже отказались от установки защитного генератора.
+        Weapon=0
+        Year=0
+    }
+    44 ^{
+        Artefact=1
+        Cost=270
+        Def=1
+        Droid=1
+        Forsage=1
+        Hook=0
+        Name=Антидоминатор
+        Probability=20
+        Race=Maloc, People, Fei, Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=150
+        Text=Дорогое и эффективное оружие против доминаторов. Выбор настоящих патриотов.
+        Weapon=1
+        Year=70
+    }
+    45 ^{
+        Artefact=0
+        Cost=180
+        Def=0
+        Droid=0
+        Forsage=-1
+        Hook=1
+        Name=Барбариан
+        Probability=40
+        Race=People
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=150
+        Text=Серия вместительных корпусов для воинов-одиночек, не любящих скорость. Предусмотрено место под захват.
+        Weapon=0
+        Year=50
+    }
+    46 ^{
+        Artefact=4
+        Cost=180
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Супернова
+        Probability=50
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=100
+        Text=Элитные фэянские корпуса для высших военных чинов. Внутренняя отделка по последнему слову техники и дизайнерского искусства.
+        Weapon=1
+        Year=70
+    }
+    47 ^{
+        Artefact=0
+        Cost=150
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Красный топор
+        Probability=20
+        Race=Maloc
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger
+        Size=130
+        Text=Просторный боевой корабль, обитый внутри красным пластиком. Установка сканера невозможна.
+        Weapon=0
+        Year=10
+    }
+    48 ^{
+        Artefact=0
+        Cost=60
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Энхансер
+        Probability=30
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=90
+        Text=Серия недорогих корпусов, созданных для научных войск. Вооружение слабое, есть захват.
+        Weapon=-1
+        Year=20
+    }
+    49 ^{
+        Artefact=3
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=1
+        Name=Чистотел
+        Probability=10
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Warrior
+        Size=100
+        Text=Не по-гаальски агрессивный корпус с большим функционалом переработки и сбора мусора.
+        Weapon=1
+        Year=20
+    }
+    5 ^{
+        Artefact=0
+        Cost=40
+        Def=-1
+        Droid=-1
+        Forsage=1
+        Hook=0
+        Name=Экстрим-фул
+        Probability=70
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Transport
+        Size=80
+        Text=Большой гаальский корпус без возможности подключения защитных и части боевых устройств. Для экстремального выживания в космосе.
+        Weapon=-2
+        Year=0
+    }
+    50 ^{
+        Artefact=2
+        Cost=140
+        Def=1
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Ябуша
+        Probability=10
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Ranger,Warrior
+        Size=120
+        Text=Мощный корпус, который не оставляет врагам ни единого шанса. Размер корабля позволяет содержать внутри грязевой бассейн.
+        Weapon=1
+        Year=30
+    }
+    51 ^{
+        Artefact=4
+        Cost=10
+        Def=-1
+        Droid=-1
+        Forsage=1
+        Fragility=100
+        Hook=-1
+        Name=Камикадзе
+        Probability=100
+        Race=People
+        Radar=0
+        Scaner=-1
+        ShipType=Warrior
+        Size=25
+        Text=Настоящий раритет, создан по чертежам, найденным при раскопках на планете Земля.
+        Weapon=1
+        Year=10
+    }
+    52 ^{
+        Artefact=0
+        Cost=90
+        Def=1
+        Droid=1
+        Forsage=1
+        Hook=1
+        Name=Цербер
+        Probability=30
+        Race=Maloc,People,Fei
+        Radar=0
+        Scaner=-1
+        ShipType=Warrior
+        Size=80
+        Text=Маневренное патрульное судно, предназначенное для охраны систем.
+        Weapon=-1
+        Year=0
+    }
+    6 ^{
+        Artefact=0
+        Cost=150
+        Def=1
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Бизнес-класс
+        Probability=3
+        Race=People, Peleng, Fei, Gaal
+        Radar=0
+        Scaner=1
+        ShipType=Transport,Liner
+        Size=120
+        Text=Комфортабельный корпус повышенной надежности.
+        Weapon=0
+        Year=0
+    }
+    60 ^{
+        Artefact=0
+        Cost=90
+        Def=-1
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Веселый Роджер
+        Probability=10
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=90
+        Text=Классический выбор безрассудного пирата. Генератор защитного поля, разумеется, не предусмотрен.
+        Weapon=1
+        Year=0
+    }
+    61 ^{
+        Artefact=4
+        Cost=60
+        Def=-1
+        Droid=-1
+        Forsage=0
+        Hook=0
+        Name=Растеряха
+        Probability=20
+        Race=Maloc,Peleng,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=80
+        Text=Легкое судно, для собирания трофейных артефактов. Генератор поля и дроид не предусмотрены.
+        Weapon=1
+        Year=0
+    }
+    62 ^{
+        Artefact=0
+        Cost=90
+        Def=0
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Фервекс-лякуша
+        Probability=3
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=80
+        Text=Корпус для веселых лякушей среднего достатка.
+        Weapon=0
+        Year=0
+    }
+    63 ^{
+        Artefact=0
+        Cost=140
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Каракатица
+        Probability=20
+        Race=Maloc,People,Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=100
+        Text=Легендарная пиратская серия с возможностью поддержки всех типов оружия.
+        Weapon=4
+        Year=0
+    }
+    64 ^{
+        Artefact=0
+        Cost=90
+        Def=-1
+        Droid=0
+        Forsage=-1
+        Fragility=100
+        Hook=0
+        Name=Гнилой зуб
+        Probability=10
+        Race=Maloc,People,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=130
+        Text=Просторный корпус для пиратов низшего сословия. Поддержка форсажа и установка генератора поля не предусмотрена.
+        Weapon=0
+        Year=0
+    }
+    65 ^{
+        Artefact=1
+        Cost=40
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Подранок вселенной
+        Probability=10
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=80
+        Text=Дешевый корпус, популярный среди отбросов общества.
+        Weapon=-1
+        Year=0
+    }
+    66 ^{
+        Artefact=2
+        Cost=180
+        Def=0
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Арривал толосум
+        Probability=10
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat,Ranger,Pirate,Warrior
+        Size=130
+        Text=Знаменитая малокская серия, названная в честь Аррива Толосума, воителя и исследователя.
+        Weapon=1
+        Year=0
+    }
+    67 ^{
+        Artefact=0
+        Cost=120
+        Def=-1
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Малый Кранк
+        Probability=30
+        Race=Peleng,Fei
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=140
+        Text=Рабочая лошадка для скупщиков и пиратов. Генератор защитного поля не предусмотрен.
+        Weapon=0
+        Year=0
+    }
+    68 ^{
+        Artefact=0
+        Cost=110
+        Def=1
+        Droid=-1
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Жажда мести
+        Probability=20
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=80
+        Text=Защищенный корпус для мстительных личностей. Единственным недостатком является отсутствие дроида.
+        Weapon=2
+        Year=0
+    }
+    69 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Черный череп
+        Probability=20
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=-1
+        ShipType=Pirate
+        Size=120
+        Text=Корпус с черным орнаментом из черепов. Его боятся даже другие пираты. Установка сканера невозможна.
+        Weapon=0
+        Year=30
+    }
+    7 ^{
+        Artefact=0
+        Cost=80
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=-1
+        Name=Орландо
+        Probability=4
+        Race=Maloc,Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat
+        Size=100
+        Text=Корпус для агрессивных дипломатов. Установка захвата невозможна.
+        Weapon=1
+        Year=0
+    }
+    70 ^{
+        Artefact=0
+        Cost=160
+        Def=1
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Кость страха
+        Probability=5
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=100
+        Text=Корпус бывалого пирата, перед которым трепещут даже малокские вояки.
+        Weapon=2
+        Year=0
+    }
+    71 ^{
+        Artefact=0
+        Cost=110
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Заноза
+        Probability=10
+        Race=Maloc,People
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=100
+        Text=С выходом этой серии корпусов к базовой комплектации добавился слот оружия, а с ним и новые проблемы торговцев, разумеется.
+        Weapon=1
+        Year=30
+    }
+    72 ^{
+        Artefact=0
+        Cost=80
+        Def=-1
+        Droid=0
+        Forsage=0
+        Fragility=100
+        Hook=0
+        Name=Саранча
+        Probability=20
+        Race=People,Fei,Gaal
+        Radar=0
+        Scaner=-1
+        ShipType=Pirate
+        Size=70
+        Text=Судно начинающего пирата. Установка сканера и генератора поля невозможна.
+        Weapon=0
+        Year=0
+    }
+    73 ^{
+        Artefact=0
+        Cost=130
+        Def=1
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Лужа Чваха
+        Probability=30
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=120
+        Text=Корпус пеленгских пиратов ордена Чваха. Имеет большую грязевую ванну, для расслабления после удачных боев.
+        Weapon=-1
+        Year=30
+    }
+    74 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=1
+        Forsage=0
+        Hook=0
+        Name=Тратахан
+        Probability=10
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=80
+        Text=Малокский корпус для беспредельных пиратских забав с дроидом.
+        Weapon=0
+        Year=10
+    }
+    75 ^{
+        Artefact=2
+        Cost=200
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Голодный пенчекряк
+        Probability=30
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Ranger,Pirate
+        Size=120
+        Text=Зверская мощь корабля гарантирует победу над противником. Мечта любого пеленга.
+        Weapon=1
+        Year=0
+    }
+    76 ^{
+        Artefact=2
+        Cost=40
+        Def=1
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Ксвиру
+        Probability=30
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=50
+        Text=Очень маленький фэянский корпус, состоящий из новейших микросистем. Прекрасный шпион и разведчик.
+        Weapon=0
+        Year=0
+    }
+    77 ^{
+        Artefact=2
+        Cost=90
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Новый Ксвиру
+        Probability=70
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Pirate
+        Size=90
+        Text=Модифицированный фэянский корпус серии "Ксвиру". Увеличен размер.
+        Weapon=1
+        Year=40
+    }
+    78 ^{
+        Artefact=1
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Катозавр
+        Probability=30
+        Race=Maloc,Peleng,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Ranger,Pirate
+        Size=110
+        Text=Боевой корпус. Внутренняя отделка, выполненная в доисторическом стиле, прекрасно дополняет возросшую огневую мощь.
+        Weapon=1
+        Year=50
+    }
+    79 ^{
+        Artefact=1
+        Cost=150
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Хищник
+        Probability=5
+        Race=Maloc
+        Radar=0
+        Scaner=0
+        ShipType=Ranger,Pirate
+        Size=100
+        Text=Боевой корпус малокских охотников за умными головами.
+        Weapon=2
+        Year=40
+    }
+    8 ^{
+        Artefact=0
+        Cost=90
+        Def=0
+        Droid=-1
+        Forsage=1
+        Hook=0
+        Name=Благодать
+        Probability=20
+        Race=Fei,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat
+        Size=80
+        Text=Небольшой корпус для эффективной работы дипломата, рассчитан на новое оборудование средних размеров.
+        Weapon=0
+        Year=10
+    }
+    80 ^{
+        Artefact=3
+        Cost=160
+        Def=1
+        Droid=1
+        Forsage=1
+        Fragility=100
+        Hook=1
+        Name=Фантом
+        Probability=20
+        Race=People
+        Radar=1
+        Scaner=1
+        ShipType=Diplomat
+        Size=70
+        Text=Неприметный корпус, используется для перевозки документов под грифом "Совершенно секретно".
+        Weapon=4
+        Year=10
+    }
+    9 ^{
+        Artefact=0
+        Cost=90
+        Def=0
+        Droid=0
+        Forsage=1
+        Fragility=100
+        Hook=0
+        Name=Омаха
+        Probability=5
+        Race=Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Diplomat,Ranger,Pirate
+        Size=70
+        Text=Легкий гаальский корпус для наслаждения скоростью и выполнения сложных маневров.
+        Weapon=-1
+        Year=0
+    }
+    90 ^{
+        Artefact=0
+        Cost=100
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Звездный скиталец
+        Probability=10
+        Race=People
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger,Pirate
+        Size=110
+        Text=Знаменитая серия людских рейнджерских корпусов. Используется пиратами для маскировки. Установка собственного сканера не предусмотрена.
+        Weapon=0
+        Year=30
+    }
+    91 ^{
+        Artefact=-1
+        Cost=50
+        Def=-1
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Пыль времени
+        Probability=20
+        Race=People,Fei,Gaal
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger
+        Size=90
+        Text=Низкобюджетная линейка кораблей для малоимущих рейнджеров.
+        Weapon=0
+        Year=0
+    }
+    92 ^{
+        Artefact=2
+        Cost=120
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Стальная чмыса
+        Probability=5
+        Race=Peleng
+        Radar=0
+        Scaner=0
+        ShipType=Ranger
+        Size=100
+        Text=Скоростной корпус для пеленгских рейнджеров, предпочитающих тактическое отступление бесславной гибели.
+        Weapon=0
+        Year=30
+    }
+    93 ^{
+        Artefact=0
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Оружейник
+        Probability=5
+        Race=Maloc,Peleng,People
+        Radar=0
+        Scaner=0
+        ShipType=Ranger
+        Size=100
+        Text=Внутренняя отделка салона содержит декоративные элементы оружия и боеприпасов. Для любителей показать силу.
+        Weapon=2
+        Year=40
+    }
+    94 ^{
+        Artefact=4
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Мангуст
+        Probability=10
+        Race=Maloc,Peleng,Gaal
+        Radar=0
+        Scaner=0
+        ShipType=Ranger
+        Size=100
+        Text=Идеальный корпус для активных полетов. Спроектирован по заказу сети центров рейнджеров.
+        Weapon=0
+        Year=0
+    }
+    95 ^{
+        Artefact=0
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=-1
+        Fragility=100
+        Hook=0
+        Name=Факрай
+        Probability=20
+        Race=Fei
+        Radar=0
+        Scaner=0
+        ShipType=Ranger
+        Size=130
+        Text=Вместительное рейнджерское судно, подходит для неспешной перевозки опасных и хрупких грузов. Только для отважных фэян.
+        Weapon=1
+        Year=10
+    }
+    96 ^{
+        Artefact=0
+        Cost=130
+        Def=0
+        Droid=0
+        Forsage=0
+        Hook=0
+        Name=Слопка
+        Probability=10
+        Race=Gaal
+        Radar=0
+        Scaner=-1
+        ShipType=Ranger
+        Size=120
+        Text=Крепкий гаальский орешек. Рейнджерский корпус с большим трюмом и мощным оружейным отсеком. Установка сканера невозможна.
+        Weapon=2
+        Year=10
+    }
+    97 ^{
+        Artefact=0
+        Cost=320
+        Def=0
+        Droid=0
+        Forsage=-1
+        Fragility=100
+        Hook=0
+        Name=Одинокий странник
+        Probability=90
+        Race=People
+        Radar=0
+        Scaner=0
+        ShipType=Ranger
+        Size=180
+        Text=Человеческий корпус для неторопливых странствий пилота-рейнджера. Салон украшен картинами пейзажей древней планеты Земля.
+        Weapon=1
+        Year=40
+    }
+    98 ^{
+        Artefact=1
+        Cost=150
+        Def=0
+        Droid=0
+        Forsage=1
+        Hook=0
+        Name=Гугол
+        Probability=10
+        Race=Maloc,Peleng,Gaal
+        Radar=1
+        Scaner=1
+        ShipType=Ranger
+        Size=100
+        Text=Быстрый рейнджерский корпус. Согласно опросам, был признан лучшим корпусом 3302 года.
+        Weapon=1
+        Year=20
+    }
+    99 ^{
+        Artefact=4
+        Cost=300
+        Def=1
+        Droid=1
+        Forsage=1
+        Hook=1
+        Name=Идеал
+        Probability=10
+        Race=Any
+        Radar=1
+        Scaner=1
+        ShipType=Ranger
+        Size=100
+        Text=Идеальный рейнджерский корпус для любых операций. Создан по эксклюзивному заказу сети центров рейнджеров.
+        Weapon=4
+        Year=20
+    }
+    CountHullType=150
+    HullOldfag ^{
+        Name=Таухито
+        Text=Старинная серия корпусов, берущая истоки еще со времен окончания войны с клисанами. Созданная изначально как секретный проект для проведения специальных операций силами рейнджеров, несмотря на свой возраст, до сих пор остается одной из самых закрытых разработок Коалиции.
+    }
+}

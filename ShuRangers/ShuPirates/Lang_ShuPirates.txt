@@ -1,0 +1,17 @@
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            PlayerInHoleTurnBlock ^{
+                Description=Удалить после 05.02.21
+                Icon=0
+                Name=
+			}
+		}
+	}
+}
+ShipType ^{
+    TypeName ^{
+        Thug=Головорез
+        Khan=Хан
+    }
+}

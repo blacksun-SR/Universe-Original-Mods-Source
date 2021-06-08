@@ -1,0 +1,1423 @@
+MicroModuls ~{
+    SR1Equipment_DaredevilHull ^{
+        Cost=120
+        Equipments=Hull
+        KindGraph=SRPeople
+        Name=Корпус "Смельчак"
+		CustomTag=SR1Equipment_DaredevilHull
+        OnPlanets=1
+        Owner=People
+        Priority=30
+        Size=100
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия корпусов внешне идентичных кораблям рейнджеров-людей, выполненная на заказ Сети Музеев Клисанской Войны Солнечной Системы. Несмотря на точное повторение дизайна трехсотлетней давности, корабль является в техническом смысле полностью современным. Броня судна дополнена акриновыми элементами, что повышает его стоимость. Известно, что люди любят роскошь, поэтому внутри корабль отделан материалом из красного дерева, также на борту имеется уютное джакузи, где пилот может расслабиться после своих космических приключений. Идеальный выбор для неравнодушного к истории человечества гуманоида.</color>
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+    }
+    SR1Equipment_WarriorHull ^{
+        Cost=120
+        Equipments=Hull
+        KindGraph=SRMaloc
+        Name=Корпус "Воитель"
+		CustomTag=SR1Equipment_WarriorHull
+        OnPlanets=1
+        Owner=Maloc
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Выпущенная по приказу генерала Гарндыма линейка акриновых корпусов, точно повторяющих дизайном судна доблестных малоков-рейнджеров, вписавших свои имена в историю освобождения нашего рукава Галактики от клисанов три века назад. Грозный и величественный, внешний вид корабля заставляет каждого воина непроизвольно отдать честь при его виде.</color>
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+    }
+    SR1Equipment_CunningHull ^{
+        Cost=120
+        Equipments=Hull
+        KindGraph=SRPeleng
+        Name=Корпус "Хитрец"
+		CustomTag=SR1Equipment_CunningHull
+        OnPlanets=1
+        Owner=Peleng
+        Priority=30
+        Size=120
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>В тридцать первом веке пеленгские рейнджерские корабли не только позволяли эффективно вести боевые действия, но и хорошо зарекомендовали себя при перевозке контрабандных товаров. Именно поэтому один из высокопоставленных лякуш заказал для себя корпус с именно таким же дизайном и функционалом, но доработанный, а также с внедрением акриновых технологий. Однако некто из его ближайшего окружения выкрал технологии создания подобных кораблей и пустил их в широкое производство. Теперь каждый может позволить себе такую модель.</color>
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+    }
+    SR1Equipment_RationalistHull ^{
+        Cost=120
+        Equipments=Hull
+        KindGraph=SRFei
+        Name=Корпус "Рационалист"
+		CustomTag=SR1Equipment_RationalistHull
+        OnPlanets=1
+        Owner=Fei
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Дизайн фэянских рейнджерских кораблей мало изменился со времен клисанской войны, однако это не помешало ученым восстановить модели именно тех лет, но уже с применением акриновых технологий. Они объясняют это тем, что с технической точки зрения старые корпуса еще могут иметь не до конца раскрытый потенциал. После долгих научных диспутов, где уважаемые далани расписывали на голографических досках десятиэтажные формулы, в то время как их оппоненты шлепали себя по лицу, убедить удалось не всех, хотя ценители истории все равно были в восторге. От современных корпусов эти отличаются не только более светлым окрасом, но и внутренним убранством. В остальном же отличия минимальны, включая эффективность и прочность.</color>
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+    }
+    SR1Equipment_PeacemakerHull ^{
+        Cost=120
+        Equipments=Hull
+        KindGraph=SRGaal
+        Name=Корпус "Миротворец"
+		CustomTag=SR1Equipment_PeacemakerHull
+        OnPlanets=1
+        Owner=Gaal
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Известный иике-баанист Ноо-А'тра в ходе длительных размышлений о судьбе Вселенной, Вечной Гармонии и смысле существования каждой расы пришел к заключению, что композицию космоса должны дополнить корабли подобные тем, что служили гаальцам во времена, когда была разрешена одна из величайших загадок в истории Коалиции - причина агрессии клисанов. Мудрый гаалец проинвестировал восстановление корпусов гаальских рейнджеров той эпохи, но также добавил и условие: в броню судов должны быть внедрены акриновые элементы, как символ Проекции Прошлого в Будущее.</color>
+        bonSlotArt=-2
+        bonSlotWeapon=-2
+    }
+    SR1Equipment_RemEngine1 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR0
+        Name=Ремастивный двигатель I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine2 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR1
+        Name=Ремастивный двигатель II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine3 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR2
+        Name=Ремастивный двигатель III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine4 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR3
+        Name=Ремастивный двигатель IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine5 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR4
+        Name=Ремастивный двигатель V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine6 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR5
+        Name=Ремастивный двигатель VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine7 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR6
+        Name=Ремастивный двигатель VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+    SR1Equipment_RemEngine8 ^{
+        Cost=100
+        Equipments=Engine
+        KindGraph=SR7
+        Name=Ремастивный двигатель VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный двигатель I-VIII
+		SerieLevel1=SR1Equipment_RemEngine1
+		SerieLevel2=SR1Equipment_RemEngine2
+		SerieLevel3=SR1Equipment_RemEngine3
+		SerieLevel4=SR1Equipment_RemEngine4
+		SerieLevel5=SR1Equipment_RemEngine5
+		SerieLevel6=SR1Equipment_RemEngine6
+		SerieLevel7=SR1Equipment_RemEngine7
+		SerieLevel8=SR1Equipment_RemEngine8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemEngine8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Современные аналоги космических двигателей, восстановленных по чертежам эпохи противостояния клисанской оккупации. Массовое производство таких образцов было налажено после получения учеными теоретических выкладок, доказывающих, что, будучи подвергнутыми акриновой модернизации, подобные двигатели не будут уступать современным. Дешевизна изготовления поспособствовала экономичной цене, что устраивает многих покупателей.</color>
+    }
+	SR1Equipment_RemFuelTank1 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR0
+        Name=Ремастивный топливный бак I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+	}
+	SR1Equipment_RemFuelTank2 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR1
+        Name=Ремастивный топливный бак II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+	}
+    SR1Equipment_RemFuelTank3 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR2
+        Name=Ремастивный топливный бак III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemFuelTank4 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR3
+        Name=Ремастивный топливный бак IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemFuelTank5 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR4
+        Name=Ремастивный топливный бак V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemFuelTank6 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR5
+        Name=Ремастивный топливный бак VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemFuelTank7 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR6
+        Name=Ремастивный топливный бак VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemFuelTank8 ^{
+        Cost=100
+        Equipments=FuelTank
+        KindGraph=SR7
+        Name=Ремастивный топливный бак VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный топливный бак I-VIII
+		SerieLevel1=SR1Equipment_RemFuelTank1
+		SerieLevel2=SR1Equipment_RemFuelTank2
+		SerieLevel3=SR1Equipment_RemFuelTank3
+		SerieLevel4=SR1Equipment_RemFuelTank4
+		SerieLevel5=SR1Equipment_RemFuelTank5
+		SerieLevel6=SR1Equipment_RemFuelTank6
+		SerieLevel7=SR1Equipment_RemFuelTank7
+		SerieLevel8=SR1Equipment_RemFuelTank8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemFuelTank8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Исследования в области акриновых технологий позволили ученому сообществу пересмотреть свои взгляды в отношении устаревших принципов изготовления топливных баков, результатом чего стала данная линейка, представляющая модификацию изготовленных во времена Рачехана образцов. Конструкция этих моделей зарекомендовала себя достаточно надежной, а изготовление - недорогим, что делает возвращение старых образцов в производство вполне оправданным. Кроме того, использование акриновых технологий сделало эти емкости для горючего весьма популярными у рейнджеров. Такие топливные баки ничуть не уступают современным аналогам.</color>
+    }
+    SR1Equipment_RemDroid1 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR0
+        Name=Ремастивный дроид I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid2 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR1
+        Name=Ремастивный дроид II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid3 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR2
+        Name=Ремастивный дроид III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid4 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR3
+        Name=Ремастивный дроид IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid5 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR4
+        Name=Ремастивный дроид V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid6 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR5
+        Name=Ремастивный дроид VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid7 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR6
+        Name=Ремастивный дроид VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemDroid8 ^{
+        Cost=100
+        Equipments=Droid
+        KindGraph=SR7
+        Name=Ремастивный дроид VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный дроид I-VIII
+		SerieLevel1=SR1Equipment_RemDroid1
+		SerieLevel2=SR1Equipment_RemDroid2
+		SerieLevel3=SR1Equipment_RemDroid3
+		SerieLevel4=SR1Equipment_RemDroid4
+		SerieLevel5=SR1Equipment_RemDroid5
+		SerieLevel6=SR1Equipment_RemDroid6
+		SerieLevel7=SR1Equipment_RemDroid7
+		SerieLevel8=SR1Equipment_RemDroid8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDroid8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия акриновых дроидов, изготовленных на основе образцов времен клисанской войны. По сравнению с предшественниками, они работают куда более эффективно благодаря улучшенным элементам конструкции и переработанному искусственному интеллекту, позволяющим этим дроидам стоять наравне с современными моделями.</color>
+    }
+    SR1Equipment_RemHook1 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR0
+        Name=Ремастивный захват I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook2 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR1
+        Name=Ремастивный захват II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook3 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR2
+        Name=Ремастивный захват III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook4 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR3
+        Name=Ремастивный захват IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook5 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR4
+        Name=Ремастивный захват V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook6 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR5
+        Name=Ремастивный захват VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook7 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR6
+        Name=Ремастивный захват VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemHook8 ^{
+        Cost=100
+        Equipments=Hook
+        KindGraph=SR7
+        Name=Ремастивный захват VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный захват I-VIII
+		SerieLevel1=SR1Equipment_RemHook1
+		SerieLevel2=SR1Equipment_RemHook2
+		SerieLevel3=SR1Equipment_RemHook3
+		SerieLevel4=SR1Equipment_RemHook4
+		SerieLevel5=SR1Equipment_RemHook5
+		SerieLevel6=SR1Equipment_RemHook6
+		SerieLevel7=SR1Equipment_RemHook7
+		SerieLevel8=SR1Equipment_RemHook8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemHook8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Три сотни лет назад захваты были куда более примитивными, чем сейчас: они даже не позволяли притягивать объекты во время движения корабля. Однако ученым удалось вдохнуть в старые модели новую жизнь, изменив большую часть деталей и тем самым значительно повысив мощность раритетных образцов. Внедрение акриновых технологий открыло еще больше возможностей для использования этой техники.</color>
+    }
+    SR1Equipment_RemDefGenerator1 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR0
+        Name=Ремастивный генератор защиты I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator2 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR1
+        Name=Ремастивный генератор защиты II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator3 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR2
+        Name=Ремастивный генератор защиты III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator4 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR3
+        Name=Ремастивный генератор защиты IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator5 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR4
+        Name=Ремастивный генератор защиты V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator6 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR5
+        Name=Ремастивный генератор защиты VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator7 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR6
+        Name=Ремастивный генератор защиты VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemDefGenerator8 ^{
+        Cost=100
+        Equipments=DefGenerator
+        KindGraph=SR7
+        Name=Ремастивный генератор защиты VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный генератор защиты I-VIII
+		SerieLevel1=SR1Equipment_RemDefGenerator1
+		SerieLevel2=SR1Equipment_RemDefGenerator2
+		SerieLevel3=SR1Equipment_RemDefGenerator3
+		SerieLevel4=SR1Equipment_RemDefGenerator4
+		SerieLevel5=SR1Equipment_RemDefGenerator5
+		SerieLevel6=SR1Equipment_RemDefGenerator6
+		SerieLevel7=SR1Equipment_RemDefGenerator7
+		SerieLevel8=SR1Equipment_RemDefGenerator8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemDefGenerator8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Серия генераторов защитного поля, функционирующих по использовавшимся три века назад принципам. Эксперименты с акринированием привели к возвращению устаревшим технологиям конкурентоспособности, вдохнув в раритетные образцы новую жизнь. Весьма ценится гуманоидами, питающими страсть к истории.</color>
+    }
+    SR1Equipment_RemScaner1 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR0
+        Name=Ремастивный сканер I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner2 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR1
+        Name=Ремастивный сканер II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner3 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR2
+        Name=Ремастивный сканер III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner4 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR3
+        Name=Ремастивный сканер IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner5 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR4
+        Name=Ремастивный сканер V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner6 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR5
+        Name=Ремастивный сканер VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner7 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR6
+        Name=Ремастивный сканер VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemScaner8 ^{
+        Cost=100
+        Equipments=Scaner
+        KindGraph=SR7
+        Name=Ремастивный сканер VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный сканер I-VIII
+		SerieLevel1=SR1Equipment_RemScaner1
+		SerieLevel2=SR1Equipment_RemScaner2
+		SerieLevel3=SR1Equipment_RemScaner3
+		SerieLevel4=SR1Equipment_RemScaner4
+		SerieLevel5=SR1Equipment_RemScaner5
+		SerieLevel6=SR1Equipment_RemScaner6
+		SerieLevel7=SR1Equipment_RemScaner7
+		SerieLevel8=SR1Equipment_RemScaner8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemScaner8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Запущенные в серийное производство аналоги сканеров времен агрессии клисанов. Запросив в музее Гаалдока образцы, инженеры скопировали их конструкцию для экспериментов с наложением акрина. После нескольких лет упорных исследований ученым удалось модифицировать сканерные устройства таким образом, что их мощность повысилась многократно, позволяя этим моделям сканировать космические судна не хуже современных образцов. Экономичный аналог, подойдет малообеспеченным пилотам или ценителям стиля ретро.</color>
+    }
+    SR1Equipment_RemRadar1 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR0
+        Name=Ремастивный радар I
+		AcrynLevel=1
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar1
+        OnPlanets=1
+        Owner=Any
+        Priority=0
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar2 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR1
+        Name=Ремастивный радар II
+		AcrynLevel=2
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar2
+        OnPlanets=1
+        Owner=Any
+        Priority=20
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar3 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR2
+        Name=Ремастивный радар III
+		AcrynLevel=3
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar3
+        OnPlanets=1
+        Owner=Any
+        Priority=30
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar4 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR3
+        Name=Ремастивный радар IV
+		AcrynLevel=4
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar4
+        OnPlanets=1
+        Owner=Any
+        Priority=40
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar5 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR4
+        Name=Ремастивный радар V
+		AcrynLevel=5
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar5
+        OnPlanets=1
+        Owner=Any
+        Priority=60
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar6 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR5
+        Name=Ремастивный радар VI
+		AcrynLevel=6
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar6
+        OnPlanets=1
+        Owner=Any
+        Priority=70
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar7 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR6
+        Name=Ремастивный радар VII
+		AcrynLevel=7
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar7
+        OnPlanets=1
+        Owner=Any
+        Priority=80
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+    SR1Equipment_RemRadar8 ^{
+        Cost=100
+        Equipments=Radar
+        KindGraph=SR7
+        Name=Ремастивный радар VIII
+		AcrynLevel=8
+		AcrynSerie=Ремастивный радар I-VIII
+		SerieLevel1=SR1Equipment_RemRadar1
+		SerieLevel2=SR1Equipment_RemRadar2
+		SerieLevel3=SR1Equipment_RemRadar3
+		SerieLevel4=SR1Equipment_RemRadar4
+		SerieLevel5=SR1Equipment_RemRadar5
+		SerieLevel6=SR1Equipment_RemRadar6
+		SerieLevel7=SR1Equipment_RemRadar7
+		SerieLevel8=SR1Equipment_RemRadar8
+		LevelsCount=8
+		CustomTag=SR1Equipment_RemRadar8
+        OnPlanets=1
+        Owner=Any
+        Priority=90
+        Special=1
+		LockedAcryn=3
+        Text=<color=248,252,248>Промышленная линейка радаров, разработанных инженерами на основе модификаций прошедших клисанскую войну образцов. Благодаря добавлению в структуру акриновых элементов, достигается высокий радиус охвата, что позволяет этим радарам занять свою нишу на рынке космических технологий.</color>
+    }
+}

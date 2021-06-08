@@ -1,0 +1,1953 @@
+Version=7
+GlobalVars ~{
+    GArtDominatorTest ~{
+        Type=Dword
+        Value=0
+    }
+}
+GlobalCode=<<<
+  GRun();
+>>>
+LocalVars ~{
+    items ~{
+        Type=Unknown
+        Value=None
+    }
+    RemainsCount ~{
+        Type=Unknown
+        Value=None
+    }
+    RemainsGTL ~{
+        Type=Unknown
+        Value=None
+    }
+    RemainsGDRP ~{
+        Type=Unknown
+        Value=None
+    }
+    RemainsPercent ~{
+        Type=Unknown
+        Value=None
+    }
+    SpeedResearch ~{
+        Type=Unknown
+        Value=None
+    }
+    SpeedIndex ~{
+        Type=Unknown
+        Value=None
+    }
+    input ~{
+        Type=String
+        Value=
+    }
+    count ~{
+        Type=Dword
+        Value=0
+    }
+    cur_art ~{
+        Type=Dword
+        Value=0
+    }
+    cur_item ~{
+        Type=Dword
+        Value=0
+    }
+    variable ~{
+        Type=Dword
+        Value=0
+    }
+    size ~{
+        Type=Dword
+        Value=0
+    }
+    cost ~{
+        Type=Dword
+        Value=0
+    }
+    StarNew ~{
+        Type=Dword
+        Value=0
+    }
+    PlanetNew ~{
+        Type=Dword
+        Value=0
+    }
+    GroupNew ~{
+        Type=Dword
+        Value=0
+    }
+    ArtDominator ~{
+        Type=Dword
+        Value=0
+    }
+    Remains ~{
+        Type=Dword
+        Value=1
+    }
+    Moduls ~{
+        Type=Dword
+        Value=2
+    }
+    Arts ~{
+        Type=Dword
+        Value=3
+    }
+}
+Constellations=0
+Stars ~{
+    StarNew ~{
+        Constellation=-1
+        NoKling=False
+        NoComeKling=False
+        StarLinks ~{
+        }
+        Planets ~{
+            PlanetNew ~{
+                Race=Maloc,Peleng,People,Fei,Gaal
+                Owner=Maloc,Peleng,People,Fei,Gaal
+                Economy=Agriculture,Industrial,Mixed
+                Government=Anarchy,Dictatorship,Monarchy,Republic,Democracy
+                Range=0..100
+                Dialog=
+            }
+        }
+        Ships ~{
+            0 ~{
+                Count=1
+                Owner=Maloc,Peleng,People,Fei,Gaal
+                Type=Ranger,Warrior,Pirate,Transport,Liner,Diplomat
+                IsPlayer=True
+                Speed=0..10000
+                Weapon=Undef
+                CargoHook=0
+                EmptySpace=0
+                Status ~{
+                    Trader=0..100
+                    Warrior=0..100
+                    Pirate=0..100
+                }
+                Strength=0.0..0.0
+                Ruins=
+            }
+        }
+    }
+}
+Places ~{
+}
+Items ~{
+}
+Groups ~{
+    GroupNew ~{
+        Planet=PlanetNew
+        State=0(StateNew)
+        Owner=Maloc,Peleng,People,Fei,Gaal
+        Type=Ranger,Warrior,Pirate,Transport,Liner,Diplomat
+        Count=1..1
+        Speed=100..10000
+        Weapon=Undef
+        CargoHook=0
+        EmptySpace=0
+        AddPlayer=True
+        Status ~{
+            Trader=0..100
+            Warrior=0..100
+            Pirate=0..100
+        }
+        SearchDist=10000
+        Dialog=
+        Strength=0.0..0.0
+        Ruins=
+    }
+}
+GroupLinks ~{
+}
+InitCode=<<<
+  items=newarray(1);
+  RemainsCount=newarray(24);//количество доступных ошметков для изучения
+  RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+  RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+  RemainsPercent=newarray(24);//процент изучения ошметка
+  SpeedResearch=newarray(24);//порог исследования
+  SpeedIndex=newarray(24);//скорость исследования;
+  for (count=0; count<=23; count=count+1) RemainsCount[count]=0;
+  RemainsGTL[0]=2;//Координатор - Remains_0
+  RemainsGTL[1]=3;//Стволовик - Remains_1
+  RemainsGTL[2]=3;//Турбийон - Remains_2
+  RemainsGTL[3]=2;//Спимер - Remains_3
+  RemainsGTL[4]=1;//Инбридон - Remains_4
+  RemainsGTL[5]=2;//Метаблок - Remains_5
+  RemainsGTL[6]=4;//Гробот - Remains_6
+  RemainsGTL[7]=4;//Энергопакет - Remains_7
+  RemainsGTL[8]=4;//Базовая конструкция - Remains_8
+  RemainsGTL[9]=3;//Стригер - Remains_9 (Блазер)
+  RemainsGTL[10]=2;//Деструктуризатор - Remains_10 (Блазер)
+  RemainsGTL[11]=1;//Аргент - Remains_11 (Блазер)
+  RemainsGTL[12]=4;//Релектор - Remains_12 (Блазер)
+  RemainsGTL[13]=3;//Рапторизатор - Remains_13 (Блазер)
+  RemainsGTL[14]=1;//Бином Т-21/4 - Remains_14 (Келлер)
+  RemainsGTL[15]=4;//Стабилитрон - Remains_15 (Келлер)
+  RemainsGTL[16]=3;//Дестабилизатор - Remains_16 (Келлер)
+  RemainsGTL[17]=2;//Спектрон - Remains_17 (Келлер)
+  RemainsGTL[18]=3;//Мимикрон - Remains_18 (Келлер)
+  RemainsGTL[19]=3;//Обогатитель - Remains_19 (Террон)
+  RemainsGTL[20]=3;//Репродуктор - Remains_20 (Террон)
+  RemainsGTL[21]=4;//Гнездотрон - Remains_21 (Террон)
+  RemainsGTL[22]=1;//Акселирин - Remains_22 (Террон)
+  RemainsGTL[23]=2;//Мичурер - Remains_23 (Террон);
+  RemainsGDRP[0]=10;//Координатор - Remains_0
+  RemainsGDRP[1]=15;//Стволовик - Remains_1
+  RemainsGDRP[2]=20;//Турбийон - Remains_2
+  RemainsGDRP[3]=25;//Спимер - Remains_3
+  RemainsGDRP[4]=5;//Инбридон - Remains_4
+  RemainsGDRP[5]=30;//Метаблок - Remains_5
+  RemainsGDRP[6]=50;//Гробот - Remains_6
+  RemainsGDRP[7]=35;//Энергопакет - Remains_7
+  RemainsGDRP[8]=40;//Базовая конструкция - Remains_8
+  RemainsGDRP[9]=40;//Стригер - Remains_9 (Блазер)
+  RemainsGDRP[10]=50;//Деструктуризатор - Remains_10 (Блазер)
+  RemainsGDRP[11]=20;//Аргент - Remains_11 (Блазер)
+  RemainsGDRP[12]=60;//Релектор - Remains_12 (Блазер)
+  RemainsGDRP[13]=30;//Рапторизатор - Remains_13 (Блазер)
+  RemainsGDRP[14]=20;//Бином Т-21/4 - Remains_14 (Келлер)
+  RemainsGDRP[15]=60;//Стабилитрон - Remains_15 (Келлер)
+  RemainsGDRP[16]=40;//Дестабилизатор - Remains_16 (Келлер)
+  RemainsGDRP[17]=30;//Спектрон - Remains_17 (Келлер)
+  RemainsGDRP[18]=50;//Мимикрон - Remains_18 (Келлер)
+  RemainsGDRP[19]=40;//Обогатитель - Remains_19 (Террон)
+  RemainsGDRP[20]=50;//Репродуктор - Remains_20 (Террон)
+  RemainsGDRP[21]=60;//Гнездотрон - Remains_21 (Террон)
+  RemainsGDRP[22]=20;//Акселирин - Remains_22 (Террон)
+  RemainsGDRP[23]=30;//Мичурер - Remains_23 (Террон);
+  for (count=0; count<=23; count=count+1) RemainsPercent[count]=0;
+  //RemainsPercent[4]=70;//Инбридон;
+  for (count=0; count<=23; count=count+1) SpeedResearch[count]=0;
+  SpeedIndex[0]=30;//Координатор - Remains_0
+  SpeedIndex[1]=35;//Стволовик - Remains_1
+  SpeedIndex[2]=30;//Турбийон - Remains_2
+  SpeedIndex[3]=35;//Спимер - Remains_3
+  SpeedIndex[4]=45;//Инбридон - Remains_4
+  SpeedIndex[5]=30;//Метаблок - Remains_5
+  SpeedIndex[6]=35;//Гробот - Remains_6
+  SpeedIndex[7]=35;//Энергопакет - Remains_7
+  SpeedIndex[8]=30;//Базовая конструкция - Remains_8
+  SpeedIndex[9]=30;//Стригер - Remains_9 (Блазер)
+  SpeedIndex[10]=35;//Деструктуризатор - Remains_10 (Блазер)
+  SpeedIndex[11]=30;//Аргент - Remains_11 (Блазер)
+  SpeedIndex[12]=35;//Релектор - Remains_12 (Блазер)
+  SpeedIndex[13]=30;//Рапторизатор - Remains_13 (Блазер)
+  SpeedIndex[14]=30;//Бином Т-21/4 - Remains_14 (Келлер)
+  SpeedIndex[15]=30;//Стабилитрон - Remains_15 (Келлер)
+  SpeedIndex[16]=35;//Дестабилизатор - Remains_16 (Келлер)
+  SpeedIndex[17]=35;//Спектрон - Remains_17 (Келлер)
+  SpeedIndex[18]=30;//Мимикрон - Remains_18 (Келлер)
+  SpeedIndex[19]=35;//Обогатитель - Remains_19 (Террон)
+  SpeedIndex[20]=30;//Репродуктор - Remains_20 (Террон)
+  SpeedIndex[21]=35;//Гнездотрон - Remains_21 (Террон)
+  SpeedIndex[22]=30;//Акселирин - Remains_22 (Террон)
+  SpeedIndex[23]=30;//Мичурер - Remains_23 (Террон);
+  if(GArtDominatorTest) {
+    for (count=0; count<=2; count=count+1){
+    	if (GalaxyDominatorResearchPercent(count)<100) GalaxyDominatorResearchPercent(count,Rnd(GalaxyDominatorResearchPercent(count),60));
+    	GalaxyDominatorResearchMaterial(count,Rnd(GalaxyDominatorResearchPercent(count),110));
+    }
+    for (count=0; count<=23; count=count+1) {
+    	RemainsCount[count]=Rnd(10,30);
+    }
+    ShipMoney(Player(),ShipMoney(Player())+100000);
+  }
+>>>
+TurnCode=<<<
+  //Проверка наличия НБ или их полного уничтожения
+  size=1;
+  for(count=GalaxyEvents()-1; count>=0; count=count-1){
+  	if (GalaxyEventDate(count)<CurTurn()) break;//если стали смотреть события других дней
+  	if (GalaxyEventType(count)=='RuinsDestroyed'){
+  		if (GalaxyEventData(count,0)==t_SB){//уничтожена 'SB'
+  			for (variable=0; variable<GalaxyStars(); variable=variable+1){
+  				if (StarOwner(GalaxyStar(variable))!=0) continue;//система не принадлежит коалиции
+  				if (StarRuins(GalaxyStar(variable),'SB')>0){
+  					size=1;
+  					exit;//не все научные базы уничтожены
+  				}
+  				else size=0;
+  			}
+  		}
+  	}
+  }
+  if (size==0){
+  	input=CT('FormRuins.SB.Scn2.EtherSBDestroyed');
+  	Ether(0,'',input);
+  	for (count=0; count<=2; count=count+1){
+  		if (GalaxyDominatorResearchPercent(count)<100) GalaxyDominatorResearchPercent(count,Rnd(GalaxyDominatorResearchPercent(count)/2,GalaxyDominatorResearchPercent(count)));
+  	}
+  	for (count=0; count<=23; count=count+1){
+  		if (RemainsCount[count]>0) RemainsCount[count]=0;//сданные ошметки
+  		if (RemainsPercent[count]<100) RemainsPercent[count]=Rnd(RemainsPercent[count]/3,RemainsPercent[count]);//процент изучения ошметка
+  		SpeedResearch[count]=0;//порог исследования
+  	}
+  }
+  //Изучение ошметка
+  variable=70+30*(GalaxyDiffLevels(2)/50-1);//ученые
+  size=(GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3;//загруженность ученых
+  cost=0;//к-во изучений (не более 5)
+  for (cur_item=0; cur_item<=5-min(size,200)/100; cur_item=cur_item+1){
+  	for (count=0; count<=23; count=count+1){
+  		if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+  		if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+  		if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+  		if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+  		size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+  		size=min(5+100/max(size,1),100);
+  		if (RemainsPercent[count]<100/(max(RemainsGTL[count]-GalaxyTechLevel()+1,1)) && RemainsPercent[count]<size && RemainsCount[count]>0){
+  			SpeedResearch[count]=SpeedResearch[count]+SpeedIndex[count]+1000/GalaxyDiffLevels(7);//скорость исследования ошметов
+  			if (Rnd(0,100)<=10) RemainsCount[count]=RemainsCount[count]-1;//уменьшение материала  variable/30 от умности ученых еще должно зависеть (32 у дом исслед)
+  			if (SpeedResearch[count]>=variable){
+  				RemainsPercent[count]=RemainsPercent[count]+1;
+  				if (RemainsPercent[count]==100){
+  					input='<color=255,240,100>'+CT('UselessItems.Remains_'+count+'.Name')+'</color> ';
+  					Ether(0,'',input+CT('FormRuins.SB.Scn2.EtherExamine'));//звук выводить?
+  					RemainsCount[count]=-1;
+  					SpeedResearch[count]=0;
+  					continue;
+  				}
+  				SpeedResearch[count]=SpeedResearch[count]-variable;
+  			}
+  			cost=cost+1;
+  			if (cost>=5-min((GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3,200)/100) break;
+  		}
+  	}
+  	if (cost>=5-min((GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3,200)/100) break;
+  }
+>>>
+DialogBegin=<<<
+  if(GetShipRuins(Player())>0) {
+    if(!PlayerBridge()) {
+      if(ShipType(GetShipRuins(Player()))=='SB') {
+        if (BlockExist('FormRuins.SB.Scn2'))AddDialogInject('ArtDominator','',CT('FormRuins.SB.Scn2.PlayerAsk'),1);//--Получение нового артефакта--}
+        else SFT('Warning Mod_ArtDominator: Не найден раздел ...SB.Scn2, выдача артов невозможна');
+      }
+      if(GArtDominatorTest) {
+        if(ShipType(GetShipRuins(Player()))=='RC') {
+          if (BlockExist('FormRuins.SB.Scn2'))AddDialogInject('ArtDominator','',CT('FormRuins.SB.Scn2.PlayerAsk'),1);//--Получение нового артефакта--}
+          else SFT('Warning Mod_ArtDominator: Не найден раздел ...SB.Scn2, выдача артов невозможна');
+        }
+      }
+    }
+  }
+>>>
+States ~{
+    StateNew ~{
+        Type=None
+        Attack ~{
+        }
+        TakeItem=
+        TakeAll=False
+        OutMsg=
+        InMsg=
+        Ether=
+        Code=
+    }
+}
+Dialogs ~{
+    ArtDominator ~{
+        Code=<<<
+            //заполняем массив ошметками
+            ArrayClear(items);
+            for (count=0; count<ShipItems(Player()); count=count+1){
+            	cur_item=ShipItems(Player(),count);
+            	if (ItemType(cur_item)==t_UselessItem && ItemOwner(cur_item)==Kling){
+            		for (variable=0; variable<=23; variable=variable+1){
+            			if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0 && RemainsPercent[variable]<100){
+            				if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+            					ArrayAdd(items,cur_item);//Remains_variable
+            					break;
+            				}
+            			}
+            		}
+            	}
+            }
+            variable=0;//SFT('ArrayDim(RemainsCount) = '+ArrayDim(RemainsCount));
+            //проверяем, изучен ли какой-нибудь ошметок
+            for (count=1; count<=ArrayDim(RemainsCount); count=count+1){
+            	if (RemainsCount[count-1]==-1){
+            		variable=count;
+            		RemainsCount[count-1]=0;
+            		break;
+            	}
+            }
+            //if (!(ArrayDim(items)-1)) SFT('Условие выполнилось !(ArrayDim(items)-1)');
+            //if (!variable) SFT('Условие выполнилось !variable');
+            if (variable>0){//ошметок изучен
+            	input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+(variable-1)+'.Name');//исследуемый модуль:
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Description');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBArtPrize');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Cost');
+            	cost=cost*Rnd(2500,3500)*(900+GalaxyDiffLevels(1))/10000;
+            	size=CT('UselessItems.Remains_'+(variable-1)+'.Size');//SFT('Базовый вес ошметка = '+size);
+            	count=CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Size+');//базовая прибавка веса арта //SFT('Базовая прибавка веса арта = '+count);
+            	size=size+count;//SFT('Сумма весов = '+size); //SFT('Вес от сложности = '+size*(70+3*GalaxyDiffLevels(4)/10)/100);
+            	size=Rnd(3,7)+size*(70+3*GalaxyDiffLevels(4)/10)/100;//в зависимости от сложности оборудования //SFT('Итоговый вес с рандомом = '+size);
+            	cur_art=CreateCustomArt('ArtDominator-'+(variable-1),size,cost,Kling);
+            	if (variable-1>=0 && variable-1<=8) ItemSubrace(cur_art,Rnd(0,2));
+            	if (variable-1>8 && variable-1<=13) ItemSubrace(cur_art,0);
+            	if (variable-1>13 && variable-1<=18) ItemSubrace(cur_art,1);
+            	if (variable-1>18 && variable-1<=23) ItemSubrace(cur_art,2);
+            	AddItemToShip(Player(),cur_art);//добавляем арт
+            	Sound('Sound.Buy');
+            	cost=0;
+            	size=1;
+            	cur_item=CT('Artefacts.CustomArtefacts.'+EquipmentImageName(cur_art)+'.Equipments');
+            	for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            		size=size*2;
+            		if ((cur_item & size/2)==size/2){
+            			if (count==t_FuelTanks){
+            				if (max(GalaxyTechLevel()-2,1)==1) cost=cost+150;//220
+            				if (max(GalaxyTechLevel()-2,1)==2) cost=cost+500;//900
+            				if (max(GalaxyTechLevel()-2,1)==3) cost=cost+1250;//2020
+            				if (max(GalaxyTechLevel()-2,1)==4) cost=cost+2000;//3600
+            				if (max(GalaxyTechLevel()-2,1)==5) cost=cost+3000;//5620
+            				if (max(GalaxyTechLevel()-2,1)>=6) cost=cost+5000;//8100
+            			}
+            			else{
+            				if (max(GalaxyTechLevel()-2,1)==1) cost=cost+500;//1000
+            				if (max(GalaxyTechLevel()-2,1)==2) cost=cost+2000;//4000
+            				if (max(GalaxyTechLevel()-2,1)==3) cost=cost+4500;//9000
+            				if (max(GalaxyTechLevel()-2,1)==4) cost=cost+8000;//16000
+            				if (max(GalaxyTechLevel()-2,1)==5) cost=cost+12500;//25000
+            				if (max(GalaxyTechLevel()-2,1)>=6) cost=cost+18000;//36000
+            			}
+            		}
+            	}
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBFullSet')+' <color=255,240,100>'+cost+'</color> cr.'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBPrize')+' '+CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Name');//Награда:
+            	input=input+' (<color=255,240,100>'+ItemSize(cur_art)+'</color> ';
+            	input=input+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_art));
+            }
+            else {//нет изученных ошметков variable=0
+            	input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBAnswer');//стандартное приветствие
+            	input=input+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+CT('FormRuins.SB.Scn2.SBSectionInfo');//Перечень исследуемых модулей доминаторов:
+            	for (count=0; count<=23; count=count+1){
+            		variable=variable+1;//для вывода пронумерованного списка
+            		input=input+variable+') '+CT('UselessItems.Remains_'+count+'.Name')+' ';//вывод названия ошметка
+            		if (RemainsPercent[count]==0 && SpeedResearch[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_3')+'<clrEnd>';//(не изучен)
+            		else {
+            			if (RemainsPercent[count]==100) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_1')+'<clrEnd>';//(изучен)
+            			else {
+            				input=input+'<color=255,240,100>('+RemainsPercent[count]+'</color>%, ';//вывод процента изучения
+            				if (RemainsCount[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) требуется материал для исследований.
+            				else {
+            					if (RemainsPercent[count]>=100/max(RemainsGTL[count]-GalaxyTechLevel()+1,1)){
+            						input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимо новое технологическое оборудование для изучения.
+            					}
+            					else {
+            						if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            						if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            						if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            						if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            						size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            						size=min(5+100/max(size,1),100);
+            						if (RemainsPercent[count]>=size) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимы оперативные данные из отделов антидоминаторских исследований.
+            						else input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_2')+'<clrEnd>';//(изучается)
+            					}
+            				}
+            			}
+            		}
+            		input=input+CT("Script.Mod_EvoArtDominator.0");
+            	}
+            	input=input+CT('FormRuins.SB.Scn2.SBSectionInfoEnd');
+            	variable=0;
+            }
+            DChange(0);
+            exit;
+        >>>
+    }
+    Remains ~{
+        Code=<<<
+            cur_item=GAnswerData;
+            for (variable=0; variable<=23; variable=variable+1){
+            	if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0){
+            		RemainsCount[variable]=RemainsCount[variable]+1;//сдали ошметок
+            		GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            		FreeItem(cur_item);
+            		ArrayDelete(items,ArrayFind(items,cur_item));
+            		break;
+            	}
+            }
+            Sound('Sound.Buy');
+            //создание массива ошметков для сдачи
+            ArrayClear(items);
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBSeeItems');//...вот список того, что нам не помешало бы иметь:
+            for (count=0; count<ShipItems(Player()); count=count+1){
+            	cur_item=ShipItems(Player(),count);
+            	if (ItemType(cur_item)==t_UselessItem && ItemOwner(cur_item)==Kling){
+            		for (variable=0; variable<=23; variable=variable+1){
+            			if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0 && RemainsPercent[variable]<100){
+            				if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+            					ArrayAdd(items,cur_item);//Remains_variable
+            					break;
+            				}
+            			}
+            		}
+            	}
+            }
+            variable=0;
+            for (count=1; count<ArrayDim(items); count=count+1){
+            	cur_item=items[count];
+            	variable=variable+1;//для вывода пронумерованного списка
+            	input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' (<color=255,240,100>'+ItemSize(cur_item)+'</color> '+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_item))+CT("Script.Mod_EvoArtDominator.0");
+            //может тут серию и вес выводить?
+            }
+            if ((ArrayDim(items)-1)) input=input+CT('FormRuins.SB.Scn2.SBSeeItemsHaveItems');//Какие из этих предметов вы намерены безвозмездно передать нашему отделу?
+            else input=input+CT('FormRuins.SB.Scn2.SBSeeItemsNotHaveItems');//Извините, но мы не нашли никаких доминаторских модулей, которые можно было бы исследовать.;
+            DChange(1);
+            exit;
+        >>>
+    }
+    Moduls ~{
+        Code=<<<
+            variable=GAnswerData;
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+            if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+            else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+            else {
+            	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+            	else {
+            		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+            		else {
+            			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+            				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+            			}
+            			else {
+            				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            				size=min(5+100/max(size,1),100);
+            				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+            				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+            			}
+            		}
+            	}
+            }
+            //возможность изготовления опытного образца
+            //доделать, это еще не все
+            //
+            //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+            //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+            //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+            //RemainsPercent=newarray(24);//процент изучения ошметка
+            //SpeedResearch=newarray(24);//порог исследования
+            //SpeedIndex=newarray(24);//скорость исследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            if (GArtDominatorTest){
+            	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+            }
+            //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+            cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+            cost=cost*100;
+            if (RemainsPercent[variable]==100){
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+            }
+            DChange(3);
+            exit;
+        >>>
+    }
+    Arts ~{
+        Code=<<<
+            if(ShipMoney(Player())>=cost) {
+              cur_item=GAnswerData;
+              cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+              cost=cost*Rnd(2500,3500)*(900+GalaxyDiffLevels(1))/10000;
+              size=ItemSize(cur_item);//CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка//SFT('вес ошметка = '+size);
+              count=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size+');//базовая прибавка веса арта//SFT('прибавка веса арта = '+count);
+              size=size+count;//SFT('вес сумма = '+size);
+              size=Rnd(0,2)+size*(70+3*GalaxyDiffLevels(4)/10)/100;
+              //SFT('вес итого по формуле (0..2)+(вес.ошмет+вес.прибавл)*(70+3*слож.обор/10)/100 = '+size);
+              //count=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size');//базовый размер арта
+              //size=CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка
+              //size=ItemSize(cur_item);
+              //Итоговый размер ошметка получается как Size+(0..Size)*(0.5..3).
+              //Здесь Size - то, что в датнике прописано, 0..Size - рандом, 0.5..3 - в зависимости от ГТУ (0.5 на ГТУ 4 и ниже, 3 на ГТУ 8).
+              //if (size<count-1) size=count+(GalaxyDiffLevels(4)/40)-1;//зависит от сложности оборудования
+              //else size=size+Rnd(2,6)+(GalaxyDiffLevels(4)/40);
+              cur_art=CreateCustomArt('ArtDominator-'+variable,size,cost,Kling);
+              ItemSubrace(cur_art,ItemSubrace(cur_item));//раса должна быть как у ошметка
+              AddItemToShip(Player(),cur_art);//добавляем арт
+              GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));//изымаем ошмет
+              FreeItem(cur_item);//удаляем ошмет
+              Sound('Sound.Buy');
+              ShipMoney(Player(),ShipMoney(Player())-cost);
+              input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+              if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+              else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+              input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+              if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+              input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+              input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+              if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+              else {
+              	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+              	else {
+              		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+              		else {
+              			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+              				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+              			}
+              			else {
+              				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+              				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+              				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+              				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+              				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+              				size=min(5+100/max(size,1),100);
+              				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+              				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+              			}
+              		}
+              	}
+              }
+              //возможность изготовления опытного образца
+              //доделать, это еще не все
+              //
+              //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+              //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+              //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+              //RemainsPercent=newarray(24);//процент изучения ошметка
+              //SpeedResearch=newarray(24);//порог исследования
+              //SpeedIndex=newarray(24);//скорость исследования
+              //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+              if (GArtDominatorTest){
+              	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+              	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+              }
+              //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+              cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+              cost=cost*100;
+              if (RemainsPercent[variable]==100){
+              	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+              	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+              }
+              DChange(3);
+              exit;
+            }
+            if(ShipMoney(Player())<cost) {
+              input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBNeedCostArt');
+              //<Player> у вас не достаточно денежных средств для изготовления опытного образца.;
+              DChange(4);
+              exit;
+            }
+        >>>
+    }
+}
+DialogMsgs ~{
+    0 ~{
+        Name=
+        Code=<<<
+            DText(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));    if(GArtDominatorTest) {
+              input='</color>'+'Оборудка блазера и арты (тест)';
+              DAdd(1);
+              input='</color>'+'Оборудка келлера и арты (тест)';
+              DAdd(2);
+              input='</color>'+'Оборудка террона и арты (тест)';
+              DAdd(3);
+              input='</color>'+'Транк (тест)';
+              DAdd(4);
+              input='</color>'+'Корабль для битья (тест)';
+              DAdd(5);
+            }
+            if((ArrayDim(items)-1)>0 && !variable) {
+              input='</color>'+CT('FormRuins.SB.Scn2.PlayerPassArts');//Сдать модули на исследование;
+              DAdd(0);
+            }
+            if(!variable) {
+              input='</color>'+CT('FormRuins.SB.Scn2.PlayerToArts');//Преобразовать модули;
+              DAdd(9);
+            }
+            if(variable) {
+              input='</color>'+CT('FormRuins.SB.Scn2.FullSetSubrace'+ItemSubrace(cur_art));//Покупаю полный комплект оборудки;
+              if(ShipMoney(Player())>=cost) {
+                DAdd(20);
+              }
+              if(ShipMoney(Player())<cost) {
+                DAdd(21);
+              }
+            }
+            input='</color>'+CT('FormRuins.SB.Scn2.PlayerNo');//Покинуть отдел исследования;
+            DAdd(19);
+
+        >>>
+    }
+    1 ~{
+        Name=
+        Code=<<<
+            DText(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));    if(!(ArrayDim(items)-1)) {
+              DAdd(6);
+            }
+            if((ArrayDim(items)-1)>1) {
+              input='</color>'+CT('FormRuins.SB.Scn2.PlayerSaleAllArts');//Сдать все модули;
+              DAdd(7);
+            }
+            //сдача ошметков на исследование поштучно
+            for (count=1; count<ArrayDim(items); count=count+1){
+            	cur_item=items[count];
+            	for (variable=0; variable<=23; variable=variable+1){
+            		if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0){
+            			if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+                        	input='</color>'+DeleteTags(ItemFullName(cur_item))+' (<color=255,240,100>'+ItemSize(cur_item)+'</color> '+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_item));
+            				InjectAnswer('Remains',input,cur_item);
+            			}
+            		}
+                }
+            }
+            if((ArrayDim(items)-1)) {
+              input='</color>'+CT('FormRuins.SB.Scn2.PlayerSaleNoArts');//не могу дать модули;
+              DAdd(8);
+            }
+
+        >>>
+    }
+    2 ~{
+        Name=
+        Code=<<<
+            DText(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));    if(GArtDominatorTest) {
+              input='</color>'+'1 день изучения (тест)';
+              DAdd(11);
+            }
+            for (count=0; count<=23; count=count+1){
+            	InjectAnswer('Moduls','</color>'+CT('UselessItems.Remains_'+count+'.Name'),count);
+            }
+            input='</color>'+CT('FormRuins.SB.Scn2.PlayerSectionBack');//назад;
+            DAdd(10);
+
+        >>>
+    }
+    3 ~{
+        Name=
+        Code=<<<
+            DText(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));    if(GArtDominatorTest) {
+              input='</color>'+'1 день изучения (тест)';
+              DAdd(15);
+              input='</color>'+'+1 к ошмткам для изучения (тест)';
+              DAdd(14);
+              input='</color>'+'получить ошмет (тест)';
+              DAdd(13);
+              input='</color>'+'получить арт (тест)';
+              DAdd(12);
+            }
+            if(RemainsPercent[variable]==100) {
+              ArrayClear(items);
+              for (count=0; count<ShipItems(Player()); count=count+1){
+              	cur_item=ShipItems(Player(),count);
+              	if (ItemType(cur_item)==t_UselessItem && ItemOwner(cur_item)==Kling){
+              		if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0) ArrayAdd(items,cur_item);//Remains_variable
+              	}
+              }
+              for (count=1; count<ArrayDim(items); count=count+1){
+              	cur_item=items[count];
+              	input=' (<color=255,240,100>'+ItemSize(cur_item)+'</color> ';
+              	input=input+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_item));
+              //AddDialogBlock();
+              //if (ShipMoney(Player())<100000) AddDialogBlock('Координатор',1);
+              	InjectAnswer('Arts','</color>'+CT('UselessItems.Remains_'+variable+'.Name')+input,cur_item);
+              }
+            }
+            input='</color>'+CT('FormRuins.SB.Scn2.PlayerSectionBack');//назад;
+            DAdd(16);
+            input='</color>'+CT('FormRuins.SB.Scn2.PlayerNo');//Покинуть отдел исследования;
+            DAdd(17);
+
+        >>>
+    }
+    4 ~{
+        Name=
+        Code=<<<
+            DText(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));    input='</color>'+CT('FormRuins.SB.Scn2.PlayerBuyArtNo');//Хорошо, приду в другой раз;
+            DAdd(18);
+
+        >>>
+    }
+}
+DialogAnswers ~{
+    0 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            //создание массива ошметков для сдачи
+            ArrayClear(items);
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBSeeItems');//...вот список того, что нам не помешало бы иметь:
+            for (count=0; count<ShipItems(Player()); count=count+1){
+            	cur_item=ShipItems(Player(),count);
+            	if (ItemType(cur_item)==t_UselessItem && ItemOwner(cur_item)==Kling){
+            		for (variable=0; variable<=23; variable=variable+1){
+            			if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0 && RemainsPercent[variable]<100){
+            				if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+            					ArrayAdd(items,cur_item);//Remains_variable
+            					break;
+            				}
+            			}
+            		}
+            	}
+            }
+            variable=0;
+            for (count=1; count<ArrayDim(items); count=count+1){
+            	cur_item=items[count];
+            	variable=variable+1;//для вывода пронумерованного списка
+            	input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' (<color=255,240,100>'+ItemSize(cur_item)+'</color> '+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_item))+CT("Script.Mod_EvoArtDominator.0");
+            //может тут серию и вес выводить?
+            }
+            if ((ArrayDim(items)-1)) input=input+CT('FormRuins.SB.Scn2.SBSeeItemsHaveItems');//Какие из этих предметов вы намерены безвозмездно передать нашему отделу?
+            else input=input+CT('FormRuins.SB.Scn2.SBSeeItemsNotHaveItems');//Извините, но мы не нашли никаких доминаторских модулей, которые можно было бы исследовать.;
+            DChange(1);
+            exit;
+        >>>
+    }
+    1 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            ItemSize(ShipItems(Player(),0),2000);
+            HullHP(Player(),ItemSize(ShipItems(Player(),0)));
+            ShipSpecialBonuses(Player(),bonSlotWeapon,2);
+            ShipSpecialBonuses(Player(),bonSlotArt,1);
+            //удаляем установленную оборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	cur_item=ShipEqInSlot(Player(),count);
+            	ItemIsInUse(cur_item,Player(),0);
+            	GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            	FreeItem(cur_item);
+            }
+            //устанавливаем домикооборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	if (count==t_FuelTanks){
+            		cur_item=CreateEquipment(t_FuelTanks,18,5,Kling);
+            		ContainerFuel(cur_item,ContainerFuel(cur_item)/2);
+            	}
+            	if (count==t_Engine){
+            		cur_item=CreateEquipment(t_Engine,18,6,Kling);
+            		EnginePower(cur_item,0);//двигатель перегрет
+            	}
+            	if (count==t_Radar)        cur_item=CreateEquipment(t_Radar,14,5,Kling);
+            	if (count==t_Scaner)       cur_item=CreateEquipment(t_Scaner,14,4,Kling);
+            	if (count==t_RepairRobot)  cur_item=CreateEquipment(t_RepairRobot,18,3,Kling);
+            	if (count==t_CargoHook)    cur_item=CreateEquipment(t_CargoHook,18,2,Kling);
+            	if (count==t_DefGenerator) cur_item=CreateEquipment(t_DefGenerator,18,1,Kling);
+            	ItemSubrace(cur_item,0);//Блазер
+            	ItemDurability(cur_item,Rnd(40,90));
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            //устанавливаем домикопушки
+            for (count=1; count<=4; count=count+1){
+            	if (count==1){
+            		cur_item=ShipEqInSlot(Player(),t_Weapon1,count);
+            		ItemIsInUse(cur_item,Player(),0);
+            		GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            		FreeItem(cur_item);
+            	}
+            	if (count==1 || count==2) cur_item=CreateEquipment(t_Weapon8,14,1,Kling);
+            	if (count==3 || count==4){
+            		cur_item=CreateEquipment(t_Weapon4,9,1,Kling);
+            		MissilesToRearm(cur_item,2-WeaponAmmunition(cur_item));
+            	}
+            	ItemSubrace(cur_item,0);//Блазер
+            	ItemDurability(cur_item,Rnd(40,90));
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            cur_item=CreateNodes(200,0);
+            SFT('Добавили оборудку блазера');
+            AddItemToShip(Player(),cur_item);//добавляем 200 шт. нодов;
+            //устанавливаем арты
+            for (count=0; count<=13; count=count+1){
+            	if (count<=8) variable=count;
+            	else variable=count;
+            	size=CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size+');//базовая прибавка веса арта
+            	size=size+cost;
+            	size=Rnd(0,2)+size*(70+3*GalaxyDiffLevels(4)/10)/100;
+            //	SFT('вес итого по формуле (0..2)+(вес.ошмет+вес.прибавл)*(70+3*слож.обор/10)/100 = '+size);
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+            	cost=cost*Rnd(1500,2500)*(900+GalaxyDiffLevels(1))/10000;
+            	cur_art=CreateCustomArt('ArtDominator-'+variable,size,cost,Kling);
+            	ItemSubrace(cur_art,0);//Блазер
+            	ItemDurability(cur_art,2);//износ = 2%
+            	AddItemToShip(Player(),cur_art);
+            	if (count>=9 && count<13) ItemIsInUse(cur_art,Player(),1);
+            	if (variable==6){//Гробот
+            		CustomArtData(cur_art,1,35);//материя арта (от 0 до 100) устновлен на 50 ед.
+            		CustomArtData(cur_art,2,7*GalaxyDiffLevels()-4);//уровень арта (опыт) установлен на 5й
+            	}
+            	if (variable==7){//Энергопакет
+            		CustomArtData(cur_art,1,990);//энергия арта (от 0 до 1000) устновлен на 50%
+            		CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            	if (variable==8){//Базовая конструкция
+            		CustomArtData(cur_art,1,990);//энергия арта (от 0 до 1000) устновлен на 80%
+            		//CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            }
+            Sound('Sound.Buy');
+            //------Арт для сравнения-----
+            cur_art=CreateArt(t_ArtefactScaner,Kling);
+            ItemDurability(cur_art,2);//износ = 2%
+            AddItemToShip(Player(),cur_art);
+            ItemIsInUse(cur_art,Player(),1);
+            SFT('Добавили арты блазера');
+        >>>
+    }
+    2 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            ItemSize(ShipItems(Player(),0),2000);
+            HullHP(Player(),ItemSize(ShipItems(Player(),0)));
+            ShipSpecialBonuses(Player(),bonSlotWeapon,2);
+            ShipSpecialBonuses(Player(),bonSlotArt,1);
+            //удаляем установленную оборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	cur_item=ShipEqInSlot(Player(),count);
+            	ItemIsInUse(cur_item,Player(),0);
+            	GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            	FreeItem(cur_item);
+            }
+            //устанавливаем домикооборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	if (count==t_FuelTanks){
+            		cur_item=CreateEquipment(t_FuelTanks,18,6,Kling);
+            	}
+            	if (count==t_Engine){
+            		cur_item=CreateEquipment(t_Engine,18,7,Kling);
+            	}
+            	if (count==t_Radar)        cur_item=CreateEquipment(t_Radar,14,1,Kling);
+            	if (count==t_Scaner)       cur_item=CreateEquipment(t_Scaner,14,1,Kling);
+            	if (count==t_RepairRobot)  cur_item=CreateEquipment(t_RepairRobot,18,1,Kling);
+            	if (count==t_CargoHook)    cur_item=CreateEquipment(t_CargoHook,18,1,Kling);
+            	if (count==t_DefGenerator) cur_item=CreateEquipment(t_DefGenerator,18,1,Kling);
+            	ItemSubrace(cur_item,1);//Келлер
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            //устанавливаем пушки
+            for (count=1; count<=4; count=count+1){
+            	if (count==1){
+            		cur_item=ShipEqInSlot(Player(),t_Weapon1,count);
+            		ItemIsInUse(cur_item,Player(),0);
+            		GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            		FreeItem(cur_item);
+            	}
+            	cur_item=CreateEquipment(t_Weapon8,14,1,Kling);
+            	ItemSubrace(cur_item,1);//Келлер
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            cur_item=CreateNodes(200,1);
+            AddItemToShip(Player(),cur_item);//добавляем 200 шт. нодов
+            SFT('Добавили оборудку келлера');
+            //устанавливаем арты
+            for (count=0; count<=13; count=count+1){
+            	if (count<=8) variable=count;
+            	else variable=count+5;
+            	size=CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка //cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size+');//базовая прибавка веса арта //cost=cost*Rnd(1500,2500)*(900+GalaxyDiffLevels(1))/10000;
+            	size=size+cost;//count=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size');//базовый размер арта
+            	size=Rnd(0,2)+size*(70+3*GalaxyDiffLevels(4)/10)/100;//size=ItemSize(cur_item);
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+            	cost=cost*Rnd(1500,2500)*(900+GalaxyDiffLevels(1))/10000;
+            	cur_art=CreateCustomArt('ArtDominator-'+variable,size,cost,Kling);
+            	ItemSubrace(cur_art,1);//Келлер
+            	ItemDurability(cur_art,2);//износ = 2%
+            	AddItemToShip(Player(),cur_art);
+            	if (variable==6){//Гробот
+            		CustomArtData(cur_art,1,35);//материя арта (от 0 до 100) устновлен на 50 ед.
+            		CustomArtData(cur_art,2,7*GalaxyDiffLevels()-4);//уровень арта (опыт) установлен на 5й
+            	}
+            	if (variable==7){//Энергопакет
+            		CustomArtData(cur_art,1,500);//энергия арта (от 0 до 1000) устновлен на 50%
+            		CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            	if (variable==8){//Базовая конструкция
+            		CustomArtData(cur_art,1,800);//энергия арта (от 0 до 1000) устновлен на 80%
+            		//CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            	if (variable==14) ItemIsInUse(cur_art,Player(),1);//Бином
+            	if (variable==16) ItemIsInUse(cur_art,Player(),1);//Дестабилизатор
+            	if (variable==17) ItemIsInUse(cur_art,Player(),1);//Спектрон
+            	if (variable==18) ItemIsInUse(cur_art,Player(),1);//Мимикрон
+            SFT(EquipmentImageName(cur_art));
+            }
+            Sound('Sound.Buy');
+            //------Арт для сравнения-----
+            cur_art=CreateArt(t_ArtefactHull,Kling);
+            ItemDurability(cur_art,2);//износ = 2%
+            AddItemToShip(Player(),cur_art);
+            cur_art=CreateArt(t_ArtefactDef,Kling);
+            ItemDurability(cur_art,2);//износ = 2%
+            AddItemToShip(Player(),cur_art);
+            SFT('Добавили арты келлера');
+        >>>
+    }
+    3 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            ItemSize(ShipItems(Player(),0),2000);
+            HullHP(Player(),ItemSize(ShipItems(Player(),0))*5/10);
+            ShipSpecialBonuses(Player(),bonSlotWeapon,2);
+            ShipSpecialBonuses(Player(),bonSlotArt,1);
+            //удаляем установленную оборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	cur_item=ShipEqInSlot(Player(),count);
+            	ItemIsInUse(cur_item,Player(),0);
+            	GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            	FreeItem(cur_item);
+            }
+            //устанавливаем домикооборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	if (count==t_FuelTanks)    cur_item=CreateEquipment(t_FuelTanks,18,1,Kling);
+            	if (count==t_Engine)       cur_item=CreateEquipment(t_Engine,18,5,Kling);
+            	if (count==t_Radar)        cur_item=CreateEquipment(t_Radar,14,1,Kling);
+            	if (count==t_Scaner)       cur_item=CreateEquipment(t_Scaner,14,1,Kling);
+            	if (count==t_RepairRobot)  cur_item=CreateEquipment(t_RepairRobot,18,1,Kling);
+            	if (count==t_CargoHook)    cur_item=CreateEquipment(t_CargoHook,18,1,Kling);
+            	if (count==t_DefGenerator) cur_item=CreateEquipment(t_DefGenerator,18,1,Kling);
+            	ItemSubrace(cur_item,2);//Террон
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            //устанавливаем пушки
+            for (count=1; count<=5; count=count+1){
+            	if (count==1){
+            		cur_item=ShipEqInSlot(Player(),t_Weapon1,count);
+            		ItemIsInUse(cur_item,Player(),0);
+            		GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            		FreeItem(cur_item);
+            	}
+            	cur_item=CreateEquipment(t_Weapon7,20,1,Kling);
+            	ItemSubrace(cur_item,2);//Террон
+            	AddItemToShip(Player(),cur_item);
+            	ItemIsInUse(cur_item,Player(),1);
+            }
+            cur_item=CreateNodes(200,1);
+            AddItemToShip(Player(),cur_item);//добавляем 200 шт. нодов
+            SFT('Добавили оборудку террона');
+            //устанавливаем арты
+            for (count=0; count<=13; count=count+1){
+            	if (count<=8) variable=count;
+            	else variable=count+10;
+            	size=CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size+');//базовая прибавка веса арта
+            	size=size+cost;
+            	size=Rnd(0,2)+size*(70+3*GalaxyDiffLevels(4)/10)/100;//SFT('вес итого по формуле (0..2)+(вес.ошмет+вес.прибавл)*(70+3*слож.обор/10)/100 = '+size);
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+            	cost=cost*Rnd(1500,2500)*(900+GalaxyDiffLevels(1))/10000;
+            	cur_art=CreateCustomArt('ArtDominator-'+variable,size,cost,Kling);
+            	ItemSubrace(cur_art,2);//Террон
+            	ItemDurability(cur_art,2);//износ = 2%
+            	AddItemToShip(Player(),cur_art);
+            	if (variable==19) ItemIsInUse(cur_art,Player(),1);
+            	if (variable==20) ItemIsInUse(cur_art,Player(),1);
+            	if (variable==22) ItemIsInUse(cur_art,Player(),1);
+            	if (variable==23) ItemIsInUse(cur_art,Player(),1);
+            	if (variable==6){//Гробот
+            		CustomArtData(cur_art,1,35);//материя арта (от 0 до 100) устновлен на 50 ед.
+            		CustomArtData(cur_art,2,7*GalaxyDiffLevels()-4);//уровень арта (опыт) установлен на 5й
+            	}
+            	if (variable==7){//Энергопакет
+            		CustomArtData(cur_art,1,800);//энергия арта (от 0 до 1000) устновлен на 80%
+            		CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            	if (variable==8){//Базовая конструкция
+            		CustomArtData(cur_art,1,800);//энергия арта (от 0 до 1000) устновлен на 80%
+            		//CustomArtData(cur_art,2,GalaxyDiffLevels()/2);//уровень арта (опыт) установлен на 3й
+            	}
+            	if (variable==19){//Обогатитель
+            		CustomArtData(cur_art,1,800);//энергия арта (от 0 до 1000) устновлен на 80%
+            	}
+            }
+            Sound('Sound.Buy');
+            //------Арт для сравнения-----
+            cur_art=CreateArt(t_ArtefactAntigrav,Kling);
+            ItemSubrace(cur_art,2);//Террон
+            ItemDurability(cur_art,2);//износ = 2%
+            AddItemToShip(Player(),cur_art);
+            SFT('Добавили арты террона');
+        >>>
+    }
+    4 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            cur_art=CreateArt(t_ArtefactTranclucator,People);
+            AddItemToShip(Player(),cur_art);
+            variable=ArtTranclucatorToShip(cur_art);
+            ShipSpecialBonuses(variable,bonSlotRadar,1);
+            ShipSpecialBonuses(variable,bonSlotScaner,1);
+            ItemSize(ShipItems(variable,0),2000);
+            //удаляем установленную оборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){//count<t_Radar+7;
+            	cur_item=ShipEqInSlot(variable,count);
+            	ItemIsInUse(cur_item,variable,0);
+            	GetItemFromShip(variable,FindItemInShip(variable,cur_item));
+            	FreeItem(cur_item);
+            }
+            //устанавливаем домикооборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	if (count==t_FuelTanks)    cur_item=CreateEquipment(t_FuelTanks,18,1,Kling);
+            	if (count==t_Engine)       cur_item=CreateEquipment(t_Engine,18,5,Kling);
+            	if (count==t_Radar)        cur_item=CreateEquipment(t_Radar,14,1,Kling);
+            	if (count==t_Scaner)       cur_item=CreateEquipment(t_Scaner,14,1,Kling);
+            	if (count==t_RepairRobot)  cur_item=CreateEquipment(t_RepairRobot,18,1,Kling);
+            	if (count==t_CargoHook)    cur_item=CreateEquipment(t_CargoHook,18,1,Kling);
+            	if (count==t_DefGenerator) cur_item=CreateEquipment(t_DefGenerator,18,1,Kling);
+            	ItemSubrace(cur_item,0);
+            	AddItemToShip(variable,cur_item);
+            	ItemIsInUse(cur_item,variable,1);
+            }
+            //устанавливаем пушки
+            for (count=1; count<=5; count=count+1){
+            	if (count==1){
+            		cur_item=ShipEqInSlot(variable,t_Weapon1,count);
+            		ItemIsInUse(cur_item,variable,0);
+            		GetItemFromShip(variable,FindItemInShip(variable,cur_item));
+            		FreeItem(cur_item);
+            	}
+            	if (count>=2) cur_item=CreateEquipment(t_Weapon8,14,1,Kling);
+            	ItemSubrace(cur_item,0);
+            	AddItemToShip(variable,cur_item);
+            	ItemIsInUse(cur_item,variable,1);
+            }
+        >>>
+    }
+    5 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            variable=BuyRanger(StarPlanets(ShipStar(Player()),1));//BuyRanger - спавнит рейнджера (1-планета для спавна, опционально 2-множитель капитала);
+            TransferShip(variable,StarRuins(ShipStar(Player()),'RC'));//SFT('Корабль рейнджера',variable);
+            ShipSpecialBonuses(variable,bonSlotRadar,1);
+            ShipSpecialBonuses(variable,bonSlotScaner,1);
+            ShipSpecialBonuses(variable,bonSlotWeapon,2);
+            ItemSize(ShipItems(variable,0),2000);
+            HullHP(variable,ItemSize(ShipItems(variable,0)));
+            //удаляем установленную оборудку
+            for (count=t_FuelTanks; count<t_Radar+7; count=count+1){
+            	cur_item=ShipEqInSlot(variable,count);
+            	ItemIsInUse(cur_item,variable,0);
+            	GetItemFromShip(variable,FindItemInShip(variable,cur_item));
+            	FreeItem(cur_item);
+            }
+            //устанавливаем домикооборудку
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	if (count==t_FuelTanks)    cur_item=CreateEquipment(t_FuelTanks,18,1,Kling);
+            	if (count==t_Engine)       cur_item=CreateEquipment(t_Engine,18,5,Kling);
+            	if (count==t_Radar)        cur_item=CreateEquipment(t_Radar,14,1,Kling);
+            	if (count==t_Scaner)       cur_item=CreateEquipment(t_Scaner,14,1,Kling);
+            	if (count==t_RepairRobot)  cur_item=CreateEquipment(t_RepairRobot,18,1,Kling);
+            	if (count==t_CargoHook)    cur_item=CreateEquipment(t_CargoHook,18,1,Kling);
+            	if (count==t_DefGenerator) cur_item=CreateEquipment(t_DefGenerator,18,1,Kling);
+            	ItemSubrace(cur_item,0);
+            	AddItemToShip(variable,cur_item);
+            	ItemIsInUse(cur_item,variable,1);
+            }
+            //устанавливаем пушки
+            for (count=1; count<=5; count=count+1){
+            	if (count==1){
+            		cur_item=ShipEqInSlot(variable,t_Weapon1,count);
+            		ItemIsInUse(cur_item,variable,0);
+            		GetItemFromShip(variable,FindItemInShip(variable,cur_item));
+            		FreeItem(cur_item);
+            		cur_item=CreateEquipment(t_Weapon16,25,4,Kling);//добавляем эсодафер
+            	}
+            	if (count==2) cur_item=CreateEquipment(t_Weapon16,25,4,Kling);
+            	if (count>=3) cur_item=CreateEquipment(t_Weapon16,25,4,Kling);
+            	ItemSubrace(cur_item,0);
+            	AddItemToShip(variable,cur_item);
+            	ItemIsInUse(cur_item,variable,1);
+            }
+            RelationToRanger(variable,Player(),0);
+            ShipOrder(variable,0);
+        >>>
+    }
+    6 ~{
+        Command=exit
+        Answer=DAnswer('exit');
+        Code=
+    }
+    7 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            for (count=1; count<ArrayDim(items); count=count+1){
+            	cur_item=items[count];
+            	for (variable=0; variable<=23; variable=variable+1){
+            		if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0){
+            			if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+            				RemainsCount[variable]=RemainsCount[variable]+1;
+            				GetItemFromShip(Player(),FindItemInShip(Player(),cur_item));
+            				FreeItem(cur_item);
+                        }
+            			break;
+            		}
+            	}
+            }
+            ArrayClear(items);
+            Sound('Sound.Buy');
+        >>>
+    }
+    8 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=
+    }
+    9 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBSectionInfo');//Мы ведем работу над изучением следующих модулей доминаторов:
+            if (GArtDominatorTest){
+            	input=input+'Общий процент изучения доминаторов '+GalaxyDominatorResearchPercent()+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения блазера '+GalaxyDominatorResearchPercent(0)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения келлера '+GalaxyDominatorResearchPercent(1)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения террона '+GalaxyDominatorResearchPercent(2)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Текущий ГТУ '+GalaxyTechLevel()+CT("Script.Mod_EvoArtDominator.0");
+            }
+            variable=0;
+            for (count=0; count<=23; count=count+1){
+            	variable=variable+1;//для вывода пронумерованного списка
+            	input=input+variable+') '+CT('UselessItems.Remains_'+count+'.Name')+' ';//вывод названия ошметка
+            	if (RemainsPercent[count]==0 && SpeedResearch[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_3')+'<clrEnd>';//(не изучен)
+            	else {
+            		if (RemainsPercent[count]==100) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_1')+'<clrEnd>';//(изучен)
+            		else {
+            			input=input+'<color=255,240,100>('+RemainsPercent[count]+'</color>%, ';//вывод процента изучения
+            			if (RemainsCount[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) требуется материал для исследований.
+            			else {
+            				if (RemainsPercent[count]>=100/max(RemainsGTL[count]-GalaxyTechLevel()+1,1)){
+            					input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимо новое технологическое оборудование для изучения.
+            				}
+            				else {
+            					if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            					if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            					if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            					if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            					size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            					size=min(5+100/max(size,1),100);
+            					if (RemainsPercent[count]>=size) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимы оперативные данные из отделов антидоминаторских исследований.
+            					else input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_2')+'<clrEnd>';//(изучается)
+            				}
+            			}
+            		}
+            	}
+            	if (GArtDominatorTest){
+            		input=input+' кол:<color=255,240,100>'+RemainsCount[count]+'</color>';
+            //		input=input+' %:<color=255,240,100>'+RemainsPercent[count]+'</color>';
+            		input=input+' ГТУ:<color=255,240,100>'+RemainsGTL[count]+'</color>';
+            		input=input+' GDRP:<color=255,240,100>'+RemainsGDRP[count]+'</color>';
+            	}
+            	input=input+CT("Script.Mod_EvoArtDominator.0");
+            }
+            //input=input+CT('FormRuins.SB.Scn2.SBSectionInfoEnd');
+            DChange(2);
+            exit;
+        >>>
+    }
+    10 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            //заполняем массив ошметками
+            ArrayClear(items);
+            for (count=0; count<ShipItems(Player()); count=count+1){
+            	cur_item=ShipItems(Player(),count);
+            	if (ItemType(cur_item)==t_UselessItem && ItemOwner(cur_item)==Kling){
+            		for (variable=0; variable<=23; variable=variable+1){
+            			if (findsubstr(Name(cur_item),CT('UselessItems.Remains_'+variable+'.Name'))==0 && RemainsPercent[variable]<100){
+            				if (RemainsCount[variable]<2+(70+30*(GalaxyDiffLevels(2)/50-1))*(100-RemainsPercent[variable])/(10*(SpeedIndex[variable]+1000/GalaxyDiffLevels(7)))){
+            					ArrayAdd(items,cur_item);//Remains_variable
+            					break;
+            				}
+            			}
+            		}
+            	}
+            }
+            variable=0;//SFT('ArrayDim(RemainsCount) = '+ArrayDim(RemainsCount));
+            //проверяем, изучен ли какой-нибудь ошметок
+            for (count=1; count<=ArrayDim(RemainsCount); count=count+1){
+            	if (RemainsCount[count-1]==-1){
+            		variable=count;
+            		RemainsCount[count-1]=0;
+            		break;
+            	}
+            }
+            //if (!(ArrayDim(items)-1)) SFT('Условие выполнилось !(ArrayDim(items)-1)');
+            //if (!variable) SFT('Условие выполнилось !variable');
+            if (variable>0){//ошметок изучен
+            	input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+(variable-1)+'.Name');//исследуемый модуль:
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Description');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBArtPrize');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Cost');
+            	cost=cost*Rnd(2500,3500)*(900+GalaxyDiffLevels(1))/10000;
+            	size=CT('UselessItems.Remains_'+(variable-1)+'.Size');//SFT('Базовый вес ошметка = '+size);
+            	count=CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Size+');//базовая прибавка веса арта //SFT('Базовая прибавка веса арта = '+count);
+            	size=size+count;//SFT('Сумма весов = '+size); //SFT('Вес от сложности = '+size*(70+3*GalaxyDiffLevels(4)/10)/100);
+            	size=Rnd(3,7)+size*(70+3*GalaxyDiffLevels(4)/10)/100;//в зависимости от сложности оборудования //SFT('Итоговый вес с рандомом = '+size);
+            	cur_art=CreateCustomArt('ArtDominator-'+(variable-1),size,cost,Kling);
+            	if (variable-1>=0 && variable-1<=8) ItemSubrace(cur_art,Rnd(0,2));
+            	if (variable-1>8 && variable-1<=13) ItemSubrace(cur_art,0);
+            	if (variable-1>13 && variable-1<=18) ItemSubrace(cur_art,1);
+            	if (variable-1>18 && variable-1<=23) ItemSubrace(cur_art,2);
+            	AddItemToShip(Player(),cur_art);//добавляем арт
+            	Sound('Sound.Buy');
+            	cost=0;
+            	size=1;
+            	cur_item=CT('Artefacts.CustomArtefacts.'+EquipmentImageName(cur_art)+'.Equipments');
+            	for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            		size=size*2;
+            		if ((cur_item & size/2)==size/2){
+            			if (count==t_FuelTanks){
+            				if (max(GalaxyTechLevel()-2,1)==1) cost=cost+150;//220
+            				if (max(GalaxyTechLevel()-2,1)==2) cost=cost+500;//900
+            				if (max(GalaxyTechLevel()-2,1)==3) cost=cost+1250;//2020
+            				if (max(GalaxyTechLevel()-2,1)==4) cost=cost+2000;//3600
+            				if (max(GalaxyTechLevel()-2,1)==5) cost=cost+3000;//5620
+            				if (max(GalaxyTechLevel()-2,1)>=6) cost=cost+5000;//8100
+            			}
+            			else{
+            				if (max(GalaxyTechLevel()-2,1)==1) cost=cost+500;//1000
+            				if (max(GalaxyTechLevel()-2,1)==2) cost=cost+2000;//4000
+            				if (max(GalaxyTechLevel()-2,1)==3) cost=cost+4500;//9000
+            				if (max(GalaxyTechLevel()-2,1)==4) cost=cost+8000;//16000
+            				if (max(GalaxyTechLevel()-2,1)==5) cost=cost+12500;//25000
+            				if (max(GalaxyTechLevel()-2,1)>=6) cost=cost+18000;//36000
+            			}
+            		}
+            	}
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBFullSet')+' <color=255,240,100>'+cost+'</color> cr.'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+CT('FormRuins.SB.Scn2.SBModulInfo');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBPrize')+' '+CT('Artefacts.CustomArtefacts.ArtDominator-'+(variable-1)+'.Name');//Награда:
+            	input=input+' (<color=255,240,100>'+ItemSize(cur_art)+'</color> ';
+            	input=input+CT('FormRuins.SB.Scn2.ItemSubrace'+ItemSubrace(cur_art));
+            }
+            else {//нет изученных ошметков variable=0
+            	input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBAnswer');//стандартное приветствие
+            	input=input+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+CT('FormRuins.SB.Scn2.SBSectionInfo');//Перечень исследуемых модулей доминаторов:
+            	for (count=0; count<=23; count=count+1){
+            		variable=variable+1;//для вывода пронумерованного списка
+            		input=input+variable+') '+CT('UselessItems.Remains_'+count+'.Name')+' ';//вывод названия ошметка
+            		if (RemainsPercent[count]==0 && SpeedResearch[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_3')+'<clrEnd>';//(не изучен)
+            		else {
+            			if (RemainsPercent[count]==100) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_1')+'<clrEnd>';//(изучен)
+            			else {
+            				input=input+'<color=255,240,100>('+RemainsPercent[count]+'</color>%, ';//вывод процента изучения
+            				if (RemainsCount[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) требуется материал для исследований.
+            				else {
+            					if (RemainsPercent[count]>=100/max(RemainsGTL[count]-GalaxyTechLevel()+1,1)){
+            						input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимо новое технологическое оборудование для изучения.
+            					}
+            					else {
+            						if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            						if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            						if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            						if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            						size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            						size=min(5+100/max(size,1),100);
+            						if (RemainsPercent[count]>=size) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимы оперативные данные из отделов антидоминаторских исследований.
+            						else input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_2')+'<clrEnd>';//(изучается)
+            					}
+            				}
+            			}
+            		}
+            		input=input+CT("Script.Mod_EvoArtDominator.0");
+            	}
+            	input=input+CT('FormRuins.SB.Scn2.SBSectionInfoEnd');
+            	variable=0;
+            }
+            DChange(0);
+            exit;
+        >>>
+    }
+    11 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            //или скорость иследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            variable=70+30*(GalaxyDiffLevels(2)/50-1);//ученые
+            size=(GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3;//загруженность ученых
+            cost=0;
+            SFT('GalaxyDominatorResearchMaterial(0) = '+GalaxyDominatorResearchMaterial(0));
+            SFT('GalaxyDominatorResearchMaterial(1) = '+GalaxyDominatorResearchMaterial(1));
+            SFT('GalaxyDominatorResearchMaterial(2) = '+GalaxyDominatorResearchMaterial(2));
+            SFT('min(size,200)/100 = '+min(size,200)/100);
+            SFT('Ученые исследуют (д.б. не более 5 раз)');
+            SFT('Кол-во раз = '+(5-min(size,200)/100));
+            for (cur_item=0; cur_item<=5-min(size,200)/100; cur_item=cur_item+1){
+            	for (count=0; count<=23; count=count+1){
+            		if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            		if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            		if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            		if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            		size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            		size=min(5+100/max(size,1),100);
+            		if (RemainsPercent[count]<100/(max(RemainsGTL[count]-GalaxyTechLevel()+1,1)) && RemainsPercent[count]<size && RemainsCount[count]>0){
+            			SpeedResearch[count]=SpeedResearch[count]+SpeedIndex[count]+500/GalaxyDiffLevels(7);//скорость исследования ошметов
+            			if (Rnd(0,100)<=10) RemainsCount[count]=RemainsCount[count]-1;//variable/30 от умности ученых еще должно зависеть (32 у дом исслед)
+            			if (SpeedResearch[count]>=variable){
+            				RemainsPercent[count]=RemainsPercent[count]+1;
+            				if (RemainsPercent[count]==100){
+            					input='<color=255,240,100>'+CT('UselessItems.Remains_'+count+'.Name')+'</color> ';
+            					Ether(0,'',input+CT('FormRuins.SB.Scn2.EtherExamine'));//звук выводить?
+            					RemainsCount[count]=-1;
+            					SpeedResearch[count]=0;
+            					continue;
+            				}
+            				SpeedResearch[count]=SpeedResearch[count]-variable;
+            			}
+            			SFT('cur_item = '+cur_item+' count = '+count);
+            			cost=cost+1;
+            			SFT('cost = '+cost);
+            			if (cost>=5-min((GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3,200)/100) break;
+            		}
+            	}
+            	if (cost>=5-min((GalaxyDominatorResearchMaterial(0)+GalaxyDominatorResearchMaterial(1)+GalaxyDominatorResearchMaterial(2)+50)/3,200)/100) break;
+            }
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBSectionInfo');//Мы ведем работу над изучением следующих модулей доминаторов:
+            if (GArtDominatorTest){
+            	input=input+'Общий процент изучения доминаторов '+GalaxyDominatorResearchPercent()+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения блазера '+GalaxyDominatorResearchPercent(0)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения келлера '+GalaxyDominatorResearchPercent(1)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения террона '+GalaxyDominatorResearchPercent(2)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Текущий ГТУ '+GalaxyTechLevel()+CT("Script.Mod_EvoArtDominator.0");
+            }
+            variable=0;
+            for (count=0; count<=23; count=count+1){
+            	variable=variable+1;//для вывода пронумерованного списка
+            	input=input+variable+') '+CT('UselessItems.Remains_'+count+'.Name')+' ';//вывод названия ошметка
+            	if (RemainsPercent[count]==0 && SpeedResearch[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_3')+'<clrEnd>';//(не изучен)
+            	else {
+            		if (RemainsPercent[count]==100) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_1')+'<clrEnd>';//(изучен)
+            		else {
+            			input=input+'<color=255,240,100>('+RemainsPercent[count]+'</color>%, ';//вывод процента изучения
+            			if (RemainsCount[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) требуется материал для исследований.
+            			else {
+            				if (RemainsPercent[count]>=100/max(RemainsGTL[count]-GalaxyTechLevel()+1,1)){
+            					input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимо новое технологическое оборудование для изучения.
+            				}
+            				else {
+            					if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            					if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            					if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            					if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            					size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            					size=min(5+100/max(size,1),100);
+            					if (RemainsPercent[count]>=size) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимы оперативные данные из отделов антидоминаторских исследований.
+            					else input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_2')+'<clrEnd>';//(изучается)
+            				}
+            			}
+            		}
+            	}
+            	if (GArtDominatorTest){
+            		input=input+' кол:<color=255,240,100>'+RemainsCount[count]+'</color>';
+            //		input=input+' %:<color=255,240,100>'+RemainsPercent[count]+'</color>';
+            		input=input+' ГТУ:<color=255,240,100>'+RemainsGTL[count]+'</color>';
+            		input=input+' GDRP:<color=255,240,100>'+RemainsGDRP[count]+'</color>';
+            	}
+            	input=input+CT("Script.Mod_EvoArtDominator.0");
+            }
+            //input=input+CT('FormRuins.SB.Scn2.SBSectionInfoEnd');
+            DChange(2);
+            exit;
+        >>>
+    }
+    12 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            size=CT('UselessItems.Remains_'+variable+'.Size');//тут должен быть вес ошметка
+            //SFT('вес ошметка = '+size);
+            cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Size+');//базовая прибавка веса арта
+            //SFT('прибавка веса арта = '+cost);
+            size=size+cost;
+            //SFT('вес сумма = '+size);
+            size=Rnd(0,2)+size*(70+3*GalaxyDiffLevels(4)/10)/100;
+            //SFT('вес итого по формуле (0..2)+(вес.ошмет+вес.прибавл)*(70+3*слож.обор/10)/100 = '+size);
+            cost=CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.Cost');
+            cost=cost*Rnd(2500,3500)*(900+GalaxyDiffLevels(1))/10000;
+            cur_art=CreateCustomArt('ArtDominator-'+variable,size,cost,Kling);
+            if (variable>=0 && variable<=8) ItemSubrace(cur_art,Rnd(0,2));
+            if (variable>8 && variable<=13) ItemSubrace(cur_art,0);
+            if (variable>13 && variable<=18) ItemSubrace(cur_art,1);
+            if (variable>18 && variable<=23) ItemSubrace(cur_art,2);
+            AddItemToShip(Player(),cur_art);
+            ItemDurability(cur_art,99);
+            Sound('Sound.Buy');
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+            if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+            else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+            else {
+            	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+            	else {
+            		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+            		else {
+            			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+            				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+            			}
+            			else {
+            				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            				size=min(5+100/max(size,1),100);
+            				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+            				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+            			}
+            		}
+            	}
+            }
+            //возможность изготовления опытного образца
+            //доделать, это еще не все
+            //
+            //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+            //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+            //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+            //RemainsPercent=newarray(24);//процент изучения ошметка
+            //SpeedResearch=newarray(24);//порог исследования
+            //SpeedIndex=newarray(24);//скорость исследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            if (GArtDominatorTest){
+            	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+            }
+            //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+            cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+            cost=cost*100;
+            if (RemainsPercent[variable]==100){
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+            }
+            DChange(3);
+            exit;
+        >>>
+    }
+    13 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            cur_item=CreateQuestItem('Remains_'+variable);
+            ItemOwner(cur_item,Kling);
+            if (variable>=0 && variable<=8) ItemSubrace(cur_item,Rnd(0,2));
+            if (variable>8 && variable<=13) ItemSubrace(cur_item,0);
+            if (variable>13 && variable<=18) ItemSubrace(cur_item,1);
+            if (variable>18 && variable<=23) ItemSubrace(cur_item,2);
+            AddItemToShip(Player(),cur_item);
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+            if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+            else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+            else {
+            	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+            	else {
+            		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+            		else {
+            			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+            				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+            			}
+            			else {
+            				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            				size=min(5+100/max(size,1),100);
+            				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+            				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+            			}
+            		}
+            	}
+            }
+            //возможность изготовления опытного образца
+            //доделать, это еще не все
+            //
+            //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+            //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+            //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+            //RemainsPercent=newarray(24);//процент изучения ошметка
+            //SpeedResearch=newarray(24);//порог исследования
+            //SpeedIndex=newarray(24);//скорость исследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            if (GArtDominatorTest){
+            	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+            }
+            //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+            cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+            cost=cost*100;
+            if (RemainsPercent[variable]==100){
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+            }
+            DChange(3);
+            exit;
+        >>>
+    }
+    14 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            RemainsCount[variable]=RemainsCount[variable]+1;
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+            if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+            else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+            else {
+            	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+            	else {
+            		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+            		else {
+            			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+            				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+            			}
+            			else {
+            				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            				size=min(5+100/max(size,1),100);
+            				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+            				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+            			}
+            		}
+            	}
+            }
+            //возможность изготовления опытного образца
+            //доделать, это еще не все
+            //
+            //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+            //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+            //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+            //RemainsPercent=newarray(24);//процент изучения ошметка
+            //SpeedResearch=newarray(24);//порог исследования
+            //SpeedIndex=newarray(24);//скорость исследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            if (GArtDominatorTest){
+            	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+            }
+            //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+            cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+            cost=cost*100;
+            if (RemainsPercent[variable]==100){
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+            }
+            DChange(3);
+            exit;
+        >>>
+    }
+    15 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            count=70+30*(GalaxyDiffLevels(2)/50-1);//ученые
+            if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            size=min(5+100/max(size,1),100);
+            if (RemainsPercent[variable]<100/(max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)) && RemainsPercent[variable]<size && RemainsCount[variable]>0){
+            	SpeedResearch[variable]=SpeedResearch[variable]+SpeedIndex[variable]+500/GalaxyDiffLevels(7);//скорость исследования ошметов
+            	if (Rnd(0,100)<=10) RemainsCount[variable]=RemainsCount[variable]-1;//уменьшение материала
+            	if (SpeedResearch[variable]>=count){
+            		RemainsPercent[variable]=RemainsPercent[variable]+1;
+            		if (RemainsPercent[variable]==100){
+            			input='<color=255,240,100>'+CT('UselessItems.Remains_'+variable+'.Name')+'</color> ';
+            			Ether(0,'',input+CT('FormRuins.SB.Scn2.EtherExamine'));//звук выводить?
+            			RemainsCount[variable]=-1;
+            			SpeedResearch[variable]=0;
+            		}
+            		SpeedResearch[variable]=SpeedResearch[variable]-count;
+            	}
+            }
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBModulInfo0')+' '+CT('UselessItems.Remains_'+variable+'.Name');//исследуемый модуль:
+            if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('Artefacts.CustomArtefacts.ArtDominator-'+variable+'.DescriptionLow');
+            else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('UselessItems.Remains_'+variable+'.Text');//описание модуля
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]<100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo1')+' <color=255,240,100>'+RemainsCount[variable]+'</color> '+CT('FormRuins.SB.Scn2.SBModulInfo1_');//Колличество материала:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo2')+' <color=255,240,100>'+RemainsPercent[variable]+'</color>%';//Процент исследования:
+            input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulInfo');//(черта)
+            if (RemainsPercent[variable]==0 && SpeedResearch[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulNo');//К исследованиям не приступали.
+            else {
+            	if (RemainsPercent[variable]==100) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulEnd');//Исследования успешно завершены.
+            	else {
+            		if (RemainsCount[variable]==0) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulMaterial');//Исследования приостановлены, требуется материал для исследований.
+            		else {
+            			if (RemainsPercent[variable]>=100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1)){
+            				input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGTL');//Исследования приостановлены, необходимо новое технологическое оборудование для изучения.
+            			}
+            			else {
+            				if (variable>=0 && variable<=8) size=GalaxyDominatorResearchPercent();
+            				if (variable>8 && variable<=13) size=GalaxyDominatorResearchPercent(0);
+            				if (variable>13 && variable<=18) size=GalaxyDominatorResearchPercent(1);
+            				if (variable>18 && variable<=23) size=GalaxyDominatorResearchPercent(2);
+            				size=int((1.0*RemainsGDRP[variable])/max(size,1)+0.9999);
+            				size=min(5+100/max(size,1),100);
+            				if (RemainsPercent[variable]>=size) input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulGDRP');//Исследования приостановлены, необходимы оперативные данные из отделов антидоминаторских исследований.
+            				else input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBModulOk');//Исследования ведутся.
+            			}
+            		}
+            	}
+            }
+            //возможность изготовления опытного образца
+            //доделать, это еще не все
+            //
+            //RemainsCount=newarray(24);//количество доступных ошметков для изучения
+            //RemainsGTL=newarray(24);//с какого ГТУ НБ сможет изучить ошмет
+            //RemainsGDRP=newarray(24);//требуемый уровень исследования доминаторов
+            //RemainsPercent=newarray(24);//процент изучения ошметка
+            //SpeedResearch=newarray(24);//порог исследования
+            //SpeedIndex=newarray(24);//скорость исследования
+            //дни исслед-я=variable*(100-RemainsPercent[count])/(SpeedIndex[count]+500/GalaxyDiffLevels(7));
+            if (GArtDominatorTest){
+            	if (variable>=0 && variable<=8) input=input+CT("Script.Mod_EvoArtDominator.0")+'Общий процент изучения доминаторов <color=255,240,100>'+GalaxyDominatorResearchPercent()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>8 && variable<=13) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения блазера <color=255,240,100>'+GalaxyDominatorResearchPercent(0)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>13 && variable<=18) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения келлера <color=255,240,100>'+GalaxyDominatorResearchPercent(1)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	if (variable>18 && variable<=23) input=input+CT("Script.Mod_EvoArtDominator.0")+'Процент изучения террона <color=255,240,100>'+GalaxyDominatorResearchPercent(2)+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP ошмет: <color=255,240,100>'+RemainsGDRP[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'GDRP порог: <color=255,240,100>'+size+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ текущ: <color=255,240,100>'+GalaxyTechLevel()+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ ошмет: <color=255,240,100>'+RemainsGTL[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ГТУ порог: <color=255,240,100>'+(100/max(RemainsGTL[variable]-GalaxyTechLevel()+1,1))+'</color>%'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'порог исследования: <color=255,240,100>'+SpeedResearch[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'скорость исследования: <color=255,240,100>'+SpeedIndex[variable]+'</color>'+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'ученые: <color=255,240,100>'+(70+30*(GalaxyDiffLevels(2)/50-1))+'</color>';
+            }
+            //input=input+variable+') '+DeleteTags(ItemFullName(cur_item))+' за <clr>'+ItemCost(cur_item)+'<clrEnd> cr.'+"<br>";
+            cost=(0.8*GalaxyMoney(2,ShipOwner(GetShipRuins(Player())))+1000)/100;//стоимость преобразования ошметка в арт
+            cost=cost*100;
+            if (RemainsPercent[variable]==100){
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBRemainsToArt');
+            	input=input+CT("Script.Mod_EvoArtDominator.0")+CT('FormRuins.SB.Scn2.SBNeedCost')+' <clr>'+cost+'<clrEnd> cr.';
+            }
+            DChange(3);
+            exit;
+        >>>
+    }
+    16 ~{
+        Command=
+        Answer=DAnswer(Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            input='<clrEnd>'+CT('FormRuins.SB.Scn2.SBSectionInfo');//Мы ведем работу над изучением следующих модулей доминаторов:
+            if (GArtDominatorTest){
+            	input=input+'Общий процент изучения доминаторов '+GalaxyDominatorResearchPercent()+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения блазера '+GalaxyDominatorResearchPercent(0)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения келлера '+GalaxyDominatorResearchPercent(1)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Процент изучения террона '+GalaxyDominatorResearchPercent(2)+CT("Script.Mod_EvoArtDominator.0");
+            	input=input+'Текущий ГТУ '+GalaxyTechLevel()+CT("Script.Mod_EvoArtDominator.0");
+            }
+            variable=0;
+            for (count=0; count<=23; count=count+1){
+            	variable=variable+1;//для вывода пронумерованного списка
+            	input=input+variable+') '+CT('UselessItems.Remains_'+count+'.Name')+' ';//вывод названия ошметка
+            	if (RemainsPercent[count]==0 && SpeedResearch[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_3')+'<clrEnd>';//(не изучен)
+            	else {
+            		if (RemainsPercent[count]==100) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_1')+'<clrEnd>';//(изучен)
+            		else {
+            			input=input+'<color=255,240,100>('+RemainsPercent[count]+'</color>%, ';//вывод процента изучения
+            			if (RemainsCount[count]==0) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) требуется материал для исследований.
+            			else {
+            				if (RemainsPercent[count]>=100/max(RemainsGTL[count]-GalaxyTechLevel()+1,1)){
+            					input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимо новое технологическое оборудование для изучения.
+            				}
+            				else {
+            					if (count>=0 && count<=8) size=GalaxyDominatorResearchPercent();
+            					if (count>8 && count<=13) size=GalaxyDominatorResearchPercent(0);
+            					if (count>13 && count<=18) size=GalaxyDominatorResearchPercent(1);
+            					if (count>18 && count<=23) size=GalaxyDominatorResearchPercent(2);
+            					size=int((1.0*RemainsGDRP[count])/max(size,1)+0.9999);
+            					size=min(5+100/max(size,1),100);
+            					if (RemainsPercent[count]>=size) input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_4')+'<clrEnd>';//(приостановлено) необходимы оперативные данные из отделов антидоминаторских исследований.
+            					else input=input+'<clr>'+CT('FormRuins.SB.Scn2.Status_2')+'<clrEnd>';//(изучается)
+            				}
+            			}
+            		}
+            	}
+            	if (GArtDominatorTest){
+            		input=input+' кол:<color=255,240,100>'+RemainsCount[count]+'</color>';
+            //		input=input+' %:<color=255,240,100>'+RemainsPercent[count]+'</color>';
+            		input=input+' ГТУ:<color=255,240,100>'+RemainsGTL[count]+'</color>';
+            		input=input+' GDRP:<color=255,240,100>'+RemainsGDRP[count]+'</color>';
+            	}
+            	input=input+CT("Script.Mod_EvoArtDominator.0");
+            }
+            //input=input+CT('FormRuins.SB.Scn2.SBSectionInfoEnd');
+            DChange(2);
+            exit;
+        >>>
+    }
+    17 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=
+    }
+    18 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=
+    }
+    19 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=
+    }
+    20 ~{
+        Command=restart
+        Answer=DAnswer('restart~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=<<<
+            size=1;
+            variable=CT('Artefacts.CustomArtefacts.'+EquipmentImageName(cur_art)+'.Equipments');
+            for (count=t_FuelTanks; count<t_FuelTanks+7; count=count+1){
+            	size=size*2;
+            	if ((variable & size/2)==size/2){
+            		if (count==t_FuelTanks){
+            			cur_item=CreateEquipment(t_FuelTanks,20,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,50*GetEquipmentStats(cur_item,0)/100,0);//Топливо*[0.50]
+            			ContainerFuel(cur_item,GetEquipmentStats(cur_item,0));//топлива больше чем емкость бака?
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_Engine){
+            			cur_item=CreateEquipment(t_Engine,18,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,80*GetEquipmentStats(cur_item,0)/100,0);//Скорость*[0.8]
+            			SetEquipmentStats(cur_item,60*GetEquipmentStats(cur_item,1)/100,1);//Прыжок*[0.6] двигатель (0-скорость, 1-дальность прыжка)
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_Radar){
+            			cur_item=CreateEquipment(t_Radar,15,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,20*GetEquipmentStats(cur_item,0)/100,0);//Радиус*[0.20]
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_Scaner){
+            			cur_item=CreateEquipment(t_Scaner,15,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,60*GetEquipmentStats(cur_item,0)/100,0);//Сканер*[0.60]
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_RepairRobot){
+            			cur_item=CreateEquipment(t_RepairRobot,20,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,70*GetEquipmentStats(cur_item,0)/100,0);//Дроид*[0.7]
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_CargoHook){
+            			cur_item=CreateEquipment(t_CargoHook,20,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,80*GetEquipmentStats(cur_item,0)/100,0);//Мощность*[0.8]
+            			SetEquipmentStats(cur_item,60*GetEquipmentStats(cur_item,1)/100,1);//Дальность*[0.6]захват (0-мощность, 1-дальность)
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		if (count==t_DefGenerator){
+            			cur_item=CreateEquipment(t_DefGenerator,20,max(GalaxyTechLevel()-2,1),Kling);
+            			SetEquipmentStats(cur_item,70*GetEquipmentStats(cur_item,0)/100,0);//Защита*[0.7]
+            			ItemCost(cur_item,ItemCost(cur_item)/2);
+            			ItemSize(cur_item,Rnd(ItemSize(cur_item)/2,ItemSize(cur_item)));
+            		}
+            		ItemSubrace(cur_item,ItemSubrace(cur_art));//Оборудование серии выданного арта
+            		ItemDurability(cur_item,Rnd(30,90));
+            		AddItemToShip(Player(),cur_item);
+            		ItemIsInUse(cur_item,Player(),1);
+            	}
+            }
+            ShipMoney(Player(),ShipMoney(Player())-cost);//извлечение денег
+            Sound('Sound.Buy');
+        >>>
+    }
+    21 ~{
+        Command=block
+        Answer=DAnswer('block~'+Format(CT("Script.Mod_EvoArtDominator.1"),"<0>",input));
+        Code=
+    }
+}

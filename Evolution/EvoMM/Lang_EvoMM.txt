@@ -34,6 +34,42 @@ MicroModuls ^{
         bonWRadius=55
         bonWSplinter=25
     }
+    EvoMM_Castironium ^{
+        Cost=120
+        Equipments=Hull
+        Name=Чугуний
+        CustomTag=EvoMM_Castironium
+        Owner=Fei,Gaal
+        Priority=1
+        Size=90
+        Text=Микромодуль первого уровня. Встраивает криптоновые конструкции в корпус, увеличивая его прочность и открывая слот форсажа. Конструкции занимают небольшое дополнительное пространство на корабле, из-за чего полезный объем корпуса уменьшается, а стоимость увеличивается. Используется только для корпусов <clr>фэян и гаальцев<clrEnd>.
+        Text=Броня корпуса: <bonHull> ед.
+        Text=Размер корпуса: <clr>-10%<clrEnd>
+        Text=Стоимость: <clr>+20%<clrEnd>
+        bonHull=9
+        bonSlotForsage=1
+    }
+    EvoMM_Cheater22 ^{
+        Equipments=Engine,WEnergy,WSplinter,WMissile
+        Name=Читер-22
+        CustomTag=EvoMM_Cheater22
+        Owner=PirateClan,NonKling
+        Priority=10
+        RacialRestriction=1
+        Text=Микромодуль первого уровня. Один из экспериментов пиратов по объединению свойств микромодулей в телепортаторе. При объединении микромодулей "Жжения" и "Двима", установка задымилась и все значения зависли на цифре 22. <clr>Пираты<clrEnd> решили не сбивать настройку и генерировать модуль с данными параметрами.
+        Text=Сила энергетического оружия: <bonWEnergy> ед.
+        Text=Сила осколочного оружия: <bonWSplinter> ед.
+        Text=Сила ракетного оружия: <bonWMissile> ед.
+        Text=Дальность стрельбы: <bonWRadius> ед.
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> ед.
+        bonJump=22
+        bonSpeed=22
+        bonWEnergy=22
+        bonWMissile=22
+        bonWRadius=22
+        bonWSplinter=22
+    }
     EvoMM_ChwangStop ^{
         Cost=125
         CustomTag=EvoMM_ChwangStop
@@ -52,6 +88,17 @@ MicroModuls ^{
         bonHookMaxSpeed=2
         bonHookMinSpeed=2
         bonHookRadius=25
+    }
+    EvoMM_Clearing ^{
+        Cost=150
+        Name=Клиринг
+        CustomTag=EvoMM_Clearing
+        Priority=5
+        Text=Микромодуль первого уровня. Наносит особый материал <clr>клирон<clrEnd>, снимающий почти все негативные эффекты с <clr>акринового<clrEnd> оборудования или корпуса.
+        Text=<clr><clrEnd>
+        Text=Акриновые штрафы: <clr>-75%<clrEnd>
+        Text=Стоимость: <clr>+50%<clrEnd>
+        bonExtraAkrinPenalty=-75
     }
     EvoMM_Creed ^{
         CustomTag=EvoMM_Creed
@@ -282,6 +329,20 @@ MicroModuls ^{
         bonWMissile=14
         bonWSplinter=14
     }
+    EvoMM_Inside ^{
+        Equipments=WMissile
+        Name=Инсайд
+        CustomTag=EvoMM_Inside
+        Owner=Kling
+        Priority=40
+        RacialRestriction=1
+        Size=150
+        Text=Микромодуль второго уровня. Повышает количество боезапаса <clr>доминаторского<clrEnd> ракетного орудия и оснащает его дополнительной шахтой для запуска ракет. Модернизированная система запуска занимает дополнительные <clr>50<clrEnd>% от объема вооружения.
+        Text=Залпов: <bonAmmo> ед.
+        Text=Ракет: <bonShots> ед.
+        bonAmmo=20
+        bonShots=1
+    }
     EvoMM_Ionizer ^{
         CustomTag=EvoMM_Ionizer
         Equipments=WMissile
@@ -309,6 +370,22 @@ MicroModuls ^{
         Text=Размер: <clr>+40%<clrEnd>
         bonRadar=-200
     }
+    EvoMM_Kishrobu ^{
+        Equipments=Engine,Hull
+        Name=Кищробу
+        CustomTag=EvoMM_Kishrobu
+        Priority=31
+        Text=Микромодуль второго уровня. Добавляет функцию форсажа и открывает оставшиеся орудийные слоты, закрывая при этом слоты артефактов, сканера и генератора защиты. При правильной установке в двигатель замечено резкое увеличение скорости взамен сильному падению дальности прыжка.
+        Text=Скорость двигателя: <bonSpeed> ед.
+        Text=Дальность прыжка: <bonJump> ед.
+        bonJump=-10
+        bonSlotArt=-4
+        bonSlotDef=-1
+        bonSlotForsage=1
+        bonSlotScaner=-1
+        bonSlotWeapon=4
+        bonSpeed=150
+    }
     EvoMM_LaserJet ^{
         Cost=117
         CustomTag=EvoMM_LaserJet
@@ -327,6 +404,34 @@ MicroModuls ^{
         Text=Размер: <clr>+30%<clrEnd>
         bonWEnergy=14
         bonWRadius=20
+    }
+    EvoMM_Malocuscus ^{
+        Cost=125
+        Equipments=Hull
+        Name=Малокускус
+        CustomTag=EvoMM_Malocuscus
+        Owner=Maloc
+        Priority=50
+        Size=110
+        Text=Микромодуль второго уровня. Расширяет корпус <clr>малокского<clrEnd> производства, встраивая в него гигантский генератор пищевой продукции. Хотя даже того, что он вырабатывает будет маловато для малока-обжоры, поэтому его иногда называют "Мало кус-кус". К пищевому генератору также можно подключить генератор защиты.
+        Text=Размер корпуса: <clr>+10%<clrEnd>
+        Text=Стоимость: <clr>+25%<clrEnd>
+        bonSlotDef=1
+    }
+    EvoMM_Military ^{
+        Equipments=Hull
+        Name=Милитарий
+        CustomTag=EvoMM_Military
+        Owner=Fei
+        Priority=10
+        Size=85
+        Text=Микромодуль первого уровня. Полностью трансформирует корпус в военный. Открывает сразу два слота под орудия. При удачной трансформации, открывает слот дроида и генератора защиты. Применим только для <clr>фэянских<clrEnd> корпусов.
+        Text=Броня корпуса: <bonHull> ед.
+        Text=Размер корпуса: <clr>-15%<clrEnd>
+        bonHull=6
+        bonSlotDef=1
+        bonSlotDroid=1
+        bonSlotWeapon=2
     }
     EvoMM_Minimus ^{
         Cost=110

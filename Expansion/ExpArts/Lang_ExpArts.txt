@@ -54,14 +54,14 @@ Artefacts ^{
             }
             09=if(hasker_check)
             10 ^{
-                01=if(ScriptItemActionType(t_OnStep,11))
+                01=if(ScriptItemActionType(t_OnStep, 11))
                 02 ^{
-                    01=CreateActCodeEvent(t_OnStep,art,ship,0,0,11);
+                    01=CreateActCodeEvent(t_OnStep, art, ship, 0, 0, 11);
                 }
                 03=if(ScriptItemActionType(t_OnPlayerTalkedWithShip) || ScriptItemActionType(t_OnShipTalkedWithPlayer))
                 04 ^{
-                    01=if(ScriptItemActionType(t_OnPlayerTalkedWithShip))CreateActCodeEvent(t_OnPlayerTalkedWithShip,art,ship,ScriptItemActObject1(),0,0);
-                    02=else CreateActCodeEvent(t_OnShipTalkedWithPlayer,art,ship,ScriptItemActObject1(),0,0);
+                    01=if(ScriptItemActionType(t_OnPlayerTalkedWithShip)) CreateActCodeEvent(t_OnPlayerTalkedWithShip, art, ship, ScriptItemActObject1(), 0, 0);
+                    02=else CreateActCodeEvent(t_OnShipTalkedWithPlayer, art, ship, ScriptItemActObject1(), 0, 0);
                 }
             }
         }
@@ -92,14 +92,14 @@ Artefacts ^{
             CountsAs=ArtSplinter
             Name=Техдиструптор
             OnActCode ^{
-                01=if(!ItemIsInUse(CurItem()))exit;
-                02=if(!ScriptItemActShip())exit;
-                03=if(ItemIsBroken(CurItem()))exit;
+                01=if(!ItemIsInUse(CurItem())) exit;
+                02=if(!ScriptItemActShip()) exit;
+                03=if(ItemIsBroken(CurItem())) exit;
                 04=dword target = ScriptItemActObject1();
-                05=if(ObjectType(target) != 4 && ObjectType(target) != 5)exit;
+                05=if(ObjectType(target) != 4 && ObjectType(target) != 5) exit;
                 06=int damage_set = GetEquipmentStats(ScriptItemActObject2(), 6);
-                07=if(!(damage_set & 2))exit;
-                08=if((damage_set & 2048))exit;
+                07=if(!(damage_set & 2)) exit;
+                08=if((damage_set & 2048)) exit;
                 09=int shot = Rnd(1, 100);
                 10=int shot_chance;
                 11=if(ItemOwner(ScriptItemActObject2()) == 6) shot_chance = 40;
@@ -135,27 +135,33 @@ Artefacts ^{
                 07 ^{
                     01=if(ObjectType(ScriptItemActObject1()) == 1)
                     02 ^{
-                        01=ItemDurability(cur_item,ItemDurability(cur_item)-3);
-                        02=int i=0;
-                        03=dword ship=0;
-                        04=dword damag=ScriptItemActParam();
-                        05=if(CustomArtData(cur_item,3)!=CurTurn())
+                        01=ItemDurability(cur_item, ItemDurability(cur_item) - 3);
+                        02=int i = 0;
+                        03=dword ship = 0;
+                        04=dword damag = ScriptItemActParam();
+                        05=if(CustomArtData(cur_item, 3) != CurTurn())
                         06 ^{
-                            01=if(ShipStar(Player())==ShipStar(cur_ship) && ShipInNormalSpace(Player()))ShowEffect('Weapon.13',6,cur_ship,cur_ship,0,0,1,0,0,0);
-                            02=CustomArtData(cur_item,3,CurTurn());
-                        }
-                        07=if(ShipTypeN(cur_ship)==1)
-                        08 ^{
-                            01=for(i=0;i<StarShips(ShipStar(cur_ship));i=i+1)
+                            01=if(ShipStar(Player()) == ShipStar(cur_ship) && ShipInNormalSpace(Player()))
                             02 ^{
-                                01=ship=StarShips(ShipStar(cur_ship),i);
-                                02=if(Dist(ship,cur_ship)>330)continue;
-                                03=if(RelationToRanger(ship,cur_ship)>=10)continue;
-                                04=if(!ShipInNormalSpace(ship))continue;
-                                05=if(Dist(ship,cur_ship)>165)damag=damag-(damag/3);
-                                06=if(HullHP(ship)>damag)HullHP(ship,HullHP(ship)-damag);
-                                07=else ShipDestroy(ship,1);
-                                08=if(ShipStar(Player())==ShipStar(cur_ship) && ShipInNormalSpace(Player()))ShowEffect('Weapon.NoGraph',0,ship,cur_ship,damag,0,0,255,255,255);
+                                01=ShowEffect('Weapon.13', 6, cur_ship, cur_ship, 0, 0, 1, 0, 0, 0);
+                            }
+                            03=CustomArtData(cur_item, 3, CurTurn());
+                        }
+                        07=if(ShipTypeN(cur_ship) == 1)
+                        08 ^{
+                            01=for(i = 0; i < StarShips(ShipStar(cur_ship)); i = i + 1)
+                            02 ^{
+                                01=ship = StarShips(ShipStar(cur_ship), i);
+                                02=if(Dist(ship, cur_ship) > 330) continue;
+                                03=if(RelationToRanger(ship, cur_ship) >= 10) continue;
+                                04=if(!ShipInNormalSpace(ship)) continue;
+                                05=if(Dist(ship, cur_ship) > 165) damag = damag - (damag / 3);
+                                06=if(HullHP(ship) > damag) HullHP(ship, HullHP(ship) - damag);
+                                07=else ShipDestroy(ship, 1);
+                                08=if(ShipStar(Player()) == ShipStar(cur_ship) && ShipInNormalSpace(Player()))
+                                09 ^{
+                                    01=ShowEffect('Weapon.NoGraph', 0, ship, cur_ship, damag, 0, 0, 255, 255, 255);
+                                }
                             }
                         }
                         09=if(ItemIsBroken(cur_item) && cur_ship == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_02.BrokenInUse'));
@@ -165,7 +171,7 @@ Artefacts ^{
                 08=else
                 09 ^{
                     01=ScriptItemActParam(ScriptItemActParam() - ScriptItemActParam() / 5);
-                    02=if(Rnd(1, 100) <= 20)ItemDurability(cur_item,ItemDurability(cur_item) - 1);
+                    02=if(Rnd(1, 100) <= 20) ItemDurability(cur_item, ItemDurability(cur_item) - 1);
                     03=if(ItemIsBroken(cur_item) && cur_ship == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_02.BrokenInUse'));
                 }
             }
@@ -173,7 +179,9 @@ Artefacts ^{
             SharedEffect=0
             SharedUse=0
             Size=12
-            Text=Создаёт вокруг корабля особое поле, которое полностью отражает тепловое и ионизирующее излучение, исходящее от звезды. При этом всё отражённое таким образом излучение <clr>перенаправляется<clrEnd> на враждебно настроенные корабли, находящиеся в достаточной близости от носителя <clr>Рефлектора<clrEnd>.<br>В качестве побочного эффекта, увеличивает защиту от энергетического оружия на <clr>20%<clrEnd>.
+            Text=Создаёт вокруг корабля особое поле, которое полностью отражает тепловое и ионизирующее излучение, исходящее от звезды. При этом всё отражённое таким образом излучение <clr>перенаправляется<clrEnd> на враждебно настроенные корабли, находящиеся в достаточной близости от носителя <clr>Рефлектора<clrEnd>.
+            Text=<clr><clrEnd>
+            Text=В качестве побочного эффекта, увеличивает защиту от энергетического оружия на <clr>20%<clrEnd>.
         }
         RNDart_03 ^{
             Broken=(отключён)
@@ -183,38 +191,38 @@ Artefacts ^{
             CountsAs=ArtMiniExpl
             Name=Хаскер_PROx64
             OnActCode ^{
-                01=dword cur_item=CurItem();
+                01=dword cur_item = CurItem();
                 02=if(ScriptItemActionType(t_OnItemDeEquip))
                 03 ^{
-                    01=CustomArtData(cur_item,1,0);
-                    02=CustomArtData(cur_item,2,0);
+                    01=CustomArtData(cur_item, 1, 0);
+                    02=CustomArtData(cur_item, 2, 0);
                 }
-                04=if(ItemIsBroken(cur_item))exit;
-                05=dword cur_ship=ScriptItemActShip();
-                06=if(!cur_ship)exit;
-                07=if(CustomArtData(cur_item,3) >= CurTurn())exit;
-                08=if(ScriptItemActionType(t_OnStep,11))
+                04=if(ItemIsBroken(cur_item)) exit;
+                05=dword cur_ship = ScriptItemActShip();
+                06=if(!cur_ship) exit;
+                07=if(CustomArtData(cur_item, 3) >= CurTurn()) exit;
+                08=if(ScriptItemActionType(t_OnStep, 11))
                 09 ^{
-                    01=if(cur_ship!=Player())
+                    01=if(cur_ship != Player())
                     02 ^{
-                        01=if(ShipTypeN(cur_ship)==1)
+                        01=if(ShipTypeN(cur_ship) == 1)
                         02 ^{
                             01=if(ShipInNormalSpace(cur_ship))
                             02 ^{
-                                01=if(CustomArtData(cur_item,1)==0 || CustomArtData(cur_item,2)==0)
+                                01=if(!CustomArtData(cur_item, 1) || !CustomArtData(cur_item, 2))
                                 02 ^{
-                                    01=CustomArtData(cur_item,1,ShipStatus(cur_ship,1));
-                                    02=CustomArtData(cur_item,2,ShipMoney(cur_ship));
+                                    01=CustomArtData(cur_item, 1, ShipStatus(cur_ship, 1));
+                                    02=CustomArtData(cur_item, 2, ShipMoney(cur_ship));
                                 }
                                 03=else
                                 04 ^{
-                                    01=if(CustomArtData(cur_item,1)!=ShipStatus(cur_ship,1))
+                                    01=if(CustomArtData(cur_item, 1) != ShipStatus(cur_ship, 1))
                                     02 ^{
-                                        01=if(CustomArtData(cur_item,2)!=ShipMoney(cur_ship))
+                                        01=if(CustomArtData(cur_item, 2) != ShipMoney(cur_ship))
                                         02 ^{
-                                            01=ShipMoney(cur_ship,ShipMoney(cur_ship)+(((ShipMoney(cur_ship)-CustomArtData(cur_item,2))*Rnd(55,95))/100));
-                                            02=ItemDurability(cur_item,ItemDurability(cur_item)-5);
-                                            03=CustomArtData(cur_item,3,CurTurn()+Rnd(1,3));
+                                            01=ShipMoney(cur_ship, ShipMoney(cur_ship) + (((ShipMoney(cur_ship) - CustomArtData(cur_item, 2)) * Rnd(55, 95)) / 100));
+                                            02=ItemDurability(cur_item, ItemDurability(cur_item) - 5);
+                                            03=CustomArtData(cur_item, 3, CurTurn() + Rnd(1, 3));
                                         }
                                     }
                                 }
@@ -224,57 +232,57 @@ Artefacts ^{
                 }
                 10=if(ScriptItemActionType(t_OnPlayerTalkedWithShip) || ScriptItemActionType(t_OnShipTalkedWithPlayer))
                 11 ^{
-                    01=int i=0;
-                    02=dword ship=ScriptItemActObject1();
-                    03=int j=0;
-                    04=int drp_scs=0;
+                    01=int i = 0;
+                    02=dword ship = ScriptItemActObject1();
+                    03=int j = 0;
+                    04=int drp_scs = 0;
                     05=str text_2;
-                    06=int money=0;
+                    06=int money = 0;
                     07=str text;
-                    08=for(i=GalaxyEvents()-1;i>=0;i=i-1)
+                    08=for(i = GalaxyEvents() - 1; i >= 0; i = i - 1)
                     09 ^{
-                        01=if(GalaxyEventDate(i)<CurTurn())break;
-                        02=if(GalaxyEventType(i)=='PlayerExtortsMoney' || GalaxyEventType(i)=='PlayerAcceptsMoneyForTruce')
+                        01=if(GalaxyEventDate(i) < CurTurn()) break;
+                        02=if(GalaxyEventType(i) == 'PlayerExtortsMoney' || GalaxyEventType(i) == 'PlayerAcceptsMoneyForTruce')
                         03 ^{
                             01=int how_much;
-                            02=if(ItemIsInUse(cur_item))how_much=Rnd(55,95);
-                            03=else how_much=Rnd(25,50);
-                            04=money=(GalaxyEventData(i,0)*how_much)/100;
-                            05=ShipMoney(Player(),ShipMoney(Player())+money);
-                            06=text=Format('<color=255,240,100>Хаскер_PROx64</color> произвёл успешный взлом! На ваш счёт поступают дополнительные средства в размере MONEY cr.','MONEY',money);
-                            07=Ether(0,'',text);
+                            02=if(ItemIsInUse(cur_item)) how_much = Rnd(55, 95);
+                            03=else how_much = Rnd(25, 50);
+                            04=money = (GalaxyEventData(i, 0) * how_much) / 100;
+                            05=ShipMoney(Player(), ShipMoney(Player()) + money);
+                            06=text = Format('<color=255,240,100>Хаскер_PROx64</color> произвёл успешный взлом! На ваш счёт поступают дополнительные средства в размере MONEY cr.', 'MONEY', money);
+                            07=Ether(0, '', text);
                             08=Sound('Sound.Sell');
-                            09=ItemDurability(cur_item,ItemDurability(cur_item)-5);
-                            10=CustomArtData(cur_item,3,CurTurn()+Rnd(1,3));
+                            09=ItemDurability(cur_item, ItemDurability(cur_item) - 5);
+                            10=CustomArtData(cur_item, 3, CurTurn() + Rnd(1, 3));
                         }
-                        04=else if(GalaxyEventType(i)=='PlayerExtortsGoods')
+                        04=else if(GalaxyEventType(i) == 'PlayerExtortsGoods')
                         05 ^{
-                            01=for(j=t_Food;j<=t_Narcotics;j=j+1)
+                            01=for(j = t_Food; j <= t_Narcotics; j = j + 1)
                             02 ^{
-                                01=if(GoodsCount(ship,j)>1)
+                                01=if(GoodsCount(ship, j) > 1)
                                 02 ^{
                                     01=int how_much2;
-                                    02=if(ItemIsInUse(cur_item))how_much2=Rnd(2,GoodsCount(ship,j));
-                                    03=else how_much2=Rnd(1,GoodsCount(ship,j)-1);
-                                    04=GoodsDrop(ship,j,how_much2);
-                                    05=drp_scs=1;
+                                    02=if(ItemIsInUse(cur_item)) how_much2 = Rnd(2, GoodsCount(ship, j));
+                                    03=else how_much2 = Rnd(1, GoodsCount(ship, j) - 1);
+                                    04=GoodsDrop(ship, j, how_much2);
+                                    05=drp_scs = 1;
                                 }
-                                03=if(drp_scs==1 && j==t_Narcotics)
+                                03=if(drp_scs == 1 && j == t_Narcotics)
                                 04 ^{
-                                    01=text_2='<color=255,240,100>Хаскер_PROx64</color> произвёл успешный взлом грузовых систем корабля, готовьтесь принимать чужой груз!';
-                                    02=Ether(0,'',text_2);
-                                    03=ItemDurability(cur_item,ItemDurability(cur_item)-5);
-                                    04=CustomArtData(cur_item,3,CurTurn()+Rnd(1,3));
+                                    01=text_2 = '<color=255,240,100>Хаскер_PROx64</color> произвёл успешный взлом грузовых систем корабля, готовьтесь принимать чужой груз!';
+                                    02=Ether(0, '', text_2);
+                                    03=ItemDurability(cur_item, ItemDurability(cur_item) - 5);
+                                    04=CustomArtData(cur_item, 3, CurTurn() + Rnd(1, 3));
                                 }
                             }
                         }
                     }
-                    10=if(ItemIsBroken(cur_item) && cur_ship==Player())Ether(8,'',CT('Artefacts.CustomArtefacts.RNDart_03.BrokenInUse'));
+                    10=if(ItemIsBroken(cur_item) && cur_ship == Player()) Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_03.BrokenInUse'));
                 }
                 12=if(!ItemIsInUse(cur_item))
                 13 ^{
-                    01=CustomArtData(cur_item,1,0);
-                    02=CustomArtData(cur_item,2,0);
+                    01=CustomArtData(cur_item, 1, 0);
+                    02=CustomArtData(cur_item, 2, 0);
                 }
             }
             OnActCodeTypes=t_OnStep,t_OnItemDeEquip,t_OnPlayerTalkedWithShip,t_OnShipTalkedWithPlayer
@@ -292,24 +300,21 @@ Artefacts ^{
             CountsAs=ArtFastRacks
             Name=Бустер
             OnActCode ^{
-                01=dword ship=ScriptItemActShip();
-                02=if(!ship)exit;
-                03=if(ItemIsBroken(CurItem()))exit;
-                04=if(EqModule(ScriptItemActObject2()) > -1)
-                05 ^{
-                    01=if(EqModule(ScriptItemActObject2()) == FindBonusByCustomTag('empty_mm'))exit;
-                }
-                06=dword missile = ScriptItemActObject1();
-                07=MissileAngle(missile, Angle(WeaponTarget(ScriptItemActObject2()), missile));
-                08=MissileLive(missile, Rnd(500, 600));
-                09=MissileSpeed(missile, MissileSpeed(missile) + Rnd(900, 1400));
-                10=if(ItemIsBroken(CurItem()) && ship == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_04.BrokenInUse'));
+                01=dword ship = ScriptItemActShip();
+                02=if(!ship) exit;
+                03=if(ItemIsBroken(CurItem())) exit;
+                04=if(CustomWeaponType(CurItem()) == 'PhysGun') exit;
+                05=dword missile = ScriptItemActObject1();
+                06=MissileAngle(missile, Angle(WeaponTarget(ScriptItemActObject2()), missile));
+                07=MissileLive(missile, Rnd(500, 600));
+                08=MissileSpeed(missile, MissileSpeed(missile) + Rnd(900, 1400));
+                09=if(ItemIsBroken(CurItem()) && ship == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_04.BrokenInUse'));
             }
             OnActCodeTypes=t_OnMissileShot
             SharedEffect=0
             SharedUse=0
             Size=18
-            Text=Оптимизирует системы наведения пусковых установок, что позволяет им наводить ракеты на цель ещё перед запуском. Кроме того, перераспределяет расход топлива, увеличивая скорость ракет в ущерб максимальной продолжительности их полёта.
+            Text=Оптимизирует системы наведения пусковых установок, что позволяет им <clr>наводить ракеты<clrEnd> на цель ещё перед запуском. Кроме того, перераспределяет расход топлива, увеличивая <clr>скорость ракет<clrEnd> в ущерб максимальной продолжительности их полёта.
         }
         Stun_bomb ^{
             Cost=1500
@@ -344,7 +349,6 @@ MicroModuls ^{
         ExText=Надёжность оружия: <clr>-15%<clrEnd>
         Fragility=117
         LockedAcryn=3
-        Name=dt_Modify_Acidius
         NonSearchable=1
         Owner=None
         Priority=0
@@ -352,7 +356,6 @@ MicroModuls ^{
         WeaponMods=Acid
     }
     ExpArts_AdditionalStowage ^{
-        CustomTag=dt_ModifyItem06
         Equipments=WMissile
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Дополнительная боеукладка<clrEnd>
@@ -366,7 +369,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_CircuitAmplifier ^{
-        CustomTag=dt_ModifyItem09
         Equipments=Scaner
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Контурный усилитель<clrEnd>
@@ -392,7 +394,6 @@ MicroModuls ^{
         ExText=Надёжность оружия: <clr>-15%<clrEnd>
         Fragility=117
         LockedAcryn=3
-        Name=dt_Modify_Decelerator
         NonSearchable=1
         Owner=None
         Priority=0
@@ -400,7 +401,6 @@ MicroModuls ^{
         WeaponMods=Decelerate,DecelerateA,DecelerateAEx
     }
     ExpArts_FieldDensityAmplifier ^{
-        CustomTag=dt_ModifyItem07
         Equipments=DefGenerator
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Уплотнитель поля<clrEnd>
@@ -416,7 +416,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_FragiliumParts ^{
-        CustomTag=dt_ModifyItem14
         Equipments=WEnergy,WSplinter,WMissile,Engine,FuelTank,Radar,Scaner,Droid,Hook,DefGenerator
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Детали из фрагилиума<clrEnd>
@@ -431,7 +430,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_HackedInjector ^{
-        CustomTag=dt_ModifyItem12
         Equipments=Engine
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Хакнутый инжектор<clrEnd>
@@ -447,7 +445,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_MeonChips ^{
-        CustomTag=dt_ModifyItem08
         Equipments=Radar
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Меонные чипы<clrEnd>
@@ -463,7 +460,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_ProcessorsExtreme ^{
-        CustomTag=dt_ModifyItem10
         Equipments=Droid
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Процессоры "Экстрим"<clrEnd>
@@ -479,7 +475,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_ReinforcedServoDrives ^{
-        CustomTag=dt_ModifyItem13
         Equipments=Hook
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Усиленные сервоприводы<clrEnd>
@@ -495,7 +490,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_SecurityReplacement ^{
-        CustomTag=dt_ModifyItem11
         Equipments=FuelTank
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Замена систем безопасности<clrEnd>
@@ -511,7 +505,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_SmugglersCompartment ^{
-        CustomTag=dt_ModifyItem15
         Equipments=Hull
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Отсек контрабандиста<clrEnd>
@@ -529,7 +522,6 @@ MicroModuls ^{
         Special=1
     }
     ExpArts_TillCapacitors ^{
-        CustomTag=dt_ModifyItem04
         Equipments=WEnergy
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Тиливые конденсаторы<clrEnd>
@@ -546,7 +538,6 @@ MicroModuls ^{
         bonWEnergy=15
     }
     ExpArts_WeakenedLimiters ^{
-        CustomTag=dt_ModifyItem05
         Equipments=WSplinter
         ExText=<clr><clrEnd>
         ExText=<color=248,252,248>Улучшение:</color> <clr>Подкрученные ограничители<clrEnd>
@@ -571,18 +562,15 @@ ShipInfo ^{
                 Icon=1
                 Name=
                 OnActCode ^{
-                    01=if(ScriptItemActionType(t_OnStep,11))
-                    02 ^{
-                        01=dword infos=CurInfo();
-                        02=dword ship=ScriptItemActShip();
-                        03=if(!ShipCustomShipInfoData(0,infos,1))
-                        04 ^{
-                            01=if(ShipCustomShipInfoData(0,infos,2)==1)NoTalkToShip(ship,0);
-                            02=if(ShipCustomShipInfoTextData(0,infos,1)=='1')NoScanToShip(ship,0);
-                            03=ShipDeleteCustomShipInfo(ship,'RNDbomb_2_PlayerInfos');
-                        }
-                        05=else ShipCustomShipInfoData(0,infos,1,0);
+                    01=dword infos = CurInfo();
+                    02=dword ship = ScriptItemActShip();
+                    03=if(!ShipCustomShipInfoData(0, infos, 1))
+                    04 ^{
+                        01=if(ShipCustomShipInfoData(0, infos, 2) == 1) NoTalkToShip(ship, 0);
+                        02=if(ShipCustomShipInfoTextData(0, infos, 1) == '1') NoScanToShip(ship, 0);
+                        03=ShipDeleteCustomShipInfo(ship, 'RNDbomb_2_PlayerInfos');
                     }
+                    05=else ShipCustomShipInfoData(0, infos, 1, 0);
                 }
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11
@@ -594,100 +582,106 @@ ShipInfo ^{
                 OnActCode ^{
                     01=dword infos = CurInfo();
                     02=dword ship = ScriptItemActShip();
-                    03=if(ScriptItemActionType(t_OnStep, 0))
+                    03=if(ScriptItemActionType(t_OnStep))
                     04 ^{
-                        01=int i;
-                        02=OrderNone(ship);
-                        03=for(i = 1; i <= ShipCntWeapon(ship); i = i + 1)
+                        01=if(!ScriptItemActParam())
+                        02 ^{
+                            01=OrderNone(ship);
+                            02=for(int i = 1; i <= ShipCntWeapon(ship); i = i + 1)
+                            03 ^{
+                                01=WeaponTarget(ShipWeapon(ship, i), 0);
+                            }
+                            04=float angle = pi * (ShipAngle(ship) + 90.0) / Rnd(179, 181);
+                            05=OrderMove(ship, cos(angle) * 10.0 + CoordX(ship), sin(angle) * 10.0 + CoordY(ship));
+                        }
+                        03=else
                         04 ^{
-                            01=WeaponTarget(ShipWeapon(ship, i), 0);
-                        }
-                        05=float angle = pi * (ShipAngle(ship) + 90.0) / Rnd(179, 181);
-                        06=OrderMove(ship, cos(angle) * 10.0 + CoordX(ship), sin(angle) * 10.0 + CoordY(ship));
-                    }
-                    05=if(ScriptItemActionType(t_OnStep, 11))
-                    06 ^{
-                        01=int infos_var=ShipCustomShipInfoData(0, infos, 1);
-                        02=if(!infos_var)
-                        03 ^{
-                            01=OrderLock(ship, 0);
-                            02=ShipSpecialBonuses(ship, bonHook, ShipSpecialBonuses(ship, bonHook) + 50000);
-                            03=if(ship == Player())
-                            04 ^{
-                                01=if(HullSpecial(Player())>-1)
-                                02 ^{
-                                    01=if(BonusNumInCfg(HullSpecial(Player()))==490)CapitalShipStats(ShipItems(Player(),0),1,1000);
-                                }
-                                03=if(ShipCustomShipInfoData(0,infos,3)!=0)
+                            01=int infos_var=ShipCustomShipInfoData(0, infos, 1);
+                            02=if(!infos_var)
+                            03 ^{
+                                01=OrderLock(ship, 0);
+                                02=ShipSpecialBonuses(ship, bonHook, ShipSpecialBonuses(ship, bonHook) + 50000);
+                                03=if(ship == Player())
                                 04 ^{
-                                    01=int b=ShipCustomShipInfoData(0,infos,3)%10;
-                                    02=while(b)
-                                    03 ^{
-                                        01=InterfaceState('StarMap','set_button_'+b+'_c',1);
-                                        02=b=b-1;
+                                    01=if(~HullSpecial(Player()))
+                                    02 ^{
+                                        01=if(BonusNumInCfg(HullSpecial(Player())) == '490')
+                                        02 ^{
+                                            01=CapitalShipStats(ShipItems(Player(), 0), 1, 1000);
+                                        }
                                     }
-                                    04=if(int(ShipCustomShipInfoData(0,infos,3)/10)>0)
-                                    05 ^{
-                                        01=InterfaceState('StarMap','Klesh_panel',1);
-                                    }
-                                    06=if(int(ShipCustomShipInfoData(0,infos,3)/10)>1)
-                                    07 ^{
-                                        01=InterfaceState('StarMap','ppb_panel',1);
+                                    03=if(ShipCustomShipInfoData(0, infos, 3))
+                                    04 ^{
+                                        01=int b = ShipCustomShipInfoData(0, infos, 3) % 10;
+                                        02=while(b)
+                                        03 ^{
+                                            01=InterfaceState('StarMap', 'set_button_' + b + '_c', 1);
+                                            02=b = b - 1;
+                                        }
+                                        04=if(int(ShipCustomShipInfoData(0, infos, 3) / 10) > 0)
+                                        05 ^{
+                                            01=InterfaceState('StarMap', 'Klesh_panel', 1);
+                                        }
+                                        06=if(int(ShipCustomShipInfoData(0, infos, 3) / 10) > 1)
+                                        07 ^{
+                                            01=InterfaceState('StarMap', 'ppb_panel', 1);
+                                        }
                                     }
                                 }
+                                05=if(ShipCustomShipInfoData(0, infos, 3) == 1) NoTalkToShip(ship, 0);
+                                06=ShipDeleteCustomShipInfo(ship, 'RNDbomb_2_infos');
                             }
-                            05=if(ShipCustomShipInfoData(0,infos,3)==1)NoTalkToShip(ship,0);
-                            06=ShipDeleteCustomShipInfo(ship,'RNDbomb_2_infos');
-                        }
-                        04=else
-                        05 ^{
-                            01=ShipCustomShipInfoData(0,infos,1,infos_var-1);
-                            02=if(ship==Player())FilmFlags(3,1);
-                            03=if(ship==Player())
-                            04 ^{
-                                01=for(i=0;i<StarShips(ShipStar(Player()));i=i+1)
-                                02 ^{
-                                    01=if(!NoTalkToShip(StarShips(ShipStar(Player()),i)) || !NoScanToShip(StarShips(ShipStar(Player()),i)))
+                            04=else
+                            05 ^{
+                                01=ShipCustomShipInfoData(0, infos, 1, infos_var - 1);
+                                02=if(ship == Player()) FilmFlags(3, 1);
+                                03=if(ship==Player())
+                                04 ^{
+                                    01=for(i = 0; i < StarShips(ShipStar(Player())); i = i + 1)
                                     02 ^{
-                                        01=ShipAddCustomShipInfo(StarShips(ShipStar(Player()),i),'RNDbomb_2_PlayerInfos','NoShow',1);
-                                        02=if(!NoTalkToShip(StarShips(ShipStar(Player()),i)))
+                                        01=dword cur_ship = StarShips(ShipStar(Player()), i);
+                                        02=if(!NoTalkToShip(cur_ship) || !NoScanToShip(cur_ship))
                                         03 ^{
-                                            01=NoTalkToShip(StarShips(ShipStar(Player()),i),1);
-                                            02=ShipCustomShipInfoData(StarShips(ShipStar(Player()),i),ShipFindCustomShipInfoByType(StarShips(ShipStar(Player()),i),'RNDbomb_2_PlayerInfos'),2,1);
-                                        }
-                                        04=if(!NoScanToShip(StarShips(ShipStar(Player()),i)))
-                                        05 ^{
-                                            01=NoScanToShip(StarShips(ShipStar(Player()),i),1);
-                                            02=ShipCustomShipInfoTextData(StarShips(ShipStar(Player()),i),ShipFindCustomShipInfoByType(StarShips(ShipStar(Player()),i),'RNDbomb_2_PlayerInfos'),1,'1');
+                                            01=ShipAddCustomShipInfo(cur_ship, 'RNDbomb_2_PlayerInfos', 'NoShow', 1);
+                                            02=if(!NoTalkToShip(cur_ship))
+                                            03 ^{
+                                                01=NoTalkToShip(cur_ship, 1);
+                                                02=ShipCustomShipInfoData(cur_ship, 'RNDbomb_2_PlayerInfos', 2, 1);
+                                            }
+                                            04=if(!NoScanToShip(cur_ship))
+                                            05 ^{
+                                                01=NoScanToShip(cur_ship, 1);
+                                                02=ShipCustomShipInfoTextData(cur_ship, 'RNDbomb_2_PlayerInfos', 1, '1');
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                    07=if(ScriptItemActionType(t_OnEnteringForm))
-                    08 ^{
-                        01=str cur_form=CurrentForm();
-                        02=if(cur_form=='Ship' || cur_form=='Info' || cur_form=='Rating' || cur_form=='Galaxy' || PlayerBridge())
+                    05=else
+                    06 ^{
+                        01=str cur_form = CurrentForm();
+                        02=if(cur_form == 'Ship' || cur_form == 'Info' || cur_form == 'Rating' || cur_form == 'Galaxy' || PlayerBridge())
                         03 ^{
-                            01=MessageBox('Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.',34);
+                            01=MessageBox('Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.', 34);
                             02=FormChange('StarMap');
                         }
-                        04=else if(cur_form=='StarMap')
+                        04=else if(cur_form == 'StarMap')
                         05 ^{
-                            01=if(ShipCustomShipInfoData(Player(),infos,3)!=0)
+                            01=if(ShipCustomShipInfoData(Player(), infos, 3))
                             02 ^{
-                                01=int k=ShipCustomShipInfoData(0,infos,3)%10;
+                                01=int k = ShipCustomShipInfoData(0, infos, 3) % 10;
                                 02=while(k)
                                 03 ^{
-                                    01=InterfaceState('StarMap','set_button_'+k+'_c',0);
-                                    02=k=k-1;
+                                    01=InterfaceState('StarMap', 'set_button_' + k + '_c', 0);
+                                    02=k = k - 1;
                                 }
                             }
                         }
                     }
                 }
-                OnActCodeTypes=t_OnEnteringForm,t_OnStep
+                OnActCodeTypes=t_OnStep,t_OnEnteringForm
                 OnActStepTypes=0,11
             }
         }
@@ -809,21 +803,22 @@ UselessItems ^{
                 08=int Edamage = 0;
                 09=int targetInfo = -2;
                 10=int fuel_tank_imitation = ScriptItemActParam();
-                11=if(ScriptItemActionType(t_OnItemHit)) ItemDestroy(bomb, 0);
-                12=if(ScriptItemActionType(t_OnItemPickUp))
-                13 ^{
+                11=int player_can_see = (ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player()));
+                12=if(ScriptItemActionType(t_OnItemHit)) ItemDestroy(bomb, 0);
+                13=if(ScriptItemActionType(t_OnItemPickUp))
+                14 ^{
                     01=pick_ship = ScriptItemActShip();
                     02=if(!ScriptItemActObject2()) OrderNone(pick_ship);
-                    03=if(ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player()))
+                    03=if(player_can_see)
                     04 ^{
                         01=targetInfo = ShipFindCustomShipInfoByType(pick_ship, 'LifeboatLaunchInfo');
                         02=if(targetInfo == -1) ShowStaticEffect('RNDbomb_1BAM', CoordX(pick_ship), CoordY(pick_ship));
                         03=else ShipCustomShipInfoTextData(pick_ship, targetInfo, 2, 'ShowBAMEffect');
                     }
                 }
-                14=else
-                15 ^{
-                    01=if(ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player()))
+                15=else
+                16 ^{
+                    01=if(player_can_see)
                     02 ^{
                         01=if(ScriptItemActionType(t_OnItemHit))
                         02 ^{
@@ -833,21 +828,21 @@ UselessItems ^{
                                 02=if(ObjectType(ScriptItemActObject1()) == 7) ShowStaticEffect('RNDbomb_1FastBAM', CoordX(bomb), CoordY(bomb));
                             }
                         }
-                        03=else ShowStaticEffect('RNDbomb_1BAM',CoordX(bomb),CoordY(bomb));
+                        03=else ShowStaticEffect('RNDbomb_1BAM', CoordX(bomb), CoordY(bomb));
                     }
                 }
-                16=for(k = 0; k < StarShips(bomb_star); k = k + 1)
-                17 ^{
+                17=for(k = 0; k < StarShips(bomb_star); k = k + 1)
+                18 ^{
                     01=ship = StarShips(bomb_star, k);
                     02=if(ScriptItemActionType(t_OnItemPickUp))
                     03 ^{
-                        01=if(Dist(pick_ship, ship) > 250) continue;
-                        02=else Tdist = Dist(pick_ship, ship);
+                        01=Tdist = Dist(pick_ship, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     04=else
                     05 ^{
-                        01=if(Dist(bomb, ship) > 250) continue;
-                        02=else Tdist = Dist(bomb, ship);
+                        01=Tdist = Dist(bomb, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     06=if(!ShipInNormalSpace(ship)) continue;
                     07=if(fuel_tank_imitation && !ScriptItemActionType(t_OnStep)) Tdamage = fuel_tank_imitation;
@@ -861,7 +856,7 @@ UselessItems ^{
                         }
                     }
                     10=if(ShipType(ship) == 'KillerAsteroid') Tdamage = 0;
-                    11=if(ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player())) ShowEffect('Weapon.NoGraph', 0, ship, ship, Tdamage, 0, 0, 255, 0, 0);
+                    11=if(player_can_see) ShowEffect('Weapon.NoGraph', 0, ship, ship, Tdamage, 0, 0, 255, 0, 0);
                     12=if(HullHP(ship) > Tdamage) HullHP(ship, HullHP(ship) - Tdamage);
                     13=else
                     14 ^{
@@ -875,8 +870,8 @@ UselessItems ^{
                         05=OrderNone(ship);
                     }
                 }
-                18=for(k = 0; k < StarItems(bomb_star); k = k + 1)
-                19 ^{
+                19=for(k = 0; k < StarItems(bomb_star); k = k + 1)
+                20 ^{
                     01=item = StarItems(bomb_star, k);
                     02=if(item == bomb) continue;
                     03=if(ScriptItemActionType(t_OnItemPickUp))
@@ -901,16 +896,16 @@ UselessItems ^{
                     }
                     10=else continue;
                 }
-                20=UselessItemData(bomb, 2, 1);
-                21=if(ScriptItemActionType(t_OnStep, 11))
-                22 ^{
+                21=UselessItemData(bomb, 2, 1);
+                22=if(ScriptItemActionType(t_OnStep, 11))
+                23 ^{
                     01=if(StarShips(bomb_star))
                     02 ^{
                         01=FireWeapon(StarShips(bomb_star, 0), bomb, 0);
                     }
                     03=else ItemDestroy(bomb, 1);
                 }
-                23=else ItemDestroy(bomb, 1);
+                24=else ItemDestroy(bomb, 1);
             }
         }
         OnActCodeTypes=t_OnStep,t_OnDropItem,t_OnDropItemFixed,t_OnItemPickUp,t_OnItemHit,t_OnItemDestroy
@@ -1060,13 +1055,13 @@ UselessItems ^{
                     01=ship = StarShips(bomb_star, k);
                     02=if(ScriptItemActionType(t_OnItemPickUp))
                     03 ^{
-                        01=if(Dist(pick_ship, ship) > 250) continue;
-                        02=else Tdist = Dist(pick_ship, ship);
+                        01=Tdist = Dist(pick_ship, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     04=else
                     05 ^{
-                        01=if(Dist(bomb, ship) > 250) continue;
-                        02=else Tdist = Dist(bomb, ship);
+                        01=Tdist = Dist(bomb, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     06=if(!ShipInNormalSpace(ship)) continue;
                     07=if(ObjectType(ship) == 4 || ShipType(ship) == 'DomRuins') continue;
@@ -1305,13 +1300,13 @@ UselessItems ^{
                     01=ship = StarShips(bomb_star, k);
                     02=if(ScriptItemActionType(t_OnItemPickUp))
                     03 ^{
-                        01=if(Dist(pick_ship, ship) > 250) continue;
-                        02=else Tdist = Dist(pick_ship, ship);
+                        01=Tdist = Dist(pick_ship, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     04=else
                     05 ^{
-                        01=if(Dist(bomb, ship) > 250) continue;
-                        02=else Tdist = Dist(bomb, ship);
+                        01=Tdist = Dist(bomb, ship);
+                        02=if(Tdist > 250) continue;
                     }
                     06=if(!ShipInNormalSpace(ship)) continue;
                     07=str tempType = ShipType(ship);
@@ -2155,79 +2150,76 @@ UselessItems ^{
         Cost=Average
         Name=Детонатор для бомбы
         OnActCode ^{
-            01=if(ScriptItemActionType(t_OnAnotherItem))
-            02 ^{
-                01=dword item = ScriptItemActObject1();
-                02=if(ItemType(item) != t_UselessItem && ItemType(item) != t_ArtefactBomb) exit;
-                03=if(EquipmentImageName(item) != 'RNDbomb_1' && EquipmentImageName(item) != 'RNDbomb_2' && EquipmentImageName(item) != 'RNDbomb_3' && ItemType(item) != t_ArtefactBomb) exit;
-                04=if(UselessItemData(item, 2) == 1) exit;
-                05=if(UselessItemData(item, 2) <= -1)
-                06 ^{
-                    01=MessageBox(CT('Script.Mod_ExpArts.DetonatorIsAlreadySet'), 34);
-                    02=ScriptItemActParam(2);
-                    03=exit;
-                }
-                07=unknown optionsArr = newarray(3);
-                08=optionsArr[0] = CT('Script.Mod_ExpArts.ContactFuse');
-                09=optionsArr[1] = CT('Script.Mod_ExpArts.TimerWithDelay');
-                10=optionsArr[2] = CT('Script.Mod_ExpArts.ContactFuseAndTimer');
-                11=int choosed_fuse = ListBox(CT('Script.Mod_ExpArts.SelectFuseType'), optionsArr);
-                12=if(choosed_fuse > -1)
-                13 ^{
-                    01=int blow_turn=0;
-                    02=dword item_2=0;
-                    03=str BombName='';
-                    04=if(ItemType(item)==t_ArtefactBomb)BombName='Bm.Items.2ArtBomb_s';
-                    05=else BombName='Bm.ItemsUseless.2'+EquipmentImageName(item)+'_s';
-                    06=if(choosed_fuse>0)
-                    07 ^{
-                        06=blow_turn=NumberBox(BombName,CT('Script.Mod_ExpArts.HowMuchDaysToSet'),1,30);
-                        07=if(blow_turn<1)
-                        08 ^{
-                            01=ScriptItemActParam(2);
-                            02=exit;
-                        }
-                    }
-                    08=if(findsubstr(EquipmentImageName(item),'RNDbomb_')==0)item_2=item;
-                    09=else if(ItemType(item)==t_ArtefactBomb)
-                    10 ^{
-                        01=item_2=CreateQuestItem('RNDbomb_1');
-                        02=ItemOwner(item_2,ItemOwner(item));
-                        03=ItemSize(item_2,ItemSize(item));
-                        04=ItemCost(item_2,ItemCost(item));
-                        05=DropItemInSystem(StarNearbyStars(ShipStar(Player()),1),GetArtFromShip(Player(),FindItemInShip(Player(),item)),30000,30000,30000,30000);
-                        06=ItemDestroy(item,1);
-                        07=AddItemToShip(Player(),item_2);
-                    }
-                    11=str add_note=substr(CT('Cheat.Ok'),0,2)+'<br><clr><clrEnd>';
-                    12=if(choosed_fuse==0)
-                    13 ^{
-                        01=UselessItemData(item_2,2,-1);
-                        02=add_note='';
-                        03=SetName(item_2,Format(Name(item_2),CT('Script.Mod_ExpArts.TheBomb'),'</color>'+CT('Script.Mod_ExpArts.TheMine')));
-                    }
-                    14=else if(choosed_fuse==1)
-                    15 ^{
-                        01=UselessItemData(item_2,2,-2);
-                        02=UselessItemData(item_2,1,blow_turn);
-                        03=add_note=add_note+CT('Script.Mod_ExpArts.TimerIsSet');
-                        04=SetName(item_2,Name(item_2)+CT('Script.Mod_ExpArts.BombWithTimer'));
-                    }
-                    16=else if(choosed_fuse==2)
-                    17 ^{
-                        01=UselessItemData(item_2,2,-3);
-                        02=UselessItemData(item_2,1,blow_turn);
-                        03=add_note=add_note+CT('Script.Mod_ExpArts.TimerIsSet');
-                        04=str tstr='</color>'+CT('Script.Mod_ExpArts.TheMine')+CT('Script.Mod_ExpArts.BombWithTimer');
-                        05=SetName(item_2,Format(Name(item_2),CT('Script.Mod_ExpArts.TheBomb'),tstr));
-                    }
-                    18=UselessItemText(item_2,CT('UselessItems.'+EquipmentImageName(item_2)+'.Text')+add_note);
-                    19=ItemSize(item_2,ItemSize(item_2)+ItemSize(CurItem()));
-                    20=ItemCost(item_2,ItemCost(item_2)+ItemCost(CurItem()));
-                    21=ScriptItemActParam(1);
-                }
-                14=else ScriptItemActParam(2);
+            01=dword item = ScriptItemActObject1();
+            02=if(ItemType(item) != t_UselessItem && ItemType(item) != t_ArtefactBomb) exit;
+            03=if(EquipmentImageName(item) != 'RNDbomb_1' && EquipmentImageName(item) != 'RNDbomb_2' && EquipmentImageName(item) != 'RNDbomb_3' && ItemType(item) != t_ArtefactBomb) exit;
+            04=if(UselessItemData(item, 2) == 1) exit;
+            05=if(UselessItemData(item, 2) <= -1)
+            06 ^{
+                01=MessageBox(CT('Script.Mod_ExpArts.DetonatorIsAlreadySet'), 34);
+                02=ScriptItemActParam(2);
+                03=exit;
             }
+            07=unknown optionsArr = newarray(3);
+            08=optionsArr[0] = CT('Script.Mod_ExpArts.ContactFuse');
+            09=optionsArr[1] = CT('Script.Mod_ExpArts.TimerWithDelay');
+            10=optionsArr[2] = CT('Script.Mod_ExpArts.ContactFuseAndTimer');
+            11=int choosed_fuse = ListBox(CT('Script.Mod_ExpArts.SelectFuseType'), optionsArr);
+            12=if(choosed_fuse > -1)
+            13 ^{
+                01=int blow_turn=0;
+                02=dword item_2=0;
+                03=str BombName='';
+                04=if(ItemType(item)==t_ArtefactBomb)BombName='Bm.Items.2ArtBomb_s';
+                05=else BombName='Bm.ItemsUseless.2'+EquipmentImageName(item)+'_s';
+                06=if(choosed_fuse>0)
+                07 ^{
+                    06=blow_turn=NumberBox(BombName,CT('Script.Mod_ExpArts.HowMuchDaysToSet'),1,30);
+                    07=if(blow_turn<1)
+                    08 ^{
+                        01=ScriptItemActParam(2);
+                        02=exit;
+                    }
+                }
+                08=if(findsubstr(EquipmentImageName(item),'RNDbomb_')==0)item_2=item;
+                09=else if(ItemType(item)==t_ArtefactBomb)
+                10 ^{
+                    01=item_2=CreateQuestItem('RNDbomb_1');
+                    02=ItemOwner(item_2,ItemOwner(item));
+                    03=ItemSize(item_2,ItemSize(item));
+                    04=ItemCost(item_2,ItemCost(item));
+                    05=DropItemInSystem(StarNearbyStars(ShipStar(Player()),1),GetArtFromShip(Player(),FindItemInShip(Player(),item)),30000,30000,30000,30000);
+                    06=ItemDestroy(item,1);
+                    07=AddItemToShip(Player(),item_2);
+                }
+                11=str add_note=substr(CT('Cheat.Ok'),0,2)+'<br><clr><clrEnd>';
+                12=if(!choosed_fuse)
+                13 ^{
+                    01=UselessItemData(item_2,2,-1);
+                    02=add_note='';
+                    03=SetName(item_2,Format(Name(item_2),CT('Script.Mod_ExpArts.TheBomb'),'</color>'+CT('Script.Mod_ExpArts.TheMine')));
+                }
+                14=else if(choosed_fuse == 1)
+                15 ^{
+                    01=UselessItemData(item_2,2,-2);
+                    02=UselessItemData(item_2,1,blow_turn);
+                    03=add_note=add_note+CT('Script.Mod_ExpArts.TimerIsSet');
+                    04=SetName(item_2,Name(item_2)+CT('Script.Mod_ExpArts.BombWithTimer'));
+                }
+                16=else if(choosed_fuse == 2)
+                17 ^{
+                    01=UselessItemData(item_2,2,-3);
+                    02=UselessItemData(item_2,1,blow_turn);
+                    03=add_note=add_note+CT('Script.Mod_ExpArts.TimerIsSet');
+                    04=str tstr='</color>'+CT('Script.Mod_ExpArts.TheMine')+CT('Script.Mod_ExpArts.BombWithTimer');
+                    05=SetName(item_2,Format(Name(item_2),CT('Script.Mod_ExpArts.TheBomb'),tstr));
+                }
+                18=UselessItemText(item_2,CT('UselessItems.'+EquipmentImageName(item_2)+'.Text')+add_note);
+                19=ItemSize(item_2,ItemSize(item_2)+ItemSize(CurItem()));
+                20=ItemCost(item_2,ItemCost(item_2)+ItemCost(CurItem()));
+                21=ScriptItemActParam(1);
+            }
+            14=else ScriptItemActParam(2);
         }
         OnActCodeTypes=t_OnAnotherItem
         Owner=PirateClan

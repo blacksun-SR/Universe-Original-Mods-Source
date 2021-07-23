@@ -1,0 +1,725 @@
+ShipInfo ^{
+    AddInfo ^{
+        CustomInfos ^{
+            RevDiggersInfo ^{
+                Description=Инфошка рейнджера-копателя незаселенных планет
+                Icon=0
+                Name=--
+                OnActCode ^{
+                    01=dword ship=ScriptItemActShip();
+                    02=dword curInfo=CurInfo();
+                    03=dword infodata;
+                    04=dword flag;
+                    05=dword system, planet;
+                    06=dword zcount;
+                    07=dword item, itemId;
+                    08=dword skill, maxcount;
+                    09=dword freespace;
+                    10=dword tRnd;
+                    11=int i, j, k;
+                    12=str zondsId;
+                    13=if(ScriptItemActionType(t_OnStep, 0))
+                    14 ^{
+                        01=if(ShipInPrison(ship)) exit;
+                        02=if(ShipInScript(ship, 0)) exit;
+                        03=if(ShipPartners(ship)) exit;
+                        04=if(ShipIsPartner(ship))
+                        05 ^{
+                            01=if(ShipCustomShipInfoData(0, curInfo, 1))
+                            02 ^{
+                                01=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                02=ShipCustomShipInfoData(0, curInfo, 2, 0);
+                                03=OrderLock(ship, 0);
+                            }
+                            03=exit;
+                        }
+                        06=if(ShipCustomShipInfoData(0, curInfo, 1))
+                        07 ^{
+                            01=if(ShipInNormalSpace(ship))
+                            02 ^{
+                                01=if(StarBattle(ShipStar(ship)))
+                                02 ^{
+                                    01=if(ShipInFear(ship)) 
+                                    02 ^{
+                                        01=if(OrderLock(ship))
+                                        02 ^{
+                                            01=OrderLock(ship, 0);
+                                            02=ShipFreeFlight(ship);
+                                        }
+                                        03=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                        04=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                        05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
+                                    }
+                                }
+                            }
+                        }
+                        08=zcount=ShipCustomShipInfoTextData(0, curInfo, 1);
+                        09=zondsId=ShipCustomShipInfoTextData(0, curInfo, 2);
+                        10=if(!ShipCustomShipInfoData(0, curInfo, 1) && ShipCustomShipInfoData(0, curInfo, 2)<=CurTurn())
+                        11 ^{
+                            01=if(ShipOrder(ship)==2 || ShipOrder(ship)==5) exit;
+                            02=else if(ShipOrder(ship)==6 && ShipGetBad(ship)) exit;
+                            03=if(ShipFreeSpace(ship)<10) exit;
+                            04=if(!zcount) ShipCustomShipInfoData(0, curInfo, 1, 7);
+                            05=else 
+                            06 ^{
+                                01=flag=0;
+                                02=for(i=1; i<=zcount; i=i+1)
+                                03 ^{
+                                    01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                    02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                    03=if(~FindItemInShip(ship, IdToItem(itemId)))
+                                    04 ^{
+                                        01=flag=1;
+                                        02=break;
+                                    }
+                                }
+                                04=if(flag)
+                                05 ^{
+                                    01=ShipCustomShipInfoData(0, curInfo, 1, 2);
+                                    02=maxcount=1+ShipSkill(ship, 'TechnicalCur')/2;
+                                    03=if(zcount<maxcount)
+                                    04 ^{
+                                        01=if(Rnd(1,100)<=15) ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                    }
+                                }
+                                06=else
+                                07 ^{
+                                    01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
+                                    02=if(infodata)
+                                    03 ^{
+                                        01=planet=IdToPlanet(infodata);
+                                        02=if(StarOwner(PlanetToStar(planet))==1 || StarCustomFaction(PlanetToStar(planet))!='')
+                                        03 ^{
+                                            01=for(i=1; i<=zcount; i=i+1)
+                                            02 ^{
+                                                01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                                02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                                03=FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                                            }
+                                            03=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                            04=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                            05=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                            06=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                                        }
+                                        04=else if(PlanetOwner(planet)!=None) ShipCustomShipInfoData(0, curInfo, 1, 1);
+                                        05=else ShipCustomShipInfoData(0, curInfo, 1, 4);
+                                    }
+                                    04=else
+                                    05 ^{
+                                        01=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                        02=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                    }
+                                }
+                            }
+                        }
+                        12=else if(ShipCustomShipInfoData(0, curInfo, 1)==1) 
+                        13 ^{
+                            01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
+                            02=planet=IdToPlanet(infodata);
+                            03=if(ShipInNormalSpace(ship))
+                            04 ^{
+                                01=system=PlanetToStar(planet);
+                                02=if(StarOwner(system)==1 || StarCustomFaction(system)!='')
+                                03 ^{
+                                    01=for(i=1; i<=zcount; i=i+1)
+                                    02 ^{
+                                        01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                        02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                        03=FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                                    }
+                                    03=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                    04=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                    05=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                    06=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                                }
+                                04=else
+                                05 ^{
+                                    01=OrderLock(ship, 1);
+                                    02=if(ShipStar(ship)==system) OrderLanding(ship, planet);
+                                    03=else OrderJump(ship, system);
+                                }
+                            }
+                            05=else if(GetShipPlanet(ship)==planet)
+                            06 ^{
+                                01=for(i=1; i<=zcount; i=i+1)
+                                02 ^{
+                                    01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                    02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                    03=item=GetItemFromVault(Id(ship)+'__'+itemId);
+                                    04=AddItemToShip(ship, item);
+                                    05=NoDropItem(item, 1);
+                                }
+                                03=OrderTakeOff(ship);
+                                04=ShipCustomShipInfoData(0, curInfo, 1, 2);
+                                05=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                            }
+                        }
+                        14=else if(ShipCustomShipInfoData(0, curInfo, 1)==2)
+                        15 ^{
+                            01=if(ShipCustomShipInfoData(0, curInfo, 3))
+                            02 ^{
+                                01=planet=IdToPlanet(ShipCustomShipInfoData(0, curInfo, 3));
+                                02=if(PlanetOwner(planet)!=None) ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                03=else 
+                                04 ^{
+                                    01=if(ShipInNormalSpace(ship))
+                                    02 ^{
+                                        01=OrderLock(ship, 1);
+                                        02=if(ShipStar(ship)==PlanetToStar(planet)) OrderLanding(ship, planet);
+                                        03=else OrderJump(ship, PlanetToStar(planet));
+                                    }
+                                    03=else if(GetShipPlanet(ship)==planet)
+                                    04 ^{
+                                        01=for(i=1; i<=zcount; i=i+1)
+                                        02 ^{
+                                            01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                            02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                            03=item=GetItemFromShip(ship, IdToItem(itemId));
+                                            04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                        }
+                                        03=OrderLock(ship, 0);
+                                        04=OrderTakeOff(ship);
+                                        05=ShipCustomShipInfoData(0, curInfo, 1, 3);
+                                        06=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(120, 365));
+                                    }
+                                }
+                            }
+                            03=else
+                            04 ^{
+                                01=unknown temparr=newarray(1);
+                                02=for(i=0; i<15; i=i+1)
+                                03^ {
+                                    01=system=StarNearbyStars(ShipStar(ship), i);
+                                    02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
+                                    03=if(StarBattle(system)) continue;
+                                    04=for(j=0; j<StarPlanets(system); j=j+1)
+                                    05 ^{
+                                        02=planet=StarPlanets(system, j);
+                                        03=if(PlanetOwner(planet)==None)
+                                        04 ^{
+                                            01=if(PlanetTerrain(planet, 0)!=PlanetTerrainExplored(planet, 0) || PlanetTerrain(planet, 1)!=PlanetTerrainExplored(planet, 1) || PlanetTerrain(planet, 2)!=PlanetTerrainExplored(planet, 2)) ArrayAdd(temparr, Id(planet));
+                                        }
+                                    }
+                                    06=if(ArrayDim(temparr)<=1) planet=0;
+                                    07=else planet=temparr[Rnd(1, ArrayDim(temparr)-1)];
+                                    08=ShipCustomShipInfoData(0, curInfo, 3, planet);
+                                    09=ArrayClear(temparr);
+                                }
+                            }
+                        }
+                        16=else if(ShipCustomShipInfoData(0, curInfo, 1)==3 && ShipCustomShipInfoData(0, curInfo, 2)<=CurTurn()) ShipCustomShipInfoData(0, curInfo, 1, 4);
+                        17=else if(ShipCustomShipInfoData(0, curInfo, 1)==4)
+                        18 ^{
+                            01=planet=IdToPlanet(ShipCustomShipInfoData(0, curInfo, 3));
+                            02=system=PlanetToStar(planet);
+                            03=if(StarOwner(system)==1 || StarCustomFaction(system)!='')
+                            04 ^{
+                                01=for(i=1; i<=zcount; i=i+1)
+                                02 ^{
+                                    01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                    02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                    03=FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                                }
+                                03=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                04=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                05=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                06=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                            }
+                            05=else
+                            06 ^{
+                                01=if(ShipInNormalSpace(ship))
+                                02 ^{
+                                    01=OrderLock(ship, 1);
+                                    02=if(ShipStar(ship)==system) OrderLanding(ship, planet);
+                                    03=else OrderJump(ship, system);
+                                }
+                                03=else if(GetShipPlanet(ship)==planet)
+                                04 ^{
+                                    01=for(i=1; i<=zcount; i=i+1)
+                                    02 ^{
+                                        01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                        02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                        03=item=GetItemFromVault(Id(ship)+'__'+itemId);
+                                        04=AddItemToShip(ship, item);
+                                        05=ItemDurability(item, ItemDurability(item)-Rnd(20,60));
+                                        06=NoDropItem(item, 1);
+                                    }
+                                    03=skill=ShipSkill(ship, 'TechnicalCur');
+                                    04=for(i=0; i<Rnd(1,3); i=i+1)
+                                    05 ^{
+                                        01=ShipCalcParam(ship);
+                                        02=freespace=ShipFreeSpace(ship);
+                                        03=tRnd=Rnd(1,100);
+                                        04=if(tRnd<=15 && freespace>20)
+                                        05 ^{
+                                            01=flag=0;
+                                            02=int trancOwnerInfo=ShipFindCustomShipInfoByType(ship, 'TrancNPCOwnerInfo');
+                                            03=if(~trancOwnerInfo)
+                                            04 ^{
+                                                01=infodata=ShipCustomShipInfoData(ship, trancOwnerInfo, 3);
+                                                02=if(infodata<6)
+                                                03 ^{
+                                                    01=item=CreateArt(t_ArtefactTranclucator, Rnd(Maloc, Gaal));
+                                                    02=if(freespace>=ItemSize(item))
+                                                    03 ^{
+                                                        01=if(Rnd(1,100)<=50)
+                                                        02 ^{
+                                                            01=AddItemToShip(ship, item);
+                                                            02=NoDropItem(item, 1);
+                                                            03=item=ArtTranclucatorToShip(item);
+                                                            04=ShipAddCustomShipInfo(item, 'TrancNPCAddInfo', 'NoShow', -1, 0, 0, '', '0', 'U');
+                                                            05=infodata=infodata+1;
+                                                            06=ShipCustomShipInfoData(ship, trancOwnerInfo, 3, infodata);
+                                                            07=str tempstr=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 1);
+                                                            08=tempstr=tempstr+Id(item)+'*'+(infodata+1)+'*';
+                                                            09=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 1, tempstr);
+                                                            10=tempstr=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 2);
+                                                            11=tempstr=tempstr+'N';
+                                                            12=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 2, tempstr);
+                                                            13=tempstr=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 3);
+                                                            14=tempstr=tempstr+'U';
+                                                            15=ShipCustomShipInfoTextData(ship, trancOwnerInfo, 3, tempstr);
+                                                            16=TranclucatorData(item, 'Proprietor', ship);
+                                                            17=TranclucatorData(item, 'AutoArrange', 1);
+                                                            18=flag=1;
+                                                        }
+                                                    }
+                                                    04=if(!flag) FreeItem(item);
+                                                }
+                                            }
+                                            05=if(!flag)
+                                            06 ^{
+                                                01=temparr=newarray(1);
+                                                02=for(j=t_ArtefactHull; j<=t_ArtefactAntigrav; j=j+1) ArrayAdd(temparr, j);
+                                                03=for(j=t_ArtDefToEnergy; j<=t_ArtFastRacks; j=j+1) ArrayAdd(temparr, j);
+                                                04=j=temparr[Rnd(1, ArrayDim(temparr)-1)];
+                                                05=item=CreateArt(j, Rnd(Maloc, Gaal));
+                                                06=ItemSize(item, min(freespace, ItemSize(item)));
+                                                07=AddItemToShip(ship, item);
+                                                08=ItemDurability(item, Rnd(0,20));
+                                                09=if(Rnd(1,100)>15) NoDropItem(item, 1);
+                                                10=ArrayClear(temparr);
+                                            }
+                                        }
+                                        06=else if(tRnd<=45 && freespace>20)
+                                        07 ^{ 
+                                            01=dword itemtype, size, techlevel, owner;
+                                            02=dword GTL=GalaxyTechLevel();
+                                            03=if(skill<=2) techlevel=Rnd(max(1, GalaxyTechLevel()-2), GalaxyTechLevel());
+                                            04=else if(skill<=4) techlevel=Rnd(max(1, GalaxyTechLevel()-1), min(GalaxyTechLevel()+1, 8));
+                                            05=else techlevel=Rnd(GalaxyTechLevel(), min(GalaxyTechLevel()+2, 8));
+                                            06=size=Rnd(20, min(80, freespace));
+                                            07=flag=0;
+                                            08=if(!Rnd(0,1)) itemtype=Rnd(t_FuelTanks, t_DefGenerator);
+                                            09=else 
+                                            10^{
+                                                02=if(CT('ShuDomiks.ShuEmitter') && Rnd(0,1))
+                                                03 ^{
+                                                    01=flag=1;
+                                                    02=str customtype;
+                                                    03=item=Rnd(1,4);
+                                                    04=if(!item)
+                                                    05 ^{
+                                                        01=customtype='grav_beam';
+                                                        02=owner=Fei;
+                                                    }
+                                                    06=else if(item==1)
+                                                    07 ^{
+                                                        01=customtype='frag_gun';
+                                                        02=owner=Maloc;
+                                                    }
+                                                    08=else if(item==2)
+                                                    09 ^{
+                                                        01=if(GTL<5)
+                                                        02 ^{
+                                                            01=customtype='maloc_laser2';
+                                                            02=owner=Peleng;
+                                                        }
+                                                        03=else
+                                                        04 ^{
+                                                            01=customtype='splash_faser';
+                                                            02=owner=Rnd(Maloc, PirateClan);
+                                                        }
+                                                    }
+                                                    10=else
+                                                    11 ^{
+                                                        01=if(GTL<5) customtype='photon_gun2';
+                                                        02=else customtype='laser_gun';
+                                                        03=owner=PirateClan;
+                                                    }
+                                                }
+                                                04=else
+                                                05 ^{
+                                                    01=if(GTL<5) itemtype=Rnd(t_Weapon2, t_Weapon6);
+                                                    02=else itemtype=Rnd(t_Weapon6, t_Weapon9);
+                                                }
+                                            }
+                                            11=if(flag) item=CreateCustomWeapon(customtype, size, techlevel, owner);
+                                            12=else item=CreateEquipment(itemtype, size, techlevel, Rnd(Maloc, Gaal));
+                                            13=AddItemToShip(ship, item);
+                                            14=ItemDurability(item, Rnd(0,20));
+                                        }
+                                        08=else if(tRnd<=65 && IsScriptActive('Mod_ExpArts'))
+                                        09 ^{
+                                            01=for(j=t_Hull; j<=t_DefGenerator; j=j+1)
+                                            02 ^{
+                                                01=item=ShipEqInSlot(ship, j);
+                                                02=if(!item) continue;
+                                                03=if(ItemImprovement(item) && j!=t_Hull) continue;
+                                                04=if(EqCustomFaction(item)=='Klissan') continue;
+                                                05=flag=0;
+                                                06=if(ItemExtraSpecials(item))
+                                                07 ^{
+                                                    01=int specNum=0;
+                                                    02=for(k=0; k<ItemExtraSpecials(item); k=k+1)
+                                                    03 ^{
+                                                        01=specNum=ItemExtraSpecials(item, k);
+                                                        02=if(!findsubstr(CT('MicroModuls.'+BonusNumInCfg(specNum)+'.Name'), 'dt_Modify')) flag=1;
+                                                    }
+                                                }
+                                                08=if(flag) continue;
+                                                09=ArrayAdd(temparr, item);
+                                            }
+                                            03=for(j=1; j<5; j=j+1)
+                                            04 ^{
+                                                01=item=ShipEqInSlot(ship, t_Weapon1, j);
+                                                02=if(!item) continue;
+                                                03=if(EqCustomFaction(item)=='Klissan') continue;
+                                                04=flag=0;
+                                                05=if(ItemExtraSpecials(item))
+                                                06 ^{
+                                                    01=specNum=0;
+                                                    02=for(k=0; k<ItemExtraSpecials(item); k=k+1)
+                                                    03 ^{
+                                                        01=specNum=ItemExtraSpecials(item, k);
+                                                        02=if(!findsubstr(CT('MicroModuls.'+BonusNumInCfg(specNum)+'.Name'), 'dt_Modify')) flag=1;
+                                                    }
+                                                }
+                                                07=if(flag) continue;
+                                                08=ArrayAdd(temparr, item);
+                                            }
+                                            05=if(ArrayDim(temparr)>1)
+                                            06 ^{
+                                                01=item=temparr[Rnd(1, ArrayDim(temparr)-1)];
+                                                02=dword type=ItemType(item);
+                                                03=if(type==t_Hull)
+                                                04 ^{
+                                                    01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_SmugglersCompartment'), 1);
+                                                    02=ItemSize(item, ItemSize(item)+(ItemSize(item)*25)/100);
+                                                }
+                                                05=else
+                                                06 ^{
+                                                    05=float fragility=ItemFragility(item);
+                                                    06=fragility=(fragility-1.0)*100;
+                                                    07=int chance=35+fragility;
+                                                    08=if(Rnd(1,100)<=chance) ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_FragiliumParts'), 1);
+                                                    09=else
+                                                    10 ^{
+                                                        01=if(type==t_FuelTanks)
+                                                        02 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_SecurityReplacement'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+20, 0);
+                                                        }
+                                                        03=else if(type==t_Engine)
+                                                        04 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_HackedInjector'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+200, 0);
+                                                        }
+                                                        05=else if(type==t_Radar)
+                                                        06 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_MeonChips'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+900, 0);
+                                                        }
+                                                        07=else if(type==t_Scaner)
+                                                        08 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_CircuitAmplifier'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+7, 0);
+                                                        }
+                                                        09=else if(type==t_RepairRobot)
+                                                        10 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_ProcessorsExtreme'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+8, 0);
+                                                        }
+                                                        11=else if(type==t_CargoHook)
+                                                        12 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_ReinforcedServoDrives'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+40, 0);
+                                                        }
+                                                        13=else if(type==t_DefGenerator)
+                                                        14 ^{
+                                                            01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_FieldDensityAmplifier'), 1);
+                                                            02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+6, 0);
+                                                        }
+                                                        15=else 
+                                                        16 ^{
+                                                            01=int dmgset=GetEquipmentStats(item, 6);
+                                                            02=if(dmgset & 1)
+                                                            03 ^{
+                                                                01=if((dmgset & 8) || (dmgset & 512) || (dmgset & 1024)) ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_TillCapacitors'), 1);
+                                                                02=else
+                                                                03 ^{
+                                                                    01=if(Rnd(1,100)<=50) ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_TillCapacitors'), 1);
+                                                                    02=else ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_Decelerator'), 1);
+                                                                }
+                                                            }
+                                                            04=else if(dmgset & 2)
+                                                            05 ^{
+                                                                01=if(dmgset & 128) ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_WeakenedLimiters'), 1);
+                                                                02=else
+                                                                03 ^{
+                                                                    01=if(Rnd(1,100)<=50) ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_WeakenedLimiters'), 1);
+                                                                    02=else ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_Acidius'), 1);
+                                                                }
+                                                            }
+                                                            06=else ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_AdditionalStowage'), 1);
+                                                        }
+                                                        17=ItemSize(item, ItemSize(item)+round(0.1*ItemSize(item)));
+                                                        18=ItemCost(item, ItemCost(item)+round(0.1*ItemCost(item)));
+                                                    }
+                                                }
+                                            }
+                                            07=ArrayClear(temparr);
+                                        }
+                                        10=else if(tRnd<=85)
+                                        11 ^{
+                                            01=item=Rnd(t_Food, t_Narcotics);
+                                            02=GoodsAdd(ship, item, min(freespace, (skill+1)*10)+Rnd(1,5));
+                                        }
+                                        12=else
+                                        13 ^{
+                                            01=temparr=newarray(1);
+                                            02=dword minpr, maxpr;
+                                            03=if(skill<=2)
+                                            04 ^{
+                                                01=minpr=70;
+                                                02=maxpr=100;
+                                            }
+                                            05=else if(skill<=4)
+                                            06 ^{
+                                                01=minpr=31;
+                                                02=maxpr=80;
+                                            }
+                                            07=else
+                                            08 ^{
+                                                01=minpr=10;
+                                                02=maxpr=40;
+                                            }
+                                            09=BuildListOfMMByPriority(temparr, minpr, maxpr);
+                                            10=for(j=1; j<Rnd(1,2); j=j+1)
+                                            11 ^{												
+                                                01=item=CreateMM(temparr[Rnd(1, ArrayDim(temparr)-1)]);
+                                                02=AddItemToShip(ship, item);
+                                            }
+                                            12=ArrayClear(temparr);
+                                        }
+                                    }
+                                    06=OrderLock(ship, 0);
+                                    07=OrderTakeOff(ship);
+                                    08=ShipCustomShipInfoData(0, curInfo, 1, 5);
+                                    09=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                }
+                            }
+                        }
+                        19=else if(ShipCustomShipInfoData(0, curInfo, 1)==5)
+                        20 ^{
+                            01=if(GetShipPlanet(ship))
+                            02 ^{
+                                01=if(PlanetOwner(GetShipPlanet(ship))!=None)
+                                02 ^{
+                                    01=for(i=1; i<=zcount; i=i+1)
+                                    02 ^{
+                                        01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                        02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                        03=item=IdToItem(itemId);
+                                        04=ItemDurability(item, 100);
+                                    }
+                                    03=if(zcount>2)
+                                    04 ^{
+                                        01=ShipCalcParam(ship);
+                                        02=freespace=ShipFreeSpace(ship);
+                                        03=if(freespace<50) ShipCustomShipInfoData(0, curInfo, 1, 6);
+                                        04=else if(Rnd(1,100)>75) ShipCustomShipInfoData(0, curInfo, 1, 6);
+                                        05=else 
+                                        06 ^{
+                                            01=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                            02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                        }
+                                    }
+                                    05=else 
+                                    06 ^{
+                                        01=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                        02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                    }
+                                }
+                            }
+                        }
+                        21=else if(ShipCustomShipInfoData(0, curInfo, 1)==6)
+                        22 ^{
+                            01=if(!ShipCustomShipInfoData(0, curInfo, 3))
+                            02 ^{
+                                01=temparr=newarray(1);
+                                02=for(i=0; i<15; i=i+1)
+                                03^ {
+                                    01=system=StarNearbyStars(ShipStar(ship), i);
+                                    02=if(StarOwner(system) || StarCustomFaction(system)!='') continue;
+                                    03=if(StarBattle(system)) continue;
+                                    04=for(j=0; j<StarPlanets(system); j=j+1)
+                                    05 ^{
+                                        01=planet=StarPlanets(system, j);
+                                        02=if(PlanetOwner(planet)!=None) ArrayAdd(temparr, Id(planet));
+                                    }
+                                }
+                                04=if(ArrayDim(temparr)<=1) planet=0;
+                                05=else planet=temparr[Rnd(1, ArrayDim(temparr)-1)];
+                                06=if(planet) ShipCustomShipInfoData(0, curInfo, 3, planet);
+                                07=else
+                                08 ^{
+                                    01=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                    02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                }
+                                09=ArrayClear(temparr);
+                            }
+                            03=else
+                            04 ^{
+                                01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
+                                02=planet=IdToPlanet(infodata);
+                                03=if(ShipInNormalSpace(ship))
+                                04^ {
+                                    01=system=PlanetToStar(planet);
+                                    02=if(StarOwner(system==1) || StarCustomFaction(system)!='') ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                    03=else
+                                    04 ^{
+                                        01=OrderLock(ship, 1);
+                                        02=if(ShipStar(ship)==system) OrderLanding(ship, planet);
+                                        03=else OrderJump(ship, system);
+                                    }
+                                }
+                                05=else if(GetShipPlanet(ship)==planet)
+                                06 ^{
+                                    01=for(i=1; i<=zcount; i=i+1)
+                                    02 ^{
+                                        01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                        02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                        03=item=GetItemFromShip(ship, IdToItem(itemId));
+                                        04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                    }
+                                    03=OrderLock(ship, 0);
+                                    04=OrderTakeOff(ship);
+                                    05=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                    06=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                }
+                            }
+                        }
+                        23=else if(ShipCustomShipInfoData(0, curInfo, 1)==7)
+                        24 ^{
+                            01=dword ruins;
+                            02=if(!ShipCustomShipInfoData(0, curInfo, 3))
+                            03 ^{
+                                01=for(i=0; i<20; i=i+1)
+                                02^ {
+                                    01=system=StarNearbyStars(ShipStar(ship), i);
+                                    02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
+                                    03=if(StarBattle(system)) continue;
+                                    04=ruins=StarRuins(system, 'SB');
+                                    05=if(ruins)
+                                    06 ^{
+                                        01=ShipCustomShipInfoData(0, curInfo, 3, Id(ruins));
+                                        02=break;
+                                    }
+                                }
+                                04=if(!ruins) 
+                                05 ^{
+                                    01=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                    02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(360, 480));
+                                }
+                            }							
+                            04=else
+                            05 ^{
+                                01=ruins=IdToShip(ShipCustomShipInfoData(0, curInfo, 3));
+                                02=if(ruins)
+                                03 ^{
+                                    01=if(ShipInNormalSpace(ship))
+                                    02 ^{
+                                        01=OrderLock(ship, 1);
+                                        02=system=ShipStar(ruins);
+                                        03=if(ShipStar(ship)==system) OrderLanding(ship, ruins);
+                                        04=else OrderJump(ship, system);
+                                    }
+                                    03=else if(GetShipRuins(ship)==ruins)
+                                    04 ^{
+                                        01=maxcount=1+ShipSkill(ship, 'TechnicalCur')/2;
+                                        02=if(zcount<maxcount)
+                                        03 ^{
+                                            01=if(zondsId==0) zondsId='#1#';
+                                            02=for(i=1; i<=Rnd(1,maxcount); i=i+1)
+                                            03^{
+                                                01=dword zondlevel;
+                                                02=if(IsScriptActive('Mod_EvoSB')) zondlevel=min(GalaxyTechLevel()-1, 7);
+                                                03=else zondlevel=min(GalaxyTechLevel()-1, 5);
+                                                04=item=CreateZond(Rnd(0, zondlevel), Rnd(Maloc, Gaal));
+                                                05=AddItemToShip(ship, item);
+                                                06=NoDropItem(item, 1);
+                                                07=zcount=zcount+1;
+                                                08=zondsId=zondsId+Id(item)+'#'+(zcount+1)+'#';
+                                            }
+                                            04=ShipCustomShipInfoTextData(0, curInfo, 1, zcount);
+                                            05=ShipCustomShipInfoTextData(0, curInfo, 2, zondsId);
+                                            06=ShipCalcParam(ship);
+                                            07=freespace=ShipFreeSpace(ship);
+                                            08=if(freespace<0)
+                                            09 ^{
+                                                01=dword hull=ShipItems(ship, 0);
+                                                02=ItemSize(hull, ItemSize(hull)+abs(freespace)+Rnd(1,5));
+                                                03=HullHP(ship, ItemSize(hull));
+                                            }
+                                        }
+                                        04=OrderLock(ship, 0);
+                                        05=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                        06=if(zcount>2)
+                                        07 ^{
+                                            01=ShipCalcParam(ship);
+                                            02=freespace=ShipFreeSpace(ship);
+                                            03=if(freespace<50) ShipCustomShipInfoData(0, curInfo, 1, 6);
+                                            04=else if(Rnd(1,100)>75) ShipCustomShipInfoData(0, curInfo, 1, 6);
+                                            05=else ShipCustomShipInfoData(0, curInfo, 1, 2);
+                                        }
+                                        08=else ShipCustomShipInfoData(0, curInfo, 1, 2);
+                                    }
+                                }
+                                04=else ShipCustomShipInfoData(0, curInfo, 3, 0);
+                            }
+                        }
+                    }
+                    15=else if(ScriptItemActionType(t_OnDeath))
+                    16 ^{
+                        01=zcount=ShipCustomShipInfoTextData(0, curInfo, 1);
+                        02=zondsId=ShipCustomShipInfoTextData(0, curInfo, 2);
+                        03=for(i=1; i<=zcount; i=i+1)
+                        04 ^{
+                            01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                            02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                            03=FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                        }
+                    }
+                    17=else
+                    18 ^{
+                        01=if(ShipCustomShipInfoData(0, curInfo, 1))
+                        02 ^{
+                            01=if(OrderLock(ship))
+                            02 ^{
+                                01=OrderLock(ship, 0);
+                                02=ShipFreeFlight(ship);
+                            }
+                            03=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
+                            04=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                            05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
+                        }
+                    }
+                }
+                OnActCodeTypes=t_OnStep,t_OnDeath,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
+                OnActStepTypes=0
+            }
+        }
+    }
+}

@@ -95,22 +95,23 @@ Artefacts ^{
                 01=if(!ItemIsInUse(CurItem())) exit;
                 02=if(!ScriptItemActShip()) exit;
                 03=if(ItemIsBroken(CurItem())) exit;
-                04=dword target = ScriptItemActObject1();
-                05=if(ObjectType(target) != 4 && ObjectType(target) != 5) exit;
-                06=int damage_set = GetEquipmentStats(ScriptItemActObject2(), 6);
-                07=if(!(damage_set & 2)) exit;
-                08=if((damage_set & 2048)) exit;
-                09=int shot = Rnd(1, 100);
-                10=int shot_chance;
-                11=if(ItemOwner(ScriptItemActObject2()) == 6) shot_chance = 40;
-                12=else shot_chance = 25;
-                13=if(shot_chance >= shot)
-                14 ^{
+                04=if(!ScriptItemActObject2()) exit;
+                05=dword target = ScriptItemActObject1();
+                06=if(ObjectType(target) != 4 && ObjectType(target) != 5) exit;
+                07=int damage_set = GetEquipmentStats(ScriptItemActObject2(), 6);
+                08=if(!(damage_set & 2)) exit;
+                09=if((damage_set & 2048)) exit;
+                10=int shot = Rnd(1, 100);
+                11=int shot_chance;
+                12=if(ItemOwner(ScriptItemActObject2()) == 6) shot_chance = 40;
+                13=else shot_chance = 25;
+                14=if(shot_chance >= shot)
+                15 ^{
                     01=int damag = (ScriptItemActParam() + ShipArmor(target)) * 100;
                     02=damag = damag / (100 - ShipProtectability(target));
                     03=ScriptItemActParam(damag);
                 }
-                15=if(ItemIsBroken(CurItem()) && ScriptItemActShip() == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_01.BrokenInUse'));
+                16=if(ItemIsBroken(CurItem()) && ScriptItemActShip() == Player())Ether(8, '', CT('Artefacts.CustomArtefacts.RNDart_01.BrokenInUse'));
             }
             OnActCodeTypes=t_OnWeaponShot
             SharedEffect=0

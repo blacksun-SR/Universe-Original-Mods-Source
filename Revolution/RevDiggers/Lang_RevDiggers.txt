@@ -39,7 +39,7 @@ ShipInfo ^{
                             02 ^{
                                 01=if(StarBattle(ShipStar(ship)))
                                 02 ^{
-                                    01=if(ShipInFear(ship)) 
+                                    01=if(ShipInFear(ship))
                                     02 ^{
                                         01=if(OrderLock(ship))
                                         02 ^{
@@ -61,7 +61,7 @@ ShipInfo ^{
                             02=else if(ShipOrder(ship)==6 && ShipGetBad(ship)) exit;
                             03=if(ShipFreeSpace(ship)<10) exit;
                             04=if(!zcount) ShipCustomShipInfoData(0, curInfo, 1, 7);
-                            05=else 
+                            05=else
                             06 ^{
                                 01=flag=0;
                                 02=for(i=1; i<=zcount; i=i+1)
@@ -108,12 +108,13 @@ ShipInfo ^{
                                     04=else
                                     05 ^{
                                         01=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
-                                        02=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                        02=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                                        03=ShipCustomShipInfoData(0, curInfo, 1, 7);
                                     }
                                 }
                             }
                         }
-                        12=else if(ShipCustomShipInfoData(0, curInfo, 1)==1) 
+                        12=else if(ShipCustomShipInfoData(0, curInfo, 1)==1)
                         13 ^{
                             01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
                             02=planet=IdToPlanet(infodata);
@@ -161,7 +162,7 @@ ShipInfo ^{
                             02 ^{
                                 01=planet=IdToPlanet(ShipCustomShipInfoData(0, curInfo, 3));
                                 02=if(PlanetOwner(planet)!=None) ShipCustomShipInfoData(0, curInfo, 3, 0);
-                                03=else 
+                                03=else
                                 04 ^{
                                     01=if(ShipInNormalSpace(ship))
                                     02 ^{
@@ -189,7 +190,7 @@ ShipInfo ^{
                             04 ^{
                                 01=unknown temparr=newarray(1);
                                 02=for(i=0; i<15; i=i+1)
-                                03^ {
+                                03^ ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -303,7 +304,7 @@ ShipInfo ^{
                                             }
                                         }
                                         06=else if(tRnd<=45 && freespace>20)
-                                        07 ^{ 
+                                        07 ^{
                                             01=dword itemtype, size, techlevel, owner;
                                             02=dword GTL=GalaxyTechLevel();
                                             03=if(skill<=2) techlevel=Rnd(max(1, GalaxyTechLevel()-2), GalaxyTechLevel());
@@ -312,8 +313,8 @@ ShipInfo ^{
                                             06=size=Rnd(20, min(80, freespace));
                                             07=flag=0;
                                             08=if(!Rnd(0,1)) itemtype=Rnd(t_FuelTanks, t_DefGenerator);
-                                            09=else 
-                                            10^{
+                                            09=else
+                                            10 ^{
                                                 02=if(CT('ShuDomiks.ShuEmitter') && Rnd(0,1))
                                                 03 ^{
                                                     01=flag=1;
@@ -451,7 +452,7 @@ ShipInfo ^{
                                                             01=ItemExtraSpecialsAddByType(item, FindBonusByNameInCfg('ExpArts_FieldDensityAmplifier'), 1);
                                                             02=SetEquipmentStats(item, GetEquipmentStats(item, 0)+6, 0);
                                                         }
-                                                        15=else 
+                                                        15=else
                                                         16 ^{
                                                             01=int dmgset=GetEquipmentStats(item, 6);
                                                             02=if(dmgset & 1)
@@ -507,7 +508,7 @@ ShipInfo ^{
                                             }
                                             09=BuildListOfMMByPriority(temparr, minpr, maxpr);
                                             10=for(j=1; j<Rnd(1,2); j=j+1)
-                                            11 ^{												
+                                            11 ^{
                                                 01=item=CreateMM(temparr[Rnd(1, ArrayDim(temparr)-1)]);
                                                 02=AddItemToShip(ship, item);
                                             }
@@ -540,13 +541,13 @@ ShipInfo ^{
                                         02=freespace=ShipFreeSpace(ship);
                                         03=if(freespace<50) ShipCustomShipInfoData(0, curInfo, 1, 6);
                                         04=else if(Rnd(1,100)>75) ShipCustomShipInfoData(0, curInfo, 1, 6);
-                                        05=else 
+                                        05=else
                                         06 ^{
                                             01=ShipCustomShipInfoData(0, curInfo, 1, 0);
                                             02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
                                         }
                                     }
-                                    05=else 
+                                    05=else
                                     06 ^{
                                         01=ShipCustomShipInfoData(0, curInfo, 1, 0);
                                         02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
@@ -560,7 +561,7 @@ ShipInfo ^{
                             02 ^{
                                 01=temparr=newarray(1);
                                 02=for(i=0; i<15; i=i+1)
-                                03^ {
+                                03^ ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system) || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -585,7 +586,7 @@ ShipInfo ^{
                                 01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
                                 02=planet=IdToPlanet(infodata);
                                 03=if(ShipInNormalSpace(ship))
-                                04^ {
+                                04^ ^{
                                     01=system=PlanetToStar(planet);
                                     02=if(StarOwner(system==1) || StarCustomFaction(system)!='') ShipCustomShipInfoData(0, curInfo, 3, 0);
                                     03=else
@@ -617,7 +618,7 @@ ShipInfo ^{
                             02=if(!ShipCustomShipInfoData(0, curInfo, 3))
                             03 ^{
                                 01=for(i=0; i<20; i=i+1)
-                                02^ {
+                                02^ ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -628,12 +629,12 @@ ShipInfo ^{
                                         02=break;
                                     }
                                 }
-                                04=if(!ruins) 
+                                04=if(!ruins)
                                 05 ^{
                                     01=ShipCustomShipInfoData(0, curInfo, 1, 0);
                                     02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(360, 480));
                                 }
-                            }							
+                            }
                             04=else
                             05 ^{
                                 01=ruins=IdToShip(ShipCustomShipInfoData(0, curInfo, 3));
@@ -653,7 +654,7 @@ ShipInfo ^{
                                         03 ^{
                                             01=if(zondsId==0) zondsId='#1#';
                                             02=for(i=1; i<=Rnd(1,maxcount); i=i+1)
-                                            03^{
+                                            03 ^{
                                                 01=dword zondlevel;
                                                 02=if(IsScriptActive('Mod_EvoSB')) zondlevel=min(GalaxyTechLevel()-1, 7);
                                                 03=else zondlevel=min(GalaxyTechLevel()-1, 5);

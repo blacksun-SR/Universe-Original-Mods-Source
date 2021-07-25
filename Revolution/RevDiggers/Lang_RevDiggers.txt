@@ -190,7 +190,7 @@ ShipInfo ^{
                             04 ^{
                                 01=unknown temparr=newarray(1);
                                 02=for(i=0; i<15; i=i+1)
-                                03^ ^{
+                                03 ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -561,7 +561,7 @@ ShipInfo ^{
                             02 ^{
                                 01=temparr=newarray(1);
                                 02=for(i=0; i<15; i=i+1)
-                                03^ ^{
+                                03 ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system) || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -586,7 +586,7 @@ ShipInfo ^{
                                 01=infodata=ShipCustomShipInfoData(0, curInfo, 3);
                                 02=planet=IdToPlanet(infodata);
                                 03=if(ShipInNormalSpace(ship))
-                                04^ ^{
+                                04 ^{
                                     01=system=PlanetToStar(planet);
                                     02=if(StarOwner(system==1) || StarCustomFaction(system)!='') ShipCustomShipInfoData(0, curInfo, 3, 0);
                                     03=else
@@ -618,7 +618,7 @@ ShipInfo ^{
                             02=if(!ShipCustomShipInfoData(0, curInfo, 3))
                             03 ^{
                                 01=for(i=0; i<20; i=i+1)
-                                02^ ^{
+                                02 ^{
                                     01=system=StarNearbyStars(ShipStar(ship), i);
                                     02=if(StarOwner(system)==1 || StarCustomFaction(system)!='') continue;
                                     03=if(StarBattle(system)) continue;
@@ -700,7 +700,9 @@ ShipInfo ^{
                         04 ^{
                             01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
                             02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
-                            03=FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                            03=item=IdToItem(itemId);
+                            04=if(~FindItemInShip(ship, item)) NoDropItem(item, 0);
+                            05=else FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
                         }
                     }
                     17=else

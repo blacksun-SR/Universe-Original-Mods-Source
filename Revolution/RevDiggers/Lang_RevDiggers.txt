@@ -709,14 +709,10 @@ ShipInfo ^{
                     18 ^{
                         01=if(ShipCustomShipInfoData(0, curInfo, 1))
                         02 ^{
-                            01=if(OrderLock(ship))
-                            02 ^{
-                                01=OrderLock(ship, 0);
-                                02=ShipFreeFlight(ship);
-                            }
-                            03=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
-                            04=ShipCustomShipInfoData(0, curInfo, 1, 0);
-                            05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
+                            01=if(OrderLock(ship)) OrderLock(ship, 0);
+                            02=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
+                            03=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                            04=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
                         }
                     }
                 }

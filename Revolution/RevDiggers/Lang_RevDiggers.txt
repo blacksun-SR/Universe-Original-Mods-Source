@@ -363,8 +363,9 @@ ShipInfo ^{
                                         }
                                         08=else if(tRnd<=65 && IsScriptActive('Mod_ExpArts'))
                                         09 ^{
-                                            01=for(j=t_Hull; j<=t_DefGenerator; j=j+1)
-                                            02 ^{
+                                            01=temparr=newarray(1);
+                                            02=for(j=t_Hull; j<=t_DefGenerator; j=j+1)
+                                            03 ^{
                                                 01=item=ShipEqInSlot(ship, j);
                                                 02=if(!item) continue;
                                                 03=if(ItemImprovement(item) && j!=t_Hull) continue;
@@ -382,8 +383,8 @@ ShipInfo ^{
                                                 08=if(flag) continue;
                                                 09=ArrayAdd(temparr, item);
                                             }
-                                            03=for(j=1; j<5; j=j+1)
-                                            04 ^{
+                                            04=for(j=1; j<5; j=j+1)
+                                            05 ^{
                                                 01=item=ShipEqInSlot(ship, t_Weapon1, j);
                                                 02=if(!item) continue;
                                                 03=if(EqCustomFaction(item)=='Klissan') continue;
@@ -400,8 +401,8 @@ ShipInfo ^{
                                                 07=if(flag) continue;
                                                 08=ArrayAdd(temparr, item);
                                             }
-                                            05=if(ArrayDim(temparr)>1)
-                                            06 ^{
+                                            06=if(ArrayDim(temparr)>1)
+                                            07 ^{
                                                 01=item=temparr[Rnd(1, ArrayDim(temparr)-1)];
                                                 02=dword type=ItemType(item);
                                                 03=if(type==t_Hull)
@@ -480,7 +481,7 @@ ShipInfo ^{
                                                     }
                                                 }
                                             }
-                                            07=ArrayClear(temparr);
+                                            08=ArrayClear(temparr);
                                         }
                                         10=else if(tRnd<=85)
                                         11 ^{

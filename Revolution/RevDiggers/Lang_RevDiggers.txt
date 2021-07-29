@@ -1,3 +1,12 @@
+MicroModuls ^{
+	RevDiggersCreateSatellite ^{
+        Equipments=Any
+        LockedAcryn=3
+        NonSearchable=1
+        Priority=0
+        Special=1
+    }
+}
 ShipInfo ^{
     AddInfo ^{
         CustomInfos ^{
@@ -729,19 +738,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(0, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(0, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+        
     }
     RevDiggersFakeSatellite1 ^{
         Cost=Small
@@ -752,19 +776,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(1, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(1, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+       
     }
     RevDiggersFakeSatellite2 ^{
         Cost=Big
@@ -775,19 +814,33 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(2, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(2, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
     }
     RevDiggersFakeSatellite3 ^{
         Cost=Big
@@ -798,19 +851,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(3, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(3, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+        
     }
     RevDiggersFakeSatellite4 ^{
         Cost=Huge
@@ -821,19 +889,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(4, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(4, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+
     }
     RevDiggersFakeSatellite5 ^{
         Cost=Huge
@@ -844,19 +927,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(5, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(5, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+        
     }
     RevDiggersFakeSatellite6 ^{
         Cost=Huge
@@ -867,19 +965,34 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(6, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(6, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
+        
     }
     RevDiggersFakeSatellite7 ^{
         Cost=Huge
@@ -890,18 +1003,32 @@ UselessItems ^{
         Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
         OnActCode ^{
             01=dword ship=ScriptItemActShip();
-            02=dword item=ScriptItemActObject1();
-            02=if(IsPlayer(ship))
-            03 ^{
-                01=dword satellite=CreateZond(7, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
-                02=ItemCost(satellite, ItemCost(item));
-                03=ItemSize(satellite, ItemSize(item));
-                04=SetName(satellite, Name(item));
-                05=AddItemToShip(ship, satellite);
-                06=GetItemFromShip(ship, item);
-                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            02=dword item=CurItem();
+            03=if(ScriptItemActionType(t_OnStep, 11))
+            04 ^{
+                01=if(IsPlayer(ship))
+                02 ^{
+                    01=if(substr(Name(item), 0, 6) == '#mark#')
+                    02 ^{
+                        01=SetName(item, substr(Name(item), 6));
+                        02=dword satellite=CreateZond(7, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                        03=ItemCost(satellite, ItemCost(item));
+                        04=ItemSize(satellite, ItemSize(item));
+                        05=SetName(satellite, Name(item));
+                        06=AddItemToShip(ship, satellite);
+                        07=FreeItem(GetItemFromShip(ship, item));
+                    }
+                }
+            }
+            05=else
+            06 ^{
+                01=if(ScriptItemActObject1()==item)
+                02 ^{
+                    01=if(IsPlayer(ship) && (substr(Name(item), 0, 3)!='#mark#')) SetName(item, '#mark#'+Name(item));
+                }
             }
         }
-        OnActCodeTypes=t_OnItemPickUp
+        OnActCodeTypes=t_OnItemPickUp,t_OnStep
+        OnActStepTypes=11
     }
 }

@@ -39,16 +39,12 @@ ShipInfo ^{
                             02 ^{
                                 01=if(StarBattle(ShipStar(ship)))
                                 02 ^{
-                                    01=if(ShipInFear(ship))
+                                    01=if(ShipInFear(ship)) 
                                     02 ^{
-                                        01=if(OrderLock(ship))
-                                        02 ^{
-                                            01=OrderLock(ship, 0);
-                                            02=ShipFreeFlight(ship);
-                                        }
-                                        03=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
-                                        04=ShipCustomShipInfoData(0, curInfo, 1, 0);
-                                        05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
+                                        01=if(OrderLock(ship)) OrderLock(ship, 0);
+                                        02=if(ShipCustomShipInfoData(0, curInfo, 1)==7) ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                        03=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                        04=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+30);
                                     }
                                 }
                             }
@@ -243,8 +239,7 @@ ShipInfo ^{
                                         02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
                                         03=item=GetItemFromVault(Id(ship)+'__'+itemId);
                                         04=AddItemToShip(ship, item);
-                                        05=ItemDurability(item, ItemDurability(item)-Rnd(20,60));
-                                        06=NoDropItem(item, 1);
+                                        05=NoDropItem(item, 1);
                                     }
                                     03=skill=ShipSkill(ship, 'TechnicalCur');
                                     04=for(i=0; i<Rnd(1,3); i=i+1)
@@ -529,15 +524,8 @@ ShipInfo ^{
                             02 ^{
                                 01=if(PlanetOwner(GetShipPlanet(ship))!=None)
                                 02 ^{
-                                    01=for(i=1; i<=zcount; i=i+1)
+                                    01=if(zcount>2)
                                     02 ^{
-                                        01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
-                                        02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
-                                        03=item=IdToItem(itemId);
-                                        04=ItemDurability(item, 100);
-                                    }
-                                    03=if(zcount>2)
-                                    04 ^{
                                         01=ShipCalcParam(ship);
                                         02=freespace=ShipFreeSpace(ship);
                                         03=if(freespace<50) ShipCustomShipInfoData(0, curInfo, 1, 6);
@@ -548,8 +536,8 @@ ShipInfo ^{
                                             02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
                                         }
                                     }
-                                    05=else
-                                    06 ^{
+                                    03=else
+                                    04 ^{
                                         01=ShipCustomShipInfoData(0, curInfo, 1, 0);
                                         02=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
                                     }
@@ -607,9 +595,8 @@ ShipInfo ^{
                                         04=PutItemInVault(Id(ship)+'__'+itemId, item);
                                     }
                                     03=OrderLock(ship, 0);
-                                    04=OrderTakeOff(ship);
-                                    05=ShipCustomShipInfoData(0, curInfo, 1, 0);
-                                    06=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                    04=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                    05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
                                 }
                             }
                         }
@@ -654,16 +641,22 @@ ShipInfo ^{
                                         02=if(zcount<maxcount)
                                         03 ^{
                                             01=if(zondsId==0) zondsId='#1#';
-                                            02=for(i=1; i<=Rnd(1,maxcount); i=i+1)
-                                            03 ^{
-                                                01=dword zondlevel;
-                                                02=if(IsScriptActive('Mod_EvoSB')) zondlevel=min(GalaxyTechLevel()-1, 7);
-                                                03=else zondlevel=min(GalaxyTechLevel()-1, 5);
-                                                04=item=CreateZond(Rnd(0, zondlevel), Rnd(Maloc, Gaal));
-                                                05=AddItemToShip(ship, item);
-                                                06=NoDropItem(item, 1);
-                                                07=zcount=zcount+1;
-                                                08=zondsId=zondsId+Id(item)+'#'+(zcount+1)+'#';
+                                            02=dword zondlevel;
+                                            03=if(IsScriptActive('Mod_EvoSB')) zondlevel=min(GalaxyTechLevel()-1, 7);
+                                            04=else zondlevel=min(GalaxyTechLevel()-1, 5);
+                                            05=for(i=1; i<=Rnd(1,maxcount); i=i+1)
+                                            06 ^{
+                                                01=dword cloneItem=CreateZond(Rnd(0, zondlevel), None);
+                                                02=item=CreateQuestItem('RevDiggersFakeSatellite'+zondlevel, Rnd(Maloc, Gaal));
+                                                03=UselessItemData(item, 1, GetEquipmentStats(cloneItem, 0));
+                                                04=UselessItemData(item, 2, GetEquipmentStats(cloneItem, 1));
+                                                05=UselessItemData(item, 3, GetEquipmentStats(cloneItem, 2));
+                                                06=SetName(item, 'Зонд '+Name(item)+'-'+Rnd(1,99));
+                                                07=FreeItem(cloneItem);
+                                                08=AddItemToShip(ship, item);
+                                                09=NoDropItem(item, 1);
+                                                10=zcount=zcount+1;
+                                                11=zondsId=zondsId+Id(item)+'#'+(zcount+1)+'#';
                                             }
                                             04=ShipCustomShipInfoTextData(0, curInfo, 1, zcount);
                                             05=ShipCustomShipInfoTextData(0, curInfo, 2, zondsId);
@@ -702,7 +695,10 @@ ShipInfo ^{
                             01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
                             02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
                             03=item=IdToItem(itemId);
-                            04=if(~FindItemInShip(ship, item)) NoDropItem(item, 0);
+                            04=if(~FindItemInShip(ship, item))
+                            05 ^{
+                                01=if(Rnd(1,100)<=10) NoDropItem(item, 0);
+                            }
                             05=else FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
                         }
                     }
@@ -721,5 +717,191 @@ ShipInfo ^{
                 OnActStepTypes=0
             }
         }
+    }
+}
+UselessItems ^{
+    RevDiggersFakeSatellite0 ^{
+        Cost=Small
+        Name=Оперон
+        Size=10
+        Owner=Peleng
+        Text=Высокоорбитальный спутник класса <color=255,239,99>D</color>. Производит поверхностную разведку любых типов несложной местности.<br>Надёжность средняя.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(0, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite1 ^{
+        Cost=Small
+        Name=Керинд
+        Size=7
+        Owner=Peleng
+        Text=Низкоорбитальный спутник класса <color=255,239,99>D</color>. Производит разведку равнинных участков. Гарантируется длительный срок эксплуатации.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(1, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite2 ^{
+        Cost=Big
+        Name=Тектон
+        Size=15
+        Owner=Peleng
+        Text=Высокоорбитальный спутник класса <color=255,239,99>C</color>. Производит разведку суши и горной местности. Надёжность средняя.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(2, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite3 ^{
+        Cost=Big
+        Name=Шаклас
+        Size=10
+        Owner=Peleng
+        Text=Низкоорбитальный спутник класса <color=255,239,99>C</color>. Отлично сканирует глубоководные участки моря и прилегающую сушу. Требует постоянного ремонта.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(3, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite4 ^{
+        Cost=Huge
+        Name=Нейтра
+        Size=15
+        Owner=Peleng
+        Text=Шпионский спутник класса <color=255,239,99>B</color>. Используется спецслужбами. Эффективен при разведке любой местности, но имеет низкую надёжность.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(4, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite5 ^{
+        Cost=Huge
+        Name=Глазнюк
+        Size=25
+        Owner=Peleng
+        Text=Низкоорбитальный спутник класса <color=255,239,99>B</color>. Отлично сканирует горные массивы и прилегающие к ним территории.<br>Практически вечен.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(5, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite6 ^{
+        Cost=Huge
+        Name=Акваматор
+        Size=15
+        Owner=Peleng
+        Text=Низкоорбитальный спутник класса <color=255,239,99>A</color>. Совершает периодические погружения с целью тщательного изучения жидкой или газообразной среды планеты. Долговечность закономерно невысока.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(6, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
+    }
+    RevDiggersFakeSatellite7 ^{
+        Cost=Huge
+        Name=Оптиралл
+        Size=30
+        Owner=Peleng
+        Text=Военный спутник класса <color=255,239,99>A</color>.<br>Почти одинаково эффективен при разведке любых типов местности. Надёжность высокая.
+        Text=Вода: <Data1> / Равнина: <Data2> / Горы: <Data3>
+        OnActCode ^{
+            01=dword ship=ScriptItemActShip();
+            02=dword item=ScriptItemActObject1();
+            02=if(IsPlayer(ship))
+            03 ^{
+                01=dword satellite=CreateZond(7, ItemOwner(item), UselessItemData(item, 1), UselessItemData(item, 2), UselessItemData(item, 3));
+                02=ItemCost(satellite, ItemCost(item));
+                03=ItemSize(satellite, ItemSize(item));
+                04=SetName(satellite, Name(item));
+                05=AddItemToShip(ship, satellite);
+                06=GetItemFromShip(ship, item);
+                07=DropItemInSystem(ShipStar(ship), item, 0, 0, 0, 0);
+            }
+        }
+        OnActCodeTypes=t_OnItemPickUp
     }
 }

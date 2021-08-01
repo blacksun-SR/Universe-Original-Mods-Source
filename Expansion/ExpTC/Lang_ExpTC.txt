@@ -145,7 +145,7 @@ MicroModuls ^{
     // }
     ExpTC_DyshotEnergy ^{
         CustomTag=ExpTC_DyshotEnergy
-        Equipments=W01,W03,W05,W06,W08,W10,W11,W12,W17,sub_gun,grav_beam,splash_faser,gaal_vision,slow_gun,sphere_gun,pulse_gun,pulse_gun2,maloc_laser,maloc_laser2,photon_gun,photon_gun2,photon_gun3
+        Equipments=W01,W03,W05,W06,W08,W10,W11,W12,W17,grav_beam,splash_faser,gaal_vision,slow_gun,sphere_gun,pulse_gun,pulse_gun2,maloc_laser,maloc_laser2,photon_gun,photon_gun2,photon_gun3
         Name="Дишот"
         OnPlanets=1
         Priority=10

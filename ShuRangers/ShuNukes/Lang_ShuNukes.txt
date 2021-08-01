@@ -16,7 +16,7 @@ Artefacts ^{
                 06=else if(!third) third = s;
             }
             08=if(first) Ether(7, 'ArtScaner', stroka, first, second, third);
-            09=else Ether(7, 'ArtScaner', 'В системе не обнаружено кораблей с ядерным оружием.');
+           09=else Ether(7, 'ArtScaner', 'В системе не обнаружено кораблей с ядерным оружием.');
             10=Sound('Sound.NewMsg');
         }
         Text=Программный усилитель вычислительной мощности сканера на <clr>10%<clrEnd>. Увеличивает объём получаемой информации о кораблях.
@@ -53,8 +53,8 @@ MicroModuls ~{
         Priority=0
         ShotVisual=15
         Special=1
-		LockedAcryn=3
-		NonSearchable=1
+        LockedAcryn=3
+        NonSearchable=1
         WeaponMods=Shock,Magnetic,Destruct,BlockWeapon,BlockDroid,DropCargo,Decelerate,BonusToDamaged
     }
     ShuNukes_Nova ^{
@@ -66,31 +66,17 @@ MicroModuls ~{
         Priority=0
         ShotVisual=15
         Special=1
-		LockedAcryn=3
-		NonSearchable=1
+        LockedAcryn=3
+        NonSearchable=1
         WeaponMods=Acid,Destruct,BlockWeapon,BlockDroid,DropCargo,Decelerate,BonusToDamaged,Magnetic,ReduceEngine,ScanBonus
     }
 }
 Script ^{
     Mod_ShuNukes ^{
-        0=Омнитрейдер
-        1=Наноремонтный комплекс
-        2=Нео
-        3=Артемида
-        4=Грубахар
-        5=Система К.А.С.И.
-        6=Уни-инструмент
-        7=Хаммерхед
-        8=Орфей
-        9=Энциклопедия "Говорун"
-        10=Панель технической диагностики
-        11=Кобра
-        12=Боевой интерфейс
-        13=Анализирующий монокуляр
-        14=Путь воина
-        15=Каллисто
         16=9 мая
         17=23 февраля
+        70=Приобрести точечный усилитель поля
+        71=Недавно мы наладили серийное производство точечных усилителей поля, не желаете взглянуть?
         18=Что за ядерное оружие?
         19=Братан, к нам на доминион недавно завезли любопытные экземпляры ядерного оружия, хочешь глянуть?
         20=Хочу приобрести RL-3
@@ -99,7 +85,7 @@ Script ^{
         23=Хочу приобрести абсорбер
         24=Не желаете ли также приобрести абсорбер?
         25=Покажите мне свое ядерное оружие
-        26=Рейнджерам со званием от <clr>Истребителя<clrEnd> мы предлагаем уникальное ядерное оружие. Мне кажется, вы, <Player>, заинтересуетесь этим.
+        75=Рейнджерам со званием от <clr>Капитана<clrEnd> мы предлагаем уникальное ядерное оружие. Мне кажется, вы, <Player>, заинтересуетесь этим.
         27=Мы убеждены, что вас также заинтересует третья модификация пусковой установки RL.
         28=Меня интересует зарядка ядерного оружия
         29=Я желаю установить на базу ядерное оружие
@@ -109,14 +95,15 @@ Script ^{
         33=Пардонь, браток, но мы все ядерахи разбазаривать не можем. Возвращайся как-нибудь в районе <0>, тогда намечается следующий завоз.
         34=Вы достигли требуемого звания, и имеете право получить доступ к ОМП, адаптированному для применения в космосе. Последнее слово техники - пусковая установка RL-2, способная нести до трёх самонаводящихся ракет одновременно. Спустя годы попыток воссоздать доминаторские торпеды, мы, наконец, нашли идеальное решение вопроса, и заменили боевую начинку ракеты, ведомой системой выстрелил-и-не-вспомнил на тактическую ядерную боеголовку. Орудие недешевое, да и козни пиратского клана, укравшего технологию ещё на ранних стадиях разработки, дел не улучшает, но, поверьте - оно того стоит. <br>Применяйте тактические ракеты с умом - мы постоянно улучшаем их оснастку, но по постановлению Галактического Совета имеем право выделять не более <clr>двух<clrEnd> боеприпасов в полгода каждому заинтересованному пилоту. <br>Сама установка обойдётся вам, как свободному пилоту, в <0> cr. Постарайтесь понять нас, <Player>, мы вынуждены оплачивать все страховки на тот случай, если вы примените ядерное оружие не по назначению. <br>Будьте верны рейнджерскому делу, и примените этих маленьких вестников смерти, сравнимых с мощью кварковых бомб, на борьбу с врагами необъятного народа Коалиции!
         35=Окей, коллега, ты уже набрался достаточно авторитета, чтобы мы могли переговорить с тобой с глазу на глаз. Как жизнь пиратская? Толпы всевозможных отбросов на хвосте не докучают? Не беспокойся, мы нашли этому отличное решение - ядерное оружие! Хе-хе. Пусковая установка, способная нести до трёх самонаводящихся ракет класса ТАС-16 одновременно, свежачком с чертежей яйцеголовых Коалиции. Те годами пытались воссоздать доминаторские торпеды, и, должен признать, хоть раз в жизни пришли к чему-то действительно гениальному - заменили боевую начинку ракеты, ведомой системой выстрелил-и-не-вспомнил на тактическую ядерную боеголовку. Стоит оно, конечно, недешево, да и в космосе хрен применишь из-за неэффективности ядерного оружия в вакууме, но система наведения обычно всё компенсирует. <br>К сожалению, наши запасы не так обширны, как хотелось бы, и мы не можем выделять больше <clr>двух<clrEnd> ракет в полгода каждому допущенному к большой бабахалке брату. <br>Сама установка обойдётся тебе в <0> cr. Немало, да, но только представь, сколько торгашей можно вынести за раз! <br>Будь паинькой, и направь эту крошку в правильное русло. Нет такого врага, который избежит разорительного присутствия пиратского клана!
-        36=Так точно, рейнджер, <0> подпадает под специальное распоряжение Галактического Совета "О лимитированном контролируемом распространении тактического ядерного оружия в целях противодействия внешней угрозе", и у нас есть возможность для установки дополнительных систем защиты. В столь неспокойные времена лишним оно точно не станет.<br>Мы рады, что вы заинтересованы в спонсировании этого вопроса, наличие ядерного оружия на борту <1> значительно усилит способность станции в случае критической ситуации постоять за себя.<br>Установка первичных систем обойдётся в <2> cr. - таким образом, <3> сможет запускать по одной боеголовке раз в <4> дней. Не беспокойтесь, <clr>все расходы на боеприпасы Галактический Совет берёт на себя<clrEnd> - ваше дело лишь его к тому обязать.
+        68=Так точно, рейнджер, наша база подпадает под специальное распоряжение Галактического Совета "О лимитированном контролируемом распространении тактического ядерного оружия в целях противодействия внешней угрозе", и у нас есть возможность для установки дополнительных систем защиты. В столь неспокойные времена лишним оно точно не станет.<br>Мы рады, что вы заинтересованы в спонсировании этого вопроса, наличие ядерного оружия на борту станции значительно усилит способность станции в случае критической ситуации постоять за себя.<br>Установка первичных систем обойдётся в <0> cr. - таким образом, мы сможем запускать по одной боеголовке раз в <1> дней. Не беспокойтесь, <clr>все расходы на боеприпасы Галактический Совет берёт на себя<clrEnd> - ваше дело лишь его к тому обязать.
         37=В данный момент станция оборудована моделью пусковой установки <clr>RL-2M MK I<clrEnd>, способной запускать один ядерный заряд раз в <0> дней. За <1> cr. мы можем модернизировать систему до <clr>RL-2M MK II<clrEnd>, что сократит задержку перед следующей атакой до <2> дней.
         38=В данный момент станция оборудована моделью пусковой установки <clr>RL-2M MK II<clrEnd>, способной запускать один ядерный заряд раз в <0> дней. За <1> cr. мы можем модернизировать систему до <clr>RL-2M MK III<clrEnd>, что сократит задержку перед следующей атакой до <2> дней.
-        39=В данный момент станция оборудована моделью пусковой установки <clr>RL-2M MK III<clrEnd>, способной запускать один ядерный заряд раз в <0> дней. Это лучшая из доступных на сегодняшний день стационарных ядерных систем тактического назначения.
+        39=В данный момент станция оборудована моделью пусковой установки <clr>RL-2M MK III<clrEnd>, способной запускать один ядерный заряд раз в <0> дней. Это лучшая из доступных на сегодняшний день стационарных ядерных систем тактического назначения. 
         40=Итак, вот оно, детище наших лучших инженеров - <clr>Абсорбер<clrEnd>. Он представляет из себя систему противодействия баллистическому огню, способную нейтрализовать 80% урона от попадания ядерной боеголовки, рассеивая локализованную энергию в вакууме. Не действует на обычные ракеты из-за низкого для локализации энергетического потенциала. Перезарядка после каждой локализации будет занимать приблизительно <0> дней. Такая штучка обойдётся вам в добрые <1> cr., но ставлю на кон свою репутацию управляющего, об этом выборе вы не пожалеете наверняка.
-        41=Отлично, что ты решил нам с этим подсобить, брат. Наличие ядерного оружия на борту <0> точно заставит фараонов задуматься, стоит ли устраивать на нас облаву - разнесем их всех в щепки!<br>Установка базовых систем выльется тебе в <1> cr. - таким образом, <2> сможет запускать по одной боеголовке раз в <3> дней. Не боись, <clr>все расходы на боеприпасы пиратское братство берет на себя<clrEnd>, от тебя требуется только подтолкнуть Верховных Лякуш к такому шагу.
-        42=Рейнджер, насколько нам известно, вы являетесь активным пользователем пусковой установки RL-2. После некоторых размышлений, Командование приняло решение доверить вам уникальную модель RL-3. <br>В отличие от стандартного образца, RL-3 обладает вместимостью <0> ракет, а благодаря использованию доминаторских энергопакетов зарядка занимает только <1> дня! Отдадим мы это чудо инженерной мысли за <2> cr. <br>Понимаю, немало, но гигантское тактическое преимущество в космосе не дрейфует! Не так ли, <Player>?
+        69=Отлично, что ты решил нам с этим подсобить, брат. Наличие ядерного оружия на борту нашей стацнии точно заставит фараонов задуматься, стоит ли устраивать на нас облаву - разнесем их всех в щепки!<br>Установка базовых систем выльется тебе в <0> cr. - таким образом, мы сможем запускать по одной боеголовке раз в <1> дней. Не боись, <clr>все расходы на боеприпасы пиратское братство берет на себя<clrEnd>, от тебя требуется только подтолкнуть Верховных Лякуш к такому шагу.
+        42=Рейнджер, насколько нам известно, вы являетесь активным пользователем пусковой установки RL-2. После некоторых размышлений, Командование приняло решение доверить вам уникальную модель RL-3. <br>В отличие от стандартного образца, RL-3 обладает вместимостью <0> ракет, а благодаря использованию доминаторских энергопакетов зарядка занимает только <1> дня! Отдадим мы это чудо инженерной мысли за <2> cr. <br>Понимаю, немало, но гигантское тактическое преимущество в космосе не дрейфует! Не так ли, <Player>? 
         43=Как мне нашептал алкарис, <Player>, ты очень любишь все ядерное и рактное, в частности, пусковую установку RL-2. Хо-хо, как ты разносил этих фараонов - это надо было видеть! <br>Спрос рождает предложение, брат, и у нас есть, что предложить даже такому бывалому пирату. <br>С гордостью презентуем тебе ужасную, страшную, безжалостную и безумно опасную RL-3! "Тройка" с вместимостью в аж <0> боеголовок и с зарядкой <1> дня позволит тебе сеять хаос и разрушение в троекратном объеме, бу-га-га! По заверениям наших спецов, этот агрегатище также дает плюс к респекту и уважухе среди правильных пацанов. <br>Начать сеять погромы во всех обитаемых и не очень мирах можно прямо сейчас всего-то за <2> cr. Предложение, от которого невозможно отказаться, не так ли?
+        72=Точечный усилитель поля - устройство, изобретенное нами прежде всего для защиты от внезапных нападений со стороны доминаторов. Наша разработка взаимодейтсвует напрямую с ГЗП, значительно усиливая защитное поле в предполагаемом месте удара на короткий срок. Это позволяет в 50% случаев поглотить весь входящий урон, до пяти раз в день. <br>Однако, усилитель способен предотвратить только малый и средний ущерб, а при получении значительного, устройство перегружается, чтобы не повредить генератор защитного поля.<br><br>Установка Точечного усилителя поля будет стоить вам <0> cr. Будем устанавливать?
         44=Вот как? Ну ладно...
         45=Дайте одну боеголовку за <0> cr.
         46=Нисколько, слишком дорогое это удовольствие
@@ -141,6 +128,8 @@ Script ^{
         65=Четыре боеголовки, <0> cr.
         66=Пять штук за <0> cr.
         67=Загружайте сразу шесть, плачу <0> cr.
+        73=Слишком дорого и ненадёжно. Обойдусь
+        74=Добро, приступайте к установке
     }
 }
 Script2 ^{
@@ -151,24 +140,29 @@ ShipInfo ^{
         CustomInfos ^{
             Absorber ^{
                 Description=Система противодействия баллистическому огню, способная нейтрализовать 80% урона от попадания ядерной боеголовки, рассеивая локализованную энергию в вакууме. Не действует на обычные ракеты из-за низкого для локализации энергетического потенциала. <br>Заряд: <Data1>/30 ед.
-                Icon=0
+                Icon=550
                 Name=Абсорбер
                 OnActCodeTypes=t_OnStep,t_OnTakingDamageMi
                 OnActStepTypes=11
                 OnActCode ^{
-					01=int shariat=0;
-					02=dword info=CurInfo();
-					03=dword k=ScriptItemActShip();
-					04=int i=ShipCustomShipInfoData(0,info,1);
-					05=if(ShipOwner(k)==5 && ShipSubType(k)==0)shariat=4;
-					06=else shariat=1;
-					07=if(ScriptItemActionType(t_OnStep,11) && i<30)ShipCustomShipInfoData(0,info,1,i+shariat);
-					08=else if(ScriptItemActionType(t_OnTakingDamageMi) && ScriptItemActParam()>=255)
-					09 ^{
-						01=if(i<30)exit;
-						02=ScriptItemActParam(ScriptItemActParam()/5);
-						03=ShipCustomShipInfoData(0,info,1,0);
-					}
+                    01=int charge=0;
+                    02=dword info=CurInfo();
+                    03=dword ship=ScriptItemActShip();
+                    04=int i=ShipCustomShipInfoData(0,info,1);
+                    05=if(ShipOwner(ship)==5 && !ShipSubType(ship)) charge=4;
+                    06=else charge=1;
+                    07=if(ScriptItemActionType(t_OnStep,11) && i<30) ShipCustomShipInfoData(0,info,1,i+charge);
+                    08=if(i<30) exit;
+                    09=if(i>30) ShipCustomShipInfoData(0,info,1,30);
+                    10=if(ScriptItemActionType(t_OnTakingDamageMi))
+                    11 ^{
+                        01=if(ScriptItemActParam()<255) exit;
+                        02=else
+                        03 ^{
+                            01=ScriptItemActParam(ScriptItemActParam()/5);
+                            02=ShipCustomShipInfoData(0,info,1,0);
+                        }
+                    }
                 }
             }
             BossNuke2 ^{
@@ -178,23 +172,23 @@ ShipInfo ^{
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11
                 OnActCode ^{
-					01=dword info=CurInfo();
-					02=dword k=ScriptItemActShip();
-					03=if(ShipGetBad(k))
-					04 ^{
-						01=if(CurTurn()<ShipCustomShipInfoData(0,info,1))exit;
-						02=if(!ShipInNormalSpace(k))exit;
-						03=dword target=ShipGetBad(k);
-						04=if(Dist(k,target)>1000)exit;
-						05=if(ShipOwner(k)==5)
-						06 ^{
-							01=if(DomikProgramm(k)==7 || DomikProgramm(k)==11 || DomikProgramm(k)==4)exit;
-						}
-						07=if(HullDamage(k)<50)exit;
-						08=ShipCustomShipInfoData(0,info,1,CurTurn()+Rnd(4,6));
-						09=dword rocket=SpawnMissile(ShipStar(k),target,CoordX(k),CoordY(k),Angle(target,k),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
-						10=MissileOwner(rocket,k);
-					}
+                    01=dword info=CurInfo();
+                    02=dword ship=ScriptItemActShip();
+                    03=if(ShipGetBad(ship))
+                    04 ^{
+                        01=if(CurTurn()<ShipCustomShipInfoData(0,info,1)) exit;
+                        02=if(!ShipInNormalSpace(ship)) exit;
+                        03=dword target=ShipGetBad(ship);
+                        04=if(Dist(ship,target)>1000) exit;
+                        05=if(ship==Terron())
+                        06 ^{
+                            01=if(DomikProgramm(ship)==4) exit;
+                        }
+                        07=if(HullDamage(ship)<50) exit;
+                        08=ShipCustomShipInfoData(0,info,1,CurTurn()+Rnd(4,6));
+                        09=dword rocket=SpawnMissile(ShipStar(ship),target,CoordX(ship),CoordY(ship),Angle(target,ship),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
+                        10=MissileOwner(rocket,ship);
+                    }
                 }
             }
             BossNuke3 ^{
@@ -204,88 +198,83 @@ ShipInfo ^{
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11
                 OnActCode ^{
-					01=dword info=CurInfo();
-					02=dword k=ScriptItemActShip();
-					03=if(ShipGetBad(k))
-					04 ^{
-						01=if(CurTurn()<ShipCustomShipInfoData(0,info,1))exit;
-						02=if(!ShipInNormalSpace(k))exit;
-						03=dword target=ShipGetBad(k);
-						04=if(Dist(k,target)>1000)exit;
-						05=if(ShipOwner(k)==5)
-						06 ^{
-							01=if(DomikProgramm(k)==7 || DomikProgramm(k)==11 || DomikProgramm(k)==4)exit;
-						}
-						07=if(HullDamage(k)<75)exit;
-						08=ShipCustomShipInfoData(0,info,1,CurTurn()+Rnd(3,6));
-						09=dword rocket=SpawnMissile(ShipStar(k),target,CoordX(k),CoordY(k),Angle(target,k),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
-						10=MissileOwner(rocket,k);
-					}
+                    01=dword info=CurInfo();
+                    02=dword ship=ScriptItemActShip();
+                    03=if(ShipGetBad(ship))
+                    04 ^{
+                        01=if(CurTurn()<ShipCustomShipInfoData(0,info,1)) exit;
+                        02=if(!ShipInNormalSpace(ship)) exit;
+                        03=dword target=ShipGetBad(ship);
+                        04=if(Dist(ship,target)>1000) exit;
+                        05=if(ship==Terron())
+                        06 ^{
+                            01=if(DomikProgramm(ship)==4) exit;
+                        }
+                        07=if(HullDamage(ship)<75) exit;
+                        08=ShipCustomShipInfoData(0,info,1,CurTurn()+Rnd(3,6));
+                        09=dword rocket=SpawnMissile(ShipStar(ship),target,CoordX(ship),CoordY(ship),Angle(target,ship),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
+                        10=MissileOwner(rocket,ship);
+                    }
                 }
             }
             ECM ^{
-                Description=Мощное устройство, способное с шансом 50% рассеять любой ущерб, причиняемый обшивке корпуса. При получении более 200 единиц урона перегружается и теряет заряд. <br>Заряд: <Data1>/5 ед.
-                Icon=0
-                Name=Генератор помех
+                Description=Мощное устройство, рассеивающее любой ущерб причиняемый обшивке корпуса с вероятностью 50%. При этом теряет заряд. При получении более 200 единиц урона перезагружается и теряет все заряды. <br>Заряд: <Data1>/5 ед.
+                Icon=552
+                Name=Точечный усилитель поля
                 OnActCodeTypes=t_OnStep,t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi
                 OnActStepTypes=11
                 OnActCode ^{
-					01=int shariat=0;
-					02=dword info=CurInfo();
-					03=dword k=ScriptItemActShip();
-					04=int i=ShipCustomShipInfoData(0,info,1);
-					05=if(ShipOwner(k)==5 && ShipSubType(k)==0)shariat=1;
-					06=else shariat=1;
-					07=if(ScriptItemActionType(t_OnStep,11) && i<5)ShipCustomShipInfoData(0,info,1,i+shariat);
-					08=if(ScriptItemActionType(t_OnTakingDamageEn) || ScriptItemActionType(t_OnTakingDamageSp) || ScriptItemActionType(t_OnTakingDamageMi))
-					09 ^{
-						01=if(!ShipCustomShipInfoData(0,info,1))exit;
-						02=if(ScriptItemActParam()>=255)shariat=5;
-						03=else if(Rnd(0,1))ScriptItemActParam(0);
-						04=i=ShipCustomShipInfoData(0,info,1);
-						05=if(shariat==5)ShipCustomShipInfoData(0,info,1,0);
-						06=else ShipCustomShipInfoData(0,info,1,i-1);
-					}
+                    01=dword info=CurInfo();
+                    02=dword ship=ScriptItemActShip();
+                    03=if(!ShipProtectability(ship)) exit;
+                    04=int i=ShipCustomShipInfoData(0,info,1);
+                    05=if(ScriptItemActionType(t_OnStep,11) && i<5) ShipCustomShipInfoData(0,info,1,i+1);
+                    06=if(ScriptItemActionType(t_OnTakingDamageEn) || ScriptItemActionType(t_OnTakingDamageSp) || ScriptItemActionType(t_OnTakingDamageMi))
+                    07 ^{
+                        01=if(ScriptItemActParam()>=255) ShipCustomShipInfoData(0,info,1,0);
+                        02=i=ShipCustomShipInfoData(0,info,1);
+                        03=if(!i) exit;
+                        04=else if(Rnd(0,1)) ScriptItemActParam(0);
+                        05=ShipCustomShipInfoData(0,info,1,i-1);
+                    }
                 }
             }
             NpcNuke ^{
                 Description=На борту корабля находятся ядерные боеголовки.
-                Icon=0
+                Icon=551
                 Name=Ядерное оружие
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11
                 OnActCode ^{
-					01=dword info=CurInfo();
-					02=dword k=ScriptItemActShip();
-					03=if(ShipGetBad(k))
-					04 ^{
-						01=if(CurTurn()<ShipCustomShipInfoData(0,info,1))exit;
-						02=if(!ShipInNormalSpace(k))exit;
-						03=dword target=ShipGetBad(k);
-						04=if(!ShipInNormalSpace(target) || target==k)exit;
-						05=if(ShipOwner(k)==5)
-						06 ^{
-							01=if(DomikProgramm(k)==7 || DomikProgramm(k)==11 || DomikProgramm(k)==4)exit;
-						}
-						07=int radar;
-						08=int allow=0;
-						09=if(ShipOwner(k)==5 && ShipSubType(k)==0 || ShipType(k)=='CB' || ShipType(k)=='WB')radar=10000;
-						10=else radar=ShipRadarRange(k);
-						11=if(Dist(k,target)>500 && radar==0 || Dist(k,target)>1000)exit;
-						12=if(HullDamage(k)>70)allow=1;
-						13=if(ShipStrengthInAverageRanger(target)>=ShipStrengthInAverageRanger(k)*2)allow=1;
-						14=if((ShipType(k)=='Warrior' && ShipSubType(k)==1) || (ShipOwner(k)==5 && ShipSubType(k)==6))allow=2;
-						15=if(ShipType(k)=='Inhibitor' || ShipType(k)=='CB' || ShipType(k)=='WB')allow=3;
-						16=if(ShipOwner(k)==5 && !ShipSubType(k))allow=3;
-						17=if(allow)
-						18 ^{
-							01=if(allow==1)ShipCustomShipInfoData(0,info,1,CurTurn()+20);
-							02=else if(allow==2)ShipCustomShipInfoData(0,info,1,CurTurn()+10);
-							03=else if(allow==3)ShipCustomShipInfoData(0,info,1,CurTurn()+5);
-							04=dword rocket=SpawnMissile(ShipStar(k),target,CoordX(k),CoordY(k),Angle(target,k),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
-							05=MissileOwner(rocket,k);
-						}
-					}
+                    01=dword info=CurInfo();
+                    02=dword ship=ScriptItemActShip();
+                    03=if(ShipGetBad(ship))
+                    04 ^{
+                        01=if(CurTurn()<ShipCustomShipInfoData(0,info,1)) exit;
+                        02=if(!ShipInNormalSpace(ship)) exit;
+                        03=dword target=ShipGetBad(ship);
+                        04=if(!ShipInNormalSpace(target) || target==ship) exit;
+                        05=if(ShipOwner(ship)==5)
+                        06 ^{
+                            01=if(DomikProgramm(ship)==4) exit;
+                            02=if(DomikProgramm(ship)==7) exit;
+                            03=if(DomikProgramm(ship)==11) exit;
+                        }
+                        07=int radar;
+                        08=int allow=0;
+                        09=if((ShipOwner(ship)==5 && !ShipSubType(ship)) || ShipType(ship)=='CB' || ShipType(ship)=='WB') radar=10000;
+                        10=else radar=ShipRadarRange(ship);
+                        11=if(Dist(ship,target)>500 && !radar || Dist(ship,target)>1000) exit;
+                        12=if(HullDamage(ship)>70) allow=1;
+                        13=if(ShipStrengthInAverageRanger(target)>=ShipStrengthInAverageRanger(ship)*2) allow=1;
+                        14=if(allow)
+                        15 ^{
+                            01=int charge=ShipCustomShipInfoData(0,info,2);
+                            02=ShipCustomShipInfoData(0,info,1,CurTurn()+charge);
+                            03=dword rocket=SpawnMissile(ShipStar(ship),target,CoordX(ship),CoordY(ship),Angle(target,ship),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
+                            04=MissileOwner(rocket,ship);
+                        }
+                    }
                 }
             }
             RuinsNuke ^{
@@ -295,24 +284,24 @@ ShipInfo ^{
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11
                 OnActCode ^{
-					01=dword info=CurInfo();
-					02=dword k=ScriptItemActShip();
-					03=if(ShipGetBad(k))
-					04 ^{
-						01=if(CurTurn()<ShipCustomShipInfoData(0,info,1))exit;
-						02=if(!ShipInNormalSpace(k))exit;
-						03=dword target=ShipGetBad(k);
-						04=if(Dist(k,target)>1000)exit;
-						05=int allow=ShipCustomShipInfoData(0,info,2);
-						06=if(allow)
-						07 ^{
-							01=if(allow==1)ShipCustomShipInfoData(0,info,1,CurTurn()+20);
-							02=if(allow==2)ShipCustomShipInfoData(0,info,1,CurTurn()+10);
-							03=if(allow==3)ShipCustomShipInfoData(0,info,1,CurTurn()+5);
-							04=dword rocket=SpawnMissile(ShipStar(k),target,CoordX(k),CoordY(k),Angle(target,k),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
-							05=MissileOwner(rocket,k);
-						}
-					}
+                    01=dword info=CurInfo();
+                    02=dword ship=ScriptItemActShip();
+                    03=if(ShipGetBad(ship))
+                    04 ^{
+                        01=if(CurTurn()<ShipCustomShipInfoData(0,info,1)) exit;
+                        02=if(!ShipInNormalSpace(ship)) exit;
+                        03=dword target=ShipGetBad(ship);
+                        04=if(Dist(ship,target)>1000) exit;
+                        05=int allow=ShipCustomShipInfoData(0,info,2);
+                        06=if(allow)
+                        07 ^{
+                            01=if(allow==1) ShipCustomShipInfoData(0,info,1,CurTurn()+20);
+                            02=else if(allow==2) ShipCustomShipInfoData(0,info,1,CurTurn()+10);
+                            03=else ShipCustomShipInfoData(0,info,1,CurTurn()+5);
+                            04=dword rocket=SpawnMissile(ShipStar(ship),target,CoordX(ship),CoordY(ship),Angle(target,ship),200+65*GalaxyTechLevel(),300+85*GalaxyTechLevel(),700+GalaxyTechLevel()*50,t_Weapon15,-1,FindBonusByNameInCfg('ShuNukes_Nuke'));
+                            05=MissileOwner(rocket,ship);
+                        }
+                    }
                 }
             }
         }
@@ -322,21 +311,21 @@ ShuNukes ^{
     Nuke=Yes
 }
 UselessItems ^{
-    NBomb ^{
+    NeutronBomb ^{
         Cost=Big
         Name=Нейтронная бомба
         OnActCode ^{
-            01=if(ScriptItemActionType(t_OnItemHit))ScriptItemActParam(1000);
+            01=if(ScriptItemActionType(t_OnItemHit))ScriptItemActParam(Rnd(1200,1600));
         }
         Owner=None
         Size=20
         Text=Нейтронное оружие, сохраняющее ужасающую эффективность даже в безвоздушном пространстве.
     }
-    Nova ^{
+    NovaTorpedo ^{
         Cost=Huge
         Name=Нова-торпеда
         OnUseCode ^{
-            01=if(!ShipInNormalSpace(Player()))MessageBox('Этот предмет может быть использован только в открытом космосе');
+            01=if(!ShipInNormalSpace(Player())) MessageBox('Этот предмет может быть использован только в открытом космосе');
             02=else
             03 ^{
                 01=unknown ships=newarray(1);
@@ -377,10 +366,10 @@ UselessItems ^{
             01=if(ScriptItemActionType(t_OnStep,11) && UselessItemData(CurItem(),2)<5)UselessItemData(CurItem(),2,UselessItemData(CurItem(),2)+1);
         }
         OnUseCode ^{
-            01=if(!ShipInNormalSpace(Player()))MessageBox('Этот предмет может быть использован только в открытом космосе');
-            02=else if(!ShipRadarRange(Player()))MessageBox('На корабле не установлен радар');
-            03=else if(!UselessItemData(CurItem(),1))MessageBox('Отсутствуют ядерные боеголовки');
-            04=else if(UselessItemData(CurItem(),2)<5)MessageBox('Пусковая установка заряжается');
+            01=if(!ShipInNormalSpace(Player())) MessageBox('Этот предмет может быть использован только в открытом космосе');
+            02=else if(!ShipRadarRange(Player())) MessageBox('На корабле не установлен радар');
+            03=else if(!UselessItemData(CurItem(),1)) MessageBox('Отсутствуют ядерные боеголовки');
+            04=else if(UselessItemData(CurItem(),2)<5) MessageBox('Пусковая установка заряжается');
             05=else
             06 ^{
                 01=int ne_tsel;
@@ -467,24 +456,5 @@ UselessItems ^{
         Text=Запускает ядерную боеголовку, наносящую колоссальное количество урона по области на дистанции, не превышающей дальность радара.
         Text=Боезапас: <Data1>/<color=255,240,100>6</color> ед.
         Text=Заряд: <Data2>/<color=255,240,100>2</color> ед.
-    }
-    SBomb ^{
-        Cost=Huge
-        Name=Серьезная бомба
-        OnActCode ^{
-            01=if(ScriptItemActionType(t_OnStep,1))
-            02 ^{
-                01=if(UselessItemData(CurItem(),1)>1)
-                02 ^{
-                    01=UselessItemData(CurItem(),1,UselessItemData(CurItem(),1)-1);
-                    02=UselessItemData(CurItem(),2,UselessItemData(CurItem(),2)-1);
-                }
-            }
-            03=if(ScriptItemActionType()==t_OnStep && ScriptItemActParam()==5 && UselessItemData(CurItem(),1)==1)ItemDestroy(CurItem(),Rnd(600,850));
-            04=if(ScriptItemActionType()==t_OnItemHit)ItemDestroy(CurItem(),Rnd(1300,1500));
-        }
-        Owner=None
-        Size=1
-        Text=
     }
 }

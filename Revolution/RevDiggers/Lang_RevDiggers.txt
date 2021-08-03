@@ -658,12 +658,12 @@ ShipInfo ^{
                                                 10=zcount=zcount+1;
                                                 11=zondsId=zondsId+Id(item)+'#'+(zcount+1)+'#';
                                             }
-                                            04=ShipCustomShipInfoTextData(0, curInfo, 1, zcount);
-                                            05=ShipCustomShipInfoTextData(0, curInfo, 2, zondsId);
-                                            06=ShipCalcParam(ship);
-                                            07=freespace=ShipFreeSpace(ship);
-                                            08=if(freespace<0)
-                                            09 ^{
+                                            07=ShipCustomShipInfoTextData(0, curInfo, 1, zcount);
+                                            08=ShipCustomShipInfoTextData(0, curInfo, 2, zondsId);
+                                            09=ShipCalcParam(ship);
+                                            10=freespace=ShipFreeSpace(ship);
+                                            11=if(freespace<0)
+                                            12 ^{
                                                 01=dword hull=ShipItems(ship, 0);
                                                 02=ItemSize(hull, ItemSize(hull)+abs(freespace)+Rnd(1,5));
                                                 03=HullHP(ship, ItemSize(hull));

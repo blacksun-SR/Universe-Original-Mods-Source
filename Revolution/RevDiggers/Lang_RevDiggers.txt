@@ -13,7 +13,7 @@ ShipInfo ^{
                     05=dword system, planet;
                     06=dword zcount;
                     07=dword item, itemId;
-                    08=dword skill, maxcount;
+                    08=dword skill, maxcount, curcount;
                     09=dword freespace;
                     10=dword tRnd;
                     11=int i, j, k;
@@ -168,17 +168,41 @@ ShipInfo ^{
                                     }
                                     03=else if(GetShipPlanet(ship)==planet)
                                     04 ^{
-                                        01=for(i=1; i<=zcount; i=i+1)
-                                        02 ^{
+                                        01=curcount=0;
+                                        02=for(i=1; i<=zcount; i=i+1)
+                                        03 ^{
                                             01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
                                             02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
-                                            03=item=GetItemFromShip(ship, IdToItem(itemId));
-                                            04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                            03=item=IdToItem(itemId);
+                                            04=if(~FindItemInShip(ship, item)) curcount=curcount+1;
                                         }
-                                        03=OrderLock(ship, 0);
-                                        04=OrderTakeOff(ship);
-                                        05=ShipCustomShipInfoData(0, curInfo, 1, 3);
-                                        06=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(120, 365));
+                                        04=if(curcount==zcount)
+                                        05 ^{
+                                            01=for(i=1; i<=zcount; i=i+1)
+                                            02 ^{
+                                                01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                                02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                                03=item=GetItemFromShip(ship, IdToItem(itemId));
+                                                04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                            }
+                                            03=ShipCustomShipInfoData(0, curInfo, 1, 3);
+                                            04=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(120, 365));
+                                        }
+                                        06=else
+                                        07 ^{
+                                            01=for(i=ShipItems(ship); i>0; i=i-1)
+                                            02 ^{
+                                                01=item=ShipItems(ship, i);
+                                                02=if(ItemType(item)!=t_UselessItem) continue;
+                                                03=if(!findsubstr(EquipmentImageName(item), 'RevDiggersFakeSatellite')) FreeItem(GetItemFromShip(ship, item));
+                                            }
+                                            03=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                            04=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                                            05=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                            06=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                        }
+                                        08=OrderLock(ship, 0);
+                                        09=OrderTakeOff(ship);
                                     }
                                 }
                             }
@@ -587,16 +611,40 @@ ShipInfo ^{
                                 }
                                 05=else if(GetShipPlanet(ship)==planet)
                                 06 ^{
-                                    01=for(i=1; i<=zcount; i=i+1)
-                                    02 ^{
+                                    01=curcount=0;
+                                    02=for(i=1; i<=zcount; i=i+1)
+                                    03 ^{
                                         01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
                                         02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
-                                        03=item=GetItemFromShip(ship, IdToItem(itemId));
-                                        04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                        03=item=IdToItem(itemId);
+                                        04=if(~FindItemInShip(ship, item)) curcount=curcount+1;
                                     }
-                                    03=OrderLock(ship, 0);
-                                    04=ShipCustomShipInfoData(0, curInfo, 1, 0);
-                                    05=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                    04=if(curcount==zcount)
+                                    05 ^{
+                                        01=for(i=1; i<=zcount; i=i+1)
+                                        02 ^{
+                                            01=infodata=findsubstr(zondsId,'#'+i+'#')+3;
+                                            02=itemId=substr(zondsId, infodata, findsubstr(zondsId, '#'+(i+1)+'#')-infodata);
+                                            03=item=GetItemFromShip(ship, IdToItem(itemId));
+                                            04=PutItemInVault(Id(ship)+'__'+itemId, item);
+                                        }
+                                        03=ShipCustomShipInfoData(0, curInfo, 1, 0);
+                                        04=ShipCustomShipInfoData(0, curInfo, 2, CurTurn()+Rnd(240, 540));
+                                    }
+                                    06=else
+                                    07 ^{
+                                        01=for(i=ShipItems(ship); i>0; i=i-1)
+                                        02 ^{
+                                            01=item=ShipItems(ship, i);
+                                            02=if(ItemType(item)!=t_UselessItem) continue;
+                                            03=if(!findsubstr(EquipmentImageName(item), 'RevDiggersFakeSatellite')) FreeItem(GetItemFromShip(ship, item));
+                                        }
+                                        03=ShipCustomShipInfoTextData(0, curInfo, 1, 0);
+                                        04=ShipCustomShipInfoTextData(0, curInfo, 2, 0);
+                                        05=ShipCustomShipInfoData(0, curInfo, 1, 7);
+                                        06=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                    }
+                                    08=OrderLock(ship, 0);
                                 }
                             }
                         }
@@ -699,7 +747,7 @@ ShipInfo ^{
                             05 ^{
                                 01=if(Rnd(1,100)<=10) NoDropItem(item, 0);
                             }
-                            05=else FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
+                            06=else FreeItem(GetItemFromVault(Id(ship)+'__'+itemId));
                         }
                     }
                     17=else

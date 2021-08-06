@@ -107,9 +107,7 @@ MicroModuls ^{
         Owner=Maloc,Peleng,People,Fei
         Priority=60
         Text=Микромодуль второго уровня. Снимает часть брони корпуса, размещая вместо нее два орудийных отсека. По требованиям <clr>гаальских<clrEnd> пацифистов, запрещен к применению в корпусах этой расы.
-        Text=Броня корпуса: <bonHull> ед.
         bonSlotWeapon=2
-        bonHull=-4
     }
     ShuMM_Khataber ^{
         Equipments=FuelTank,Engine,Radar,Scaner,Droid,Hook,DefGenerator

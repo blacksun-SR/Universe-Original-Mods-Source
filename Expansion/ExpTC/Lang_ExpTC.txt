@@ -160,8 +160,8 @@ MicroModuls ^{
         bonAttacks=1
     }
     ExpTC_DyshotSplinter ^{
-        CustomTag=ExpTC_DyshotSplinter,frag_gun
-        Equipments=W02,W07,W09,W16
+        CustomTag=ExpTC_DyshotSplinter
+        Equipments=W02,W07,W09,W16,frag_gun
         Name="Дишот"
         OnPlanets=1
         Priority=10

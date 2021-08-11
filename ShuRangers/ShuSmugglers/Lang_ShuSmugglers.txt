@@ -1,13 +1,13 @@
 MicroModuls ^{
     ShuSmugglers_SmugglerFei ^{
-        Cost=130
+        Cost=145
         CustomTag=transport_pirate_fei
         Equipments=Hull
         Fragility=105
         KindGraph=SmugglerFei
         LockedAcryn=3
-		NonSearchable=2
-		ImitatedHullType=Transport,Pirate
+        NonSearchable=2
+        ImitatedHullType=Transport,Pirate
         Name=</color><Type> корпус контрабандиста
         OnPlanets=1
         Owner=PirateClan
@@ -19,14 +19,14 @@ MicroModuls ^{
         bonSlotWeapon=-2
     }
     ShuSmugglers_SmugglerGaal ^{
-        Cost=130
+        Cost=145
         CustomTag=transport_pirate_gaal
         Equipments=Hull
         Fragility=105
         KindGraph=SmugglerGaal
         LockedAcryn=3
-		NonSearchable=2
-		ImitatedHullType=Transport,Pirate
+        NonSearchable=2
+        ImitatedHullType=Transport,Pirate
         Name=</color><Type> корпус контрабандиста
         OnPlanets=1
         Owner=PirateClan
@@ -38,14 +38,14 @@ MicroModuls ^{
         bonSlotWeapon=-2
     }
     ShuSmugglers_SmugglerMaloc ^{
-        Cost=130
+        Cost=145
         CustomTag=transport_pirate_maloc
         Equipments=Hull
         Fragility=105
         KindGraph=SmugglerMaloc
         LockedAcryn=3
-		NonSearchable=2
-		ImitatedHullType=Transport,Pirate
+        NonSearchable=2
+        ImitatedHullType=Transport,Pirate
         Name=</color><Type> корпус контрабандиста
         OnPlanets=1
         Owner=PirateClan
@@ -57,14 +57,14 @@ MicroModuls ^{
         bonSlotWeapon=-2
     }
     ShuSmugglers_SmugglerPeleng ^{
-        Cost=130
+        Cost=145
         CustomTag=transport_pirate_peleng
         Equipments=Hull
         Fragility=105
         KindGraph=SmugglerPeleng
         LockedAcryn=3
-		NonSearchable=2
-		ImitatedHullType=Transport,Pirate
+        NonSearchable=2
+        ImitatedHullType=Transport,Pirate
         Name=</color><Type> корпус контрабандиста
         OnPlanets=1
         Owner=PirateClan
@@ -76,14 +76,14 @@ MicroModuls ^{
         bonSlotWeapon=-2
     }
     ShuSmugglers_SmugglerPeople ^{
-        Cost=130
+        Cost=145
         CustomTag=transport_pirate_people
         Equipments=Hull
         Fragility=105
         KindGraph=SmugglerPeople
         LockedAcryn=3
-		NonSearchable=2
-		ImitatedHullType=Transport,Pirate
+        NonSearchable=2
+        ImitatedHullType=Transport,Pirate
         Name=</color><Type> корпус контрабандиста
         OnPlanets=1
         Owner=PirateClan

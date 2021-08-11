@@ -160,6 +160,9 @@ UselessItems ^{
             04=else FreeItem(GetItemFromShip(Player(), CurItem()));
         }
     }
+    Usl_74 ^{
+        Cost=Huge
+    }
     Usl_EscapePod ^{
         Cost=Average
         Description=

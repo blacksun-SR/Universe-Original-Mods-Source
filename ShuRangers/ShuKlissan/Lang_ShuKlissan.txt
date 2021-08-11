@@ -2015,56 +2015,56 @@ UselessItems ^{
         Text=При использовании в космосе генерирует частоты, призывающие клисанов. Энергия заряда: <Data1><color=255,240,100>%</color>.
     }
     KlissanRemains1 ^{
-        Cost=Small
+        Cost=Big
         Name=Физионасос
         Owner=Kling
-        Size=35
+        Size=12
         Text=Насос для перегонки протоплазмы, у клисан служит в качестве сердца.
     }
     KlissanRemains2 ^{
-        Cost=Mini
+        Cost=Average
         Name=Мегазобатор
         Owner=Kling
-        Size=40
+        Size=9
         Text=Служит для переработки и распределения запасов питательных веществ клисан.
     }
     KlissanRemains3 ^{
-        Cost=Mini
+        Cost=Average
         Name=Макрообонятор
         Owner=Kling
-        Size=15
+        Size=6
         Text=Чувствительный орган клисан, служащий для анализа химического состава окружающей среды.
     }
     KlissanRemains4 ^{
         Cost=Small
         Name=Термосвинги
         Owner=Kling
-        Size=5
+        Size=4
         Text=Органы зрения клисанских кораблей, улавливающие излучение <color=255,240,100>Жабродюз</color> других кораблей.
     }
     KlissanRemains5 ^{
         Cost=Mini
         Name=Рогост
         Owner=Kling
-        Size=7
+        Size=1
         Text=Остатки клисанской брони, представляющие собой ороговевший слой особых клеток-рефлекторов.
     }
     KlissanRemains6 ^{
-        Cost=Mini
+        Cost=Average
         Name=Нейроцентр
         Owner=Kling
-        Size=10
+        Size=5
         Text=Выполняет роль мозгового центра, отвечает за принятие клисаном решений.
     }
     KlissanRemains7 ^{
         Cost=Small
         Name=Аэрофильтры
         Owner=Kling
-        Size=30
+        Size=12
         Text=Заборники и накопители сжатого воздуха, выполняющие у клисан роль лёгких.
     }
     KlissanRemains8 ^{
-        Cost=Mini
+        Cost=Huge
         Name=Биослоты
         Owner=Kling
         Size=25

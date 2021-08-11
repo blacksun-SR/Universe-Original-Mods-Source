@@ -1813,8 +1813,13 @@ UselessItems ^{
                 01=MessageBox(CT('FormShip.UseOnlyInSpace'));
                 02=exit;
             }
-            03=if(MessageBoxYesNo('Вы уверены, что хотите совершить нуль-переход? При переходе нуль-генератор <color=0,50,200>будет потерян</color>.'))
+            03=if(!ShipSpeed(Player()))
             04 ^{
+                01=MessageBox('Корабль не может двигаться. Нуль-переход отменен.');
+                02=exit;
+            }
+            05=if(MessageBoxYesNo('Вы уверены, что хотите совершить нуль-переход? При переходе нуль-генератор <color=0,50,200>будет потерян</color>.'))
+            06 ^{
                 01=UselessItemData(CurItem(), 1, 1);
             }
         }

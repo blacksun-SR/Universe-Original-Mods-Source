@@ -5,7 +5,7 @@ Script ^{
     Mod_ExpProgramsNPC ^{
         ProgramsDistributionChances ^{
             ReadMe=Параметр ShipTypes отвечает за то, какие типы кораблей в принципе будут получать программы. Параметры с именами типов отвечают за перечень получаемых данным типом корабля программ. Первая цифра в параметре - это общий шанс получения данным кораблём инфошки применения программ, а также шанс пополнения запаса программ конкретного корабля, если число программ у него ещё не максимально. Цифра через двоеточие после первой - это максимальное число программ, которые могут единовременно находиться в наличии у корабля данного типа (плюс такое же число "Интеркомов"). Имя программы и число через двоеточие - это шанс получения кораблём конкретной программы в случае пополнения. При этом общая сумма шансов получения различных программ должна составлять 100%. Не забывайте также обновлять параметр Version в случае внесения любых изменений, иначе изменения не применятся на игровых сейвах.
-            Version=24.07.2021
+            Version=13.08.2021
             ShipTypes=Ranger,RangerExplorer,RangerPirate,RangerPirateExplorer,FemRanger,Warrior,EliteWarrior,Pirate,PirateCorvette,PirateFrigate,PirateGalleon,Diplomat,Smuggler
             //Аварийный сигнал, Шоккер-5300, Гатрикс матрица, W-Кодер, Системное отключение, Абсолютное оружие
             Ranger=30:5, DistressSignal:40, Shocker5300:20, GatrixMatrix:15, WCoder:15, SystemShutdown:7, AbsoluteWeapon:3
@@ -105,7 +105,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';
@@ -176,7 +176,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';
@@ -272,7 +272,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';
@@ -380,7 +380,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';
@@ -476,7 +476,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';
@@ -572,7 +572,7 @@ ShipInfo ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
                             02 ^{
                                 01=str text = ItemSubrace(ShipItems(target, 0));
-                                02=if(!text) text = 'Blazer';
+                                02=if(text==0) text = 'Blazer';
                                 03=else if(1 == text) text = 'Keller';
                                 04=else text = 'Terron';
                                 05=if(Rnd(0, 1)) text = text + '1';

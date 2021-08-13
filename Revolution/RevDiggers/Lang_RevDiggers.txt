@@ -402,7 +402,7 @@ ShipInfo ^{
                                                 08=if(flag) continue;
                                                 09=ArrayAdd(temparr, item);
                                             }
-                                            04=for(j=1; j<5; j=j+1)
+                                            04=for(j=1; j<=5; j=j+1)
                                             05 ^{
                                                 01=item=ShipEqInSlot(ship, t_Weapon1, j);
                                                 02=if(!item) continue;

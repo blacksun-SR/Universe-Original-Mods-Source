@@ -2,7 +2,7 @@ Items ^{
     Weapon ^{
         CustomWeapon ^{
             StatsVersion ^{
-                ShuMM=17.05.21
+                ShuMM=16.08.21
             }
             ShuMM ~{
                 1=MissileLauncherTorpedo
@@ -860,7 +860,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия радаров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной надёжностью нестабильные сотовые чипы, долговечность таких радаров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Дальность радара: <bonRadar> млн. км.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=100
         bonRadar=400
@@ -882,7 +882,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия радаров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной надёжностью нестабильные сотовые чипы, долговечность таких радаров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Дальность радара: <bonRadar> млн. км.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=100
         bonRadar=600
@@ -904,7 +904,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия радаров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной надёжностью нестабильные сотовые чипы, долговечность таких радаров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Дальность радара: <bonRadar> млн. км.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=100
         bonRadar=800
@@ -926,7 +926,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия сканеров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной живучестью легкоплавкие дуплексные контуры, долговечность таких сканеров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Мощность сканера: <bonScan> ед.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=100
         bonScan=4
@@ -948,7 +948,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия сканеров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной живучестью легкоплавкие дуплексные контуры, долговечность таких сканеров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Мощность сканера: <bonScan> ед.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=100
         bonScan=6
@@ -970,7 +970,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия сканеров, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной живучестью легкоплавкие дуплексные контуры, долговечность таких сканеров всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Мощность сканера: <bonScan> ед.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=100
         bonScan=8
@@ -1071,7 +1071,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Мощность захвата: <bonHook> ед.
         Text=Скорость захвата: <bonHookMaxSpeed> ед.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=100
         bonHook=16
@@ -1096,7 +1096,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Мощность захвата: <bonHook> ед.
         Text=Скорость захвата: <bonHookMaxSpeed> ед.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=100
         bonHook=32
@@ -1121,7 +1121,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Мощность захвата: <bonHook> ед.
         Text=Скорость захвата: <bonHookMaxSpeed> ед.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=100
         bonHook=48
@@ -1146,7 +1146,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Скорость двигателя: <bonSpeed> ед.
         Text=Дальность прыжка: <bonJump> пк.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=100
         bonSpeed=30
@@ -1170,7 +1170,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Скорость двигателя: <bonSpeed> ед.
         Text=Дальность прыжка: <bonJump> пк.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=100
         bonSpeed=45
@@ -1194,7 +1194,7 @@ MicroModuls ^{
         Text=<clr><clrEnd>
         Text=Скорость двигателя: <bonSpeed> ед.
         Text=Дальность прыжка: <bonJump> пк.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=100
         bonSpeed=60
@@ -1217,7 +1217,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия дроидов, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной прочностью форсированные пневматические приводы, долговечность таких дроидов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Эффективность дроида: <bonDroid> ед.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=100
         bonDroid=10
@@ -1239,7 +1239,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия дроидов, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной прочностью форсированные пневматические приводы, долговечность таких дроидов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Эффективность дроида: <bonDroid> ед.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=100
         bonDroid=15
@@ -1261,7 +1261,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия дроидов, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной прочностью форсированные пневматические приводы, долговечность таких дроидов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Эффективность дроида: <bonDroid> ед.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=100
         bonDroid=20
@@ -1283,7 +1283,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия генераторов защиты, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной стабильностью энергоёмкие стационные излучатели, долговечность таких генераторов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Генератор поля: <bonDef> ед.
-        Fragility=200
+        Fragility=150
         Cost=150
         Size=118
         bonDef=3
@@ -1305,7 +1305,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия генераторов защиты, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной стабильностью энергоёмкие стационные излучатели, долговечность таких генераторов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Генератор поля: <bonDef> ед.
-        Fragility=250
+        Fragility=175
         Cost=200
         Size=111
         bonDef=4
@@ -1327,7 +1327,7 @@ MicroModuls ^{
         Text=<color=248,252,248>Серия генераторов защиты, разработанных <color=255,240,100>пиратским кланом</color> в попытках ликвидировать техническое отставание от новейших коалиционных разработок в данной сфере. Несмотря на отчаянные попытки пиратских мастеров обеспечить достаточной стабильностью энергоёмкие стационные излучатели, долговечность таких генераторов всё равно оказалась на непрактично низком уровне.</color>
         Text=<clr><clrEnd>
         Text=Генератор поля: <bonDef> ед.
-        Fragility=300
+        Fragility=200
         Cost=250
         Size=105
         bonDef=5
@@ -1351,7 +1351,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicRadar1 ^{
@@ -1373,7 +1373,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicScaner1 ^{
@@ -1395,7 +1395,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicDroid1 ^{
@@ -1417,7 +1417,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicHook1 ^{
@@ -1439,7 +1439,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicDefGenerator1 ^{
@@ -1461,7 +1461,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=150
-        Size=85
+        Size=80
         bonMass=-4
     }
     ShuMM_MicrogenicEngine2 ^{
@@ -1483,7 +1483,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicRadar2 ^{
@@ -1505,7 +1505,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicScaner2 ^{
@@ -1527,7 +1527,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicDroid2 ^{
@@ -1549,7 +1549,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicHook2 ^{
@@ -1571,7 +1571,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicDefGenerator2 ^{
@@ -1593,7 +1593,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=200
-        Size=79
+        Size=75
         bonMass=-6
     }
     ShuMM_MicrogenicEngine3 ^{
@@ -1615,7 +1615,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_MicrogenicRadar3 ^{
@@ -1637,7 +1637,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_MicrogenicScaner3 ^{
@@ -1659,7 +1659,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_MicrogenicDroid3 ^{
@@ -1681,7 +1681,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_MicrogenicHook3 ^{
@@ -1703,7 +1703,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_MicrogenicDefGenerator3 ^{
@@ -1725,7 +1725,7 @@ MicroModuls ^{
         Text=Масса корабля: <bonMass><clr>%<clrEnd>
         Fragility=130
         Cost=250
-        Size=73
+        Size=70
         bonMass=-8
     }
     ShuMM_Torpedo ^{
@@ -1738,8 +1738,8 @@ MicroModuls ^{
         Special=1
         Priority=10
         Fragility=100
-        Cost=400
-        Size=175
+        Cost=500
+        Size=225
     }
     ShuMM_ExtremumEnergy ^{
         Equipments=W01,W03,W05,W06,W08,W10,W11,W12,W17,sub_gun,grav_beam,splash_faser,gaal_vision,slow_gun,sphere_gun,pulse_gun,pulse_gun2,maloc_laser,maloc_laser2,photon_gun,photon_gun2,photon_gun3

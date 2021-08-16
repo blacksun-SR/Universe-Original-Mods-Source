@@ -93,6 +93,7 @@ MicroModuls ^{
         Cost=150
         Name=Клиринг
         CustomTag=EvoMM_Clearing
+        Equipments=Hull,FuelTank,Engine,Radar,Scaner,Droid,Hook,DefGenerator
         Priority=5
         Text=Микромодуль первого уровня. Наносит особый материал <clr>клирон<clrEnd>, снимающий почти все негативные эффекты с <clr>акринового<clrEnd> оборудования или корпуса.
         Text=<clr><clrEnd>

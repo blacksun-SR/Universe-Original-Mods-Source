@@ -78,7 +78,7 @@ ShipInfo ^{
                     25 ^{
                         01=if(Dist(cur_ship, target) > 350) exit;
                     }
-                    26=DomikProgramm(target, 6);
+                    26=DomikProgramm(target, 10);
                     27=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
                     28 ^{
                         01=ShipCustomShipInfoData(0, CurInfo(), 1, ShipCustomShipInfoData(0, CurInfo(), 1) - 1);
@@ -245,28 +245,29 @@ ShipInfo ^{
                     25 ^{
                         01=if(Dist(cur_ship, target) > 400) exit;
                     }
-                    26=DomikProgramm(target, 6);
-                    27=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
-                    28 ^{
+                    26=DomikProgramm(target, 8);
+                    27=DomikProgrammDate(target, CurTurn()+23);
+                    28=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
+                    29 ^{
                         01=ShipCustomShipInfoData(0, CurInfo(), 1, ShipCustomShipInfoData(0, CurInfo(), 1) - 1);
                     }
-                    29=else
-                    30 ^{
+                    30=else
+                    31 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramGatrixMatrixNPC');
                     }
-                    31=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
-                    32 ^{
+                    32=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
+                    33 ^{
                         01=ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1, ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) - 1);
                     }
-                    33=else
-                    34 ^{
+                    34=else
+                    35 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramIntercomNPC');
                     }
-                    35=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
-                    36=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 10);
-                    37=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 2);
-                    38=if(ShipInNormalSpace(Player()))
-                    39 ^{
+                    36=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
+                    37=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 10);
+                    38=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 2);
+                    39=if(ShipInNormalSpace(Player()))
+                    40 ^{
                         01=if(ShipStar(cur_ship) == ShipStar(Player()))
                         02 ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
@@ -353,28 +354,29 @@ ShipInfo ^{
                     25 ^{
                         01=if(Dist(cur_ship, target) > 400) exit;
                     }
-                    26=DomikProgramm(target, 6);
-                    27=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
-                    28 ^{
+                    26=DomikProgramm(target, 9);
+                    27=DomikProgrammDate(target, CurTurn()+7);
+                    28=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
+                    29 ^{
                         01=ShipCustomShipInfoData(0, CurInfo(), 1, ShipCustomShipInfoData(0, CurInfo(), 1) - 1);
                     }
-                    29=else
-                    30 ^{
+                    30=else
+                    31 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramShocker5300NPC');
                     }
-                    31=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
-                    32 ^{
+                    32=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
+                    33 ^{
                         01=ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1, ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) - 1);
                     }
-                    33=else
-                    34 ^{
+                    34=else
+                    35 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramIntercomNPC');
                     }
-                    35=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
-                    36=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 8);
-                    37=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 2);
-                    38=if(ShipInNormalSpace(Player()))
-                    39 ^{
+                    36=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
+                    37=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 8);
+                    38=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 2);
+                    39=if(ShipInNormalSpace(Player()))
+                    40 ^{
                         01=if(ShipStar(cur_ship) == ShipStar(Player()))
                         02 ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))
@@ -449,7 +451,7 @@ ShipInfo ^{
                     25 ^{
                         01=if(Dist(cur_ship, target) > 400) exit;
                     }
-                    26=DomikProgramm(target, 6);
+                    26=DomikProgramm(target, 11);
                     27=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
                     28 ^{
                         01=ShipCustomShipInfoData(0, CurInfo(), 1, ShipCustomShipInfoData(0, CurInfo(), 1) - 1);
@@ -545,28 +547,29 @@ ShipInfo ^{
                     25 ^{
                         01=if(Dist(cur_ship, target) > 400) exit;
                     }
-                    26=DomikProgramm(target, 6);
-                    27=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
-                    28 ^{
+                    26=DomikProgramm(target, 7);
+                    27=DomikProgrammDate(target, CurTurn()+10);
+                    28=if(ShipCustomShipInfoData(0, CurInfo(), 1) > 1)
+                    29 ^{
                         01=ShipCustomShipInfoData(0, CurInfo(), 1, ShipCustomShipInfoData(0, CurInfo(), 1) - 1);
                     }
-                    29=else
-                    30 ^{
+                    30=else
+                    31 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramWCoderNPC');
                     }
-                    31=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
-                    32 ^{
+                    32=if(ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) > 1)
+                    33 ^{
                         01=ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1, ShipCustomShipInfoData(cur_ship, 'ProgramIntercomNPC', 1) - 1);
                     }
-                    33=else
-                    34 ^{
+                    34=else
+                    35 ^{
                         01=ShipDeleteCustomShipInfo(cur_ship, 'ProgramIntercomNPC');
                     }
-                    35=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
-                    36=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 12);
-                    37=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 3);
-                    38=if(ShipInNormalSpace(Player()))
-                    39 ^{
+                    36=ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1, ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 1) - 1);
+                    37=if(!in_fear) ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 12);
+                    38=else ShipCustomShipInfoData(cur_ship, 'ShipWithProgramsInfo', 3, CurTurn() + 3);
+                    39=if(ShipInNormalSpace(Player()))
+                    40 ^{
                         01=if(ShipStar(cur_ship) == ShipStar(Player()))
                         02 ^{
                             01=if(Dist(cur_ship, Player()) <= ShipRadarRange(Player()))

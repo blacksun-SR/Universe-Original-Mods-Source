@@ -14,7 +14,7 @@ ShipInfo ^{
                     06=dword zcount;
                     07=dword item, itemId;
                     08=dword skill, maxcount, curcount;
-                    09=dword freespace;
+                    09=int freespace;
                     10=dword tRnd;
                     11=int i, j, k;
                     12=str zondsId;
@@ -147,9 +147,16 @@ ShipInfo ^{
                                     04=AddItemToShip(ship, item);
                                     05=NoDropItem(item, 1);
                                 }
-                                03=OrderTakeOff(ship);
-                                04=ShipCustomShipInfoData(0, curInfo, 1, 2);
-                                05=ShipCustomShipInfoData(0, curInfo, 3, 0);
+                                03=freespace=ShipFreeSpace(ship);
+                                04=if(freespace<0)
+                                05 ^{
+                                    01=dword hull=ShipItems(ship, 0);
+                                    02=ItemSize(hull, ItemSize(hull)+abs(freespace)+Rnd(1,5));
+                                    03=HullHP(ship, ItemSize(hull));
+                                }
+                                06=OrderTakeOff(ship);
+                                07=ShipCustomShipInfoData(0, curInfo, 1, 2);
+                                08=ShipCustomShipInfoData(0, curInfo, 3, 0);
                             }
                         }
                         14=else if(ShipCustomShipInfoData(0, curInfo, 1)==2)
@@ -712,7 +719,7 @@ ShipInfo ^{
                                             10=freespace=ShipFreeSpace(ship);
                                             11=if(freespace<0)
                                             12 ^{
-                                                01=dword hull=ShipItems(ship, 0);
+                                                01=hull=ShipItems(ship, 0);
                                                 02=ItemSize(hull, ItemSize(hull)+abs(freespace)+Rnd(1,5));
                                                 03=HullHP(ship, ItemSize(hull));
                                             }

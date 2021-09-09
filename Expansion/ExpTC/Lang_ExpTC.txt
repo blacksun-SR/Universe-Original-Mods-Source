@@ -749,49 +749,6 @@ MicroModuls ^{
         Priority=0
         Special=1
     }
-    //Блокируем оригинальные ММ, открывающие слоты корпуса
-    300 ^{
-        Name=Форсер
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    301 ^{
-        Name=Диамант
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    302 ^{
-        Name=Гезават
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    303 ^{
-        Name=Раструг
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    304 ^{
-        Name=Прозотор
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    305 ^{
-        Name=Армор
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
-    306 ^{
-        Name=Перфорит
-        Special=1
-        LockedAcryn=3
-        NonSearchable=1
-    }
     //Добавляем ряд оригинальных акринов в продажу на ТЦ и НЦ
     353 ^{
         Ruins=SB,BK,TC,MB,Manaan,PlayerMB,PlayerMB_licensed

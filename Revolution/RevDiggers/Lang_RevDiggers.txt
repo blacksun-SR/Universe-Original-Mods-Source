@@ -702,7 +702,7 @@ ShipInfo ^{
                                             05=for(i=1; i<=Rnd(1,maxcount); i=i+1)
                                             06 ^{
                                                 01=dword cloneItem=CreateZond(Rnd(0, zondlevel), None);
-                                                02=item=CreateQuestItem('RevDiggersFakeSatellite'+zondlevel, Rnd(Maloc, Gaal));
+                                                02=item=CreateQuestItem('RevDiggersFakeSatellite'+Rnd(0,zondlevel), Rnd(Maloc, Gaal));
                                                 03=UselessItemData(item, 1, GetEquipmentStats(cloneItem, 0));
                                                 04=UselessItemData(item, 2, GetEquipmentStats(cloneItem, 1));
                                                 05=UselessItemData(item, 3, GetEquipmentStats(cloneItem, 2));

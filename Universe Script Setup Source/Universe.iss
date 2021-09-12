@@ -1,5 +1,5 @@
 ﻿[Setup]
-#define VerDate GetDateTimeString('dd.mm', '', ''); 
+#define VerDate GetDateTimeString('dd.mm.yy', '', ''); 
 AppID={{E89E8EF6-EBA6-4D66-99E4-3512AF8208ED}
 AppName=Space Rangers Universe Original
 AppVersion={#VerDate}
@@ -47,17 +47,12 @@ Name: custom; Description: Custom installation; Flags: iscustom;
 
 [Components]
 Name: Universe; Description: Установить комплект модов Universe от {#VerDate}; Types: custom; Flags: fixed;
-Name: Universe\Shu; Description: Установить комплект модов Shu`s Rangers; Types: custom;
-Name: Patch; Description: Установить новый exe-файл и поддержку для GOG версии; Types: custom; Flags: fixed;
 Name: DeleteMods; Description: Очистить папку модов; Types: custom; 
 Name: InstallModCFG; Description: Подключить все установленные моды к игре; Types: custom;
 
 [Files]
-Source: SourceFiles\*; Excludes: "ShusRangers"; DestDir: {app}; Flags: ignoreversion createallsubdirs recursesubdirs; Components: Universe; 
-Source: SourceFiles\Mods\ShusRangers\*; DestDir: {app}\Mods\ShusRangers\; Flags: ignoreversion createallsubdirs recursesubdirs; Components: Universe\Shu;
-Source: Patch\*; DestDir: {app}; Flags: ignoreversion createallsubdirs recursesubdirs; Components: Patch;
+Source: SourceFiles\*; DestDir: {app}; Flags: ignoreversion createallsubdirs recursesubdirs; Components: Universe; 
 Source: ModCFG\Universe.txt; DestDir: {app}; Flags: ignoreversion;
-Source: ModCFG\Shu.txt; DestDir: {app}; Flags: ignoreversion;
 
 [Messages] 
 SetupWindowTitle={#SetupSetting("AppVerName")}
@@ -155,29 +150,6 @@ begin
 Result := True;
 end;
 
-function PrepareToInstall(var NeedsRestart: Boolean): String;
-begin
-  if IsComponentSelected('DeleteMods') then
-  begin
-    ForceDirectories(ExpandConstant('{app}\TempStorageFolder'));
-    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\Mods\ModCFG.txt'), ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'));
-    RenameFile(ExpandConstant('{app}\Mods\Tweaks\German'), ExpandConstant('{app}\TempStorageFolder\German'));
-    RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'));
-    RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'));
-    RenameFile(ExpandConstant('{app}\Mods\Tweaks\SR2LoadingScreen'), ExpandConstant('{app}\TempStorageFolder\SR2LoadingScreen'));
-    RenameFile(ExpandConstant('{app}\Mods\Tweaks\SR2PQuestStyle'), ExpandConstant('{app}\TempStorageFolder\SR2PQuestStyle'));
-    DelTree(ExpandConstant('{app}\Mods\*'), false, true, true);
-    ForceDirectories(ExpandConstant('{app}\Mods\Tweaks'));
-    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'));
-    RenameFile(ExpandConstant('{app}\TempStorageFolder\German'), ExpandConstant('{app}\Mods\Tweaks\German'));
-    RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'));
-    RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'));
-    RenameFile(ExpandConstant('{app}\TempStorageFolder\SR2LoadingScreen'), ExpandConstant('{app}\Mods\Tweaks\SR2LoadingScreen'));
-    RenameFile(ExpandConstant('{app}\TempStorageFolder\SR2PQuestStyle'), ExpandConstant('{app}\Mods\Tweaks\SR2PQuestStyle'));
-    RemoveDir(ExpandConstant('{app}\TempStorageFolder'));
-  end;
-end;
-
 function NextButtonClick(CurPageID: Integer): Boolean; 
 begin 
   Result := True; 
@@ -200,18 +172,18 @@ end;
 
 procedure InitializeWizard;
 var
-	URLLabel: TNewStaticText;
+  URLLabel: TNewStaticText;
 begin
 
-	URLLabel := TNewStaticText.Create(WizardForm);
-	URLLabel.Caption := ExpandConstant('{cm:Discord}');
-	URLLabel.Cursor := crHand;
-	URLLabel.OnClick := @URLLabelOnClick;
-	URLLabel.Parent := WizardForm;
-	URLLabel.Font.Style := URLLabel.Font.Style + [fsBold];
-	URLLabel.Font.Color := clGray;
-	URLLabel.Top := WizardForm.ClientHeight - URLLabel.Height - ScaleY(16);
-	URLLabel.Left := ScaleX(20);
+  URLLabel := TNewStaticText.Create(WizardForm);
+  URLLabel.Caption := ExpandConstant('{cm:Discord}');
+  URLLabel.Cursor := crHand;
+  URLLabel.OnClick := @URLLabelOnClick;
+  URLLabel.Parent := WizardForm;
+  URLLabel.Font.Style := URLLabel.Font.Style + [fsBold];
+  URLLabel.Font.Color := clGray;
+  URLLabel.Top := WizardForm.ClientHeight - URLLabel.Height - ScaleY(16);
+  URLLabel.Left := ScaleX(20);
 
   with WizardForm.InfoBeforeMemo do
   begin
@@ -278,18 +250,15 @@ begin
 
   if CurPageID = wpSelectComponents then begin 
     WizardForm.NextButton.Caption := ExpandConstant('{cm:InstallButton}');
+    WizardForm.ComponentsList.Checked[0] := True;
     WizardForm.ComponentsList.Checked[1] := False;
     WizardForm.ComponentsList.Checked[2] := True;
-    WizardForm.ComponentsList.Checked[3] := False;
-    WizardForm.ComponentsList.Checked[4] := False;
   end;
   
   if CurPageID = wpFinished then begin
     WizardForm.FinishedLabel.Caption := ExpandConstant('{cm:InstallFinish}');
-    if (IsComponentSelected('InstallModCFG') and IsComponentSelected('Universe\Shu')) then FileCopy(ExpandConstant('{app}\Shu.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false)
-    else if IsComponentSelected('InstallModCFG') then FileCopy(ExpandConstant('{app}\Universe.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false);
-    DeleteFile(ExpandConstant('{app}\Universe.txt'));   
-    DeleteFile(ExpandConstant('{app}\Shu.txt')); 
+    if IsComponentSelected('InstallModCFG') then FileCopy(ExpandConstant('{app}\Universe.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false);
+    DeleteFile(ExpandConstant('{app}\Universe.txt'));
   end;  
    
 end;

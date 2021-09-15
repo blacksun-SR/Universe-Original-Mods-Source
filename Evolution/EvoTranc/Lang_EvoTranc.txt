@@ -2293,7 +2293,7 @@ ShipInfo ^{
                                                                 }
                                                                 03=if(Rnd(1,100)<=10) int t_race=6;
                                                                 04=else t_race=Rnd(0,4);
-                                                                05=artNum=CreateCustomArt(GgiveArtsArray[artNum],CustomArtSizeCalc(0+CT('Artefacts.CustomArtefacts.'+GgiveArtsArray[artNum]+'.Size'),GalaxyDiffLevels(4)),CustomArtCostCalc(0+CT('Artefacts.CustomArtefacts.'+GgiveArtsArray[artNum]+'.Cost'),GalaxyDiffLevels(1),GalaxyTechLevel()),t_race);
+                                                                05=artNum = CreateCustomArt(GgiveArtsArray[artNum], CustomArtSizeCalc(int(CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[artNum] + '.Size'))), CustomArtCostCalc(int(CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[artNum] + '.Cost'))), t_race);
                                                                 06=if(ShipFreeSpace(tranc)<ItemSize(artNum))ItemSize(item,ItemSize(item)+(ItemSize(artNum)-ShipFreeSpace(tranc)));
                                                                 07=AddItemToShip(tranc,artNum);
                                                                 08=ItemIsInUse(artNum,tranc,1);

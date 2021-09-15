@@ -278,7 +278,7 @@ ShipInfo ^{
                                                 02=unknown CustomArtSizeCalc = ImportedFunction('UtilityFunctions', 'CustomArtSizeCalc');
                                                 03=unknown CustomArtCostCalc = ImportedFunction('UtilityFunctions', 'CustomArtCostCalc');
                                             }
-                                            03=TrndArt = CreateCustomArt(GgiveArtsArray[TrndArt], CustomArtSizeCalc(0 + CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Size'), GalaxyDiffLevels(4)), CustomArtCostCalc(0 + CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Cost'), GalaxyDiffLevels(1), GalaxyTechLevel()), 6);
+                                            03=TrndArt = CreateCustomArt(GgiveArtsArray[TrndArt], CustomArtSizeCalc(int(CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Size'))), CustomArtCostCalc(int(CT('Artefacts.CustomArtefacts.' + GgiveArtsArray[TrndArt] + '.Cost'))), 6);
                                             04=if(ShipFreeSpace(ship) >= ItemSize(TrndArt)) AddItemToShip(ship, TrndArt);
                                             05=else FreeItem(TrndArt);
                                         }

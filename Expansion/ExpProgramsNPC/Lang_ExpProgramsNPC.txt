@@ -53,7 +53,7 @@ ShipInfo ^{
                             01=int fun_init = 1;
                             02=unknown ShipNearbyShips = ImportedFunction('UtilityFunctions', 'ShipNearbyShips');
                         }
-                        03=target = ShipNearbyShips(cur_ship, 1, 1, 0);
+                        03=target = ShipNearbyShips(cur_ship, 1, 0, 1, '', '');
                     }
                     11=if(!target) exit;
                     12=if(ShipTypeN(target)) exit;
@@ -220,7 +220,7 @@ ShipInfo ^{
                             01=int fun_init = 1;
                             02=unknown ShipNearbyShips = ImportedFunction('UtilityFunctions', 'ShipNearbyShips');
                         }
-                        03=target = ShipNearbyShips(cur_ship, 1, 1, 0);
+                        03=target = ShipNearbyShips(cur_ship, 1, 0, 1, '', '');
                     }
                     11=if(!target) exit;
                     12=if(ShipTypeN(target)) exit;
@@ -329,7 +329,7 @@ ShipInfo ^{
                             01=int fun_init = 1;
                             02=unknown ShipNearbyShips = ImportedFunction('UtilityFunctions', 'ShipNearbyShips');
                         }
-                        03=target = ShipNearbyShips(cur_ship, 1, 1, 0);
+                        03=target = ShipNearbyShips(cur_ship, 1, 0, 1, '', '');
                     }
                     11=if(!target) exit;
                     12=if(ShipTypeN(target)) exit;
@@ -426,7 +426,7 @@ ShipInfo ^{
                             01=int fun_init = 1;
                             02=unknown ShipNearbyShips = ImportedFunction('UtilityFunctions', 'ShipNearbyShips');
                         }
-                        03=target = ShipNearbyShips(cur_ship, 1, 1, 0);
+                        03=target = ShipNearbyShips(cur_ship, 1, 0, 1, '', '');
                     }
                     11=if(!target) exit;
                     12=if(ShipTypeN(target)) exit;
@@ -522,7 +522,7 @@ ShipInfo ^{
                             01=int fun_init = 1;
                             02=unknown ShipNearbyShips = ImportedFunction('UtilityFunctions', 'ShipNearbyShips');
                         }
-                        03=target = ShipNearbyShips(cur_ship, 1, 1, 0);
+                        03=target = ShipNearbyShips(cur_ship, 1, 0, 1, '', '');
                     }
                     11=if(!target) exit;
                     12=if(ShipTypeN(target)) exit;

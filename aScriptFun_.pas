@@ -7242,6 +7242,7 @@ end;
 
 procedure SF_CreatePlanet(av:array of TVarEC; code:TCodeEC);
 var
+  i:integer;
   planet: TPlanet;
   star:TStar;
 begin
@@ -7249,9 +7250,22 @@ begin
   star:=TStar(av[1].VDW);
   planet := TPlanet.Create;
   planet.ExtraGenericPlanetInit(star);
-  star.FPlanets.Add(planet);
   Galaxy.FPlanets.Add(planet);
   av[0].VDW:=Cardinal(planet);
+
+  if High(av) < 2 then star.FPlanets.Add(planet)
+  else begin
+    planet.FPolarPos.Radius:=av[2].VInt;
+    if planet.FPolarPos.Radius>TPlanet(star.FPlanets.Last).FPolarPos.Radius then star.FPlanets.Add(planet)
+    else for i:=0 to star.FPlanets.Count-1 do
+    begin
+      if planet.FPolarPos.Radius<TPlanet(star.FPlanets[i]).FPolarPos.Radius then
+      begin
+        star.FPlanets.Insert(i,planet);
+        break;
+      end;
+    end;
+  end;
 end;
 
 

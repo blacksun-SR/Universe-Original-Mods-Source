@@ -17,7 +17,7 @@ OutputBaseFilename=Universe_Original_{#VerDate}
 // Compression
 Compression=lzma2/ultra64
 InternalCompressLevel=ultra
-CompressionThreads=4
+CompressionThreads=2
 SolidCompression=yes
 
 // Images & Icons

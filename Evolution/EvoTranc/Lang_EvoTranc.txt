@@ -2001,10 +2001,51 @@ ShipInfo ^{
                                                         01=tNum = findsubstr(allId, '*' + i + '*') + 3;
                                                         02=tranc = substr(allId, tNum, findsubstr(allId, '*' + (i + 1) + '*') - tNum);
                                                         03=tranc = IdToShip(tranc);
-                                                        04=ShipCustomShipInfoData(tranc, 'TrancNPCAddInfo', 2, 0);
-                                                        05=TranclucatorData(tranc, 'Docking', 0);
-                                                        06=launched = substr(launched, 0, i - 1) + 'Y' + substr(launched, i);
-                                                        07=ShipCustomShipInfoTextData(0, cur_info, 2, launched);
+                                                        05=if(!tranc)
+                                                        06 ^{
+                                                            01=ArrayClear(GEvoTrancTempArray);
+                                                            02=str tempId;
+                                                            03=for(i = 1; i <= quant; i = i + 1)
+                                                            04 ^{
+                                                                01=tNum = findsubstr(allId, '*' + i + '*') + 3;
+                                                                02=tempId = substr(allId, tNum, findsubstr(allId, '*' + (i + 1) + '*') - tNum);
+                     
+                                                                03=if(trancId == tempId)
+                                                                04 ^{
+                                                                    01=launched = substr(launched, 0, i - 1) + '' + substr(launched, i);
+                                                                    02=ShipCustomShipInfoTextData(owner, cur_info, 2, launched);
+                                                                    03=status = substr(status, 0, i - 1) + '' + substr(status, i);
+                                                                    04=ShipCustomShipInfoTextData(owner, cur_info, 3, status);
+                                                                }
+                                                                05=else ArrayAdd(GEvoTrancTempArray, tempId);
+                                                            }
+                                                            05=quant = quant - 1;
+                                                            06=ShipCustomShipInfoData(owner, cur_info, 3, quant);
+                                                            07=allId = '*1*';
+                                                            08=int temp_size=0;
+                                                            09=for(i = 1; i <= quant; i = i + 1)
+                                                            10 ^{
+                                                                01=allId = allId + GEvoTrancTempArray[i] + '*' + (i + 1) + '*';
+                                                                02=temp_size = temp_size + TranclucatorData(IdToShip(GEvoTrancTempArray[i]), 'ArtSize');
+                                                            }
+                                                            11=ShipCustomShipInfoTextData(owner, cur_info, 1, allId);
+                                                            12=for(i = 1; i < ShipItems(owner); i = i + 1)
+                                                            13 ^{
+                                                                01=item = ShipItems(owner, i);
+                                                                02=if(EquipmentImageName(item) == 'WeightReserve')
+                                                                03 ^{
+                                                                    01=ItemSize(item, temp_size);
+                                                                    02=break;
+                                                                }
+                                                            }
+                                                        }
+                                                        07=else
+                                                        08 ^{
+                                                            01=ShipCustomShipInfoData(tranc, 'TrancNPCAddInfo', 2, 0);
+                                                            02=TranclucatorData(tranc, 'Docking', 0);
+                                                            03=launched = substr(launched, 0, i - 1) + 'Y' + substr(launched, i);
+                                                            04=ShipCustomShipInfoTextData(0, cur_info, 2, launched);
+                                                        }
                                                     }
                                                 }
                                             }
@@ -2686,7 +2727,7 @@ ShipInfo ^{
                                     05=if(!tranc)
                                     06 ^{
                                         01=ArrayClear(GEvoTrancTempArray);
-                                        02=str tempId;
+                                        02=tempId='';
                                         03=for(i = 1; i <= quant; i = i + 1)
                                         04 ^{
                                             01=tNum = findsubstr(allId, '*' + i + '*') + 3;
@@ -2704,7 +2745,7 @@ ShipInfo ^{
                                         05=quant = quant - 1;
                                         06=ShipCustomShipInfoData(owner, cur_info, 3, quant);
                                         07=allId = '*1*';
-                                        08=int temp_size=0;
+                                        08=temp_size=0;
                                         09=for(i = 1; i <= quant; i = i + 1)
                                         10 ^{
                                             01=allId = allId + GEvoTrancTempArray[i] + '*' + (i + 1) + '*';

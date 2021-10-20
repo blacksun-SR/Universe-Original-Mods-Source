@@ -110,10 +110,10 @@ Script ^{
 ShipInfo ^{
     AddInfo ^{
         CustomInfos ^{
-            NoCapsule ^{
-                Description=???
+            ShuBountyNoCapsule ^{
+                Description=Инфошка для корабля, которому не положена выдача спасательной капсулы.
                 Icon=1
-                Name=Target
+                Name=--
             }
         }
     }

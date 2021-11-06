@@ -17,7 +17,7 @@ OutputBaseFilename=Universe_Original_{#VerDate}
 // Compression
 Compression=lzma2/ultra64
 InternalCompressLevel=ultra
-CompressionThreads=2  // Кол-во потоков процессора.
+CompressionThreads=4
 SolidCompression=yes
 
 // Images & Icons
@@ -150,6 +150,29 @@ begin
 Result := True;
 end;
 
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  if IsComponentSelected('DeleteMods') then
+  begin
+    ForceDirectories(ExpandConstant('{app}\TempStorageFolder'));
+    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\Mods\ModCFG.txt'), ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'));
+    RenameFile(ExpandConstant('{app}\Mods\Tweaks\German'), ExpandConstant('{app}\TempStorageFolder\German'));
+    RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'));
+    RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'));
+    RenameFile(ExpandConstant('{app}\Mods\Tweaks\SR2LoadingScreen'), ExpandConstant('{app}\TempStorageFolder\SR2LoadingScreen'));
+    RenameFile(ExpandConstant('{app}\Mods\Tweaks\SR2PQuestStyle'), ExpandConstant('{app}\TempStorageFolder\SR2PQuestStyle'));
+    DelTree(ExpandConstant('{app}\Mods\*'), false, true, true);
+    ForceDirectories(ExpandConstant('{app}\Mods\Tweaks'));
+    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'));
+    RenameFile(ExpandConstant('{app}\TempStorageFolder\German'), ExpandConstant('{app}\Mods\Tweaks\German'));
+    RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'));
+    RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'));
+    RenameFile(ExpandConstant('{app}\TempStorageFolder\SR2LoadingScreen'), ExpandConstant('{app}\Mods\Tweaks\SR2LoadingScreen'));
+    RenameFile(ExpandConstant('{app}\TempStorageFolder\SR2PQuestStyle'), ExpandConstant('{app}\Mods\Tweaks\SR2PQuestStyle'));
+    RemoveDir(ExpandConstant('{app}\TempStorageFolder'));
+  end;
+end;
+
 function NextButtonClick(CurPageID: Integer): Boolean; 
 begin 
   Result := True; 
@@ -165,9 +188,9 @@ end;
 
 procedure URLLabelOnClick(Sender: TObject);
 var
-	ErrorCode: Integer;
+  ErrorCode: Integer;
 begin
-	ShellExec('open', '{#SetupSetting("AppPublisherURL")}', '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
+  ShellExec('open', '{#SetupSetting("AppPublisherURL")}', '', '', SW_SHOWNORMAL, ewNoWait, ErrorCode);
 end;
 
 procedure InitializeWizard;
@@ -259,7 +282,7 @@ begin
     WizardForm.FinishedLabel.Caption := ExpandConstant('{cm:InstallFinish}');
     if IsComponentSelected('InstallModCFG') then FileCopy(ExpandConstant('{app}\Universe.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false);
     DeleteFile(ExpandConstant('{app}\Universe.txt'));
-  end;  
-   
+  end;
+    
 end;
  

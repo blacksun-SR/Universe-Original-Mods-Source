@@ -1574,15 +1574,15 @@ MicroModuls ^{
 		NonSearchable=1
     }
     487 ^{
-        Name=Корпус "Зарница"
+        Name=Корпус "Молния" V
 		NonSearchable=1
     }
     488 ^{
-        Name=Корпус "Железнобок"
+        Name=Корпус "Броненосец" V
 		NonSearchable=1
     }
     489 ^{
-        Name=Корпус "Чебурашка"
+        Name=Корпус "Ушастик" V
 		NonSearchable=1
     }
     490 ^{

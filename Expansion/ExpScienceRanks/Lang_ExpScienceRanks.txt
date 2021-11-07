@@ -1352,15 +1352,15 @@ MicroModuls ^{
 		LockedAcryn=3
 	}
 	487 ^{
-		Name=Корпус "Зарница"
+		Name=Корпус "Молния" V
 		LockedAcryn=3
 	}
 	488 ^{
-		Name=Корпус "Железнобок"
+		Name=Корпус "Броненосец" V
 		LockedAcryn=3
 	}
 	489 ^{
-		Name=Корпус "Чебурашка"
+		Name=Корпус "Ушастик" V
 		LockedAcryn=3
 	}
 	490 ^{

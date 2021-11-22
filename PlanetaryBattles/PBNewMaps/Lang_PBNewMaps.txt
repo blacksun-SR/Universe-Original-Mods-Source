@@ -168,7 +168,7 @@ RobotsMap ~{
         GovTextWin=Примите, пожалуйста, эту таблеточку, <Player>. Отлично, теперь запейте. Это антирадин - мы бережем здоровье героев этой войны. Ну и, конечно же, ваш вклад в борьбу не только с мыслящими машинами, но и с межвидовыми рознями будет вознагражден: <Money> cr. - лишь пыль, в сравнении с тем благом, что вы совершили, но мы знаем, как вы, рейнджеры, нуждаетесь в деньгах.
         GovTextLoss=Увы, это наша вина... Мы слишком много поставили на вас, а сами даже не обеспечили столь необходимыми ресурсами и поддержкой. Не даром великий Цоорт-Гааноцри говорил: "Спешка - путь к поражению", но мы, не вспомнив его наставления, так и не уделили достаточно времени предварительной подготовке... Ну, и, конечно же, вы не останетесь без награды в <Money> cr. Да, она, увы, не столь высока, как вы того заслуживаете, ведь станция так и не была освобождена, и нам придется покупать услуги наемников для ее очистки.
         Group=2
-        Length=4
+        Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Operation_Antichip.cmap
         MaxWins=0
         MinWins=10
@@ -214,10 +214,10 @@ RobotsMap ~{
         GovTextStart=Ну что, смекнули, куда я клоню? Да, дело пахнет большими деньгами, если вы умеете обращаться с боевыми роботами. Не бойтесь, мы своих не кидаем – скажем, 5% от куша, а это около <color=0,50,200>50 000 000</color> cr, вас заинтересует? Да, вижу, вы наш гуманоид. По рукам?
         GovTextWin=Знаете что, рейнджер? Я тут рассматривал контракт, пока вы летели, и здесь, на странице 357, да - да, мелким шрифтом... Возьмите-ка увеличительное стекло... Ага! Видите? Это "привязка" гонораров за планетарные стратегические миссии к текущему индексу инфляции. Увы, бухгалтерия здесь бессильна... С учетом нынешних экономических показателей ваш гонорар будет составлять <Money> cr. И только попробуйте сказать, что это нечестная сделка.
         Group=2
-        Length=3
+        Length=5
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Colombia.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=20
         PlanetRace=Peleng
         PlayerRace=Maloc,Peleng,People,Fei
         PlayerStatus=Pirate
@@ -315,7 +315,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Dune.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=15
         PlanetRace=Peleng,People
         PlayerRace=Any
         PlayerStatus=Trader,Warrior
@@ -323,7 +323,7 @@ RobotsMap ~{
         RobotsLoss=Склоните головы, господа, сейчас погибнет мир на нашей планете! Да, рейнджер, это вы во всем виновны, но, как назло, есть такая штука как контракт, и вы его придерживались, обороняясь до последнего, так, что, пожалуй, заслужили эвакуацию.
         RobotsStart=Вы очень вовремя, <Player> - доминаторы только что запустили странные генераторы, парализовавшие червей. Без движения эти твари протянут максимум сутки, а там - здравствуй, джихад по-гордонски. Так что поспешите, рейнджер, на вас вся надежда.
         RobotsWin=Наконец! Наши биотехнологи уже вылетели, дабы вернуть червей к жизни. Я и вам рекомендую возвращаться, так как вряд ли вам понравится оказаться рядом с очень злым, очень голодным и очень большим червяком...
-        Side=Red,Blue
+        Side=Red,Green
         Terron=No
     }
     88 ^{
@@ -338,7 +338,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Cataclysm.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=25
         PlanetRace=Any
         PlayerRace=Any
         PlayerStatus=Any
@@ -363,7 +363,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Kimberlite.cmap
         MaxWins=0
-        MinWins=4
+        MinWins=7
         PlanetRace=People,Fei
         PlayerRace=Maloc,People,Gaal
         PlayerStatus=Any
@@ -436,7 +436,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Quarantine_Zone.cmap
         MaxWins=0
-        MinWins=10 
+        MinWins=5 
         PlanetRace=Maloc,Peleng,Fei
         PlayerRace=Any
         PlayerStatus=Any
@@ -459,7 +459,7 @@ RobotsMap ~{
         Length=4
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Project_Evolution.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=12
         PlanetRace=People
         PlayerRace=Any
         PlayerStatus=Any
@@ -483,7 +483,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Missile_Base.cmap
         MaxWins=0
-        MinWins=2
+        MinWins=7
         PlanetRace=Peleng,People,Fei,Gaal
         PlayerRace=Peleng,People,Fei,Gaal
         PlayerStatus=Any
@@ -508,7 +508,7 @@ RobotsMap ~{
         Length=1
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Ryana_Modin.cmap
         MaxWins=0
-        MinWins=10 
+        MinWins=5
         PlanetRace=Maloc
         PlayerRace=Maloc,Peleng,People
         PlayerStatus=Warrior
@@ -532,7 +532,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Bombardment.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=2
         PlanetRace=Maloc,Peleng
         PlayerRace=Any
         PlayerStatus=Any
@@ -557,7 +557,7 @@ RobotsMap ~{
         Length=1
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Abandoned_Tunnel.cmap
         MaxWins=0
-        MinWins=10
+        MinWins=7
         PlanetRace=People,Fei,Gaal
         PlayerRace=Any
         PlayerStatus=Warrior
@@ -605,7 +605,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Garden_of_Heaven.cmap
         MaxWins=0
-        MinWins=5
+        MinWins=22
         PlanetRace=People
         PlayerRace=Any
         PlayerStatus=Trader,Warrior
@@ -651,7 +651,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Underground_Factory.cmap
         MaxWins=0
-        MinWins=5     
+        MinWins=3   
         PlanetRace=People
         PlayerRace=Any
         PlayerStatus=Trader
@@ -699,7 +699,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Dusk_Battle.cmap
         MaxWins=0
-        MinWins=5
+        MinWins=30
         PlanetRace=People
         PlayerRace=Any
         PlayerStatus=Any
@@ -725,7 +725,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Island_Wars.cmap
         MaxWins=0
-        MinWins=5
+        MinWins=12
         PlanetRace=Peleng
         PlayerRace=Maloc,People,Fei,Gaal
         PlayerStatus=Trader,Warrior
@@ -883,7 +883,7 @@ RobotsMap ~{
         Length=1
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Spoiled_Rest.cmap
         MaxWins=0
-        MinWins=3
+        MinWins=17
         PlanetRace=Peleng
         PlayerRace=Any
         PlayerStatus=Warrior,Trader
@@ -1188,7 +1188,7 @@ RobotsMap ~{
         Length=4
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\The_Outland.cmap
         MaxWins=0
-        MinWins=8
+        MinWins=32
         PlanetRace=Gaal,Fei,People
         PlayerRace=Any
         PlayerStatus=Any
@@ -1252,7 +1252,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Icemine.cmap
         MaxWins=0
-        MinWins=8
+        MinWins=15
         PlanetRace=Any
         PlayerRace=Any
         PlayerStatus=Any
@@ -1283,7 +1283,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\The_Fridge.cmap
         MaxWins=0
-        MinWins=3
+        MinWins=20
         PlanetRace=Peleng,People
         PlayerRace=Any
         PlayerStatus=Pirate
@@ -1312,7 +1312,7 @@ RobotsMap ~{
         Length=2
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Cave_Wars.cmap
         MaxWins=0
-        MinWins=6
+        MinWins=12
         PlanetRace=People,Fei
         PlayerRace=People,Fei,Gaal
         PlayerStatus=Trader
@@ -1342,7 +1342,7 @@ RobotsMap ~{
         Length=3
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Secret_Developments.cmap
         MaxWins=0
-        MinWins=6
+        MinWins=10
         PlanetRace=Fei,Gaal,People
         PlayerRace=Any
         PlayerStatus=Warrior,Trader
@@ -1432,7 +1432,7 @@ RobotsMap ~{
         Length=4
         Map=Mods\\PlanetaryBattles\\PBNewMaps\\DATA\\Maps\\Short_U.cmap
         MaxWins=0
-        MinWins=3
+        MinWins=22
         PlanetRace=Peleng
         PlayerRace=Maloc,People,Fei,Gaal
         PlayerStatus=Any

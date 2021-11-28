@@ -2017,7 +2017,7 @@ ShipInfo ^{
                                                                     03=status = substr(status, 0, i - 1) + '' + substr(status, i);
                                                                     04=ShipCustomShipInfoTextData(owner, cur_info, 3, status);
                                                                 }
-                                                                05=else ArrayAdd(GEvoTrancTempArray, tempId);
+                                                                05=else if(IdToShip(tempId)) ArrayAdd(GEvoTrancTempArray, tempId);
                                                             }
                                                             05=quant = quant - 1;
                                                             06=ShipCustomShipInfoData(owner, cur_info, 3, quant);
@@ -2740,7 +2740,7 @@ ShipInfo ^{
                                                 03=status = substr(status, 0, i - 1) + '' + substr(status, i);
                                                 04=ShipCustomShipInfoTextData(owner, cur_info, 3, status);
                                             }
-                                            05=else ArrayAdd(GEvoTrancTempArray, tempId);
+                                            05=else if(IdToShip(tempId)) ArrayAdd(GEvoTrancTempArray, tempId);
                                         }
                                         05=quant = quant - 1;
                                         06=ShipCustomShipInfoData(owner, cur_info, 3, quant);
@@ -2918,7 +2918,7 @@ ShipInfo ^{
                                             03=status = substr(status, 0, i - 1) + '' + substr(status, i);
                                             04=ShipCustomShipInfoTextData(owner, cur_info, 3, status);
                                         }
-                                        05=else ArrayAdd(GEvoTrancTempArray, tempId);
+                                        05=else if(IdToShip(tempId)) ArrayAdd(GEvoTrancTempArray, tempId);
                                     }
                                     05=quant = quant - 1;
                                     06=ShipCustomShipInfoData(owner, cur_info, 3, quant);

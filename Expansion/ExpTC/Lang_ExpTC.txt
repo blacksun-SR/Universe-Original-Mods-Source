@@ -1237,7 +1237,7 @@ ShipInfo ^{
                             05 ^{
                                 01=angle = 0.01 * Rnd(0, 200) * pi;
                                 02=rad = Rnd(100, 200);
-                                03=if(ItemInScript(item)) DropItemInSystem(star, GetItemFromShip(ship, i), tX, tY, round(cos(angle) * rad) + tX, round(sin(angle) * rad) + tY);
+                                03=if(ItemInScript(item)==1) DropItemInSystem(star, GetItemFromShip(ship, i), tX, tY, round(cos(angle) * rad) + tX, round(sin(angle) * rad) + tY);
                                 04=else if(ItemType(item) == t_UselessItem) DropItemInSystem(star, GetItemFromShip(ship, i), tX, tY, round(cos(angle) * rad) + tX, round(sin(angle) * rad) + tY);
                                 05=else if(Rnd(1, 100) <= 15) DropItemInSystem(star, GetItemFromShip(ship, i), tX, tY, round(cos(angle) * rad) + tX, round(sin(angle) * rad) + tY);
                             }

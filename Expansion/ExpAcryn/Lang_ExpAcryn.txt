@@ -2000,7 +2000,7 @@ UselessItems ^{
                                 05=ItemCost(cur_item,ItemCost(cur_item)/4);
                                 06=NewsAdd(CT('UselessItems.'+EquipmentImageName(cur_item)+'.TextLoaded'));
                                 07=UselessItemData(cur_item,1,1);
-                                08=if(ItemInScript(cur_item))ReleaseItemFromScript(cur_item);
+                                08=if(ItemInScript(cur_item)==1)ReleaseItemFromScript(cur_item);
                             }
                         }
                     }
@@ -2040,7 +2040,7 @@ UselessItems ^{
                                 05=ItemCost(cur_item,ItemCost(cur_item)/4);
                                 06=NewsAdd(CT('UselessItems.'+EquipmentImageName(cur_item)+'.TextLoaded'));
                                 07=UselessItemData(cur_item,1,1);
-                                08=if(ItemInScript(cur_item))ReleaseItemFromScript(cur_item);
+                                08=if(ItemInScript(cur_item)==1)ReleaseItemFromScript(cur_item);
                             }
                         }
                     }
@@ -2080,7 +2080,7 @@ UselessItems ^{
                                 05=ItemCost(cur_item,ItemCost(cur_item)/4);
                                 06=NewsAdd(CT('UselessItems.'+EquipmentImageName(cur_item)+'.TextLoaded'));
                                 07=UselessItemData(cur_item,1,1);
-                                08=if(ItemInScript(cur_item))ReleaseItemFromScript(cur_item);
+                                08=if(ItemInScript(cur_item)==1)ReleaseItemFromScript(cur_item);
                             }
                         }
                     }
@@ -2125,7 +2125,7 @@ UselessItems ^{
         OnActCode ^{
             01=if(HullHP(Player())>0)
             02 ^{
-                01=if(ItemInScript(CurItem()))
+                01=if(ItemInScript(CurItem())==1)
                 02 ^{
                     01=if(EtherState('ExpAcryn_quest_3')>-1)
                     02 ^{
@@ -2255,7 +2255,7 @@ UselessItems ^{
         OnActCode ^{
             01=if(HullHP(Player()) > 0)
             02 ^{
-                01=if(ItemInScript(CurItem()))
+                01=if(ItemInScript(CurItem())==1)
                 02 ^{
                     01=if(EtherState('ExpAcryn_quest_4') > -1)
                     02 ^{
@@ -2411,7 +2411,7 @@ UselessItems ^{
             06 ^{
                 01=if(HullHP(Player())>0)
                 02 ^{
-                    01=if(ItemInScript(CurItem()))
+                    01=if(ItemInScript(CurItem())==1)
                     02 ^{
                         01=if(EtherState('ExpAcryn_quest_1')>-1)
                         02 ^{

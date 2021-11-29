@@ -2616,7 +2616,7 @@ ShipInfo ^{
                                 03 ^{
                                     01=item = ShipItems(owner, i);
                                     02=if(ItemIsInUse(item)) continue;
-                                    03=if(ItemInScript(item)) continue;
+                                    03=if(ItemInScript(item)==1) continue;
                                     //Если предмет товар, ноды или кастомный сыпучий
                                     04=if((ItemType(item) >= 0 && ItemType(item) <= 7) || ItemType(item) == t_Protoplasm || ItemType(item) == t_UselessCountableItem)
                                     05 ^{
@@ -2652,7 +2652,7 @@ ShipInfo ^{
                                     01=for(i = 0; i < ShipArts(owner); i = i + 1)
                                     02 ^{
                                         01=item = ShipArts(owner, i);
-                                        02=if(ItemInScript(item)) continue;
+                                        02=if(ItemInScript(item)==1) continue;
                                         //Транклюкаторов не выкидываем (иначе зачем это всё?)
                                         03=if(ItemType(item) == t_ArtefactTranclucator) continue;
                                         04=overload = overload - ItemSize(item);
@@ -2671,7 +2671,7 @@ ShipInfo ^{
                                     01=for(i = 1; i < ShipItems(owner); i = i + 1)
                                     02 ^{
                                         01=item = ShipItems(owner, i);
-                                        02=if(ItemInScript(item)) continue;
+                                        02=if(ItemInScript(item)==1) continue;
                                         //Не выкидываем только двигатель и бак
                                         03=if(ItemType(item) == t_Engine || ItemType(item) == t_FuelTanks) continue;
                                         04=overload = overload - ItemSize(item);

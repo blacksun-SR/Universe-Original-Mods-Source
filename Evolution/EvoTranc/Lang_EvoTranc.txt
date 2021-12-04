@@ -376,11 +376,15 @@ ShipInfo ^{
                                         08 ^{
                                             01=base=IdToShip(base);
                                             //≈сли не нашли выбранную базу в системе с транком, очищаем маркер
-                                            02=if(ShipStar(base)!=star)
+                                            02=if(base)
                                             03 ^{
-                                                01=base=0;
-                                                02=ShipCustomShipInfoData(0,infos,2,0);
+                                                01=if(ShipStar(base)!=star)
+                                                02 ^{
+                                                    01=base=0;
+                                                    02=ShipCustomShipInfoData(0,infos,2,0);
+                                                }
                                             }
+                                            04=else ShipCustomShipInfoData(0,infos,2,0);
                                         }
                                         //≈сли ограничение включено и дл€ планет и дл€ станций
                                         09=if(planet && base)

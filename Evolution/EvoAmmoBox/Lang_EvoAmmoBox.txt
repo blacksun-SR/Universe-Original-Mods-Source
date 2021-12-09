@@ -102,7 +102,6 @@ UselessItems ^{
 			06=else if(ScriptItemActionType()==t_OnAnotherItem2)
 			07 ^{
 				01=item=ScriptItemActObject1();
-				02=if(EqModule(item)==FindBonusByCustomTag('empty_mm')) exit;
 				03=if(ItemType(item)==t_Weapon18) flag=1;
 				04=else if(ItemType(item)==t_CustomWeapon)
 				05 ^{
@@ -239,7 +238,6 @@ UselessItems ^{
 			06=else if(ScriptItemActionType()==t_OnAnotherItem2)
 			07 ^{
 				01=item=ScriptItemActObject1();
-				02=if(EqModule(item)==FindBonusByCustomTag('empty_mm')) exit;
 				03=if(ItemType(item)==t_Weapon4) flag=1;
 				04=else if(ItemType(item)==t_CustomWeapon)
 				05 ^{
@@ -368,7 +366,6 @@ UselessItems ^{
 			05=else if(ScriptItemActionType()==t_OnAnotherItem2)
 			06 ^{
 				01=item=ScriptItemActObject1();
-				02=if(EqModule(item)==FindBonusByCustomTag('empty_mm')) exit;
 				03=if(ItemType(item)==t_CustomWeapon && CustomWeaponType(item)=='Mabokit')
 				04 ^{
 					01=if(UselessItemData(CurItem(),3)==1)
@@ -498,7 +495,6 @@ UselessItems ^{
 			06=else if(ScriptItemActionType()==t_OnAnotherItem2)
 			07 ^{
 				01=item=ScriptItemActObject1();
-				02=if(EqModule(item)==FindBonusByCustomTag('empty_mm')) exit;
 				03=if(ItemType(item)==t_Weapon15) flag=1;
 				04=else if(ItemType(item)==t_CustomWeapon)
 				05 ^{

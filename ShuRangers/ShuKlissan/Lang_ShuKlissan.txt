@@ -75,7 +75,7 @@ Items ^{
     Scaner ^{
         KlissanName=Нейрощуп
         KlissanText=Сложно устроенный орган, позволяющий сканировать неживые объекты.
-        KlissanText=Производит нейросканирование объектов с защитным полем менее <Percent><color=255,240,100>%</color>
+        KlissanText=Производит нейросканирование объектов с защитным полем менее <Percent>%
     }
     RepairRobot ^{
         KlissanName=Биорегенератор
@@ -90,7 +90,7 @@ Items ^{
     DefGenerator ^{
         KlissanName=Плазмощит
         KlissanText=Упорядоченный веер плазменных частиц, способный поглощать часть энергии от внешних источников.
-        KlissanText=Нейтрализует до <Percent><color=255,240,100>%</color> негативного внешнего воздействия.
+        KlissanText=Нейтрализует до <Percent>% негативного внешнего воздействия.
     }
     CustomCountables ^{
         kProtoplasm ^{

@@ -17,8 +17,6 @@ Script ^{
             EliteWarrior=15:4, DistressSignal:0, Shocker5300:40, GatrixMatrix:25, WCoder:25, SystemShutdown:8, AbsoluteWeapon:2
             Pirate=4:3, DistressSignal:55, Shocker5300:20, GatrixMatrix:10, WCoder:10, SystemShutdown:4, AbsoluteWeapon:1
             PirateCorvette=8:4, DistressSignal:55, Shocker5300:20, GatrixMatrix:10, WCoder:10, SystemShutdown:4, AbsoluteWeapon:1
-            PirateFrigate=12:4, DistressSignal:40, Shocker5300:20, GatrixMatrix:15, WCoder:15, SystemShutdown:7, AbsoluteWeapon:3
-            PirateGalleon=16:5, DistressSignal:40, Shocker5300:20, GatrixMatrix:15, WCoder:15, SystemShutdown:7, AbsoluteWeapon:3
             Diplomat=7:4, DistressSignal:0, Shocker5300:50, GatrixMatrix:23, WCoder:18, SystemShutdown:6, AbsoluteWeapon:3
             Smuggler=7:3, DistressSignal:0, Shocker5300:60, GatrixMatrix:20, WCoder:17, SystemShutdown:3, AbsoluteWeapon:0
         }

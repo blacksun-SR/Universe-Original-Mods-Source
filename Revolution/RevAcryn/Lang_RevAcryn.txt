@@ -1,12 +1,11 @@
 ActCodeBlocksList ^{
     //Код для смены акрина на сборочном дроиде, а также сбросе прицела у всех орудий, если дроид установлен не на станции
     RevAcrynAssemblyDroidActCode ^{
-        01=dword ship;
-        02=dword item;
-        03=if(ScriptItemActionType(t_OnStep, 0))
-        04 ^{
-            01=item = CurItem();
-            02=ship = ScriptItemActShip();
+        00=[t_OnItemEquip,t_OnItemDeEquip,t_OnItemDestroy,t_OnStep|0]
+        01=if(ScriptItemActionType(t_OnStep, 0))
+        02 ^{
+            01=dword item = CurItem();
+            02=dword ship = ScriptItemActShip();
             03=if(!ship) exit;
             04=if(!item) exit;
             05=if(!ItemIsInUse(item)) exit;
@@ -20,20 +19,17 @@ ActCodeBlocksList ^{
                 }
             }
         }
-        05=else if(ScriptItemActionType(t_OnItemEquip))
-        06 ^{
+        03=else if(ScriptItemActionType(t_OnItemEquip))
+        04 ^{
             01=item = CurItem();
             02=dword star = ShipStar(Player());
-            03=dword temp_item;
-            04=int check = 0;
-            05=int j;
-            06=int k;
+            03=int check = 0;
             //Начинаем искать, где же находится наш дроид
             //А всё потому, что ебучие события t_OnItemEquip и t_OnItemDeEquip НЕ ВОЗВРАЩАЮТ, СУКА, ЭКИПИРОВАВШИЙ ПРЕДМЕТ КОРАБЛЬ!
             //Сперва чекаем игрока, как наиболее вероятного кандидата
-            07=for(j = 0; j < ShipItems(Player()); j = j + 1)
-            08 ^{
-                01=temp_item = ShipItems(Player(), j);
+            04=for(int j = 0; j < ShipItems(Player()); j = j + 1)
+            05 ^{
+                01=dword temp_item = ShipItems(Player(), j);
                 02=if(temp_item == item)
                 03 ^{
                     01=check = 1;
@@ -41,12 +37,12 @@ ActCodeBlocksList ^{
                 }
             }
             //Затем станции
-            09=if(!check)
-            10 ^{
+            06=if(!check)
+            07 ^{
                 01=for(j = 0; j < StarRuins(star); j = j + 1)
                 02 ^{
                     01=ship = StarRuins(star, j);
-                    02=for(k = 0; k < ShipItems(ship); k = k + 1)
+                    02=for(int k = 0; k < ShipItems(ship); k = k + 1)
                     03 ^{
                         01=temp_item = ShipItems(ship, k);
                         02=if(temp_item == item)
@@ -58,8 +54,8 @@ ActCodeBlocksList ^{
                 }
             }
             //И под конец все прочие корабли в системе
-            11=if(!check)
-            12 ^{
+            08=if(!check)
+            09 ^{
                 01=for(j = 0; j < StarShips(star); j = j + 1)
                 02 ^{
                     01=ship = StarShips(star, j);
@@ -75,37 +71,35 @@ ActCodeBlocksList ^{
                     }
                 }
             }
-            13=if(check != 2)
-            14 ^{
-                01=str name;
-                02=if(EqModule(item))
-                03 ^{
+            10=if(check != 2)
+            11 ^{
+                01=if(EqModule(item))
+                02 ^{
                     01=int mod = EqModule(item);
                     02=EqModule(item, -1);
-                    03=name = Name(item);
+                    03=str name = Name(item);
                     04=EqModule(item, mod);
                 }
-                04=else name = Name(item);
-                05=EqSpecial(item, -1);
-                06=EqSpecial(item, FindBonusByCustomTag('AssemblyDroidNerfed'));
-                07=SetName(item, name);
+                03=else name = Name(item);
+                04=EqSpecial(item, -1);
+                05=EqSpecial(item, FindBonusByCustomTag('AssemblyDroidNerfed'));
+                06=SetName(item, name);
             }
         }
-        07=else if(ScriptItemActionType(t_OnItemDeEquip))
-        08 ^{
+        05=else if(ScriptItemActionType(t_OnItemDeEquip))
+        06 ^{
             01=item = CurItem();
-            02=str name2;
-            03=if(EqModule(item))
-            04 ^{
-                01=int mod2 = EqModule(item);
+            02=if(EqModule(item))
+            03 ^{
+                01=mod = EqModule(item);
                 02=EqModule(item, -1);
-                03=name2 = Name(item);
-                04=EqModule(item, mod2);
+                03=name = Name(item);
+                04=EqModule(item, mod);
             }
-            05=else name2 = Name(item);
+            05=else name = Name(item);
             06=EqSpecial(item, -1);
             07=EqSpecial(item, FindBonusByCustomTag('AssemblyDroidNormal'));
-            08=SetName(item, name2);
+            08=SetName(item, name);
         }
         09=else if(ScriptItemActionType(t_OnItemDestroy))
         10 ^{
@@ -929,7 +923,7 @@ MicroModuls ^{
         BlockImp=1
         BlockMM=1
         Special=1
-        TextReplace=<color=248,252,248>Порождение больной инженерной фантазии безумного малокского гения <color=255,240,100>Багорбы Ргнарыка</color> - <color=255,240,100>"Неуправляемый Убиватор"</color>, содержащий в себе универсальный энергоконвертор для бортового оборудования. В результате, при установке <color=255,240,100>Убиватора</color> в отсек для <color=255,240,100>радара</color>, почти вся доступная энергия перенаправляется на орудийные системы. Двигатель при этом практически полностью обесточивается, зато боевая мощь корабля возрастает многократно.</color>
+        TextReplace=<color=248,252,248>Порождение больной инженерной фантазии безумного малокского гения <color=255,240,100>Багорбы Ргнарыка</color> - <color=255,240,100>"Неуправляемый Убиватор"</color>, содержащий в себе почти неизученное мощнейшее устройство для универсальной энергоконверсии. При установке <color=255,240,100>Убиватора</color> в отсек для <color=255,240,100>радара</color>, вся доступная в нём энергия перенаправляется на усиление орудийных подсистем. Пользоваться радаром в этом случае становится невозможно, зато боевая мощь корабля возрастает многократно.</color>
         Text=<color=248,252,248>Пять крупнейших галактических религий предали это устройство анафеме, а семь - канонизировали и сделали главным объектом своего культа.</color>
         Text=<clr><clrEnd>
         Text=Сила энергетического оружия: <bonWEnergy> ед.
@@ -961,8 +955,8 @@ MicroModuls ^{
         Fragility=100
         Cost=400
         Size=75
-        bonWEnergy=24
-        bonWSplinter=34
+        bonWEnergy=25
+        bonWSplinter=35
         bonRadar=-500000000
     }
 }

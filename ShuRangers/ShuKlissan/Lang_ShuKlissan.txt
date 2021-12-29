@@ -1564,6 +1564,14 @@ Script ^{
 ShipCharacterNone ^{
     00=34,	33,	33,	Неизвестный
 }
+ActCodeBlocksList ^{
+    ShuKlissan_KvinkgunShot ^{
+        00=[t_OnWeaponShot|]
+        01=dword target = ScriptItemActObject1();
+        02=if(ObjectType(target) > 5) exit; //Только если стреляют по станции или кораблю
+        03=ScriptItemActParam(Rnd(8, 10));
+    }
+}
 ShipInfo ^{
     AddInfo ^{
         CustomInfos ^{
@@ -1708,27 +1716,6 @@ ShipInfo ^{
                 Description=
                 Icon=1
                 Name=
-            }
-            Kvinkgun ^{
-                Icon=1
-                Name=Kvinkgun
-                OnActCodeTypes=t_OnWeaponShot
-                OnActCode ^{
-                    01=if(CustomWeaponType(ScriptItemActObject2()) != 'klissan_moldikvink') exit;
-                    02=dword target = ScriptItemActObject1();
-                    03=if(ObjectType(target) != 4 && ObjectType(target) != 5) exit;
-                    04=ScriptItemActParam(Rnd(8, 10));
-                }
-            }
-            Nargun ^{
-                Icon=1
-                Name=Nargun
-                OnActCodeTypes=t_OnWeaponShot2
-                OnActCode ^{
-                    01=if(CustomWeaponType(ScriptItemActObject2()) != 'klissan_nargun') exit;
-                    02=if(Rnd(1, 100) <= 40) ScriptItemActParam(1+128+2048+32768);
-                    03=else ScriptItemActParam(1+32768);
-                }
             }
             Nondus_shield ^{
                 Description=Акткод на щит нондуса. Щит блокирует весь наносимый кораблю урон и имеет прочность 30-40% от запаса ХП нондуса, когда падает - наносит всем кораблям в радиусе 250 урон, равный последнему нанесенному нондусу, увеличенному вдвое.
@@ -2024,7 +2011,6 @@ ShipType ^{
         None=
     }
     TypeName ^{
-        Badass=Изменник
         Handler=Секретный объект
         HandlerSmall=Хандлер
         KB=Нейролинк

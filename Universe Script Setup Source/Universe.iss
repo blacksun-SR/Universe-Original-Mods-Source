@@ -7,6 +7,7 @@ AppVerName=Space Rangers Universe Original
 AppCopyright=Space Rangers Community
 AppPublisher=Space Rangers Community
 AppPublisherURL="https://discord.gg/SY4aDtDxET"
+WizardStyle=classic
 
 // Directory setup
 SourceDir=. 
@@ -75,87 +76,98 @@ ru.Discord=Discord сервер
 [Code]
 var
   FullPath: string;
-  CutPath: string;
-  GOGFlag: integer;
+  GOGFlag: boolean;
 
-function GetSteamLib(const FileName, Section: string): string; // function parsing libraryfolders.vdf (variant custom path steam library)
+function GetSteamLibs(FileName: string; var Paths: TArrayOfString): Boolean;
 var
-  s: string;
-  i: integer;
-  DirLine: integer;
-  LineCount: integer;
-  SectionLine: integer;    
   Lines: TArrayOfString;
+  i: Integer;
+  Line: string;
+  p: Integer;
+  Key: string;
+  Value: string;
+  Count: Integer;
+  InstallFolderKey: string;
 begin
-  Result := '';
-  s := '"' + Section + '"';
-  i := 1;
-  if LoadStringsFromFile(FileName, Lines) then
+  InstallFolderKey := 'path';
+  Result := LoadStringsFromFile(FileName, Lines);
+  Count := 0;
+  for i := 0 to GetArrayLength(Lines) - 1 do
   begin
-    LineCount := GetArrayLength(Lines);
-    for SectionLine := 0 to LineCount - 1 do
-      if Trim(Lines[SectionLine]) = s then
+    Line := Trim(Lines[i]);
+    if Copy(Line, 1, 1) = '"' then
+    begin
+      Delete(Line, 1, 1);
+      p := Pos('"', Line);
+      if p > 0 then
       begin
-        if (SectionLine < LineCount) and (Trim(Lines[SectionLine + 1]) = '{') then
-          for DirLine := SectionLine to LineCount - 1 do
+        Key := Trim(Copy(Line, 1, p - 1));
+        Delete(Line, 1, p);
+        Line := Trim(Line);
+        if (CompareText(Copy(Key, 1, Length(InstallFolderKey)), InstallFolderKey) = 0) and (Line[1] = '"') then
+        begin
+          Delete(Line, 1, 1);
+          p := Pos('"', Line);
+          if p > 0 then
           begin
-            if (Pos('"' + IntToStr(i) + '"', Lines[DirLine]) > 0) and
-              (StringChangeEx(Lines[DirLine], '"'+ IntToStr(i) + '"', '', True) > 0) then
-            begin
-              i := i + 1;
-              s := RemoveQuotes(Trim(Lines[DirLine]));
-              StringChangeEx(s, '\\', '\', True);
-                if (FileSearch('Rangers.exe', s + '\steamapps\common\Space Rangers HD A War Apart\')) = '' then
-                else Result := s;
-            end;
-            if Trim(Lines[DirLine]) = '}' then Exit;
+            Value := Trim(Copy(Line, 1, p - 1));
+            StringChange(Value, '\\', '\');
+            Count := Count + 1;
+            SetArrayLength(Paths, Count);
+            Paths[Count - 1] := Value;
           end;
-        Exit;
+        end;
       end;
+    end;
   end;
 end;
 
-function InitializeSetup(): Boolean;
-var   
+function GetGamePath(): string;
+var          
+  InstallPath: string;
   SteamPath: string;
-  GOGPath: string;
-  SRPath: dword;
+  SteamConfigFileArray: TArrayOfString;
+  SteamLibs: TArrayOfString;
+  SteamConfigFilePath: string;
+  i: integer;
 begin
-  GOGFlag := 0; // First check Steam game status
-  if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Valve\Steam','InstallPath', SteamPath) or 
-     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Wow6432Node\Valve\Steam','InstallPath', SteamPath)) and 
-     (RegQueryDWordValue(HKEY_CURRENT_USER, 'Software\Valve\Steam\Apps\214730','Installed', SRPath) or 
-     RegQueryDWordValue(HKEY_CURRENT_USER, 'Software\Wow6432Node\Valve\Steam\Apps\214730','Installed', SRPath) or
-     RegQueryDWordValue(HKEY_LOCAL_MACHINE, 'Software\Wow6432Node\Valve\Steam\Apps\214730','Installed', SRPath)) and (SRPath = 1) 
-     then begin
-        GOGFlag := 1; // Steam path found
-        FullPath := '';
-        CutPath := SteamPath + '\steamapps\';
-        if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 214730','InstallLocation', FullPath)) and 
-        (FileExists(FullPath + '\Rangers.exe')) // First variant - parse system option "Control Panel\All Control Panel Items\Programs and Features"
-        then FullPath := FullPath + '\'
-        else if ((GetSteamLib(CutPath + 'libraryfolders.vdf','LibraryFolders')) = '') and (FileExists(SteamPath + '\steamapps\common\Space Rangers HD A War Apart' + '\Rangers.exe')) 
-        then FullPath := SteamPath + '\steamapps\common\Space Rangers HD A War Apart' // Second variant - default steam path
-        else if (GetSteamLib(CutPath + 'libraryfolders.vdf','LibraryFolders')) <> '' // Third variant - custom path steam library
-        then FullPath := ''
-        else begin FullPath := 'C:\'; GOGFlag := 2; end;
-  end else 
-  if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\GOG.com\Games\1207667113','PATH', GOGPath) or 
-     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'Software\Wow6432Node\GOG.com\Games\1207667113','PATH', GOGPath)) and (GOGFlag <> 1)
-     then begin 
-        GOGFlag := 3; // GOG path found 
-        FullPath := GOGPath; 
-     end
-  else FullPath := 'C:\'; // Any version game not found
-Result := True;
+  // Steam path
+  SteamPath := ExpandConstant('{reg:HKLM\Software\Valve\Steam,InstallPath}');
+  if SteamPath = '' then SteamPath := ExpandConstant('{reg:HKLM\Software\WOW6432Node\Valve\Steam,InstallPath}');
+  if SteamPath = '' then SteamPath := ExpandConstant('{pf}\Steam');
+  if SteamPath <> '' then SteamConfigFilePath := SteamPath + '\steamapps\libraryfolders.vdf';
+  // Default game path
+  if FileExists(SteamPath + '\steamapps\common\Space Rangers HD A War Apart\Rangers.exe') then Result := SteamPath + '\steamapps\common\Space Rangers HD A War Apart'
+  // Parse Steam libs - sharedconfig.vdf  
+  else if FileExists(SteamConfigFilePath) then 
+  begin
+    if LoadStringsFromFile(SteamConfigFilePath, SteamConfigFileArray) then
+    begin
+      GetSteamLibs(SteamConfigFilePath, SteamLibs);
+      for i := 0 to GetArrayLength(SteamLibs) - 1 do
+      begin
+        if FileExists(SteamLibs[i] + '\steamapps\common\Space Rangers HD A War Apart\Rangers.exe') then
+        begin
+          Result := SteamLibs[i] + '\steamapps\common\Space Rangers HD A War Apart';
+          break;
+        end;
+      end;
+    end;
+  end;
+  // Parse GOG
+  if (RegQueryStringValue(HKLM, 'Software\GOG.com\Games\1207667113','path', InstallPath)) and (Result = '') and ((FileExists(InstallPath + '\Rangers.exe'))) then 
+  begin Result := InstallPath; GOGFlag := true; end
+  else if (RegQueryStringValue(HKLM, 'Software\Wow6432Node\GOG.com\Games\1207667113','path', InstallPath)) and (Result = '') and ((FileExists(InstallPath + '\Rangers.exe'))) then
+  begin Result := InstallPath; GOGFlag := true; end;
+
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 begin
-  if IsComponentSelected('DeleteMods') then
+  if WizardIsComponentSelected('DeleteMods') then
   begin
     ForceDirectories(ExpandConstant('{app}\TempStorageFolder'));
-    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\Mods\ModCFG.txt'), ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'));
+    if not WizardIsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\Mods\ModCFG.txt'), ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'));
     RenameFile(ExpandConstant('{app}\Mods\Tweaks\German'), ExpandConstant('{app}\TempStorageFolder\German'));
     RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'));
     RenameFile(ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'), ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'));
@@ -163,7 +175,7 @@ begin
     RenameFile(ExpandConstant('{app}\Mods\Tweaks\SR2PQuestStyle'), ExpandConstant('{app}\TempStorageFolder\SR2PQuestStyle'));
     DelTree(ExpandConstant('{app}\Mods\*'), false, true, true);
     ForceDirectories(ExpandConstant('{app}\Mods\Tweaks'));
-    if not IsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'));
+    if not WizardIsComponentSelected('InstallModCFG') then RenameFile(ExpandConstant('{app}\TempStorageFolder\ModCFG.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'));
     RenameFile(ExpandConstant('{app}\TempStorageFolder\German'), ExpandConstant('{app}\Mods\Tweaks\German'));
     RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate15'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate15'));
     RenameFile(ExpandConstant('{app}\TempStorageFolder\LeoDomikShipsUpdate30'), ExpandConstant('{app}\Mods\Tweaks\LeoDomikShipsUpdate30'));
@@ -178,11 +190,11 @@ begin
   Result := True; 
   if CurPageID = wpSelectDir then 
   begin 
-      if (FileSearch('Rangers.exe', ExpandConstant('{app}')) = '') then  
-      begin 
-        SuppressibleMsgBox(ExpandConstant('{cm:GameExist}'), mbCriticalError, MB_OK, MB_OK); 
-        Result := False; 
-      end else Result := True; 
+    if (FileSearch('Rangers.exe', ExpandConstant('{app}')) = '') then  
+    begin 
+      SuppressibleMsgBox(ExpandConstant('{cm:GameExist}'), mbCriticalError, MB_OK, MB_OK); 
+      Result := False; 
+    end else Result := True; 
   end; 
 end;
 
@@ -255,32 +267,38 @@ end;
 procedure CurPageChanged(CurPageID: Integer);
 begin
 
-  if CurPageID = wpWelcome then begin
-    if (FullPath = 'C:\') then WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:GameNotFound}');  
-    if (FullPath = 'C:\') and (GOGFlag = 2) then WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:GameNotFound}');
-    if FullPath = '' then begin
-      WizardForm.DirEdit.Text := GetSteamLib(CutPath + 'libraryfolders.vdf','LibraryFolders') + '\steamapps\common\Space Rangers HD A War Apart';
-      WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:SteamGameFound}');
-    end;
-    if (FullPath <> '') and (GOGFlag = 1) then begin
+  if CurPageID = wpWelcome then
+  begin
+    FullPath := GetGamePath();
+    if (FullPath = '') then 
+    begin
+      WizardForm.DirEdit.Text := 'C:\'; 
+      WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:GameNotFound}'); 
+    end 
+    else if (FullPath <> '') and (GOGFlag = false) then 
+    begin
       WizardForm.DirEdit.Text := FullPath; 
       WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:SteamGameFound}');
-    end else if (FullPath <> '') and (GOGFlag = 3) then begin
+    end 
+    else if (FullPath <> '') and (GOGFlag = true) then 
+    begin
       WizardForm.DirEdit.Text := FullPath;
       WizardForm.SelectDirLabel.Caption := ExpandConstant('{cm:GogGameFound}');
     end;
   end;
 
-  if CurPageID = wpSelectComponents then begin 
+  if CurPageID = wpSelectComponents then 
+  begin 
     WizardForm.NextButton.Caption := ExpandConstant('{cm:InstallButton}');
     WizardForm.ComponentsList.Checked[0] := True;
     WizardForm.ComponentsList.Checked[1] := False;
     WizardForm.ComponentsList.Checked[2] := True;
   end;
   
-  if CurPageID = wpFinished then begin
+  if CurPageID = wpFinished then 
+  begin
     WizardForm.FinishedLabel.Caption := ExpandConstant('{cm:InstallFinish}');
-    if IsComponentSelected('InstallModCFG') then FileCopy(ExpandConstant('{app}\Universe.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false);
+    if WizardIsComponentSelected('InstallModCFG') then FileCopy(ExpandConstant('{app}\Universe.txt'), ExpandConstant('{app}\Mods\ModCFG.txt'), false);
     DeleteFile(ExpandConstant('{app}\Universe.txt'));
   end;
     

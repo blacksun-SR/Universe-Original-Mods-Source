@@ -453,10 +453,11 @@ end;
 procedure SF_Rnd(av:array of TVarEC; code:TCodeEC);
 var
   min,max:integer;
+  t:cardinal;
 begin
   if High(av)<2 then raise Exception.Create('Error.Script Rnd');
 
-  if High(av)>2 then av[0].VInt:=Rnd(av[1].VInt,av[2].VInt,av[3].VDW)
+  if High(av)>2 then begin t:=av[3].VDW; av[0].VInt:=RndOut(av[1].VInt,av[2].VInt,t); end
   else if Galaxy<>nil then av[0].VInt:=RndOut(av[1].VInt,av[2].VInt,Galaxy.FRndOut)
   else begin
     min:=av[1].VInt;
@@ -4288,6 +4289,7 @@ begin
     if sitem.FOnActCompiledCode<>nil then sitem.FOnActCompiledCode.Free;
     sitem.FOnActCompiledCode:=nil;
     sitem.FOnActCode:='';
+    sitem.FFlag_CanSell:=true;
     
   end else begin
     sitem:=TScriptItem(av[2].VDW);
@@ -6620,6 +6622,9 @@ var
   obj: TObject;
   pos: TPos;
   pol:TPolar;
+  Pl2D:PConstellationLine;
+  i:integer;
+  llst:TList;
 begin
   if High(av)<1 then raise Exception.Create('Error.Script CoordX');
   obj:=TObject(av[1].VDW);
@@ -6656,7 +6661,26 @@ begin
         (obj as TPlanet).FPolarPos:=CartesianToPolar(Point( round(pos.X),round(pos.Y) ));
         (obj as TPlanet).FGraphPlanet.Pos:=pos;
       end
-      else if(obj is TStar) then (obj as TStar).FPos:=pos
+      else if(obj is TStar) then
+      begin
+        llst:=TStar(obj).FConstellation.FLines;
+        for i:=0 to llst.Count-1 do
+        begin
+          Pl2D:=llst.Items[i];
+          if (Pl2D.P1.X = TStar(obj).FPos.X) and (Pl2D.P1.Y = TStar(obj).FPos.Y) then
+          begin
+            Pl2D.P1.X := pos.X;
+            Pl2D.P1.Y := pos.Y;
+          end;
+          if (Pl2D.P2.X = TStar(obj).FPos.X) and (Pl2D.P2.Y = TStar(obj).FPos.Y) then
+          begin
+            Pl2D.P2.X := pos.X;
+            Pl2D.P2.Y := pos.Y;
+          end;
+        end;
+        Pl2D:=nil;
+        (obj as TStar).FPos:=pos;
+      end
       else if(obj is TAsteroid) then (obj as TAsteroid).FPos:=pos
       else if(obj is TMissile) then (obj as TMissile).FPos:=pos;
     end;
@@ -6668,6 +6692,9 @@ var
   obj: TObject;
   pos: TPos;
   pol:TPolar;
+  Pl2D:PConstellationLine;
+  i:integer;
+  llst:TList;
 begin
   if High(av)<1 then raise Exception.Create('Error.Script CoordY');
   obj:=TObject(av[1].VDW);
@@ -6704,7 +6731,26 @@ begin
         (obj as TPlanet).FPolarPos:=CartesianToPolar(Point( round(pos.X),round(pos.Y) ));
         (obj as TPlanet).FGraphPlanet.Pos:=pos;
       end
-      else if(obj is TStar) then (obj as TStar).FPos:=pos
+      else if(obj is TStar) then
+      begin
+        llst:=TStar(obj).FConstellation.FLines;
+        for i:=0 to llst.Count-1 do
+        begin
+          Pl2D:=llst.Items[i];
+          if (Pl2D.P1.X = TStar(obj).FPos.X) and (Pl2D.P1.Y = TStar(obj).FPos.Y) then
+          begin
+            Pl2D.P1.X := pos.X;
+            Pl2D.P1.Y := pos.Y;
+          end;
+          if (Pl2D.P2.X = TStar(obj).FPos.X) and (Pl2D.P2.Y = TStar(obj).FPos.Y) then
+          begin
+            Pl2D.P2.X := pos.X;
+            Pl2D.P2.Y := pos.Y;
+          end;
+        end;
+        Pl2D:=nil;
+        (obj as TStar).FPos:=pos;
+      end
       else if(obj is TAsteroid) then (obj as TAsteroid).FPos:=pos
       else if(obj is TMissile) then (obj as TMissile).FPos:=pos;
     end;
@@ -8178,8 +8224,7 @@ begin
   begin
     ruins:=TRuins.Create;
     av[0].VDW:=Cardinal(ruins);
-    ruins.Init(t_UB,star);//initialized as RC, so will have coalition owner and eq at creation
-    ruins.FCustomTypeName:=av[2].VStr;
+    ruins.Init(t_UB,star,av[2].VStr);//initialized as RC, so will have coalition owner and eq at creation
     if High(av) > 2 then ruins.FCurStanding:=TStanding(av[3].VInt)
     else ruins.FCurStanding:=tst_None;
   end;
@@ -10173,7 +10218,7 @@ var
 begin
   if(High(av) < 1) then raise Exception.Create('Error.Script ShipRepairEq');
   ship:=TShip(av[1].VDW);
-  for i:=ship.FEquipments.Count-1 downto 0 do begin
+  for i:=ship.FEquipments.Count-1 downto 1 do begin
     eq:=ship.FEquipments.Items[i];
     if eq.FExplotable then eq.RestoreDuration;
   end;
@@ -10190,7 +10235,7 @@ var
 begin
   if(High(av) < 1) then raise Exception.Create('Error.Script ItemInScript');
   item:=TItem(av[1].VDW);
-  if(item <> nil) and (item.FScriptItem <> nil) then av[0].VInt:=1 else av[0].VInt:=0;
+  if(item <> nil) and (item.FScriptItem <> nil) then av[0].VInt:=1+ord(TScriptItem(item.FScriptItem).FName='') else av[0].VInt:=0;
 end;
 
 
@@ -12537,6 +12582,7 @@ end;
 
 //t_OnDealingDamage - before applying damage to target hull, Object1 = target ship, Param = damage
 //t_OnDealingFatalDamage - on killing ship (before actual damage is applied and all item drops and statistic change), Object1 = target ship
+//t_OnDealingKamikazeDamage - on exploding klig, Object1 = target ship
 
 //t_OnTakingDamageEn,t_OnTakingDamageSp,t_OnTakingDamageMi - before applying weapon damage (energy,splinter or missile) to hull
 //t_OnTakingDamage - before applying untyped damage (star, asteroid, explosion) to hull
@@ -12549,6 +12595,13 @@ end;
 //Param - result of action:
 //0 - item will be picked normally
 //anything else - item will be deleted
+
+
+//t_OnChameleonConfusion - can ship see through player's chameleon, called for both player and ship
+//Object1 is ship, when called for player
+//Param - result
+//0 - ship recognizes player
+//1 - ship is confused and will open fire
 
 
 //t_OnStep    on steps
@@ -13071,7 +13124,7 @@ end;
 
 procedure SF_NumberBox(av:array of TVarEC; code:TCodeEC);
 var
-  cnt:Cardinal;
+  cnt:integer;
   img,units,txt:WideString;
   zmin,zmax,zmaxok,price,cntmaxok,summaxok:Cardinal;
 begin
@@ -13079,14 +13132,14 @@ begin
   //av[0].VDW := 0;
   img:='GI,'+av[1].VStr;//'Bm.Items.2Minerals'
   txt:= av[2].VStr;
-  zmin:=av[3].VDW;
-  zmax:=av[4].VDW;
-  if (High(av) > 4) then zmaxok:=av[5].VDW else zmaxok:=zmax;
+  zmin:=av[3].VInt;
+  zmax:=av[4].VInt;
+  if (High(av) > 4) then zmaxok:=av[5].VInt else zmaxok:=zmax;
   if (High(av) > 5) and (av[6].VStr<>'') then units:='GI,'+av[6].VStr else units:='';//'Bm.FormCount2.2Kind0'
 
   if (High(av) > 6) then cnt:=av[7].VInt else cnt:=zmin;
 
-  if CountBox1(GetCurrentML, img, units, txt, zmin,zmax,zmaxok,cnt) = GIMB_Yes then av[0].VDW := cnt
+  if CountBox1(GetCurrentML, img, units, txt, zmin,zmax,zmaxok,cnt) = GIMB_Yes then av[0].VInt := cnt
   else av[0].VStr := 'Cancel';
 
 end;

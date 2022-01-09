@@ -262,7 +262,7 @@ ShipInfo ^{
                         }
                         07=int radar;
                         08=int allow=0;
-                        09=if((ShipOwner(ship)==5 && !ShipSubType(ship)) || ShipType(ship)=='CB' || ShipType(ship)=='WB') radar=10000;
+                        09=if(ShipOwner(ship)==Kling && !ShipSubType(ship)) radar=10000;
                         10=else radar=ShipRadarRange(ship);
                         11=if(Dist(ship,target)>500 && !radar || Dist(ship,target)>1000) exit;
                         12=if(HullDamage(ship)>70) allow=1;
@@ -278,8 +278,8 @@ ShipInfo ^{
                 }
             }
             RuinsNuke ^{
-                Description=На борту корабля находятся ядерные боеголовки.
-                Icon=0
+                Description=На борту станции находятся ядерные боеголовки.
+                Icon=551
                 Name=Ядерное оружие
                 OnActCodeTypes=t_OnStep
                 OnActStepTypes=11

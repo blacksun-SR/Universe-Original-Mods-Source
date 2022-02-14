@@ -15,17 +15,6 @@ Script ^{
 		41=<0>
     }
 }
-ShipInfo ^{
-    AddInfo ^{
-        CustomInfos ^{
-            EliteWarrior ^{
-                Description=NoShow
-                Icon=0
-                Name=Удалить эту инфошку при обновлении модов с обязательным началом НГ
-            }
-        }
-    }
-}
 ShipType ^{
     Fei ^{
         Elite=Экефар

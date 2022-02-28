@@ -415,6 +415,7 @@ ShipInfo ^{
                             //Обнуляем этот маркер, если рейнджер покинул ЧД
                             01=if(!ShipInHole(ship))ShipCustomShipInfoData(0,cur_info,1,0);
                         }
+                        07=else if(!action_mark) OrderLock(ship, 0);
                     }
                     //Смерть исследователя
                     07=else if(ScriptItemActionType(t_OnEnteringForm))

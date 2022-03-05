@@ -558,33 +558,19 @@ MicroModuls ^{
 ShipInfo ^{
     AddInfo ^{
         CustomInfos ^{
-            RNDbomb_2_PlayerInfos ^{
-                Description=Эта инфошка снимает с корабля запрет на разговор и скан в конце хода
-                Icon=1
-                Name=
-                OnActCode ^{
-                    01=dword infos = CurInfo();
-                    02=dword ship = ScriptItemActShip();
-                    03=if(!ShipCustomShipInfoData(0, infos, 1))
-                    04 ^{
-                        01=if(ShipCustomShipInfoData(0, infos, 2) == 1) NoTalkToShip(ship, 0);
-                        02=if(ShipCustomShipInfoTextData(0, infos, 1) == '1') NoScanToShip(ship, 0);
-                        03=ShipDeleteCustomShipInfo(ship, 'RNDbomb_2_PlayerInfos');
-                    }
-                    05=else ShipCustomShipInfoData(0, infos, 1, 0);
-                }
-                OnActCodeTypes=t_OnStep
-                OnActStepTypes=11
-            }
-            RNDbomb_2_infos ^{
-                Description=Экипаж корабля подвергся воздействию неизвестного излучения и временно утратил контроль над собственными действиями.
+            ExpArts_ShipStunned ^{
                 Icon=1
                 Name=Оглушение
+                Description=Экипаж корабля подвергся воздействию неизвестного излучения и временно утратил контроль над собственными действиями.
+                StatusEffect=Оглушение
+                OnActCodeTypes=t_OnStep,t_OnEnteringForm
+                OnActStepTypes=0,11
                 OnActCode ^{
                     01=dword infos = CurInfo();
                     02=dword ship = ScriptItemActShip();
-                    03=if(ScriptItemActionType(t_OnStep))
-                    04 ^{
+                    05=if(ScriptItemActionType(t_OnStep))
+                    06 ^{
+                        //Обработчик начала хода
                         01=if(!ScriptItemActParam())
                         02 ^{
                             01=OrderNone(ship);
@@ -595,15 +581,18 @@ ShipInfo ^{
                             04=float angle = pi * (ShipAngle(ship) + 90.0) / Rnd(179, 181);
                             05=OrderMove(ship, cos(angle) * 10.0 + CoordX(ship), sin(angle) * 10.0 + CoordY(ship));
                         }
-                        03=else
+                        //Обработчик конца хода
+                        03=else //if(ScriptItemActParam() == 11)
                         04 ^{
-                            01=int infos_var=ShipCustomShipInfoData(0, infos, 1);
-                            02=if(!infos_var)
+                            01=int days_left = ShipCustomShipInfoData(0, infos, 1);
+                            //Снятие "оглушения"
+                            02=if(days_left <= 1)
                             03 ^{
                                 01=OrderLock(ship, 0);
                                 02=ShipSpecialBonuses(ship, bonHook, ShipSpecialBonuses(ship, bonHook) + 50000);
-                                03=if(ship == Player())
+                                03=if(IsPlayer(ship))
                                 04 ^{
+                                    //Восстанавливаем энергию, если корпус - ТИ
                                     01=if(~HullSpecial(Player()))
                                     02 ^{
                                         01=if(BonusNumInCfg(HullSpecial(Player())) == '490')
@@ -630,29 +619,32 @@ ShipInfo ^{
                                     }
                                 }
                                 05=if(ShipCustomShipInfoData(0, infos, 3) == 1) NoTalkToShip(ship, 0);
-                                06=ShipDeleteCustomShipInfo(ship, 'RNDbomb_2_infos');
+                                06=ShipDeleteCustomShipInfo(0, infos);
                             }
                             04=else
                             05 ^{
-                                01=ShipCustomShipInfoData(0, infos, 1, infos_var - 1);
-                                02=if(ship == Player()) FilmFlags(3, 1);
-                                03=if(ship==Player())
-                                04 ^{
-                                    01=for(i = 0; i < StarShips(ShipStar(Player())); i = i + 1)
-                                    02 ^{
-                                        01=dword cur_ship = StarShips(ShipStar(Player()), i);
-                                        02=if(!NoTalkToShip(cur_ship) || !NoScanToShip(cur_ship))
+                                01=ShipCustomShipInfoData(0, infos, 1, days_left - 1);
+                                //Каждый ход вешаем на все корабли системы запрет на разговор и скан (если он и так на них не висит)
+                                02=if(IsPlayer(ship))
+                                03 ^{
+                                    01=FilmFlags(3, 1); //Вешаем автопропуск фильма
+                                    02=dword cur_star = ShipStar(Player());
+                                    03=for(i = 0; i < StarShips(cur_star); i = i + 1)
+                                    04 ^{
+                                        01=dword cur_ship = StarShips(cur_star, i);
+                                        //Делаем проверку именно на наличие маркеров, а не инфошки, т.к. эти маркера на корабли могли повесить и другие моды
+                                        02=if(ShipFindCustomShipInfoByType(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer') == -1)
                                         03 ^{
-                                            01=ShipAddCustomShipInfo(cur_ship, 'RNDbomb_2_PlayerInfos', 'NoShow', 1);
+                                            01=ShipAddCustomShipInfo(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 'NoShow');
                                             02=if(!NoTalkToShip(cur_ship))
                                             03 ^{
                                                 01=NoTalkToShip(cur_ship, 1);
-                                                02=ShipCustomShipInfoData(cur_ship, 'RNDbomb_2_PlayerInfos', 2, 1);
+                                                02=ShipCustomShipInfoData(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 2, 1);
                                             }
                                             04=if(!NoScanToShip(cur_ship))
                                             05 ^{
                                                 01=NoScanToShip(cur_ship, 1);
-                                                02=ShipCustomShipInfoTextData(cur_ship, 'RNDbomb_2_PlayerInfos', 1, '1');
+                                                02=ShipCustomShipInfoData(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 3, 1);
                                             }
                                         }
                                     }
@@ -660,14 +652,16 @@ ShipInfo ^{
                             }
                         }
                     }
-                    05=else
-                    06 ^{
+                    //Блокировка заходов на формы
+                    07=else //if(ScriptItemActionType(t_OnEnteringForm))
+                    08 ^{
                         01=str cur_form = CurrentForm();
                         02=if(cur_form == 'Ship' || cur_form == 'Info' || cur_form == 'Rating' || cur_form == 'Galaxy' || PlayerBridge())
                         03 ^{
                             01=MessageBox('Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.', 34);
                             02=FormChange('StarMap');
                         }
+                        //Восстанавливаем блок смены комплектаций (кнопки автоматически восстанавливаются после перезахода на Ship)
                         04=else if(cur_form == 'StarMap')
                         05 ^{
                             01=if(ShipCustomShipInfoData(Player(), infos, 3))
@@ -682,8 +676,139 @@ ShipInfo ^{
                         }
                     }
                 }
+            }
+            ExpArts_ShipInStarWithStunnedPlayer ^{
+                Icon=1
+                Name=
+                Description=Эта инфошка снимает с корабля запрет на разговор и скан в конце хода
+                OnActCodeTypes=t_OnStep
+                OnActStepTypes=10 //Удаляем инфошку заведомого до того, как код на инфошке оглушения игрока на OnStep 11 навесит её снова, иначе часть кораблей может не попасть под проверку наложения запретов
+                OnActCode ^{
+                    01=dword infos = CurInfo();
+                    02=dword ship = ScriptItemActShip();
+                    //Делаем проверку именно на наличие маркеров, а не инфошки, т.к. эти маркера на корабли могли повесить и другие моды
+                    03=if(ShipCustomShipInfoData(0, infos, 2)) NoTalkToShip(ship, 0);
+                    04=if(ShipCustomShipInfoData(0, infos, 3)) NoScanToShip(ship, 0);
+                    05=ShipDeleteCustomShipInfo(0, infos);
+                }
+            }
+            //Позже удалить, это дубликат для старых сейвов
+            RNDbomb_2_infos ^{
+                Description=Экипаж корабля подвергся воздействию неизвестного излучения и временно утратил контроль над собственными действиями.
+                Icon=1
+                Name=Оглушение
                 OnActCodeTypes=t_OnStep,t_OnEnteringForm
                 OnActStepTypes=0,11
+                OnActCode ^{
+                    01=dword infos = CurInfo();
+                    02=dword ship = ScriptItemActShip();
+                    05=if(ScriptItemActionType(t_OnStep))
+                    06 ^{
+                        //Обработчик начала хода
+                        01=if(!ScriptItemActParam())
+                        02 ^{
+                            01=OrderNone(ship);
+                            02=for(int i = 1; i <= ShipCntWeapon(ship); i = i + 1)
+                            03 ^{
+                                01=WeaponTarget(ShipWeapon(ship, i), 0);
+                            }
+                            04=float angle = pi * (ShipAngle(ship) + 90.0) / Rnd(179, 181);
+                            05=OrderMove(ship, cos(angle) * 10.0 + CoordX(ship), sin(angle) * 10.0 + CoordY(ship));
+                        }
+                        //Обработчик конца хода
+                        03=else //if(ScriptItemActParam() == 11)
+                        04 ^{
+                            01=int days_left = ShipCustomShipInfoData(0, infos, 1);
+                            //Снятие "оглушения"
+                            02=if(days_left <= 1)
+                            03 ^{
+                                01=OrderLock(ship, 0);
+                                02=ShipSpecialBonuses(ship, bonHook, ShipSpecialBonuses(ship, bonHook) + 50000);
+                                03=if(IsPlayer(ship))
+                                04 ^{
+                                    //Восстанавливаем энергию, если корпус - ТИ
+                                    01=if(~HullSpecial(Player()))
+                                    02 ^{
+                                        01=if(BonusNumInCfg(HullSpecial(Player())) == '490')
+                                        02 ^{
+                                            01=CapitalShipStats(ShipItems(Player(), 0), 1, 1000);
+                                        }
+                                    }
+                                    03=if(ShipCustomShipInfoData(0, infos, 3))
+                                    04 ^{
+                                        01=int b = ShipCustomShipInfoData(0, infos, 3) % 10;
+                                        02=while(b)
+                                        03 ^{
+                                            01=InterfaceState('StarMap', 'set_button_' + b + '_c', 1);
+                                            02=b = b - 1;
+                                        }
+                                        04=if(int(ShipCustomShipInfoData(0, infos, 3) / 10) > 0)
+                                        05 ^{
+                                            01=InterfaceState('StarMap', 'Klesh_panel', 1);
+                                        }
+                                        06=if(int(ShipCustomShipInfoData(0, infos, 3) / 10) > 1)
+                                        07 ^{
+                                            01=InterfaceState('StarMap', 'ppb_panel', 1);
+                                        }
+                                    }
+                                }
+                                05=if(ShipCustomShipInfoData(0, infos, 3) == 1) NoTalkToShip(ship, 0);
+                                06=ShipDeleteCustomShipInfo(0, infos);
+                            }
+                            04=else
+                            05 ^{
+                                01=ShipCustomShipInfoData(0, infos, 1, days_left - 1);
+                                //Каждый ход вешаем на все корабли системы запрет на разговор и скан (если он и так на них не висит)
+                                02=if(IsPlayer(ship))
+                                03 ^{
+                                    01=FilmFlags(3, 1); //Вешаем автопропуск фильма
+                                    02=for(i = 0; i < StarShips(ShipStar(Player())); i = i + 1)
+                                    03 ^{
+                                        01=dword cur_ship = StarShips(ShipStar(Player()), i);
+                                        //Делаем проверку именно на наличие маркеров, а не инфошки, т.к. эти маркера на корабли могли повесить и другие моды
+                                        02=if(ShipFindCustomShipInfoByType(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer') == -1)
+                                        03 ^{
+                                            01=ShipAddCustomShipInfo(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 'NoShow');
+                                            02=if(!NoTalkToShip(cur_ship))
+                                            03 ^{
+                                                01=NoTalkToShip(cur_ship, 1);
+                                                02=ShipCustomShipInfoData(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 2, 1);
+                                            }
+                                            04=if(!NoScanToShip(cur_ship))
+                                            05 ^{
+                                                01=NoScanToShip(cur_ship, 1);
+                                                02=ShipCustomShipInfoData(cur_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 3, 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //Блокировка заходов на формы
+                    07=else //if(ScriptItemActionType(t_OnEnteringForm))
+                    08 ^{
+                        01=str cur_form = CurrentForm();
+                        02=if(cur_form == 'Ship' || cur_form == 'Info' || cur_form == 'Rating' || cur_form == 'Galaxy' || PlayerBridge())
+                        03 ^{
+                            01=MessageBox('Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.', 34);
+                            02=FormChange('StarMap');
+                        }
+                        //Восстанавливаем блок смены комплектаций (кнопки автоматически восстанавливаются после перезахода на Ship)
+                        04=else if(cur_form == 'StarMap')
+                        05 ^{
+                            01=if(ShipCustomShipInfoData(Player(), infos, 3))
+                            02 ^{
+                                01=int k = ShipCustomShipInfoData(0, infos, 3) % 10;
+                                02=while(k)
+                                03 ^{
+                                    01=InterfaceState('StarMap', 'set_button_' + k + '_c', 0);
+                                    02=k = k - 1;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -918,13 +1043,15 @@ UselessItems ^{
     RNDbomb_2 ^{
         Cost=Big
         Name=Оглушающая бомба
+        OnActCodeTypes=t_OnStep,t_OnDropItem,t_OnDropItemFixed,t_OnItemPickUp,t_OnItemHit,t_OnItemDestroy
+        OnActStepTypes=1,2,3,4,5,6,7,8,9,10,11
         OnActCode ^{
             01=dword bomb = CurItem();
             02=int primer_type = UselessItemData(bomb, 2);
             03=int boom_flag = 0;
-            04=if(primer_type == 1) exit;
+            04=if(primer_type == 1) exit;//Бомба уже детонировала и не может бахнуть повторно
             05=if(ScriptItemActionType(t_OnStep))
-            06 ^{
+            06 ^{//Считаем дни до детонации
                 01=if(ScriptItemActParam() == 5)
                 02 ^{
                     01=if(primer_type == -5 || primer_type <= -7)
@@ -932,6 +1059,7 @@ UselessItems ^{
                         01=if(UselessItemData(bomb, 1) > 0)
                         02 ^{
                             01=if(UselessItemData(bomb, 1) == 1) boom_flag = 1;
+                            //UselessItemData(bomb, 1, UselessItemData(bomb, 1) - 2);
                             02=else UselessItemData(bomb, 1, UselessItemData(bomb, 1) - 1);
                         }
                         03=if(primer_type == -5)
@@ -946,6 +1074,7 @@ UselessItems ^{
                         }
                     }
                 }
+                //Проверяем все корабли и станции в системе, сверяем расстояние до бомбы и если они подошли слишком близко - активируем взрыватель
                 03=if(primer_type == -6 || primer_type == -9)
                 04 ^{
                     01=if(!boom_flag)
@@ -979,23 +1108,28 @@ UselessItems ^{
             08 ^{
                 01=if(ScriptItemActObject1() == bomb)
                 02 ^{
+                    //Запоминаем систему, в которой выкинули бомбу
                     01=UselessItemData(bomb, 3, Id(ShipStar(ScriptItemActShip())) - 1);
+                    //Включаем возможность детонации (выбросили в космос)
                     02=if(primer_type == 0)
                     03 ^{
                         01=primer_type = -4;
                         02=UselessItemData(bomb, 2, -4);
                     }
+                    //Активируем контактный взрыватель
                     04=else if(primer_type == -1)
                     05 ^{
                         01=primer_type = -5;
                         02=UselessItemData(bomb, 2, -5);
                     }
+                    //Активируем таймер
                     06=else if(primer_type == -2)
                     07 ^{
                         01=UselessItemText(bomb, CT('UselessItems.' + EquipmentImageName(bomb) + '.Text') + substr(CT('Cheat.Ok'), 0, 2) + '<br><clr><clrEnd><br>' + CT('Script.Mod_ExpArts.WillBeActivatedIn'));
                         02=primer_type = -8;
                         03=UselessItemData(bomb, 2, -8);
                     }
+                    //Активируем таймер и контактный взрыватель
                     08=else if(primer_type == -3)
                     09 ^{
                         01=UselessItemText(bomb, CT('UselessItems.' + EquipmentImageName(bomb) + '.Text') + substr(CT('Cheat.Ok'), 0, 2) + '<br><clr><clrEnd><br>' + CT('Script.Mod_ExpArts.WillBeActivatedIn'));
@@ -1005,7 +1139,7 @@ UselessItems ^{
                 }
             }
             09=else if(ScriptItemActionType(t_OnItemPickUp))
-            10 ^{
+            10 ^{//Выключаем возможность детонации (чтобы не бахала в трюме)
                 01=if(ScriptItemActObject1() == bomb)
                 02 ^{
                     01=if(primer_type == -4)
@@ -1015,6 +1149,7 @@ UselessItems ^{
                     }
                 }
             }
+            //Отдельно даём команду проиграть звук активации бомбы при попадании ракеты/торпеды, поскольку по событию ItemDestroy этот звук почему-то не воспроизводится
             11=else if(ScriptItemActionType(t_OnItemHit))
             12 ^{
                 01=if(ObjectType(ScriptItemActObject1()) == 7)
@@ -1022,6 +1157,7 @@ UselessItems ^{
                     01=if(ShipStar(Player()) == GalaxyStar(UselessItemData(bomb, 3)) && ShipInNormalSpace(Player())) FilmSound('Sound.RndHole03', bomb);
                 }
             }
+            //Происходит активация бомбы
             13=if(ScriptItemActionType(t_OnItemDestroy)) boom_flag = (primer_type <= -4);
             14=else if(ScriptItemActionType(t_OnItemPickUp)) boom_flag = (ScriptItemActObject1() == bomb && primer_type <= -5);
             15=if(boom_flag)
@@ -1036,7 +1172,10 @@ UselessItems ^{
                 08=if(ScriptItemActionType(t_OnItemPickUp))
                 09 ^{
                     01=pick_ship = ScriptItemActShip();
+                    //Если акткод был вызван из ExpPhysGun (типа бомбу запустили из физгана)
+                    //Не перепутать! ScriptItemActObject2() по умолчанию пуста только для события t_OnItemPickUp, а для остальных там будет записано что-то другое
                     02=if(!ScriptItemActObject2()) OrderNone(pick_ship);
+                    //Перед активацией эффекта обязательно делаем проверку на нахождение в пространстве системы игрока (!!!)
                     03=if(ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player()))
                     04 ^{
                         01=ShowStaticEffect('RNDbomb_2BAM', CoordX(pick_ship), CoordY(pick_ship));
@@ -1045,6 +1184,7 @@ UselessItems ^{
                 }
                 10=else
                 11 ^{
+                    //Перед активацией эффекта обязательно делаем проверку на нахождение в пространстве системы игрока (!!!)
                     01=if(ShipStar(Player()) == bomb_star && ShipInNormalSpace(Player()))
                     02 ^{
                         01=ShowStaticEffect('RNDbomb_2BAM', CoordX(bomb), CoordY(bomb));
@@ -1065,76 +1205,88 @@ UselessItems ^{
                         02=if(Tdist > 250) continue;
                     }
                     06=if(!ShipInNormalSpace(ship)) continue;
+                    //На станции и боссов оглушение не подействует
                     07=if(ObjectType(ship) == 4 || ShipType(ship) == 'DomRuins') continue;
                     08=str tempType = ShipType(ship);
                     09=if(ship == Keller() || ship == Terron() || ship == Blazer() || tempType == 'Machpella' || tempType == 'KillerAsteroid') continue;
-                    10=DayLong = round(15.0 - (10.0 * (Tdist * Tdist) / 62500));
+                    //Вычисляем урон по формуле round(BombPowerMax - (BombPowerMax-BombPowerMin) * dist2 / BombRadius2), где 2 - квадрат
+                    10=DayLong = round(15.0 - (10.0 * (Tdist * Tdist) / 62500)); //Линейная формула без квадрата DayLong = 15 - round(0.04 * Tdist);
+                    //Вешаем на корабль вращение на месте (если взлетает, то вращение откладывается до следующего хода)
                     11=OrderLock(ship, 1);
                     12=if(!ShipIsTakeoff(ship))
                     13 ^{
                         01=float angle = pi * (ShipAngle(ship) + 90.0) / Rnd(179, 181);
                         02=OrderMove(ship, cos(angle) * 10.0 + CoordX(ship), sin(angle) * 10.0 + CoordY(ship));
                     }
+                    //Отключаем прерывание фильма хода (прервать может только сам игрок)
                     14=if(ship == Player()) FilmFlags(3, 1);
-                    15=int targ_infos = ShipFindCustomShipInfoByType(ship, 'RNDbomb_2_infos');
+                    15=int targ_infos = ShipFindCustomShipInfoByType(ship, 'ExpArts_ShipStunned');
                     16=if(targ_infos == -1)
                     17 ^{
-                        01=if(ship == Player()) ShipAddCustomShipInfo(ship, 'RNDbomb_2_infos', 'Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.', DayLong);
-                        02=else ShipAddCustomShipInfo(ship, 'RNDbomb_2_infos', '', DayLong);
+                        01=if(ship == Player()) ShipAddCustomShipInfo(ship, 'ExpArts_ShipStunned', 'Вы подверглись воздействию неизвестного излучения и временно утратили контроль над собственными действиями.', DayLong);
+                        02=else ShipAddCustomShipInfo(ship, 'ExpArts_ShipStunned', '', DayLong + 1); //+1 добавляем, т.к. инфошка удалится на значении 1
+                        //"Отключаем" кораблю захват
                         03=ShipSpecialBonuses(ship, bonHook, ShipSpecialBonuses(ship, bonHook) - 50000);
+                        //Вешаем запрет на разговор, но только если корабль не имел его ранее
                         04=if(!NoTalkToShip(ship))
                         05 ^{
                             01=NoTalkToShip(ship, 1);
-                            02=ShipCustomShipInfoData(ship, ShipFindCustomShipInfoByType(ship, 'RNDbomb_2_infos'), 3, 1);
+                            02=ShipCustomShipInfoData(ship, ShipFindCustomShipInfoByType(ship, 'ExpArts_ShipStunned'), 3, 1);
                         }
                     }
+                    //Если корабль уже и так был оглушён, то просто продляем действие оглушения
                     18=else ShipCustomShipInfoData(ship, targ_infos, 1, ShipCustomShipInfoData(ship, targ_infos, 1) + DayLong);
+                    //Вешаем разговорный и сканерный запрет на все корабли системы, если под оглушение попал сам игрок
                     19=if(ship == Player())
                     20 ^{
                         01=dword player_star = ShipStar(Player());
                         02=for(i = 0; i < StarShips(player_star); i = i + 1)
                         03 ^{
-                            01=if(!NoTalkToShip(StarShips(player_star, i)) || !NoScanToShip(StarShips(player_star, i)))
-                            02 ^{
-                                01=ShipAddCustomShipInfo(StarShips(player_star, i), 'RNDbomb_2_PlayerInfos', 'NoShow', 1);
-                                02=if(!NoTalkToShip(StarShips(player_star, i)))
+                            01=dword some_ship = StarShips(player_star, i);
+                            //Делаем проверку именно на наличие маркеров, а не инфошки, т.к. эти маркера на корабли могли повесить и другие моды
+                            02=if(ShipFindCustomShipInfoByType(some_ship, 'ExpArts_ShipInStarWithStunnedPlayer') == -1)
+                            03 ^{
+                                01=ShipAddCustomShipInfo(some_ship, 'ExpArts_ShipInStarWithStunnedPlayer', 'NoShow');
+                                02=if(!NoTalkToShip(some_ship))
                                 03 ^{
-                                    01=NoTalkToShip(StarShips(player_star, i), 1);
-                                    02=ShipCustomShipInfoData(StarShips(player_star, i), ShipFindCustomShipInfoByType(StarShips(player_star, i), 'RNDbomb_2_PlayerInfos'), 2, 1);
+                                    01=NoTalkToShip(some_ship, 1);
+                                    02=ShipCustomShipInfoData(some_ship, ShipFindCustomShipInfoByType(some_ship, 'ExpArts_ShipInStarWithStunnedPlayer'), 2, 1);
                                 }
-                                04=if(!NoScanToShip(StarShips(player_star, i)))
+                                04=if(!NoScanToShip(some_ship))
                                 05 ^{
-                                    01=NoScanToShip(StarShips(player_star, i), 1);
-                                    02=ShipCustomShipInfoTextData(StarShips(player_star, i), ShipFindCustomShipInfoByType(StarShips(player_star, i), 'RNDbomb_2_PlayerInfos'), 1, '1');
+                                    01=NoScanToShip(some_ship, 1);
+                                    02=ShipCustomShipInfoData(some_ship, ShipFindCustomShipInfoByType(some_ship, 'ExpArts_ShipInStarWithStunnedPlayer'), 3, 1);
                                 }
                             }
                         }
-                        04=if(HullSpecial(Player()) > -1)
+                        //Временно снимаем энергию в 0, если корпус - ТИ
+                        04=if(~HullSpecial(Player()))
                         05 ^{
                             01=if(BonusNumInCfg(HullSpecial(Player())) == 490) CapitalShipStats(ShipItems(Player(), 0), 1, 0);
                         }
+                        //Скрываем некоторые рабочие элементы из ExpPanel
                         06=if(GetMainData('Data.Script.Mod_ExpPanel') == '1,Script.Mod_ExpPanel')
                         07 ^{
-                            01=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3, 0);
+                            01=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3, 0);
                             02=int v = 9;
                             03=while(v)
                             04 ^{
                                 01=if(InterfaceState('StarMap', 'set_button_' + v + '_c') == 1)
                                 02 ^{
                                     01=InterfaceState('StarMap', 'set_button_' + v + '_c', 0);
-                                    02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3) + 1);
+                                    02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3) + 1);
                                 }
                                 03=v = v - 1;
                             }
                             05=if(InterfaceState('StarMap', 'Klesh_panel') == 1)
                             06 ^{
                                 01=InterfaceState('StarMap', 'Klesh_panel', 0);
-                                02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(),'RNDbomb_2_infos'), 3) + 10);
+                                02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(),'ExpArts_ShipStunned'), 3) + 10);
                             }
                             07=if(InterfaceState('StarMap', 'ppb_panel') == 1)
                             08 ^{
                                 01=InterfaceState('StarMap', 'ppb_panel', 0);
-                                02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'RNDbomb_2_infos'), 3) + 10);
+                                02=ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3, ShipCustomShipInfoData(Player(), ShipFindCustomShipInfoByType(Player(), 'ExpArts_ShipStunned'), 3) + 10);
                             }
                         }
                     }
@@ -1153,8 +1305,6 @@ UselessItems ^{
                 19=UselessItemData(bomb, 2, 1);
             }
         }
-        OnActCodeTypes=t_OnStep,t_OnDropItem,t_OnDropItemFixed,t_OnItemPickUp,t_OnItemHit,t_OnItemDestroy
-        OnActStepTypes=1,2,3,4,5,6,7,8,9,10,11
         Owner=PirateClan
         Size=7
         Text=Сложное электронное устройство, уникальное наследие древности, при активации генерирующее поток излучения неизвестной доселе природы. Излучение подавляет любую высшую нервную деятельность, равно как и логику любых типов компьютеров<br>на срок от <color=255,240,100>5</color> до <color=255,240,100>15</color> суток.
@@ -1728,7 +1878,7 @@ UselessItems ^{
         OnActCode ^{
             01=dword item = ScriptItemActObject1();
             02=if(ItemType(item) != t_Hull) exit;
-            03=if(HullType(item) == 7 || EqCustomFaction(item) == 'Klissan') exit;
+            03=if(HullType(item) == 7 || HullType(item) == 8 || EqCustomFaction(item) == 'Klissan') exit;
             04=if(ItemExtraSpecials(item))
             05 ^{
                 01=int sp_num = 0;
@@ -2154,6 +2304,7 @@ UselessItems ^{
     RNDtimer ^{
         Cost=Average
         Name=Детонатор для бомбы
+        OnActCodeTypes=t_OnAnotherItem
         OnActCode ^{
             01=dword item = ScriptItemActObject1();
             02=if(ItemType(item) != t_UselessItem && ItemType(item) != t_ArtefactBomb) exit;
@@ -2187,17 +2338,20 @@ UselessItems ^{
                     }
                 }
                 08=if(!findsubstr(EquipmentImageName(item), 'RNDbomb_')) item_2 = item;
+                //Если детонатор устанавливается на кварку, то создаём особую кварку с акткодом
                 09=else if(ItemType(item) == t_ArtefactBomb)
                 10 ^{
                     01=item_2 = CreateQuestItem('RNDbomb_1');
                     02=ItemOwner(item_2, ItemOwner(item));
                     03=ItemSize(item_2, ItemSize(item));
                     04=ItemCost(item_2, ItemCost(item));
+                    //Удаляем предмет через дроп в другой системе, чтобы после его прямого удаления акткод не крашнул игру, обратившись к удалённому предмету
                     05=DropItemInSystem(StarNearbyStars(ShipStar(Player()), 1), GetArtFromShip(Player(), FindItemInShip(Player(), item)), 30000, 30000, 30000, 30000);
                     06=ItemDestroy(item, 1);
                     07=AddItemToShip(Player(), item_2);
                 }
                 11=str add_note = substr(CT('Cheat.Ok'), 0, 2) + '<br><clr><clrEnd>';
+                //Устанавливаем выбранный взрыватель в положение выкл. и задержку таймера, если она нужна
                 12=if(!choosed_fuse)
                 13 ^{
                     01=UselessItemData(item_2, 2, -1);
@@ -2222,11 +2376,11 @@ UselessItems ^{
                 18=UselessItemText(item_2, CT('UselessItems.' + EquipmentImageName(item_2) + '.Text') + add_note);
                 19=ItemSize(item_2, ItemSize(item_2) + ItemSize(CurItem()));
                 20=ItemCost(item_2, ItemCost(item_2) + ItemCost(CurItem()));
+                //Уничтожаем детонатор
                 21=ScriptItemActParam(1);
             }
             14=else ScriptItemActParam(2);
         }
-        OnActCodeTypes=t_OnAnotherItem
         Owner=PirateClan
         Size=1
         Text=При установке на <color=255,240,100>бомбу</color> подрывает (или активирует) её по истечении заданного времени, либо при контакте с приближающимся кораблём.

@@ -1,14 +1,14 @@
 FormShip ^{
     OnSpaceCurrentSet=Текущая комплектация
-    OnSpaceSet1=Первая комплектация
-    OnSpaceSet2=Вторая комплектация
-    OnSpaceSet3=Третья комплектация
-    OnSpaceSet4=Четвёртая комплектация
-    OnSpaceSet5=Пятая комплектация
-    OnSpaceSet6=Шестая комплектация
-    OnSpaceSet7=Седьмая комплектация
-    OnSpaceSet8=Восьмая комплектация
-    OnSpaceSet9=Девятая комплектация
+    OnSpaceSet1=Первая комплектация (<color=255,245,80>Ctrl+1</color>)
+    OnSpaceSet2=Вторая комплектация (<color=255,245,80>Ctrl+2</color>)
+    OnSpaceSet3=Третья комплектация (<color=255,245,80>Ctrl+3</color>)
+    OnSpaceSet4=Четвёртая комплектация (<color=255,245,80>Ctrl+4</color>)
+    OnSpaceSet5=Пятая комплектация (<color=255,245,80>Ctrl+5</color>)
+    OnSpaceSet6=Шестая комплектация (<color=255,245,80>Ctrl+6</color>)
+    OnSpaceSet7=Седьмая комплектация (<color=255,245,80>Ctrl+7</color>)
+    OnSpaceSet8=Восьмая комплектация (<color=255,245,80>Ctrl+8</color>)
+    OnSpaceSet9=Девятая комплектация (<color=255,245,80>Ctrl+9</color>)
 }
 FormRewards ^{
 	MoreRewards=Увеличить число отображаемых возле портрета пилота наград.

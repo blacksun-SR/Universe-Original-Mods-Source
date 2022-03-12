@@ -305,6 +305,11 @@ ShipInfo ^{
                 }
             }
         }
+        ShuNukes_BlockNukes ^{
+            Description=Инфошка корабля, которому не положена выдача ядерок
+            Icon=0
+            Name=
+        }
     }
 }
 ShuNukes ^{

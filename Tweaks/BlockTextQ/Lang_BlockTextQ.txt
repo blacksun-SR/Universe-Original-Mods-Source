@@ -272,8 +272,8 @@ PlanetQuest ^{
         58=data\Quest\Rus\STQ_Headhunter.qmm
         59=data\Quest\Rus\STQ_Headhunter.qmm
         6=data\Quest\Rus\STQ_Headhunter.qmm
-        60=data\Quest\Rus\STQ_Headhunter.qmm
-        61=data\Quest\Rus\STQ_Headhunter.qmm
+        //60=data\Quest\Rus\STQ_Headhunter.qmm
+        //61=data\Quest\Rus\STQ_Headhunter.qmm
         62=data\Quest\Rus\STQ_Headhunter.qmm
         63=data\Quest\Rus\STQ_Headhunter.qmm
         64=data\Quest\Rus\STQ_Headhunter.qmm

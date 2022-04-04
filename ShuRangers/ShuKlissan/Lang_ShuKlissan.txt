@@ -1670,7 +1670,7 @@ ShipInfo ^{
                         09=if(gun)
                         10 ^{
                             01=FireWeapon(cur_ship, attacker, gun);
-                            02=if(HullHP(attacker) <= 0) HullHP(attacker, 1); //ѕолностью убить атакующего контратакой нельз€
+                            02=//if(HullHP(attacker) <= 0) HullHP(attacker, 1); //ѕолностью убить атакующего контратакой нельз€
                         }
                     }
                 }

@@ -7,7 +7,6 @@ AppVerName=Space Rangers Universe Original
 AppCopyright=Space Rangers Community
 AppPublisher=Space Rangers Community
 AppPublisherURL="https://discord.gg/SY4aDtDxET"
-WizardStyle=classic
 
 // Directory setup
 SourceDir=. 
@@ -31,37 +30,57 @@ AppendDefaultDirName=no
 DirExistsWarning=no
 Uninstallable=false
 AllowRootDirectory=yes
+WizardStyle=classic
 
 // Disable pages
 DisableWelcomePage=no
 DisableProgramGroupPage=yes
 DisableReadyPage=yes
-
-// Information page
-InfoBeforeFile=Information.rtf
  
-[Languages] 
-Name: ru; MessagesFile: "compiler:Languages\Russian.isl"
+[Languages]
+Name: en; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "Information-English.rtf"
+Name: ru; MessagesFile: "compiler:Languages\Russian.isl"; InfoBeforeFile: "Information-Russian.rtf"
 
 [Types]
 Name: custom; Description: Custom installation; Flags: iscustom;
 
 [Components]
-Name: Universe; Description: Установить комплект модов Universe от {#VerDate}; Types: custom; Flags: fixed;
-Name: DeleteMods; Description: Очистить папку модов; Types: custom; 
-Name: InstallModCFG; Description: Подключить все установленные моды к игре; Types: custom;
+Name: Universe; Description: {cm:Universe}; Types: custom; Flags: fixed;
+Name: DeleteMods; Description: {cm:DeleteMods}; Types: custom; 
+Name: InstallModCFG; Description: {cm:InstallModCFG}; Types: custom;
 
 [Files]
 Source: SourceFiles\*; DestDir: {app}; Flags: ignoreversion createallsubdirs recursesubdirs; Components: Universe; 
 Source: ModCFG\Universe.txt; DestDir: {app}; Flags: ignoreversion;
 
-[Messages] 
-SetupWindowTitle={#SetupSetting("AppVerName")}
-ClickNext=Начальник отдела стратегического ПО "Линкус" %nПолковник Грогх
-WelcomeLabel1=Добро пожаловать, рейнджер!
-WelcomeLabel2=Тебя приветствует программа установки комплекта модификаций Universe для игры Космические Рейнджеры HD: Революция.%n%nДанный комплект ПО необходимо установить поверх имеющейся у вас копии (Steam или GOG) и незамедлительно освоить на деле.%n%nНесмотря на то, что дополнение к нашему тренажёру неофициальное, оно включает множество необходимых для освоения личным составом тактик: новые аркадные и планетарные карты, текстовые квесты, множество правительственных заданий и нестандартных сценариев, которые могут ожидать кадетов на реальном поле боя.
+[Messages]
+// English
+en.SetupWindowTitle={#SetupSetting("AppVerName")}
+en.ClickNext=Chief of Strategic Software Department "Linux" %nColonel Grogh
+en.WelcomeLabel1=Welcome, ranger!
+en.WelcomeLabel2=Program of installation for Universe modification pack for Space Rangers HD: A War Apart greets you.%n%nThis software package should be installed over your copy of the game (from Steam or GOG) and immediately tried in practice.%n%nAlthough this add-on for our simulator is unofficial, it includes many required for mastering by staff tactics: new arcade and planetary battles' maps, text quests, many governmental tasks and non-standard situations which cadets can meet on the real battlefield. 
+// Russian
+ru.SetupWindowTitle={#SetupSetting("AppVerName")}
+ru.ClickNext=Начальник отдела стратегического ПО "Линкус" %nПолковник Грогх
+ru.WelcomeLabel1=Добро пожаловать, рейнджер!
+ru.WelcomeLabel2=Тебя приветствует программа установки комплекта модификаций Universe для игры Космические Рейнджеры HD: Революция.%n%nДанный комплект ПО необходимо установить поверх имеющейся у вас копии (Steam или GOG) и незамедлительно освоить на деле.%n%nНесмотря на то, что дополнение к нашему тренажёру неофициальное, оно включает множество необходимых для освоения личным составом тактик: новые аркадные и планетарные карты, текстовые квесты, множество правительственных заданий и нестандартных сценариев, которые могут ожидать кадетов на реальном поле боя.
 
 [CustomMessages]
+// English
+en.GameExist=Can't find the game in the specified directory, check if the path is correct!
+en.GameNotFound=Steam or GOG-version of game not found, choose path for installation by yourself
+en.SteamGameFound=Steam-version of the game has been found, path for installation chosen automatically
+en.GogGameFound=GOG-version of the game has been found, path for installation chosen automatically
+en.Information=Carefully read information about presented modifications
+en.ModsOptions=Select the options you want to install; uncheck the options you don't want to install.%n%nClick «Install», when you'll be ready. 
+en.InstallButton=Install
+en.InstallComplete=Do you want some coffee or a secret task?
+en.InstallFinish=Modification pack {#SetupSetting("AppVerName")} was successfully installed!
+en.Discord=Discord server
+en.Universe=Install Universe modpack v. {#VerDate}
+en.DeleteMods=Clean the Mods folder
+en.InstallModCFG=Enable all installed mods in the game
+// Russian
 ru.GameExist=В указанной директории игра не обнаружена, проверьте правильность пути!
 ru.GameNotFound=Steam или GOG версия игры не обнаружена, укажите путь вручную
 ru.SteamGameFound=Обнаружена Steam-версия игры, путь установки выбран автоматически
@@ -72,6 +91,9 @@ ru.InstallButton=Установить
 ru.InstallComplete=Хотите кофейку или секретное задание?
 ru.InstallFinish=Комплект модификаций {#SetupSetting("AppVerName")} успешно установлен!
 ru.Discord=Discord сервер
+ru.Universe=Установить комплект модов Universe от {#VerDate}
+ru.DeleteMods=Очистить папку модов
+ru.InstallModCFG=Подключить все установленные моды к игре
  
 [Code]
 var
@@ -134,7 +156,7 @@ begin
   // Steam path
   SteamPath := ExpandConstant('{reg:HKLM\Software\Valve\Steam,InstallPath}');
   if SteamPath = '' then SteamPath := ExpandConstant('{reg:HKLM\Software\WOW6432Node\Valve\Steam,InstallPath}');
-  if SteamPath = '' then SteamPath := ExpandConstant('{pf}\Steam');
+  if SteamPath = '' then SteamPath := {pf} + '\Steam';
   if SteamPath <> '' then SteamConfigFilePath := SteamPath + '\steamapps\libraryfolders.vdf';
   // Default game path
   if FileExists(SteamPath + '\steamapps\common\Space Rangers HD A War Apart\Rangers.exe') then Result := SteamPath + '\steamapps\common\Space Rangers HD A War Apart'
@@ -292,7 +314,7 @@ begin
     WizardForm.NextButton.Caption := ExpandConstant('{cm:InstallButton}');
     WizardForm.ComponentsList.Checked[0] := True;
     WizardForm.ComponentsList.Checked[1] := False;
-    WizardForm.ComponentsList.Checked[2] := True;
+    WizardForm.ComponentsList.Checked[2] := False;
   end;
   
   if CurPageID = wpFinished then 

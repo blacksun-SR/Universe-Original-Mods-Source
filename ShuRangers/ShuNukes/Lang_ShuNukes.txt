@@ -431,7 +431,7 @@ UselessItems ^{
             01=if(!ShipInNormalSpace(Player())) MessageBox('Ётот предмет может быть использован только в открытом космосе');
             02=else if(!ShipRadarRange(Player())) MessageBox('Ќа корабле не установлен радар');
             03=else if(!UselessItemData(CurItem(),1)) MessageBox('ќтсутствуют €дерные боеголовки');
-            04=else if(UselessItemData(CurItem(),2)<5) MessageBox('ѕускова€ установка зар€жаетс€');
+            04=else if(UselessItemData(CurItem(),2)<2) MessageBox('ѕускова€ установка зар€жаетс€');
             05=else
             06 ^{
                 01=UselessItemData(CurItem(),3,1);

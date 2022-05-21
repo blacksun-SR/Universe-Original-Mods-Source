@@ -2710,7 +2710,7 @@ Artefacts ^{
                                             03=else continue;
                                         }
                                     }
-                                    07=effect=0;
+                                    07=dword effect=0;
                                     08=if(Arts[0]==-1 && Arts[1]==1)effect=1;
                                     09=if(Arts[0]==1 && Arts[1]==-1)effect=1;
                                     10=if(Arts[0]==1 && Arts[1]==1)effect=1;
